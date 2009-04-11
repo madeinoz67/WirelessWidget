@@ -1,0 +1,13 @@
+#summary Introducing the Strobit Wireless Widget
+
+= Introduction =
+
+A hardware and software project for Strobists and Geeks alike.
+
+This project aims to build a "hackable" wireless platform that can be used for a number of projects, e.g. for off camera lighting, aka "The Strobist Effect" http://www.strobist.com/. This platform is open in terms of hardware, software and protocols, so you can implement whatever functions you like.
+
+It aims to be more reliable than the 'Ebay Triggers' and cheaper than the commercial Pocket Wizards.
+
+The other great thing is the Strobit hardware also doubles as a great little Arduino based "Wireless Widget" for non Strobist activity such as home control, wireless sensor etc.
+
+As its Arduino based, there is plenty of Open libraries and tools to support it. 
