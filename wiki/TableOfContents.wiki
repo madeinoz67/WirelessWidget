@@ -1,6 +1,15 @@
-#summary Table of Contents
+#summary Table of Contents.
+
 
   * [Introduction]
+  * [Core RFM12 Module]
+  * [Personality Modules]
+    * [Prototype]
+    * [Basic Strobist]
+    * [S.P.O.T.]
+    * [Sensor]  
   * [Building the Hardware]
+  * [FAQ]
   * [Applications]
+  * [RoadMap]
   * [Links]
