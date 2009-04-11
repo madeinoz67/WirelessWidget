@@ -3,11 +3,10 @@
 Note: See [Standards] for project naming conventions and versioning standards
 
 = 0901-010 =
-  == To Do ==
   * ~~Schematics~~
   * ~~PCB Design~~
   * PCB Fabrication
-  * PCB Construction
+  * Construction
   * Hardware verification
   * Documentation
 
