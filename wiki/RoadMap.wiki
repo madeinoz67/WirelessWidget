@@ -2,7 +2,7 @@
 
 Note: See [Standards] for project naming conventions and versioning standards
 
-= 0901-010 =
+= 1.0 =
   * ~~Schematics~~
   * ~~PCB Design~~
   * PCB Fabrication
@@ -10,4 +10,4 @@ Note: See [Standards] for project naming conventions and versioning standards
   * Hardware verification
   * Documentation
 
-= 0901-011 =
+= 1.1 =
