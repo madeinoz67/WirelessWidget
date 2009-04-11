@@ -14,7 +14,7 @@ Note: See [Standards] for project naming conventions and versioning standards
     * Basic Strobit Personality
   * PCB Fabrication
     * Core Widget Board
-    * Prototype Board
+    * Prototype Personality
     * Basic Strobit Personality
   * Construction
     * Core Widget Board
@@ -22,7 +22,7 @@ Note: See [Standards] for project naming conventions and versioning standards
     * Basic Strobit Personality
   * Hardware verification
     * Core Widget Board
-    * Prototype Board
+    * Prototype Personality
     * Basic Strobit Personality
   * Documentation
 
