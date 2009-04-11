@@ -11,3 +11,5 @@ Note: See [Standards] for project naming conventions and versioning standards
   * Documentation
 
 = 1.1 =
+  * Software libraries
+  * Power management
