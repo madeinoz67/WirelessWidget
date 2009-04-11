@@ -3,13 +3,32 @@
 Note: See [Standards] for project naming conventions and versioning standards
 
 = 1.0 =
-  * ~~Schematics~~
-  * ~~PCB Design~~
+  * Schematics
+    * ~~ Core Widget Board ~~
+    * ~~ Empty Personality ~~
+    * ~~ Prototype Personality ~~
+    * Basic Strobit Personality 
+  * PCB Design
+    * ~~ Core Widget Board ~~
+    * ~~ Prototype Personality ~~
+    * Basic Strobit Personality
   * PCB Fabrication
+    * Core Widget Board
+    * Prototype Board
+    * Basic Strobit Personality
   * Construction
+    * Core Widget Board
+    * Prototype Personality
+    * Basic Strobit Personality
   * Hardware verification
+    * Core Widget Board
+    * Prototype Board
+    * Basic Strobit Personality
   * Documentation
 
 = 1.1 =
+  * Personality Designs
+    * S.P.O.T. Personality
+    * H-Bridge Motor Driver Board
   * Software libraries
   * Power management
