@@ -3,7 +3,7 @@
 
 
 = Tutorials =
-  * [http://blog.strobotics.com.au/tutorials/rfm12-stuff/ RFM12 Information]
-  * [http://blog.strobotics.com.au/tutorials/eagle3d-tutorials/using-google-sketchup-to-create-components/ Creating custom components in Eagle3D]
+  * [http://blog.everythingrobotics.com/tutorials/rfm12-stuff/ RFM12 Information]
+  * [http://blog.everythingrobotics.com/tutorials/eagle3d-tutorials/using-google-sketchup-to-create-components/ Creating custom components in Eagle3D]
 
 = Tools = 
