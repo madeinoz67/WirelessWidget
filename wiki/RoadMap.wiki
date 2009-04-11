@@ -29,6 +29,7 @@ Note: See [Standards] for project naming conventions and versioning standards
 = 1.1 =
   * Personality Designs
     * [http://code.google.com/p/strobist-project-opensource-trigger/ S.P.O.T. Personality]
-    * H-Bridge Motor Driver Board
+    * [http://www.ladyada.net/make/mshield/ Motor Personality]
+    * [http://jeelab.equi4.com/2009/03/30/meet-the-jeenode-pulse/ Sensor Personality]
   * Software libraries
   * Power management
