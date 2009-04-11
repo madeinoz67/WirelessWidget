@@ -2,9 +2,9 @@
 
 = Background =
 
-The original idea was conceived in a response to a topic I posted on the Strobit Flickr Pool ([http://www.flickr.com/groups/strobist/discuss/72157602088957861/ Original discussion Thread])in regard to creating an open source wireless trigger fro the community.  
+The original idea was conceived in a response to a topic I posted on the Strobist Flickr Pool ([http://www.flickr.com/groups/strobist/discuss/72157602088957861/ Original discussion Thread]) in regards to creating an open source wireless trigger for the community.  
 
-As there was quite a bit of positive feedback I created a proof of concept wireless trigger prototype based on the PIC and the RFM12B Wireless module that successfully synced/triggered at 100m outside and all around the house inside.  [http://blog.everythingrobotics.com/strobit/ Original Strobit Prototype and test results]
+As there was quite a bit of positive feedback I created a proof of concept wireless trigger prototype based on the PIC MCU and the RFM12B Wireless module that successfully synced/triggered at 100m outside and all around the house inside.  [http://blog.everythingrobotics.com/strobit/ Original Strobit Prototype and test results]
 
 After the prototype development stopped, mainly due to family and work commitments, moving house, remarrying blah blah....(funny how these small things seem to get in the way of development) however always in the back of mind I had ideas of reviving an open wireless trigger platform. 
 
@@ -13,4 +13,3 @@ After the prototype development stopped, mainly due to family and work commitmen
 During this time I started playing around with the Arduino.  I loved the idea of the modularity and the open tools and libraries, however there was no real low cost wireless platform for the Arduino, other than the X-BEE Shield, these were way too pricey.  What I wanted was a small arduino like platform with the wireless onboard.   
 
 The Strobit Wireless Widget was born.  Not purely for the strobist wireless trigger, but more of a generic Wireless embedded platform, a wireless widget so as to speak,  as my other interests are Home Control and Robotics, this was something I could adapt to any of my interests rather than a single dedicated piece of hardware.  
-
