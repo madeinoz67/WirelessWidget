@@ -3,12 +3,12 @@
 Note: See [Standards] for project naming conventions and versioning standards
 
 = 1.0 =
-  * Schematics
+  * ~~Schematics ~~
     * ~~ Core Widget Board ~~
     * ~~ Empty Personality ~~
     * ~~ Prototype Personality ~~
     * ~~ Basic Strobit Personality ~~
-  * PCB Design
+  * ~~ PCB Design ~~
     * ~~ Core Widget Board ~~
     * ~~ Prototype Personality ~~
     * ~~ Basic Strobit Personality ~~
