@@ -13,8 +13,8 @@ Note: See [Standards] for project naming conventions and versioning standards
     * ~~ Prototype Personality ~~
     * ~~ Basic Strobit Personality ~~
   * PCB Fabrication
-    * Core Widget Board
-    * Prototype Personality
+    * ~~ Core Widget Board ~~
+    * ~~ Prototype Personality ~~
     * Basic Strobit Personality
   * Construction
     * Core Widget Board
