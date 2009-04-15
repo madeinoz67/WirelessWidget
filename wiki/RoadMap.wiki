@@ -7,11 +7,11 @@ Note: See [Standards] for project naming conventions and versioning standards
     * ~~ Core Widget Board ~~
     * ~~ Empty Personality ~~
     * ~~ Prototype Personality ~~
-    * Basic Strobit Personality 
+    * ~~ Basic Strobit Personality ~~
   * PCB Design
     * ~~ Core Widget Board ~~
     * ~~ Prototype Personality ~~
-    * Basic Strobit Personality
+    * ~~ Basic Strobit Personality ~~
   * PCB Fabrication
     * Core Widget Board
     * Prototype Personality
