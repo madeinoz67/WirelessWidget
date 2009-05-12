@@ -15,15 +15,12 @@ Note: See [Standards] for project naming conventions and versioning standards
   * PCB Fabrication
     * ~~ Core Widget Board ~~
     * ~~ Prototype Personality ~~
-    * Basic Strobit Personality
   * Construction
-    * Core Widget Board
-    * Prototype Personality
-    * Basic Strobit Personality
+    * ~~ Core Widget Board ~~
+    * ~~ Prototype Personality ~~
   * Hardware verification
     * Core Widget Board
     * Prototype Personality
-    * Basic Strobit Personality
   * Documentation
 
 = 1.1 =
