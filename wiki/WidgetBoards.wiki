@@ -1,0 +1,3 @@
+#summary Wireless Widget Boards
+
+  * [RFM12BCore]
