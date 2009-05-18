@@ -3,7 +3,7 @@
 
   * [Introduction]
   * [Hardware]
-    * [CoreBoard]
+    * [WidgetBoards]
       * [RFM12BCore]
     * [PersonalityModules]
       * [PrototypePersonality]
