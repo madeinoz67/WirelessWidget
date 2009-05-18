@@ -1,2 +1,2 @@
 #summary Building the Hardware
-  * Rfm12bBuildInstructions
+  * Rfm12bBuildingInstructions
