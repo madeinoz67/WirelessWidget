@@ -1,4 +1,4 @@
-#Hardware - RFM12B Strobit Wireless Widget Board
+# Hardware - RFM12B Strobit Wireless Widget Board
 
 http://farm4.static.flickr.com/3337/3532713912_289f3464f6.jpg
 http://farm3.static.flickr.com/2220/3531897883_f036aa55a3.jpg
