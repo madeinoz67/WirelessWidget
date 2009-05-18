@@ -4,7 +4,7 @@
   * [Introduction]
   * [Hardware]
     * [CoreBoard]
-      * [RFM12BCORE]
+      * [RFM12BCore]
     * [PersonalityModules]
       * [PrototypePersonality]
       * [BasicStrobistPersonality]
