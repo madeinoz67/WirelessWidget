@@ -1,4 +1,4 @@
-#Build instructions for RFM12B PCB
+#summary Build instructions for RFM12B PCB
 
 =PCB Layout=
 
