@@ -31,7 +31,7 @@ D1 can be disabled (at your own risk) by either not installing it and using the 
 ||SJ1||Led1 Enable||ON||
 ||SJ2||Led2 Enable||ON||
 ||SJ3||D1 Battery side bypass||OFF||
-||SJ4||D1 USB side bypass||OFF|
+||SJ4||D1 USB side bypass||OFF||
 ||SJ5||SW1 bypass||OFF||
 
 =Parts List=
