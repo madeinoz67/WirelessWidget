@@ -12,7 +12,7 @@ Q.  the pins on the headers don't line up, are they special components?
 
 A.  Don't worry, they are standard SIL headers, I've used the Sparkfun library for this part and used their 'LOCK' version of the footprints, more information here: [http://www.sparkfun.com/commerce/tutorial_info.php?tutorials_id=114]  they work very well, in fact I used them to temporarily put male SIL headers in place so I could put the Wireless Widget board on a breadboard.  I could then program the boot loaders, the tension provides good contact with the pins, when I finished playing around I could remove the headers and eventually solder in the correct female headers when they arrived.
 
-Q. Why is the SMA antenna on the side not at the front of the board?  
+Q. Why is the SMA antenna on the side and not at the front of the board?  
 
 A. I designed the board so that it could be stored with the antenna still on, just folding along the axis of the board. i.e. like putting it into a camera bag.
 
