@@ -26,6 +26,7 @@ D1 can be disabled (at your own risk) by either not installing it and using the 
 
 
 =Solder Jumper Table=
+
 ||Jumper||Description||Default||
 ||SJ1||Led1 Enable||ON||
 ||SJ2||Led2 Enable||ON||
