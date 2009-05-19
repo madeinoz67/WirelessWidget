@@ -1,4 +1,6 @@
-#summary Build instructions for RFM12B PCB
+#summary SWW-0901-010 - Build instructions for RFM12B PCB
+
+These instructions are for the version 1.0 board.
 
 =PCB Layout=
 
