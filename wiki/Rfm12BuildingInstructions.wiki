@@ -5,12 +5,21 @@ These instructions are for the version 1.0 board.
 =PCB Layout=
 
 [http://farm3.static.flickr.com/2220/3542829566_44c04ec6e1_o.png http://farm3.static.flickr.com/2220/3542829566_9d82a83239_b.jpg]
+
+=Design Questions Answered=
+
+You may notice that the headers on the board don't line up.  Don't worry, they are standard SIL headers, I've used the Sparkfun library for this part and used their 'LOCK' version of the footprints, more information here: [http://www.sparkfun.com/commerce/tutorial_info.php?tutorials_id=114]  they work very well, in fact I used them to temporarily put male SIL headers in place so I could put the Wireless Widget board on a breadboard.  I could then program the boot loaders, the tension provides good contact with the pins, when I finished playing around I could remove the headers and eventually solder in the correct female headers when they arrived.
+
+Why is the SMA antenna on the side not at the front of the board?  I designed the board so that it could be stored with the antenna still on, just folding along the axis of the board. i.e. like putting it into a camera bag.
+
 =Solder Jumper Table=
+
 ||SJ1||Led1 Enable||
 ||SJ2||Led2 Enable||
 ||SJ3||D1 Battery side bypass||
 ||SJ4||D1 USB side bypass||
 ||SJ5||SW1 bypass||
+
 =Parts List=
 Not all of the parts below are required to get a working board.  The parts marked with 'YES' in the REQD column are the minimium components required for a working board
 
