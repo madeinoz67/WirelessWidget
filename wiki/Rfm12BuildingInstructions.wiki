@@ -35,7 +35,7 @@ D1 can be disabled (at your own risk) by either not installing it and using the 
 ||SJ5||SW1 bypass||OFF||
 
 =Parts List=
-Not all of the parts below are required to get a working board.  The parts marked with 'YES' in the REQD column are the minimium components required for a working board
+Not all of the parts below are required to get a working board.  The parts marked with 'YES' in the REQD column are the minimum components required for a working board
 
 ||REQD||Part ||Qty||Value||Device||Package||Manufacturer||Manuf. Part#||Description||
 || ||ANT||1||SMA_EDGE||SMA_EDGE||SMA-EDGE||ChangHong||SMA-02-101-TGG||SMA Antenna Connector Round PCB Edge||
