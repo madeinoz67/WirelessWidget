@@ -7,9 +7,11 @@ These instructions are for the version 1.0 board.
 [http://farm3.static.flickr.com/2220/3542829566_44c04ec6e1_o.png http://farm3.static.flickr.com/2220/3542829566_9d82a83239_b.jpg]
 
 =Parts List=
+Not all of the parts below are required to get a working board.
 
+*=required parts
 
-||*Part* ||*Qty*||*Value*||*Device*||*Package*||*Manufacturer*||*Manuf. Part#*||*Description*||
+||Part ||Qty||Value||Device||Package||Manufacturer||Manuf. Part#||Description||
 ||ANT||1||SMA_EDGE||SMA_EDGE||SMA-EDGE||ChangHong||SMA-02-101-TGG||SMA Antenna Connector Round PCB Edge||
 ||BT1||1||Keystone 1029	||BATTERYCR123A||BATTERY_CR123A||Keystone||1029||CR123A Battery Holder PCB||
 ||BTCOVER||1||Keystone 1029C||CR123A Cover|| ||Keystone||1029C||CR123A Battery Cover||
