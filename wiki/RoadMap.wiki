@@ -22,6 +22,7 @@ Note: See [Standards] for project naming conventions and versioning standards
     * Core Widget Board
     * ~~ Prototype Personality ~~
   * Documentation
+    * ~~ Rfm12bBuildInstructons ~~
 
 = 1.1 =
   * Personality Designs
