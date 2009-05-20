@@ -110,7 +110,7 @@ At the moment I don't use a solder paste mask I apply it all by hand the first c
   ==The steps I use - (Toaster Oven)==
    # Make sure you have all the correct components, I usually place mine into labelled SMD storage containers before I start.  It make it things much easier when I'm placing them. 
    # Clean the PCB with cleaning alcohol and wipe dry with a paper towel.
-   # Apply solder paste to all components all that you're installing, only small amounts are needed.
+   # Apply solder paste to all components pads on the PCB for all that you're installing, only very small amounts are needed.
    # Apply solder paste to the jumpers you want to close, put a generous amount on these, try and cover the two pads, these will flow to form a bridge.
    # Using the tweezers place the components onto the their respective pads (using the layout picture above as a guide)  Be careful with polarised components, these are C7, U1, RFM12, LED1 and LED2, they can easily be put the wrong way around.  (TODO: Pictures)
    # I test my LEDS before I place them as they are very small and hard to work out which end is the cathode.  I use my multimeter on continuity/resistor setting and put them directly on each end of the LED, if the LED lights up, then the end I have my red test lead on goes towards R2 and R3 on the board. 
