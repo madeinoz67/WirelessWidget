@@ -60,11 +60,13 @@ Not all of the parts below are required to get a working board.  The parts marke
 ==Suppliers==
 TODO:  [Octopart http://www.octopart.com] partlist.
 
-[Sparkfun http://sparkfun.com]
+[http://sparkfun.com]
 
-[Mouser http://www.mouser.com/]
+[http://www.mouser.com/]
 
-[Digikey http://www.digikey.com.au]
+[http://www.digikey.com]
+
+[http://www.dealextreme.com] - tools, antennas and SMA connectors
 
 ==Other sources==
 What I did while waiting for my components to come in was to salvage SMD components from old motherboards, this is a good source for bypass capacitors(C1,C2,C3,C4)and Ferrite Beads(L1). It allowed me to get a minimal board up and running so I could test things.
