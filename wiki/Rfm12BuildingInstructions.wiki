@@ -75,3 +75,29 @@ One of the things with this is that many of these are 0804 parts, while the Wire
 
   * [http://www.neufeld.newton.ks.us/electronics/?p=209]
   * [http://www.opencircuits.com/Salvage_Parts_and_Sources]
+
+=Surface Mount Soldering=
+I actually find making SMD boards way easier than the old PTH components method.  For small boards such as this it does not take long at all.
+
+There are a few of ways to do this:
+
+  # Hand Soldering
+  # Hotplate/Skillet plate
+  # Toaster Oven
+
+ [Sparkfuns SMD Solder Tutorials http://www.sparkfun.com/commerce/tutorial_info.php?tutorials_id=36]
+
+ ==Tools==
+You are going to need a few tools regardless of what method you use.
+
+These are what I currently use:
+  * Right angle tweezers.
+  * Jewellers Loupe or magnifying glass.
+  * soldering Iron with a fine tip
+  * Solder
+  * De-Solder Wick
+  * Solder Paste in syringe
+
+Most of these tools I purchased from [http://www.dealextreme.com]  (WARNING: This site is very addictive).  I also get my SMA connectors, pigtails and 900MHZ antennas here.  shipping is free worldwide, and their prices are fantastic.
+
+At the moment I don't use a solder paste mask I apply it all by hand the first couple of boards I used a little too much solder and had some bridges I needed to remove, however after the 3rd board I don't have any solder bridges and I have a good idea of how much solder paste I need to apply. Actually very little solder paste actually is needed on most components, the only one that needs a bit more is the RFM12B transceiver, all the rest is but a smear on the pad, which causes a nice fillet on the finished joints.
