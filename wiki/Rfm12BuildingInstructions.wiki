@@ -98,8 +98,21 @@ These are what I currently use:
   * soldering Iron with a fine tip
   * Solder
   * De-Solder Wick
-  * Solder Paste in syringe
+  * Solder Paste in syringe.
+  * SMD component storage containers with spring lids.
+  * Multimeter
+  * Temperature probe capable of going to 250DegC
 
 Most of these tools I purchased from [http://www.dealextreme.com]  (WARNING: This site is very addictive).  I also get my SMA connectors, pigtails and 900MHZ antennas here.  shipping is free worldwide, and their prices are fantastic.
 
 At the moment I don't use a solder paste mask I apply it all by hand the first couple of boards I used a little too much solder and had some bridges I needed to remove, however after the 3rd board I don't have any solder bridges and I have a good idea of how much solder paste I need to apply. Actually very little solder paste actually is needed on most components, the only one that needs a bit more is the RFM12B transceiver, all the rest is but a smear on the pad, which causes a nice fillet on the finished joints.
+
+  ==The steps I use - (Toaster Oven)==
+   # Make sure you have all the correct components, I usually place mine into labelled SMD storage containers before I start.  It make it things much easier when I'm placing them. 
+   # Clean the PCB with cleaning alcohol and wipe dry with a paper towel.
+   # Apply solder paste to all components all that you're installing, only small amounts are needed.
+   # Apply solder paste to the jumpers you want to close, put a generous amount on these, try and cover the two pads, these will flow to form a bride.
+   # Using the tweezers place the components onto the their respective pads (using the layout picture above as a guide)  Be careful with polarised components, these are C7, U1, RFM12, LED1 and LED2, they can easily be put the wrong way around.  (TODO: Pictures)
+   # I test my LEDS before I place them as they are very small and hard to work out which end is the cathode.  I use my multimeter on continuity/resistor setting and put them directly on each end of the LED, if the LED lights up, then the end I have my red test lead on goes towards R2 and R3 on the board. 
+  # once All components are placed and I've tripple checked that I have them all the right way around (It's much harder to change them after they are soldered) I then place them in my toaster oven with it turned off.
+  # I've modified my toaster oven my adding a PID Ramp controller, this allows me to have the SMD solder temperature profiles programmed in, I just hit go and it does the rest, but most of you will not have this luxury.  What I suggest is to familiarise yourself with the solders temperature profile, available from the manufactures website.  
