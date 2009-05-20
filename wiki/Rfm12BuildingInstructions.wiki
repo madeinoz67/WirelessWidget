@@ -126,8 +126,8 @@ At the moment I don't use a solder paste stencil.  I apply it all by hand.  The 
 After my soldering I do the following tests:
   # Visual check of all components using a magnifying glass and fix where required.
   # Electrical Check, mainly on the power side of things, I put a multimeter on Ohms mode and check I don't have any shorts across the power.  (be aware that if you have installed D1 then you may need to check for shorts after the switch.)
-  # If this is a new PCB design then I will also do electrical test on the CPU to all I/O ports etc, making sure they are going where they are supposed to.
+  # If this is a new PCB design then I will also do continuity check on the CPU to all I/O ports etc, making sure they are going where they are supposed to.
   # Once I'm happy with all of this then I proceed to apply power.
-  # After applying power I check that nothing is getting hot by touching the key components, if they are then immediately turn things off and you will need to troubleshoot the board.
+  # After applying power I check that nothing is getting hot by touching the key components, if they are, then *immediately* turn things off and you will need to troubleshoot the board, most likely you have a component around the wrong way or you have the power reversed.
   # I then check voltages around the main parts and once I'm happy everything is getting power then I will program the bootloader.
  
