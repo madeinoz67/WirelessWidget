@@ -1,4 +1,5 @@
 #summary Hardware
+#labels Featured
 
 =Boards= 
 
