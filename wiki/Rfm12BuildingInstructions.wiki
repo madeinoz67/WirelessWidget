@@ -89,7 +89,7 @@ There are a few of ways to do this:
   # Hotplate/Skillet plate
   # Toaster Oven
 
- [Sparkfuns SMD Solder Tutorials http://www.sparkfun.com/commerce/tutorial_info.php?tutorials_id=36]
+ [http://www.sparkfun.com/commerce/tutorial_info.php?tutorials_id=36 Sparkfuns SMD Solder Tutorials]
 
  ==Tools==
 You are going to need a few tools regardless of what method you use.
