@@ -89,7 +89,7 @@ There are a few of ways to do this:
   # Hotplate/Skillet plate
   # Toaster Oven
 
- [http://www.sparkfun.com/commerce/tutorial_info.php?tutorials_id=36 Sparkfuns SMD Solder Tutorials]
+ [http://www.sparkfun.com/commerce/tutorial_info.php?tutorials_id=36 Sparkfuns SMD Solder Tutorials] - there a number of parts to this tutorial, please read all of of the parts.
 
  ==Tools==
 You are going to need a few tools regardless of what method you use.
@@ -105,7 +105,7 @@ These are what I currently use:
   * Multimeter
   * Temperature probe capable of going to 250DegC
 
-Most of these tools I purchased from [http://www.dealextreme.com]  (WARNING: This site is very addictive).  I also get my SMA connectors, pigtails and 900MHZ antennas here.  shipping is free worldwide, and their prices are fantastic.
+Most of these tools I purchased from [http://www.dealextreme.com]  (WARNING: This site is very addictive).  I also get my SMA connectors, SMA pigtails and 900MHZ antennas here.  shipping is free worldwide, and their prices are fantastic.
 
 At the moment I don't use a solder paste stencil.  I apply it all by hand.  The first couple of boards I used a little too much solder and had some bridges I needed to remove, however after the 3rd board I don't have any solder bridges and I have a good idea of how much solder paste I need to apply. Actually very little solder paste actually is needed on most components, the only one that needs a bit more is the RFM12B transceiver, all the rest is but a smear on the pad, which causes a nice fillet on the finished joints.
 
