@@ -1,4 +1,5 @@
 #summary Roadmap, nothing like bumping our way around in the dark!
+#labels Featured
 
 Note: See [Standards] for project naming conventions and versioning standards
 
@@ -22,7 +23,7 @@ Note: See [Standards] for project naming conventions and versioning standards
     * Core Widget Board
     * ~~ Prototype Personality ~~
   * Documentation
-    * ~~ Rfm12bBuildInstructons ~~
+    * ~~ BuildingTheHardware ~~
 
 = 1.1 =
   * Personality Designs
