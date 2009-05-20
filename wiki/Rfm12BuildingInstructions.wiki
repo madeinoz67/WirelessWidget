@@ -26,6 +26,11 @@ A.  D1 is a schottky protection diode used for two things:
 
 D1 can be disabled (at your own risk) by either not installing it and using the solder jumpers document below to bypass it.
 
+Q. What is the RSSI Pad for?
+
+A. This pad is connected to ADC7 port of the processor.  The reason behind this is the RF12B modules do not give any analogue RSSI values via the SPI interface, it only has an RSSI bit value i.e. if the RSSI is above a preset value this bit is high.  So it doesn't really give much information about the RSSI signal.   If you want an analogue RSSI signal then you need to solder a jumper from this pad to the RFM12B module as indicated here.
+[http://blog.everythingrobotics.com/2008/06/17/rfm12-tutorial-part2/]
+
 
 =Solder Jumper Table=
 
