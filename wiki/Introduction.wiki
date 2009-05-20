@@ -1,4 +1,5 @@
 #summary Introducing the Strobit Wireless Widget
+#labels Featured
 
 = Background =
 
