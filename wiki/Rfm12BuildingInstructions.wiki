@@ -60,7 +60,7 @@ Not all of the parts below are required to get a working board.  The parts marke
 
 =Component Sources=
 ==Suppliers==
-TODO:  [Octopart http://www.octopart.com] partlist.
+TODO:  [http://www.octopart.com  Octopart] partlist.
 
 [http://sparkfun.com]
 
