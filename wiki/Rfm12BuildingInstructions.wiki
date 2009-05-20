@@ -55,3 +55,23 @@ Not all of the parts below are required to get a working board.  The parts marke
 ||YES||RFM12B||	1||	RFM12BSMD||	RFM12BSMD||	RFM12B-S1||	HOPERF||	RFM12B-XXX-S1||	HopeRF  RFM12B Tranceiver Module SMD||
 || ||S1||	1||	Power Switch||	SLIDESWITCH-SMD	||SWITCH-SPDT-SMD||	HUAWEITE||	MSK-12C00(1P2T)||	Slide Switch SP2T SMD R/A||
 ||YES||U1||	1||	ATMEGA168V||	ATMEGA168||TQFP32||	ATMEL||	ATmega168V-10AU||	ATMEGA168V TQFP||
+
+=Component Sources=
+==Suppliers==
+TODO:  [Octopart http://www.octopart.com] partlist.
+
+[Sparkfun http://sparkfun.com]
+
+[Mouser http://www.mouser.com/]
+
+[Digikey http://www.digikey.com.au]
+
+==Other sources==
+What I did while waiting for my components to come in was to salvage SMD components from old motherboards, this is a good source for bypass capacitors(C1,C2,C3,C4)and Ferrite Beads(L1). It allowed me to get a minimal board up and running so I could test things.
+
+Ferrite beads can be found around the USB and ethernet ports, Ususally labelled with FB, B or L. 
+
+One of the things with this is that many of these are 0804 parts, while the Wireless Widget is 0603, this is not a big problem, by turning the 0804 parts on their side they will fit ok.
+
+  * [http://www.neufeld.newton.ks.us/electronics/?p=209]
+  * [http://www.opencircuits.com/Salvage_Parts_and_Sources]
