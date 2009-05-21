@@ -59,7 +59,7 @@ Not all of the parts below are required to get a working board.  The parts marke
 || ||JP3||	1||	Male Header SIL 1x6 R/A||	HEADER_SIL_1x06RA||	SIL_1x08RA||	ITEK||	PH1R-108GBA|| || ||	Header Male SIL 1x08 2.54mm Right Angle PTH||
 ||YES||L1||	1||	220 Ferrite Bead||	INDUCTOR0603||	0603||	HITANO||	FBM-0603-ST-221-S|| || ||	Ferrite Bead Inductor||
 || ||LED1, LED2||	2||	RED||	LED0603||	0603||	HITANO||	HI-1608-HRF-T||	|| ||LED RED 0603||
-|| ||Q1||	1||	10Mhz	||CRYSTAL5X3||	CRYSTAL-SMD-0503||ECS International||	520-100-20-30B-DU||Mouser||520-ECS100-20-30B||Crystal 10MHZ Ceramic 0503 20pf||
+|| ||Q1||	1||	10Mhz	||CRYSTAL5X3||	CRYSTAL-SMD-0503||ECS International||	ECS-100-20-30B-DU||Mouser||520-100-20-30B-DU||Crystal 10MHZ Ceramic 0503 20pf||
 ||YES||R1||	1||	10K||	RESISTOR0603||	0603||	*|| || || ||Resistor 0603 10K 5%||
 || ||R2, R3||	2||	0680||	RESISTOR0603||	0603||	*|| || || ||Resistor 0603 5% ||
 ||YES||RFM12B||	1||	RFM12BSMD||	RFM12BSMD||	RFM12B-S1||	HOPERF||	RFM12B-XXX-S1||	|| ||HopeRF  RFM12B Tranceiver Module SMD||
