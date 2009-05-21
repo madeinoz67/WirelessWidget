@@ -49,8 +49,8 @@ Not all of the parts below are required to get a working board.  The parts marke
 
 ||REQD||Part ||Qty||Value||Device||Package||Manufacturer||Manuf. Part#||Distributor||Dist. PartNum||Description||
 || ||ANT||1||SMA_EDGE||SMA_EDGE||SMA-EDGE||ChangHong||SMA-02-101-TGG||Sparkfun||WRL-00593||SMA Antenna Connector Round PCB Edge||
-|| ||BT1||1||Keystone 1029	||BATTERYCR123A||BATTERY_CR123A||Keystone||1029|| || ||CR123A Battery Holder PCB||
-|| ||BTCOVER||1||Keystone 1029C||CR123A Cover|| ||Keystone||1029C|| || ||CR123A Battery Cover||
+|| ||BT1||1||Keystone 1029	||BATTERYCR123A||BATTERY_CR123A||Keystone||1029||NPA||K1029||CR123A Battery Holder PCB||
+|| ||BTCOVER||1||Keystone 1029C||CR123A Cover|| ||Keystone||1029C||NAP||K1029C||CR123A Battery Cover||
 ||YES||C1, C2, C3, C4||4||100n||CAP0603||0603|| || || || ||Capacitor Ceramic 0603 5%||
 || ||C5, C6||2||22p||CAP0603||0603|| || || || ||Capacitor Ceramic 0603 5%||
 ||YES||C7||1||10uF/10V 10%||CAP_POL1206||EIA3216|| || || || ||Capacitor Polarized Tantalum 3216 10%||
@@ -75,6 +75,8 @@ TODO:  [http://www.octopart.com  Octopart] partlist.
 [http://www.mouser.com/]
 
 [http://www.digikey.com]
+
+[http://www.npa.com.au] - Battery holders
 
 [http://www.dealextreme.com] - tools, antennas and SMA connectors
 
