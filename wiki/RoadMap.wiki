@@ -26,6 +26,7 @@ Note: See [Standards] for project naming conventions and versioning standards
     * ~~ BuildingTheHardware ~~
 
 = 1.1 =
+  * Incorporate User feedback into PCB
   * Personality Designs
     * [http://code.google.com/p/strobist-project-opensource-trigger/ S.P.O.T. Personality]
     * [http://www.ladyada.net/make/mshield/ Motor Personality]
