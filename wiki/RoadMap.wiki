@@ -34,5 +34,5 @@ Note: See [Standards] for project naming conventions and versioning standards
   * Software libraries
   * Power management
 =v2.0=
-  * Incorporate documented issues slated for http://code.google.com/p/strobit/issues/list?q=label:Milestone-sww-0901-020 Milestone-sww-0901-020] into PCB design.
+  * Incorporate documented issues slated for [http://code.google.com/p/strobit/issues/list?q=label:Milestone-sww-0901-020 Milestone-sww-0901-020] into PCB design.
   * 2.4Ghz RF Design
