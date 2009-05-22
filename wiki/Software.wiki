@@ -7,7 +7,8 @@
   * RFM12B Drivers by Jean-Claude of Jeelab [http://jeelab.equi4.com/2009/02/10/rfm12b-library-for-arduino/]
 
 =Bootloaders=
-  || Widgetboard with no quartz|| [http://code.google.com/p/strobit/downloads/detail?name=strobitBOOT_8MHZ_168.hex strobitBOOT_8MHZ_168.hex]||
-  || 10Mhz with quartz installed||[http://code.google.com/p/strobit/downloads/detail?name=strobitBOOT_10MHZ_168.hex strobitBOOT_10MHZ_168.hex]|| 
+  ||Clock Speed|| Use when || D/L Link||
+  ||8MHz ||Widgetboard with no quartz|| [http://code.google.com/p/strobit/downloads/detail?name=strobitBOOT_8MHZ_168.hex strobitBOOT_8MHZ_168.hex]||
+  ||10MHz||10Mhz with quartz installed||[http://code.google.com/p/strobit/downloads/detail?name=strobitBOOT_10MHZ_168.hex strobitBOOT_10MHZ_168.hex]|| 
 
 =Applcations=
