@@ -1,5 +1,7 @@
 #summary Hardware
 ----
+<wiki:toc max_depth="3" />
+----
 =Boards= 
 The Wireless Widget is comprised of a core widget board, that incorporates the RF and CPU, and a Personality board.  The Personality boards provide the widget with it's the interface to the outside world.
 
