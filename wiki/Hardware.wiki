@@ -3,7 +3,7 @@
 <wiki:toc max_depth="3" />
 ----
 =Boards= 
-The Wireless Widget is comprised of a core widget board, that incorporates the RF and CPU, and a Personality board.  The Personality boards provide the widget with it's the interface to the outside world.
+The Wireless Widget is comprised of a core widget board, that incorporates the RF and CPU, and a Personality board.  The personality boards provide the widget with it's interface to the outside world.
 
 All widget boards are Arduino compatible and integrate into the Arduino development environment.  See [Software] for more details.
 
@@ -14,11 +14,12 @@ All widget boards are Arduino compatible and integrate into the Arduino developm
   * [Prototype]
 
 =Sourcing Widget Boards=
-22/05/09  Currently the first run of these boards are in testing, and have been sent to some volunteers for construction, testing and feedback, the result of this feed back will go into the final release version of the boards.
+22/05/09  Currently the first run of these boards are in testing, a number have been sent to some volunteers for construction, testing and feedback.
 
-However the current PCB as they stand now are quite usable and very effective, see the issues page for list of enhancement that will going into the next PCB revision. [http://code.google.com/p/strobit/issues/list?q=label:Milestone-sww-0901-011]
+From my own testing the current PCB as they stand now are quite usable and very effective, see the issues page for list of enhancement that will going into the next PCB revision. [http://code.google.com/p/strobit/issues/list?q=label:Milestone-sww-0901-011]
 
-Pre-build widget boards will eventually be made available for purchase.
+==Buying One==
+Pre-build widget boards will shortly be made available for purchase.
 
 ==Build Your Own ==
 To build your own widget boards you will require a PCB and parts.
@@ -27,6 +28,9 @@ To build your own widget boards you will require a PCB and parts.
 Once the feedback has been integrated into the release PCB it probably be made available via http://batchpcb.com/ so you can order direct.
 
 ===Parts==
-A complete partlist is available, see the build instructions for the relevant widget board.
+A complete part list is available, see the build instructions for the relevant widget board.
+
+The current part list has the manufacturer part numbers, however I've only listed distributor and their relevant part# of the harder to source parts, most of the discrete and common components you can source anywhere.
+
 
 Please see [BuildingTheHardware] for current build instructions.
