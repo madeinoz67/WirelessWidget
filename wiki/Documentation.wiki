@@ -14,4 +14,7 @@ After the prototype development things ground to a stop, mainly due to family an
 
 During this time I started playing around with the Arduino.  I loved the idea of the modularity and the open tools and libraries, however there was no real low cost wireless platform for the Arduino, other than the X-BEE Shield, these were way too pricey.  What I wanted was a small arduino like platform with the wireless onboard.   
 
-The Strobit Wireless Widget was born.  Not purely for the strobist wireless trigger, but more of a generic wireless embedded platform, a wireless widget so as to speak, something that is flexible and adaptable to my other interest, Home Control and Robotics, so this was something I could easily adapt rather than a single dedicated piece of hardware.  
+The Strobit Wireless Widget was born.  Not purely for the strobist wireless trigger, but more of a generic wireless embedded platform, a wireless widget so as to speak, something that is flexible and adaptable to my other interest, Home Control and Robotics, so this was something I could easily adapt rather than a single dedicated piece of hardware.
+
+= License =
+The hardware is licensed under the [http://www.tapr.org/OHL TAPR Open Hardware License]
