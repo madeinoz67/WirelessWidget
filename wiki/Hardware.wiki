@@ -6,7 +6,7 @@ The Wireless Widget is comprised of a core widget board, that incorporates the R
 All widget boards are Arduino compatible and integrate into the Arduino development environment.  See [Software] for more details.
 
  ==Core Widget Boards==
-  * [RFM12BCore] 433MHz, 868MHz, 915MHz
+  * [RFM12BWidgetBoard] 433MHz, 868MHz, 915MHz
 
  ==Personality Boards==
   * [Prototype]
