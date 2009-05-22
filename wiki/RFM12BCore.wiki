@@ -33,6 +33,13 @@ http://farm3.static.flickr.com/2363/3532713182_db63eb56f8.jpg
        * SMA pigtail soldered onto PCB
        * Whip antenna soldered directly onto board (piece of correct length wire)
 
+
+=Power Options=
+ *NOTE: This board is unregulated and designed to run from a 3v battery source*
+  * FTDI-3.3USB 
+  * Optional onboard battery holder - CR123A
+  * External 3v battery source
+
 =Software=
     * Compatible with [http://arduino.cc/ Arduino] development environment.  
     * Select 'LilyPad' as the target board
