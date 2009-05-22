@@ -4,7 +4,7 @@
 
 = Background =
 
-The original idea was conceived in a response to a topic I posted on the Strobist Flickr Pool ([http://www.flickr.com/groups/strobist/discuss/72157602088957861/ Original discussion Thread]) in regards to an open source wireless trigger project for the strobist community.  
+The original idea was conceived in a response to a topic I posted on the Strobist Flickr Pool ([http://www.flickr.com/groups/strobist/discuss/72157602088957861/ Original discussion Thread]) in regards to an open source wireless trigger project for the strobist community ([http://www.strobist.com/]).  
 
 As there was quite a bit of positive feedback I created a proof of concept wireless trigger prototype based on the PIC MCU and the RFM12B Wireless module that successfully synced/triggered at 100m outside and all around the house inside.  [http://blog.everythingrobotics.com/strobit/ Original Strobit Prototype info, photos and test results]
 
