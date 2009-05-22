@@ -1,10 +1,12 @@
 #summary Hardware
-#labels Featured
-
+----
 =Boards= 
+The Wireless Widget is comprised of a core widget board, that incorporates the RF and CPU, and a Personality board.  The Personality boards provide the widget with it's personality, that is the interface to the outside world.
 
- ==Core Wireless Widgets==
-  * [RFM12BCore]
+All widget boards are Arduino compatible and integrate into the Arduino development environment.  See [Software] for more details.
+
+ ==Core Widget Boards==
+  * [RFM12BCore] 433MHz, 868MHz, 915MHz
 
  ==Personality Boards==
   * [Prototype]
