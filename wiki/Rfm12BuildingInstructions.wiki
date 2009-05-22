@@ -135,7 +135,7 @@ At the moment I don't use a solder paste stencil.  I apply it all by hand.  The 
 =Preliminary Testing=
 After my soldering I do the following tests:
   # Visual inspection:- When all has cooled down and you can handle the board you need to use a magnifying glass to visually inspect the joints, in particular U1, you need to check that no bridges have formed, if they have then you need to use the solder wick and a fine tip soldering iron to wick out the bridges.
-  # Electrical Check:- mainly on the power side of things, I put a multimeter on Ohms mode and check I don't have any shorts across the power.  (be aware that if you have installed D1 then you may need to check befire and after the component for shorts i.e. where the batteries come in, and then probably at the switch.)
+  # Electrical Check:- mainly on the power side of things, I put a multimeter on Ohms mode and check I don't have any shorts across the power.  (be aware that if you have installed D1 then you may need to check before and after the component for shorts i.e. where the batteries come in, and then probably at the switch.)
   # If this is a new PCB design then I will also do continuity check on the CPU to all I/O ports etc, making sure they are going where they are supposed to, along with all the power traces going to the right places.  Safe to say that I've already done this with the current PCB and you won't need to do it yourself.
   # Once I'm happy with all of this then I proceed to apply power.
   # After applying power I check that nothing is getting hot by touching the key components, if they are, then *immediately* turn things off and you will need to troubleshoot the board, most likely you have a component around the wrong way or you have the power reversed.
