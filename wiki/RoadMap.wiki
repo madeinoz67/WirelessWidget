@@ -22,7 +22,7 @@ Note: See [Standards] for project naming conventions and versioning standards
   * Hardware verification
     * Core Widget Board
     * ~~ Prototype Personality ~~
-  * ~Documentation~
+  * ~~Documentation~~
     * ~~ BuildingTheHardware ~~
 
 = v1.1 =
