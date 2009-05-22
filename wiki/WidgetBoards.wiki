@@ -1,3 +1,4 @@
 #summary Wireless Widget Boards
+----
 
-  * [RFM12BCore]
+  * [RFM12BCore] 433MHz, 868MHz, 915MHz
