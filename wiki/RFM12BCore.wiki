@@ -7,16 +7,13 @@ http://farm3.static.flickr.com/2220/3531897883_f036aa55a3.jpg
 http://farm3.static.flickr.com/2363/3532713182_db63eb56f8.jpg
 
 
-=Specifications=
+=Features=
     * low profile 0603 SMD design.
     * Compact board, 30mm x 70mm. (without battery)
     * Low component count (K.I.S.S.) easy to assemble with minimal SMD soldering.
     * 3V design non regulated (no on board regulator).
     * Different power source options:
-       * x2 AA Alkaline via external power connector.
-       * CR123A 3V battery using built-in battery holder.
-       * Host powered via FTDI USB connector.
-       * Via Personality board interconnects VBAT and +3V.
+
     * Reverse polarity protected.
        * USB and battery can both be connected at the same time. Schottky diode protected. Can be bypassed via solder jumpers if required. 
     * Low profile high stability ceramic oscillator.
@@ -29,16 +26,19 @@ http://farm3.static.flickr.com/2363/3532713182_db63eb56f8.jpg
     * x2 onboard LEDs for indication, I/O can be reused if LEDs are not required.
     * Side mounted SMA antenna, designed to allow folding of antenna along the axis of the PCB in the event the PCB/enclosure needs to be stored.
     * Variety of antenna options
-       * SMA PCB mount
-       * SMA pigtail soldered onto PCB
-       * Whip antenna soldered directly onto board (piece of correct length wire)
-
+  
 
 =Power Options=
- *NOTE: This board is unregulated and designed to run from a 3v battery source*
-  * FTDI-3.3USB 
-  * Optional onboard battery holder - CR123A
-  * External 3v battery source
+*NOTE: This board is unregulated and designed to run from a 3v battery source*
+  * x2 AA Alkaline via external power connector.
+  * CR123A 3V battery using optional built-in battery holder.
+  * Host powered via FTDI-3.3USB connector.
+  * Via Personality board interconnects VBAT and +3V.
+
+=Antenna Options=
+  * SMA PCB mount
+  * SMA pigtail soldered onto PCB
+  * Whip antenna soldered directly onto board (piece of correct length wire)
 
 =Software=
     * Compatible with [http://arduino.cc/ Arduino] development environment.  
