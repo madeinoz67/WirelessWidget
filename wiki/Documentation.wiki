@@ -7,7 +7,7 @@ The original idea was conceived in a response to a topic I posted on the Strobis
 
 As there was quite a bit of positive feedback I created a proof of concept wireless trigger prototype based on the PIC MCU and the RFM12B Wireless module that successfully synced/triggered at 100m outside and all around the house inside.  [http://blog.everythingrobotics.com/strobit/ Original Strobit Prototype info, photos and test results]
 
-After the prototype development things ground to a stop \, mainly due to family and work commitments, moving house, remarrying blah blah....(funny how these small things seem to get in the way of development) however always in the back of mind I had ideas of reviving an open wireless trigger platform. 
+After the prototype development things ground to a stop, mainly due to family and work commitments, moving house, remarrying blah blah....(funny how these small things seem to get in the way of development) however always in the back of mind I had ideas of reviving an open wireless trigger platform. 
 
 = Strobit Wireless Widget Concept =
 
