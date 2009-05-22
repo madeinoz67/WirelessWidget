@@ -33,7 +33,7 @@ Note: See [Standards] for project naming conventions and versioning standards
     * [http://jeelab.equi4.com/2009/03/30/meet-the-jeenode-pulse/ Sensor Personality]
   * Software libraries
     * WidgetMesh Network
-  * Power management
+    * Power management
 =v2.0=
   * Incorporate documented issues slated for [http://code.google.com/p/strobit/issues/list?q=label:Milestone-sww-0901-020 Milestone-sww-0901-020] into PCB design.
   * 2.4Ghz RF Design
