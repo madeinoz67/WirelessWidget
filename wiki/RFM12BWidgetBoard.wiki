@@ -52,7 +52,7 @@ See [RFM12WidgetTesting]
 
 =Software=
     * Compatible with [http://arduino.cc/ Arduino] development environment.  
-    * Custom Strobit Widget [http://code.google.com/p/strobit/downloads/list?q=label:Type-Bootloader-HEX Bootloaders] available for download.
+    * Widget [http://code.google.com/p/strobit/downloads/list?q=label:Type-Bootloader-HEX Bootloaders] available for download.
     * RFM12B drivers for the Arduino can be obtained from [http://code.google.com/p/jeelab/wiki/RF12 JeeLab] and is compatible with the current hardware.
     * Arduino [http://arduino.cc/en/Tutorial/HomePage Tutorials] and Applications written are compatible with the Strobit Wireless Widget.
 
