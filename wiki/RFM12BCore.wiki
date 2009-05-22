@@ -8,25 +8,23 @@ http://farm3.static.flickr.com/2363/3532713182_db63eb56f8.jpg
 
 
 =Features=
-    * low profile 0603 SMD design.
-    * Compact board, 30mm x 70mm. (without battery)
-    * Low component count (K.I.S.S.) easy to assemble with minimal SMD soldering.
-    * 3V design non regulated (no on board regulator).
-    * Different power source options:
-
-    * Reverse polarity protected.
-       * USB and battery can both be connected at the same time. Schottky diode protected. Can be bypassed via solder jumpers if required. 
-    * Low profile high stability ceramic oscillator.
-    * Onboard on/off switch to save batteries when not in use, can be bypassed if not required.  Remote switch can utilise the PCB contacts if required.
-    * FTDI 3.3v breakout cable port for connecting to either RS232 TTL or USB using the FTDI cable.
-    * Atmega168V or Atmega328P processor, low cost, low voltage design = longer battery life.  Can use standard Atmega168 if low voltage not required.
-    * Can run Arduino Lilypad bootloader.
-    * External SMA antenna for reliability and extended range.
-    * Low cost RFM12B RF module by [http://www.hoperf.com/ HopeRF]
-    * x2 onboard LEDs for indication, I/O can be reused if LEDs are not required.
-    * Side mounted SMA antenna, designed to allow folding of antenna along the axis of the PCB in the event the PCB/enclosure needs to be stored.
-    * Variety of antenna options
-  
+  * low profile 0603 SMD design.
+  * Compact board, 30mm x 70mm. (without battery)
+  * Low component count (K.I.S.S.) easy to assemble with minimal SMD soldering.
+  * 3V design non regulated (no on board regulator).
+  * Different power source options
+  * Reverse polarity protected.
+    * USB and battery can both be connected at the same time. Schottky diode protected. Can be bypassed via solder jumpers if required. 
+  * Low profile high stability ceramic oscillator.
+  * Onboard on/off switch to save batteries when not in use, can be bypassed if not required.  Remote switch can utilise the PCB contacts if required.
+  * FTDI 3.3v breakout cable port for connecting to either RS232 TTL or USB using the FTDI cable.
+  * Atmega168V or Atmega328P processor, low cost, low voltage design = longer battery life.  Can use standard Atmega168 if low voltage not required.
+  * Can run Arduino Lilypad bootloader.
+  * External SMA antenna for reliability and extended range.
+  * Low cost RFM12B RF module by [http://www.hoperf.com/ HopeRF]
+  * x2 onboard LEDs for indication, I/O can be reused if LEDs are not required.
+  * Side mounted SMA antenna, designed to allow folding of antenna along the axis of the PCB in the event the PCB/enclosure needs to be stored.
+  * Variety of antenna options
 
 =Power Options=
 *NOTE: This board is unregulated and designed to run from a 3v battery source*
@@ -35,7 +33,10 @@ http://farm3.static.flickr.com/2363/3532713182_db63eb56f8.jpg
   * Host powered via FTDI-3.3USB connector.
   * Via Personality board interconnects VBAT and +3V.
 
-=Antenna Options=
+=Radio Module=
+   The RF module used by this widget is the RFM12B by [HopeRF http://www.hoperf.com/pro/RFM12B.html].  This is a low cost, low power module available in 433Mhz, 868Mhz and 916Mhz bands. 
+ 
+==Antenna Options==
   * SMA PCB mount
   * SMA pigtail soldered onto PCB
   * Whip antenna soldered directly onto board (piece of correct length wire)
