@@ -27,7 +27,7 @@ Note: See [Standards] for project naming conventions and versioning standards
 
 = v1.1 =
   * Incorporate documented issues slated for Milestone-sww-0901-011 into PCB design.
-  * Personality Designs
+  * Possible Personality Designs?
     * [http://code.google.com/p/strobist-project-opensource-trigger/ S.P.O.T. Personality]
     * [http://www.ladyada.net/make/mshield/ Motor Personality]
     * [http://jeelab.equi4.com/2009/03/30/meet-the-jeenode-pulse/ Sensor Personality]
