@@ -12,3 +12,4 @@
 ||10MHz||with crystal installed||L:E6 H:DF E:00||[http://code.google.com/p/strobit/downloads/detail?name=strobitBOOT_10MHZ_168.hex strobitBOOT_10MHZ_168.hex]||
 
 =Applications=
+see [Applications]
