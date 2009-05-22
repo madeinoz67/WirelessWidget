@@ -1,0 +1,18 @@
+#summary Project Announcements and News
+#labels Featured
+----
+The most up to date development news and announcements can be found on my BLOG: [http://blog.strobotics.com.au] 
+----
+=Announcements=
+22/05/09
+
+    * 8MHz and 10Mhz bootloaders available for download.
+    * Lots of site Documentation updates 
+
+19/05/09 - Documentation Started 12/05/09 - PCB Tested, bootloader successfully loaded, Arduino sketches working, RFM12B working.
+
+06/05/09 - PCB Assembled
+
+29/04/09 - PCB Received
+
+14/04/09 - PCBs sent for Fabrication 
