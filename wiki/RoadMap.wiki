@@ -1,6 +1,8 @@
 #summary Roadmap, nothing like bumping our way around in the dark!
 #labels Featured,Phase-Requirements
 ----
+<wiki:toc max_depth="1" />
+----
 Note: See [Standards] for project naming conventions and versioning standards
 
 = ~~v1.0~~ =
