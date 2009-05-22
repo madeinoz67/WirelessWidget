@@ -1,7 +1,7 @@
 #summary Project Announcements and News
 #labels Featured
 
-The most up to date announcements and news can be found on my BLOG: [http://blog.strobotics.com.au] 
+The most up to date development news and announcements can be found on my BLOG: [http://blog.strobotics.com.au] 
 
 =Announcements=
 22/05/09
