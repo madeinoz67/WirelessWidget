@@ -39,6 +39,10 @@ Development Status: Active
 
 =Radio Module=
    The RF module used by this widget is the RFM12B by [HopeRF http://www.hoperf.com/pro/RFM12B.html].  This is a low cost, low power module available in 433Mhz, 868Mhz and 916Mhz bands. 
+==Distance==
+The distance achieved by these modules will be dependant on the band of the module installed, the type of antenna and the bitrate selected
+  * Non-scientific tests using the [JeeLab http://code.google.com/p/jeelab/] RFM12B default examples, indicate that reliable communications of bitrates of (TODO: ) are achieved indoors everywhere around my house 30m+
+  * TODO: Outdoor test 
  
 ==Antenna Options==
   * SMA PCB mount
