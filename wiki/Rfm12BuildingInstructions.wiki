@@ -1,4 +1,4 @@
-#summary SWW-0901-010 - Build instructions for RFM12B PCB
+#summary SWW-0901-010 - Build instructions for RFM12B Widget Board V1.0
 #labels Featured,Phase-Deploy
 ----
 <wiki:toc max_depth="3" />
