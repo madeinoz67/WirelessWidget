@@ -7,7 +7,8 @@ http://farm3.static.flickr.com/2220/3531897883_f036aa55a3.jpg
 http://farm3.static.flickr.com/2363/3532713182_db63eb56f8.jpg
 
 =Status==
-Active PCB Revision = 1.0
+Version:  PCB Revision = 1.0
+Development Status: Active
 
 =Features=
   * low profile 0603 SMD design.
