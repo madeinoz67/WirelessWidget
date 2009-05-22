@@ -1,2 +1,4 @@
 #summary FAQ - Frequently Asked Questions
 ----
+<wiki:toc max_depth="3" />
+----
