@@ -11,4 +11,4 @@
 ||8MHz ||No crystal installed|| ||[http://code.google.com/p/strobit/downloads/detail?name=strobitBOOT_8MHZ_168.hex strobitBOOT_8MHZ_168.hex]||
 ||10MHz||with crystal installed|| ||[http://code.google.com/p/strobit/downloads/detail?name=strobitBOOT_10MHZ_168.hex strobitBOOT_10MHZ_168.hex]||
 
-=Applcations=
+=Applications=
