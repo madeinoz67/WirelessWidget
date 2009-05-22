@@ -13,4 +13,6 @@
 
 
 =Applications=
-see [Applications]
+
+  * [WidgetMesh] - A Mesh network for the WidgetBoards 
+  * Others. See [Applications]
