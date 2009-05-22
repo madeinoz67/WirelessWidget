@@ -1,7 +1,7 @@
 #summary Table of Contents.
 
 
-  * [Introduction]
+  * [Documentation]
   * [Hardware]
     * [WidgetBoards]
       * [RFM12BCore]
