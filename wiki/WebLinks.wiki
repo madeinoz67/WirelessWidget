@@ -4,8 +4,8 @@
 ----
 
 =Projects=
-  *[http://code.google.com/p/jeelab/ JeeLab] - RFM12B Drivers, Sensor Drivers, Host Data collection
-  *[http://code.google.com/p/strobist-project-opensource-trigger/ S.P.O.T] - Strobist Open Source Trigger Project
+  *[JeeLab http://code.google.com/p/jeelab/] - RFM12B Drivers, Sensor Drivers, Host Data collection
+  *[S.P.O.T http://code.google.com/p/strobist-project-opensource-trigger/] - Strobist Open Source Trigger Project
 
 
 = Tutorials =
