@@ -1,6 +1,8 @@
 #summary Applications and Existing Software for the Wireless Widget.
 #labels Phase-Support
-
+----
+<wiki:toc max_depth="3" />
+----
 = Introduction =
 The Strobit Wireless Widget was designed to be Arduino Compatible, so as to maximise existing code development tool chains and libraries.  
 
