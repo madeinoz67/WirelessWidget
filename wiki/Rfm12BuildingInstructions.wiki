@@ -85,7 +85,7 @@ What I did while waiting for my components to come in was to salvage SMD compone
 
 Ferrite beads can be found around the USB and ethernet ports, Ususally labelled with FB, B or L. 
 
-One of the things with this is that many of these are 0804 parts, while the Wireless Widget is 0603, this is not a big problem, by turning the 0804 parts on their side they will fit ok.
+One of the things with this is that many of these are 0805 parts, while the Wireless Widget is 0603, this is not a big problem, by turning the 0805 parts on their side they will fit ok.
 
   * [http://www.neufeld.newton.ks.us/electronics/?p=209]
   * [http://www.opencircuits.com/Salvage_Parts_and_Sources]
