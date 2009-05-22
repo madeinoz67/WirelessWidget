@@ -5,7 +5,7 @@
   * [RoadMap]
   * [Hardware]
     * [WidgetBoards]
-      * [RFM12BCore]
+      * [RFM12BWidgetBoard]
     * [PersonalityModules]
       * [PrototypePersonality]
       * [BasicStrobistPersonality]
