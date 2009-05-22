@@ -1,7 +1,8 @@
 #summary Table of Contents.
 
 
-  * [Documentation]
+  * [Documentation]  
+  * [RoadMap]
   * [Hardware]
     * [WidgetBoards]
       * [RFM12BCore]
@@ -11,7 +12,7 @@
       * [SPOTPersonality]
       * [SensorPersonality]  
     * [BuildingTheHardware]
+  * [Software] 
+    * [Applications]
   * [FAQ]
-  * [Applications]
-  * [RoadMap]
   * [WebLinks]
