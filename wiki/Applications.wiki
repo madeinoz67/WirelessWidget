@@ -12,6 +12,7 @@ Currently there have been no applications specifically written for the Strobit W
 
 == General Arduino ==
 Arduino - [http://www.arduino.cc/]
+Arduino Tutorials and example code [http://arduino.cc/en/Tutorial/HomePage]
 
 == Sensor Based ==
 === Jee Labs ===
