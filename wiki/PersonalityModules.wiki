@@ -1,5 +1,5 @@
 #summary Personality Boards
 ----
 
-||Personality Board||PCB Revision||Status||Homepage||
-||PrototypePersonality||1.0||Active||[http://code.google.com/p/strobit]||
+||Personality Board||PCB Revision||Status||Issues||Developer||Homepage||
+||PrototypePersonality||1.0||Active|| ||Stephen Eaton||[http://code.google.com/p/strobit]||
