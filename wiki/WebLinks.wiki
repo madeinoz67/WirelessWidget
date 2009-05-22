@@ -13,4 +13,4 @@
   * [http://blog.everythingrobotics.com/tutorials/eagle3d-tutorials/using-google-sketchup-to-create-components/ Creating custom components in Eagle3D]
 
 = Tools = 
-  * [Arduino http://www.arduino.cc/] - Development environment
+  * [http://www.arduino.cc/ Arduino Homepage] - Development Environment
