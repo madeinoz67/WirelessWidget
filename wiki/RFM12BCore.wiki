@@ -7,7 +7,7 @@ http://farm3.static.flickr.com/2220/3531897883_f036aa55a3.jpg
 http://farm3.static.flickr.com/2363/3532713182_db63eb56f8.jpg
 
 
-=Hardware=
+=Specifications=
     * low profile 0603 SMD design.
     * Compact board, 30mm x 70mm. (without battery)
     * Low component count (K.I.S.S.) easy to assemble with minimal SMD soldering.
