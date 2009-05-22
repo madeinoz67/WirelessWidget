@@ -1,4 +1,4 @@
 #summary Wireless Widget Boards
 ----
 ||Widget||PCB Revision||Status||Enhancements||Issues||Band||
-||[RFM12BWidgetBoard]||1.0||Active||[http://code.google.com/p/strobit/issues/list?q=label:Hardware-WidgetBoard-RFM12B List] || [http://code.google.com/p/strobit/issues/list?can=1&q=label%3AType-Defect List] ||433MHz, 868MHz, 915MHz||
+||[RFM12BWidgetBoard]||1.0||Active||[http://code.google.com/p/strobit/issues/list?can=2&q=label%3AType-Enhancement%20label%3AHardware-WidgetBoard List] || [http://code.google.com/p/strobit/issues/list?can=2&q=label%3AType-Defect%20label%3AHardware-WidgetBoard List] ||433MHz, 868MHz, 915MHz||
