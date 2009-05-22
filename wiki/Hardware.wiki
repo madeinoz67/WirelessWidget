@@ -27,6 +27,6 @@ To build your own widget boards you will require a PCB and parts.
 Once the feedback has been integrated into the release PCB it probably be made available via http://batchpcb.com/ so you can order direct.
 
 ===Parts==
-A complete partlist provided, see the build instructions for the relevant widget board.
+A complete partlist is available, see the build instructions for the relevant widget board.
 
 Please see [BuildingTheHardware] for current build instructions.
