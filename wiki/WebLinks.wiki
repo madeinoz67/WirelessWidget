@@ -3,8 +3,9 @@
 <wiki:toc max_depth="3" />
 ----
 
-=Software=
-[http://code.google.com/p/jeelab/ JeeLab] - RFM12B Drivers, Sensor Drivers, Host Data collection
+=Projects=
+  *[http://code.google.com/p/jeelab/ JeeLab] - RFM12B Drivers, Sensor Drivers, Host Data collection
+  *[http://code.google.com/p/strobist-project-opensource-trigger/ S.P.O.T] - Strobist Open Source Trigger Project
 
 
 = Tutorials =
