@@ -24,11 +24,13 @@ Pre-build widget boards will shortly be made available for purchase.
 ==Build Your Own ==
 To build your own widget boards you will require a PCB and parts.
 
-==PCB===
+==Parts===
+
+===PCB===
 Once the feedback has been integrated into the release PCB it probably be made available via http://batchpcb.com/ so you can order direct.
 
-===Parts==
-A complete part list is available, see the build instructions for the relevant widget board.
+===Components===
+A complete component list is available, see the build instructions for the relevant widget board.
 
 The current part list has the manufacturer part numbers, however I've only listed distributor and their relevant part# of the harder to source parts, most of the discrete and common components you can source anywhere.
 
