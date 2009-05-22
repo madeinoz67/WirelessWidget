@@ -3,7 +3,7 @@
 
 Note: See [Standards] for project naming conventions and versioning standards
 
-= v1.0 =
+= ~~v1.0~~ =
   * ~~Schematics ~~
     * ~~ Core Widget Board ~~
     * ~~ Empty Personality ~~
@@ -19,8 +19,8 @@ Note: See [Standards] for project naming conventions and versioning standards
   * ~~ Construction ~~
     * ~~ Core Widget Board ~~
     * ~~ Prototype Personality ~~
-  * Hardware verification
-    * Core Widget Board
+  * ~~Hardware verification~~
+    * ~~Core Widget Board~~
     * ~~ Prototype Personality ~~
   * ~~Documentation~~
     * ~~ BuildingTheHardware ~~
