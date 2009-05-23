@@ -7,7 +7,7 @@
   * RFM12B Drivers by Jean-Claude of Jeelab [http://jeelab.equi4.com/2009/02/10/rfm12b-library-for-arduino/].  His BLOG has a wealth of information regarding the RFM12B and low power usage.
 
 =Bootloaders=
-The original lilypad bootloader have been modified for the WidgetBoards, the unmodified lilypad bootloader will also work with the widget board and no crystal.
+The original lilypad bootloader have been modified for the WidgetBoards. (the unmodified lilypad bootloader will also work with the widget board and no crystal)
 
 ||Clock Speed||Used when ||Fuse Settings || D/L Link||
 ||8MHz ||No crystal installed||L:E2 H:DF E:00 ||[http://code.google.com/p/strobit/downloads/detail?name=strobitBOOT_8MHZ_168.hex strobitBOOT_8MHZ_168.hex]||
