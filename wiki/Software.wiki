@@ -15,6 +15,7 @@ The original lilypad bootloader have been modified for the WidgetBoards. (the un
 
 =Netwoking=
  [Networking] the Widgets
+  * [http://code.google.com/p/jeelab/ JeeLab] have a simple network that works well.
   * [WidgetMesh] - A Mesh network for the WidgetBoards 
 
 =Applications=
