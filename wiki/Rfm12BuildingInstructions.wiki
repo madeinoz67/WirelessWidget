@@ -49,6 +49,8 @@ A. No, it really depends on what you want, in the Parts list below I've marked t
 =Parts List=
 Not all of the parts below are required to get a working board.  The parts marked with 'YES' in the REQD column are the minimum components required for a working board
 
+Distributor and their part# are only shown for the harder to find parts.
+
 ||REQD||Part ||Qty||Value||Device||Package||Manufacturer||Manuf. Part#||Distributor||Dist. PartNum||Description||
 || ||ANT||1||SMA_EDGE||SMA_EDGE||SMA-EDGE||ChangHong||SMA-02-101-TGG||Sparkfun||WRL-00593||SMA Antenna Connector Round PCB Edge||
 || ||BT1||1||Keystone 1029	||BATTERYCR123A||BATTERY_CR123A||Keystone||1029||NPA||K1029||CR123A Battery Holder PCB||
