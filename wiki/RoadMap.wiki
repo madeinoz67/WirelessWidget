@@ -28,7 +28,15 @@ Note: See [Standards] for project naming conventions and versioning standards
     * ~~ BuildingTheHardware ~~
 
 == v1.1 ==
-  * Incorporate documented issues slated for [http://code.google.com/p/strobit/issues/list?can=1&q=label%3AMilestone-sww-0901-011&colspec=ID+Type+Status+Priority+Hardware+PcbVersion+Milestone+Owner+Summary&cells=tiles Milestone-sww-0901-011] into PCB design.
+
+  * Schematics
+    * Incorporate documented issues slated for [http://code.google.com/p/strobit/issues/list?can=1&q=label%3AMilestone-sww-0901-011&colspec=ID+Type+Status+Priority+Hardware+PcbVersion+Milestone+Owner+Summary&cells=tiles Milestone-sww-0901-011] into PCB design.
+  * PCB Design
+    * [RFM12BWidgetBoard]
+  * PCB Fabrication
+    * [RFM12BWidgetBoard]
+  * Construction
+    * [RFM12BWidgetBoard]
   * Possible Personality Designs?
     * [http://code.google.com/p/strobist-project-opensource-trigger/ S.P.O.T. Personality]
     * [http://www.ladyada.net/make/mshield/ Motor Personality]
