@@ -5,7 +5,7 @@
 ----
 Note: See [Standards] for project naming conventions and versioning standards
 
-=Version 1.0=
+=Release 1.0=
 == ~~v1.0~~ ==
   * ~~Schematics ~~
     * ~~ Core Widget Board ~~
@@ -39,7 +39,7 @@ Note: See [Standards] for project naming conventions and versioning standards
 ==v1.2==
   * Incorporate documented issues slated for [http://code.google.com/p/strobit/issues/list?q=label:Milestone-sww-0901-011 Milestone-sww-0901-012] into PCB design.
   * Fork 0603 to 0805 Component Design
-=Version 2.0=
+=Release 2.0=
 ==v2.0==
   * Incorporate documented issues slated for [http://code.google.com/p/strobit/issues/list?q=label:Milestone-sww-0901-020 Milestone-sww-0901-020] into PCB design.
   * 2.4Ghz RF Design
