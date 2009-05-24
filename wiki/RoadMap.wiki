@@ -5,7 +5,8 @@
 ----
 Note: See [Standards] for project naming conventions and versioning standards
 
-= ~~v1.0~~ =
+=Version 2.0=
+== ~~v1.0~~ ==
   * ~~Schematics ~~
     * ~~ Core Widget Board ~~
     * ~~ Empty Personality ~~
@@ -26,8 +27,8 @@ Note: See [Standards] for project naming conventions and versioning standards
   * ~~Documentation~~
     * ~~ BuildingTheHardware ~~
 
-= v1.1 =
-  * Incorporate documented issues slated for [http://code.google.com/p/strobit/issues/list?q=label:Milestone-sww-0901-011 Milestone-sww-0901-011] into PCB design.
+== v1.1 ==
+  * Incorporate documented issues slated for [http://code.google.com/p/strobit/issues/list?can=1&q=label%3AMilestone-sww-0901-011&colspec=ID+Type+Status+Priority+Hardware+PcbVersion+Milestone+Owner+Summary&cells=tiles] into PCB design.
   * Possible Personality Designs?
     * [http://code.google.com/p/strobist-project-opensource-trigger/ S.P.O.T. Personality]
     * [http://www.ladyada.net/make/mshield/ Motor Personality]
@@ -35,9 +36,10 @@ Note: See [Standards] for project naming conventions and versioning standards
   * Software libraries
     * Start WidgetMesh Network
   * Power management
-=v1.2=
+==v1.2==
   * Incorporate documented issues slated for [http://code.google.com/p/strobit/issues/list?q=label:Milestone-sww-0901-011 Milestone-sww-0901-012] into PCB design.
   * Fork 0603 to 0805 Component Design
-=v2.0=
+=Version 2.0=
+==v2.0==
   * Incorporate documented issues slated for [http://code.google.com/p/strobit/issues/list?q=label:Milestone-sww-0901-020 Milestone-sww-0901-020] into PCB design.
   * 2.4Ghz RF Design
