@@ -8,29 +8,29 @@ Note: See [Standards] for project naming conventions and versioning standards
 =Release 1.0=
 == ~~v1.0~~ ==
   * ~~Schematics ~~
-    * ~~ Core Widget Board ~~
+    * ~~ [RFM12BWidgetBoard] ~~
     * ~~ Empty Personality ~~
-    * ~~ Prototype Personality ~~
+    * ~~ [PrototypePersonality]~~
     * ~~ Basic Strobit Personality ~~
   * ~~ PCB Design ~~
-    * ~~ Core Widget Board ~~
-    * ~~ Prototype Personality ~~
+    * ~~ RFM12BWidgetBoard] ~~
+    * ~~ PrototypePersonality ~~
   * ~~ PCB Fabrication ~~
-    * ~~ Core Widget Board ~~
-    * ~~ Prototype Personality ~~
+    * ~~ [RFM12BWidgetBoard] ~~
+    * ~~ [PrototypePersonality] ~~
   * ~~ Construction ~~
-    * ~~ Core Widget Board ~~
-    * ~~ Prototype Personality ~~
+    * ~~ [RFM12BWidgetBoard] ~~
+    * ~~ [PrototypePersonality] ~~
   * ~~Hardware verification~~
-    * ~~Core Widget Board~~
-    * ~~ Prototype Personality ~~
+    * ~~ [RFM12BWidgetBoard]~~
+    * ~~ [PrototypePersonality] ~~
   * ~~Documentation~~
-    * ~~ BuildingTheHardware ~~
+    * ~~ [BuildingTheHardware] ~~
 
 == v1.1 ==
 
   * Schematics
-    * Incorporate documented issues slated for [http://code.google.com/p/strobit/issues/list?can=1&q=label%3AMilestone-sww-0901-011&colspec=ID+Type+Status+Priority+Hardware+PcbVersion+Milestone+Owner+Summary&cells=tiles Milestone-sww-0901-011] into PCB design.
+    * Incorporate documented issues slated for [http://code.google.com/p/strobit/issues/list?can=1&q=label%3AMilestone-sww-0901-011&colspec=ID+Type+Status+Priority+Hardware+PcbVersion+Milestone+Owner+Summary&cells=tiles Milestone-sww-0901-011] into [RFM12BWidgetBoard].
   * PCB Design
     * [RFM12BWidgetBoard]
   * PCB Fabrication
