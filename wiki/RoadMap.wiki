@@ -41,5 +41,5 @@ Note: See [Standards] for project naming conventions and versioning standards
   * Fork 0603 to 0805 Component Design
 =Release 2.0=
 ==v2.0==
-  * Incorporate documented issues slated for [http://code.google.com/p/strobit/issues/list?can=1&q=label%3AMilestone-sww-0901-020&colspec=ID+Type+Status+Priority+Hardware+PcbVersion+Milestone+Owner+Summary&cells=tiles Milestone-sww-0901-020]] into PCB design.
+  * Incorporate documented issues slated for [http://code.google.com/p/strobit/issues/list?can=1&q=label%3AMilestone-sww-0901-020&colspec=ID+Type+Status+Priority+Hardware+PcbVersion+Milestone+Owner+Summary&cells=tiles Milestone-sww-0901-020] into PCB design.
   * 2.4Ghz RF Design
