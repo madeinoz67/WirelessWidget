@@ -43,7 +43,6 @@ Note: See [Standards] for project naming conventions and versioning standards
     * [http://jeelab.equi4.com/2009/03/30/meet-the-jeenode-pulse/ Sensor Personality]
   * Software libraries
     * Start WidgetMesh Network
-  * Power management
 ==v1.2==
   * Incorporate documented issues slated for [http://code.google.com/p/strobit/issues/list?can=1&q=label%3AMilestone-sww-0901-012&colspec=ID+Type+Status+Priority+Hardware+PcbVersion+Milestone+Owner+Summary&cells=tiles Milestone-sww-0901-012] into PCB design.
   * Fork 0603 to 0805 Component Design
