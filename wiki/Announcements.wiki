@@ -4,6 +4,8 @@
 The most up to date development news and announcements can be found on my BLOG: [http://blog.strobotics.com.au] 
 ----
 =Announcements=
+
+24/05/09 - v1.1 PCB Started
 22/05/09
 
     * 8MHz and 10Mhz bootloaders available for download.
