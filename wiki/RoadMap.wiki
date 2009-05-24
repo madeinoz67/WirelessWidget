@@ -1,11 +1,11 @@
 #summary Roadmap, nothing like bumping our way around in the dark!
 #labels Featured,Phase-Requirements
 ----
-<wiki:toc max_depth="1" />
+<wiki:toc max_depth="2" />
 ----
 Note: See [Standards] for project naming conventions and versioning standards
 
-=Version 2.0=
+=Version 1.0=
 == ~~v1.0~~ ==
   * ~~Schematics ~~
     * ~~ Core Widget Board ~~
