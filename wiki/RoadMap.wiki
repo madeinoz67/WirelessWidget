@@ -35,6 +35,9 @@ Note: See [Standards] for project naming conventions and versioning standards
   * Software libraries
     * Start WidgetMesh Network
   * Power management
+=v1.2=
+  * Incorporate documented issues slated for [http://code.google.com/p/strobit/issues/list?q=label:Milestone-sww-0901-011 Milestone-sww-0901-012] into PCB design.
+  * Fork 0603 to 0805 Component Design
 =v2.0=
   * Incorporate documented issues slated for [http://code.google.com/p/strobit/issues/list?q=label:Milestone-sww-0901-020 Milestone-sww-0901-020] into PCB design.
   * 2.4Ghz RF Design
