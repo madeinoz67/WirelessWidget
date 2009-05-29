@@ -2,8 +2,8 @@
 
 
 ||Arduino Pin  || Widget Pin || Notes||
-||D0||RXI|| || 
-||D1||TXO|| || 
+||D0||RXI(D0)|| || 
+||D1||TXO(D1)|| || 
 ||D2||INT0||UNAVAILABLE - USED by RFM12B|| 
 ||D3(PWM)||INT1|| || 
 ||D4||D4|| ||
