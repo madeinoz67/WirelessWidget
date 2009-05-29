@@ -10,8 +10,8 @@
 ||D5(PWM)||D5|| ||
 ||D6(PWM)||D6|| ||
 ||D7||D7|| ||
-||D8||D8(LED1)|| ||
-||D9(PWM)||D9(LED2)|| ||
+||D8||D8(LED1)||LED can be disabled via SJ1 ||
+||D9(PWM)||D9(LED2)||LED can be disabled via SJ2 ||
 ||D10(PWM)||NSEL||UNAVAILABLE - USED by RFM12B||
 ||D11(PWM)||MOSI||Shared with RFM12B||
 ||D12||MISO||Shared with RFM12B||
