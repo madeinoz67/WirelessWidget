@@ -5,7 +5,7 @@
 ||D0||RXI(D0)|| || 
 ||D1||TXO(D1)|| || 
 ||D2||INT0||UNAVAILABLE - USED by RFM12B|| 
-||D3(PWM)||INT1|| || 
+||D3(PWM)||INT1(D3)|| || 
 ||D4||D4|| ||
 ||D5(PWM)||D5|| ||
 ||D6(PWM)||D6|| ||
