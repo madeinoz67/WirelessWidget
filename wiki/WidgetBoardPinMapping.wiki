@@ -12,8 +12,8 @@
 ||D7||D7|| ||
 ||D8||D8(LED1)|| ||
 ||D9(PWM)||D9(LED2)|| ||
-||D10||NSEL||UNAVAILABLE used by RFM12B||
-||D11||MOSI||Shared with RFM12B||
+||D10(PWM)||NSEL||UNAVAILABLE used by RFM12B||
+||D11(PWM)||MOSI||Shared with RFM12B||
 ||D12||MISO||Shared with RFM12B||
 ||D13||SCK ||Shared with RFM12B||
 ||A0||A0|| ||
