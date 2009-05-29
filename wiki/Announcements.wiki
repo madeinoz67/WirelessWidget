@@ -5,6 +5,8 @@ The most up to date development news and announcements can be found on my BLOG: 
 ----
 =Announcements=
 
+29/05/09 - More documentation updates WidgetBoardPinMapping - for Arduino to [RFM12BWidgetBoard] pin mappings.
+
 24/05/09 - v1.1 PCB Started
 
 22/05/09
