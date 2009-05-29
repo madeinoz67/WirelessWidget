@@ -1,7 +1,7 @@
 #summary RFM12B Widget Board Arduino Pin Mappings
 
 
-||AtMega168 Pin || Arduino Pin  || Widget Pin || Notes||
+||Arduino Pin  || Widget Pin || Notes||
 ||D0||RXI|| || 
 ||D1||TXO|| || 
 ||D2||INT0||UNAVAILABLE - USED by RFM12B|| 
