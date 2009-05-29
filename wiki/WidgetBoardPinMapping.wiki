@@ -22,5 +22,5 @@
 ||A3||A3|| ||
 ||A4||SDA(A4)|| ||
 ||A5||SCL(A5)|| ||
-||A6||A6||OnBoard - not on expansion header||
-||A7||A7(RSSI)||Onboard - not on expansion header ||
+||A6||A6||On board - not on expansion header||
+||A7||A7(RSSI)||On board - not on expansion header ||
