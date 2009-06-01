@@ -1,0 +1,10 @@
+#summary This page describes the wireless protocol to be used in the Strobit system.
+
+= Introduction =
+
+to be added
+
+
+= Details =
+
+to be added
