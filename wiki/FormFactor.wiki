@@ -23,7 +23,7 @@ I suggest adding two 6-pin connectors to hook up flashes and cameras. The 6-pin 
 
 With 6 pins we are able to supply power and ground as well as 4 i/o lines.
 
-A port can be used as output to light flashes. Another option is to remotely trigger a camera.
+A port can be used as output to light flashes. Another option is to remotely trigger a camera. Two ports mean one can trigger a battery of two flashes - a trick often used to get more power or better recycling time.
 
 Secondly, a port can be used as input. This includes getting the trigger signal from camera but also from different devices like accoustic trigger or laser detector.
 
@@ -31,4 +31,7 @@ So every piece of external hardware gets connected to the 6-pin port with a spec
 
 
 I've put together this little sketch of how a device can be attached to a camera.
+
 http://strobit.googlecode.com/svn/wiki/images/concept-camera.png
+
+Attaching external flashes with cables as opposed to having a hot shoe mount gives a definite advantage with Canon 580EX. It has been reported that this particular flash model produces a lot of interference and moving the wireless unit away from the flash gives a dramatic improvement in reliability. Not to mention that a simple box-shaped case will be significantly cheaper than one with a hot shoe mount.
