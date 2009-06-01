@@ -12,7 +12,7 @@ I think a device should have the following:
  * several LEDs
  * buzzer
 
-Additionally it would be good to have an alternative version with a display and some keys. I think this _configurator_ device would be useful to pass settings to other devices. Besides it could be made bigger to put in pocket and never use in actual triggering.
+Additionally it would be good to have an alternative version with a display and some keys. I think this _configurator_ device would be useful to pass settings to other devices. Besides it could be made bigger to put in pocket and never use in actual triggering. Potentially, this display-button-control device could also be equipped with a photodiode to be used as a flashmeter.
 
 
 = Details =
