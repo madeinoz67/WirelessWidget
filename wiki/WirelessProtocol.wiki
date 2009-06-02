@@ -4,13 +4,13 @@
 
 To make a good wireless protocol for remote flash triggering we need to consider the following:
 
-* There will be only one master broadcasting. This means that a master unit can assume the channel is free and start transmission whenever it is necessary. The slave must listen to messages from master and only respond when it is required by the message.
+ * There will be only one master broadcasting. This means that a master unit can assume the channel is free and start transmission whenever it is necessary. The slave must listen to messages from master and only respond when it is required by the message.
 
-* Messages need to be of different type. Message length depends on message type, therefore type must be transmitted at the beginning of the message. One obvious message type would be "trigger" that would force the slave units to fire their connected flashes. I suggest leaving reserved bits for adding more message types in the future.
+ * Messages need to be of different type. Message length depends on message type, therefore type must be transmitted at the beginning of the message. One obvious message type would be "trigger" that would force the slave units to fire their connected flashes. I suggest leaving reserved bits for adding more message types in the future.
 
-* We should make a distinction between each unit's unique identifier and its master/slave/group function. A unique ID should be rather long, like 8 bytes. There should never be two units with the same ID. ID should be used to target a message to a specific unit, most likely for configuration purposes.
+ * We should make a distinction between each unit's unique identifier and its master/slave/group function. A unique ID should be rather long, like 8 bytes. There should never be two units with the same ID. ID should be used to target a message to a specific unit, most likely for configuration purposes.
 
-* A function signature can be made 3 bit long. Say, 0 for master and 1-7 for slave groups. Each slave would know his group. Then a master could transmit a trigger message and have a mask. Slaves would then see if their group is masked or not and trigger or not trigger the flash.
+ * A function signature can be made 3 bit long. Say, 0 for master and 1-7 for slave groups. Each slave would know his group. Then a master could transmit a trigger message and have a mask. Slaves would then see if their group is masked or not and trigger or not trigger the flash.
 
 
 = Details =
