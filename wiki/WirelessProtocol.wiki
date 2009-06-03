@@ -1,4 +1,4 @@
-#summary This page describes the wireless protocol to be used in the Strobit system.
+r#summary This page describes the wireless protocol to be used in the Strobit system.
 
 = Introduction =
 
@@ -12,10 +12,59 @@ To make a good wireless protocol for remote flash triggering we need to consider
 
  * A function signature can be made 3 bit long. Say, 0 for master and 1-7 for slave groups. Each slave would know his group. Then a master could transmit a trigger message and have a mask. Slaves would then see if their group is masked or not and trigger or not trigger the flash.
 
+_ For future compatibility, all reserved bits should be written as 0. _
 
 = Details =
 
-Message structure is as follows:
+== Message structure ==
 
-|| *Type definition byte* || *Message payload* || *CRC* ||
+|| *Type definition* || *Message payload* || *CRC* ||
 || 1 byte || 0 or more bytes || 1 byte||
+
+Type definition byte defines message type. Message payload varies and depends on message type. Slave are supposed to know each message type length and configure reception accordingly. CRC is 8-bit cyclic redundancy code (CRC-8). This code is good for up to 15 bytes of data and detects single, double and all odd errors.
+
+Messages with bad CRC are ignored (possibly with beep from buzzer).
+
+=== CRC-8 calculation ===
+
+C code example from Wikipedia:
+
+{{{
+/*
+  Name  : CRC-8
+  Poly  : 0x31    x^8 + x^5 + x^4 + 1
+  Init  : 0xFF
+  Revert: false
+  XorOut: 0x00
+  Check : 0xF7 ("123456789")
+  MaxLen: 15 bytes(127 bit)
+*/
+unsigned char Crc8(unsigned char *pcBlock, unsigned char len)
+{
+    unsigned char crc = 0xFF;
+    unsigned char i;
+ 
+    while (len--)
+    {
+        crc ^= *pcBlock++;
+ 
+        for (i = 0; i < 8; i++)
+            crc = crc & 0x80 ? (crc << 1) ^ 0x31 : crc << 1;
+    }
+ 
+    return crc;
+}
+}}}
+
+=== Type definition===
+|| *bits 7-4* || * bits 3-0* ||
+|| Message type || Reserved ||
+
+|| *Code* || *Message type* ||
+|| 0000 || Announce master presence ||
+|| 0001 || Trigger ||
+
+
+Announcing master presence should probably trigger some kind of response from slaves but this command requires more consideration and will be updated later.
+
+Trigger command should perform the actual triggering. Payload is one byte where bits 7-1 determine which flash groups fire. Bit 0 is reserved. Therefore, payload 0xFE will trigger all available flash groups. Trigger command is never acknowledged.
