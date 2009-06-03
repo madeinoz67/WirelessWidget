@@ -15,4 +15,7 @@ To make a good wireless protocol for remote flash triggering we need to consider
 
 = Details =
 
-to be added
+Message structure is as follows:
+
+|| *Type definition byte* || *Message payload* || *CRC* ||
+|| 1 byte || 0 or more bytes || 1 byte||
