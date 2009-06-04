@@ -21,7 +21,8 @@ _ For future compatibility, all reserved bits should be written as 0. _
 || *Type definition* || *Message payload* || *CRC* ||
 || 1 byte || 0 or more bytes || 1 byte||
 
-Type definition byte defines message type. Message payload varies and depends on message type. Slave are supposed to know each message type length and configure reception accordingly. CRC is 8-bit cyclic redundancy code (CRC-8). This code is good for up to 15 bytes of data and detects single, double and all odd errors.
+Type definition byte defines message type. Message payload varies and depends on message type. accordingly.CRC is 8-bit cyclic redundancy code (CRC-8). This code is good for up to 15 bytes of data and detects single, double and all odd errors.
+4 bits in type definition byte can indicate message length in bytes.
 
 Messages with bad CRC are ignored (possibly with beep from buzzer).
 
@@ -133,7 +134,9 @@ crc_table:
 
 === Type definition===
 || *bits 7-4* || * bits 3-0* ||
-|| Message type || Reserved ||
+|| Message type || Message length ||
+
+Message length includes the type definition byte and the CRC byte.
 
 || *Code* || *Message type* ||
 || 0000 || Announce master presence ||
