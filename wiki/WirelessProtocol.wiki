@@ -136,7 +136,7 @@ crc_table:
 || *bits 7-4* || * bits 3-0* ||
 || Message type || Message length ||
 
-Message length includes the type definition byte and the CRC byte.
+Message length doesn't include the type definition byte and the CRC byte.
 
 || *Code* || *Message type* ||
 || 0000 || Announce master presence ||
