@@ -134,9 +134,9 @@ crc_table:
 
 === Type definition===
 || *bits 7-4* || * bits 3-0* ||
-|| Message type || Message length ||
+|| Message type || Payload length ||
 
-Message length doesn't include the type definition byte and the CRC byte.
+Payload length doesn't include the type definition byte and the CRC byte. Total message length is payload length + 2.
 
 || *Code* || *Message type* ||
 || 0000 || Announce master presence ||
