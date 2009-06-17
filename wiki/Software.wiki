@@ -10,8 +10,8 @@
 The original lilypad bootloader have been modified for the WidgetBoards. (the unmodified lilypad bootloader will also work with the widget board and no crystal)
 
 ||Clock Speed||Used when ||Fuse Settings || D/L Link||
-||8MHz ||No crystal installed||L:E2 H:DF E:00 ||[http://code.google.com/p/strobit/downloads/detail?name=strobitBOOT_8MHZ_168.hex strobitBOOT_8MHZ_168.hex]||
-||10MHz||with crystal installed||L:E6 H:DF E:00||[http://code.google.com/p/strobit/downloads/detail?name=strobitBOOT_10MHZ_168.hex strobitBOOT_10MHZ_168.hex]||
+||8MHz ||No crystal installed||L:E2 H:DF E:00 ||[http://code.google.com/p/strobit/downloads/detail?name=rfm12widgetBOOT_168_8MHZ.hex rfm12widgetBOOT_168_8MHZ.hex]||
+||10MHz||with crystal installed||L:E6 H:DF E:00||[http://code.google.com/p/strobit/downloads/detail?name=rfm12widgetBOOT_168_10MHZ.hex rfm12widgetBOOT_168_10MHZ.hex]||
 
 =Netwoking=
  [Networking] the Widgets
