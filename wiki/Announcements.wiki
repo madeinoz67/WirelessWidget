@@ -9,7 +9,7 @@ The most up to date development news and announcements can be found on my BLOG: 
 
     * New bootloaders hex available from download area, LEDS now flash when entering bootloader
     * bootloader source available (SVN)
-    * RFM!2 widget board support now added to board.txt for arduin environment (SVN). 
+    * RFM12 widget board support now added to board.txt for arduino environment (SVN). 
 
 29/05/09 - More documentation updates WidgetBoardPinMapping - for Arduino to [RFM12BWidgetBoard] pin mappings.
 
