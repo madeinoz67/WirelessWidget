@@ -58,6 +58,7 @@ See [RFM12WidgetTesting]
 
 =Building=
 This board is a SMD design.  Please follow the [Rfm12BuildingInstructions]
-
+=Schematics=
+http://strobit.googlecode.com/svn/wiki/images/schematics/sww-0901-010.png
 =Programming Bootloader=
 See ProgrammingBootLoader
