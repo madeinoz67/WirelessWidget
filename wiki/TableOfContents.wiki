@@ -22,4 +22,4 @@
     * [WirelessProtocol]
     * [SensorNetwork]
 
-DOCS | [http://code.google.com/p/support/wiki/WikiSyntax Wiki Syntax] | History | Pagelist
+DOCS | [http://code.google.com/p/support/wiki/WikiSyntax Wiki Syntax] | [http://code.google.com/p/strobit/source/browse/#svn/wiki History | [http://code.google.com/p/strobit/w/list Pagelist]
