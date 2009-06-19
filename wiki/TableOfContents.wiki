@@ -22,5 +22,5 @@
     * [WirelessProtocol]
     * [SensorNetwork]
 
-DOCS | [http://code.google.com/p/support/wiki/WikiSyntax Wiki Syntax] | [http://code.google.com/p/strobit/source/browse/#svn/wiki History] | 
+Docs | [http://code.google.com/p/support/wiki/WikiSyntax Wiki Syntax] | [http://code.google.com/p/strobit/source/browse/#svn/wiki History] | 
 [http://code.google.com/p/strobit/w/list Page list]
