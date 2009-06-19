@@ -5,4 +5,4 @@
 
 =Schematics=
 
-Available from the Downloads area or the 'Featured Downloads' on the from the front page.  The design files are in Eagle format.
+Available from the Downloads area or the 'Featured Downloads' on the from the front page.  The design files are in Eagle format or as a PDF.  You can also view Schematics of each design from the [Hardware] Page
