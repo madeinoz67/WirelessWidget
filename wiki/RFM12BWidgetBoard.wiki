@@ -1,4 +1,5 @@
 #summary Hardware - RFM12B Strobit Wireless Widget Board
+#labels Featured
 ----
 <wiki:toc max_depth="3" />
 ----
@@ -42,7 +43,7 @@ Development Status: Active
 ==Distance==
 The distance achieved by these modules will be dependant on the band of the module installed, the type of antenna used and the bitrate selected.
   * Non-scientific tests using the [http://code.google.com/p/jeelab/ http://code.google.com/p/jeelab/] default RFM12B driver examples, indicate that reliable communications of bitrates of 57600bps are achieved indoors everywhere around my house 30m+  this was using a 916Mhz module, 2dB SMA antenna and a packet length of 66 byte.
-  * Outdoor test, one module inside the house continuously transmitting packets every second and the mobile node with me walking down the street until CRC packets failed (LED stops blinking).  Transmitting 66byte packet @ 57600bps.  Distance 120m
+  * Outdoor test using same configuration as indoor test, one module inside the house continuously transmitting packets every second and the mobile node with me walking down the street until CRC packets failed (LED stops blinking).  Transmitting 66byte packet @ 57600bps.  Distance 120m
 See [RFM12WidgetTesting]
  
 ==Antenna Options==
