@@ -13,6 +13,7 @@ The Physical Layer is provided by the RFM12 Radio Module and is transparent to t
 
 ===MAC Layer ===
 
-|| 0xAA || 0xAA || SYNC || MAC HEADER || MPDU || 0xAA||
+||              ||              ||             ||  
+|| 0xAA || 0xAA || 0x2D || 0xD4 || MPDU || 0xAA||
 
 ===Data Link Layer===
