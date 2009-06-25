@@ -9,10 +9,13 @@ The goal of this sub project is to provide simple mesh networking for the widget
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/stacksml.png
 
 ===Physical Layer===
-The Physical Layer is provided by the RFM12 Radio Module and is transparent to the Widget Mesh
+The Physical Layer is provided by the RFM12 Driver
 
 ===MAC Layer ===
 
-|| 0xAA || 0xAA || 0x2D || 0xD4 || MPDU (2 - n bytes) || 0xAA||
+MAC Frame
+
+MPDU
+|| 0xAA || 0xAA || 0x2D || 0xD4 || DPDU (2 - n bytes) || 0xAA||
 
 ===Data Link Layer===
