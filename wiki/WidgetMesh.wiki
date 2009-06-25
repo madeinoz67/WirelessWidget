@@ -6,7 +6,7 @@
 ==Goal==
 The goal of this sub project is to provide simple mesh networking for the widgets.
 ==Stack Overview==
-[http://strobit.googlecode.com/svn/wiki/images/widgetmesh/sstack.png http://strobit.googlecode.com/svn/wiki/images/widgetmesh/stacksml.png]
+[http://strobit.googlecode.com/svn/wiki/images/widgetmesh/stack.png http://strobit.googlecode.com/svn/wiki/images/widgetmesh/stacksml.png]
 
 ===Physical Layer===
 The Physical Layer is provided by the RFM12 Radio Module and is transparent to the Widget Mesh
