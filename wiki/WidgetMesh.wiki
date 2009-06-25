@@ -13,9 +13,6 @@ The Physical Layer is provided by the RFM12 Driver
 
 ===MAC Layer ===
 
-MAC Frame
-
-MPDU
-|| 0xAA || 0xAA || 0x2D || 0xD4 || DPDU (2 - n bytes) || 0xAA||
+MPDU || 0xAA || 0xAA || 0x2D || 0xD4 || DPDU (2 - n bytes) || 0xAA||
 
 ===Data Link Layer===
