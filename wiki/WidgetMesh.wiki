@@ -3,5 +3,13 @@
 <wiki:toc max_depth="3" />
 ----
 =Widget Mesh=
+==Goal==
+The goal of this sub project is to provide simple mesh networking for the widgets.
 ==Stack Overview==
 [http://strobit.googlecode.com/svn/wiki/images/widgetmesh/sstack.png http://strobit.googlecode.com/svn/wiki/images/widgetmesh/stacksml.png]
+
+===Physical Layer===
+
+===MAC Layer ===
+
+===Data Link Layer===
