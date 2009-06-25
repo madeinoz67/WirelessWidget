@@ -1,4 +1,4 @@
 #summary WidgetMesh - Mesh Network Protocol for Widgets
----
+----
 
 [http://strobit.googlecode.com/svn/wiki/images/widgetmesh/sstack.png http://strobit.googlecode.com/svn/wiki/images/widgetmesh/stacksml.png]
