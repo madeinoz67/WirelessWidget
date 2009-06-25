@@ -1,0 +1,3 @@
+#summary WidgetMesh - Simple Mess Network
+
+[http://strobit.googlecode.com/svn/wiki/images/widgetmesh/sstack.png http://strobit.googlecode.com/svn/wiki/images/widgetmesh/stacksml.png]
