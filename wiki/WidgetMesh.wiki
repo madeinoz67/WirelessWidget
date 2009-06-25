@@ -1,4 +1,6 @@
 #summary WidgetMesh - Mesh Network Protocol for Widgets
 ----
+<wiki:toc max_depth="3" />
+----
 
 [http://strobit.googlecode.com/svn/wiki/images/widgetmesh/sstack.png http://strobit.googlecode.com/svn/wiki/images/widgetmesh/stacksml.png]
