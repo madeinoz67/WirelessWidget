@@ -23,16 +23,16 @@ To provide some resistance to RF interference, the mesh should provide the abili
 === TDMA Slotted Access ===
 [http://en.wikipedia.org/wiki/Time_division_multiple_access Time Division Multiple Access (TDMA)] provides a shared slotted access to the RF media.  
 
-This consists of a repeating superframe made up of individual time slots of set length. The slots can be assigned for different purposes, i.e. node A and B to communicate with each other, or a broadcast slot for join announcements.  
+This consists of a repeating superframe made up of individual time slots of set length. Each timeslot slots can be assigned for a different purposes, i.e. node A and B to communicate with each other, or a broadcast slot for join announcements. During a timeslot that is not assigned to an individual node then the node can have the Rx circuit turned off to save power.  
 
-To use a slotted access scheme, a notion of time needs to be available across the network, this should be synchronised from the Gateway or Coordinator node.
+To use a slotted access scheme, a notion of network time needs to be available across the network, this should be synchronised either from the Gateway or Coordinator node or a time source.
 
 TODO: Picture of Superframe 
 
 === Self Healing and Self Forming ===
 The network should be self healing i.e. if a node fails due to the batteries going flat, then the rest of the network should be able to re-form as best as possible.
 
-If the minimum requirement are met then the network should be self forming.
+If the minimum network requirement are met then the network should be self forming.
 
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/mesh_overview.png
 
