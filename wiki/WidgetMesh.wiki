@@ -17,6 +17,9 @@ the network consists of the following:
  #) Gateway Device - At least one gateway device is required to form the network, the role of this is to co-ordinate the forming of the network and and the routing of packets to and from the WidgetMesh network, i.e. sends data through to a connected device for data-management e.g. a connected PC or a network.
  #) Network Nodes - The rest of the network consists of widgets, these may be low powered battery powered or connected to mains.  The nodes when configured will search for and join the network under the coordination of the gateway device.
 
+=== Self Healing ===
+The network should be self healing i.e. if a node fails i.e. is battery powered and the batteries go flat, then the rest of the network should be able to re-form as best as possible.
+
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/mesh_overview.png
 
 ==Stack Overview==
