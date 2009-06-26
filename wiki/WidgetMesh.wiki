@@ -4,15 +4,16 @@
 ----
 =Widget Mesh=
 ==Goal==
-The goal of this sub project is to provide simple mesh networking for the widgets.  something like a cutdown Zigbee/SP100a stack.
+The goal of this sub project is to provide simple mesh networking for the widgets.  Something along the lines of a cutdown Zigbee/SP100a stack.
 
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/mesh_overview.png
 
-Ultimately I would like to implement these features:
+Some of the features I'm hoping to implement:
+ * Frequency hopping to give diversity to interference.
+ * TDMA type access to media. Allow contention free access to RF for all nodes in the network.
+ * Basic Meshing, extending the range of sensor, routing of packets over alternate routes if nodes fail etc
+ * Remote firmware updates.
 
- * Frequency Hopping
- * TDMA Media Access
- * Meshing
 
 ==Stack Overview==
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/stacksml.png
