@@ -25,7 +25,7 @@ To provide some resistance to RF interference, the mesh should provide the abili
 
 This consists of a repeating superframe made up of individual time slots of set length. The slots can be assigned for different purposes, i.e. node A and B to communicate with each other, or a broadcast slot for join announcements.  
 
-To use a slotted access scheme a notion of time needs to be available across the network, this should be synchronises with the Gateway or Coordinator node.
+To use a slotted access scheme, a notion of time needs to be available across the network, this should be synchronised from the Gateway or Coordinator node.
 
 TODO: Picture of Superframe 
 
