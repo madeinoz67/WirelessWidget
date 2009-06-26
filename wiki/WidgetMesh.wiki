@@ -4,7 +4,7 @@
 ----
 =Widget Mesh=
 ==Goal==
-The goal of this sub project is to provide simple mesh networking for the widgets.  Something along the lines of a cutdown Zigbee/SP100a stack.
+The goal of this sub project is to provide simple mesh networking for the widgets.  Something along the lines of a cutdown [http://en.wikipedia.org/wiki/Zigbee Zigbee]/SP100a stack.
 
 Some of the features I'd ultimately like to implement:
  * Frequency hopping to give diversity to interference.
