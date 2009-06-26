@@ -6,11 +6,16 @@
 ==Goal==
 The goal of this sub project is to provide simple mesh networking for the widgets.  Something along the lines of a cutdown Zigbee/SP100a stack.
 
-Some of the features I'm hoping to implement:
+Some of the features I'd ultimately like to implement:
  * Frequency hopping to give diversity to interference.
  * TDMA type access to media. Allow contention free access to RF for all nodes in the network.
  * Basic Meshing, extending the range of sensor, routing of packets over alternate routes if nodes fail etc
  * Remote firmware updates.
+
+== Network Overview ==
+the network consists of the following:
+ #) Gateway Device - At least one gateway device is required to form the network, the role of this is to co-ordinate the forming of the network and and the routing of packets to and from the WidgetMesh network, i.e. sends data through to a connected device for data-management e.g. a connected PC or a network.
+ #) Nodes, the rest of the network consists of widgets, these may be low powered battery powered or connected to mains.  The nodes when configured will search for and join the network under the coordination of the gateway device.
 
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/mesh_overview.png
 
