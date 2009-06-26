@@ -15,7 +15,7 @@ Some of the features I'd ultimately like to implement:
 == Network Overview ==
 the network consists of the following:
  #) Gateway Device - At least one gateway device is required to form the network, the role of this is to co-ordinate the forming of the network and and the routing of packets to and from the WidgetMesh network, i.e. sends data through to a connected device for data-management e.g. a connected PC or a network.
- #) Nodes, the rest of the network consists of widgets, these may be low powered battery powered or connected to mains.  The nodes when configured will search for and join the network under the coordination of the gateway device.
+ #) Network Nodes - The rest of the network consists of widgets, these may be low powered battery powered or connected to mains.  The nodes when configured will search for and join the network under the coordination of the gateway device.
 
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/mesh_overview.png
 
