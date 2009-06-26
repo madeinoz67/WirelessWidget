@@ -29,12 +29,11 @@ To use a slotted access scheme, a notion of network time needs to be available a
 
 TODO: Picture of Superframe 
 
-=== Self Healing and Self Forming ===
-The network should be self healing i.e. if a node fails due to the batteries going flat, then the rest of the network should be able to re-form as best as possible.
+=== Self Forming and Self Healing ===
 
-If the minimum network requirement are met then the network should be self forming.  A node when first powered up will listen for other node communications in its vicinity and allowing it to sent join requests to form network links.
+If the minimum network requirement are met then the network should be self forming.  A node when first powered up will listen for other node communications in its vicinity and allowing it to sent join requests to form network links.  The network will form from the gateway out.
 
-The network will form from the gateway out
+The network should be self healing, if a node fails or for some reasons is disconnected from the network, then the rest of the network should be able to re-form as best as possible.
 
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/mesh_overview.png
 
