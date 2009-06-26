@@ -6,6 +6,8 @@
 ==Goal==
 The goal of this sub project is to provide simple mesh networking for the widgets.  something like a cutdown Zigbee/SP100a stack.
 
+http://strobit.googlecode.com/svn/wiki/images/widgetmesh/mesh_overview.png
+
 Ultimately I would like to implement these features:
 
  * Frequency Hopping
