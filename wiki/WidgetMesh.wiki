@@ -34,6 +34,8 @@ The network should be self healing i.e. if a node fails due to the batteries goi
 
 If the minimum network requirement are met then the network should be self forming.  A node when first powered up will listen for other node communications in its vicinity and allowing it to sent join requests to form network links.
 
+The network will form from the gateway out
+
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/mesh_overview.png
 
 ==Stack Overview==
