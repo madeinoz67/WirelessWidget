@@ -5,6 +5,13 @@
 =Widget Mesh=
 ==Goal==
 The goal of this sub project is to provide simple mesh networking for the widgets.
+
+Ultimately I would like to implement these features:
+
+ * Frequency Hopping
+ * TDMA Media Access
+ * Meshing
+
 ==Stack Overview==
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/stacksml.png
 
@@ -13,6 +20,9 @@ The Physical Layer is provided by the RFM12 Driver
 
 ===MAC Layer ===
 
-MPDU || 0xAA || 0xAA || 0x2D || 0xD4 || DPDU (2 - n bytes) || 0xAA||
+MPDU 
+|| 0xAA || 0xAA || 0x2D || 0xD4 || DPDU (2 - n bytes) || 0xAA||
 
 ===Data Link Layer===
+
+DPDU 
