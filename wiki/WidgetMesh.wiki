@@ -44,7 +44,7 @@ http://strobit.googlecode.com/svn/wiki/images/widgetmesh/stacksml.png
 The Physical Layer is provided by the RFM12 Driver
 
 ===MAC Layer ===
-
+http://strobit.googlecode.com/svn/wiki/images/widgetmesh/mpdu.png
 MPDU 
 || 0xAA || 0xAA || 0x2D || 0xD4 || DPDU (2 - n bytes) || 0xAA||
 
