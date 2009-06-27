@@ -41,11 +41,19 @@ http://strobit.googlecode.com/svn/wiki/images/widgetmesh/mesh_overview.png
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/stacksml.png
 
 ===Physical Layer===
-The Physical Layer is provided by the RFM12 Driver
+The Physical Layer is provided by the RFM12 Driver.
+
+The Drive will provide functions to:
+ * Change frequency
+ * Change Tx Power
+ * Report RSSI (Optional)
+ * Put RF into Low Power/Sleep Mode
+ * Tx Data
+ * Rx Data
 
 ===MAC Layer ===
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/mpdu.png
-MPDU 
+
 || 0xAA || 0xAA || 0x2D || 0xD4 || DPDU (2 - n bytes) || 0xAA||
 
 ===Data Link Layer===
