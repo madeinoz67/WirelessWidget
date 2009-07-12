@@ -43,7 +43,7 @@ http://strobit.googlecode.com/svn/wiki/images/widgetmesh/stacksml.png
 ===Physical Layer===
 The Physical Layer is provided by the RFM12 Driver.
 
-The Drive will provide functions to:
+The driver will provide functions to:
  * Change frequency
  * Change Tx Power
  * Report RSSI (Optional)
