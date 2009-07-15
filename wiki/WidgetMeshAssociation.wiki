@@ -25,7 +25,7 @@ Association Request Parent selection could be be determined by:
 All nodes in the network can act as a routing device, but depending on their power requirements, i.e. very low battery life through to mains connected, will determine how they route packets.  i.e. a low powered devices may only route packets in the event there is no other paths back to the gateway.  While a mains connected devices will always route packets.
 
 =Example=
-In the following example Widgets W2 and W3 are not associated with the network.
+In the following example Widgets W1 has already associated with the Gateway Device, Widget Nodes W2 and W3 are not yet associated with the network.
 
 || UnAssociated || Associated || Meshing|| Meshed||
 ||http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation.png||http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation2.png || http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation3.png || http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation4.png ||
