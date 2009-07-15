@@ -1,4 +1,4 @@
-#summary WidgetMesh Association Requests
+#summary WidgetMesh Association Requests with Sequence Diagrams
 ----
 <wiki:toc max_depth="3" />
 ----
