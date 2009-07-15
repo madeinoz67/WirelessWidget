@@ -9,5 +9,16 @@ http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation.png
 
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/DirectNetworkAssociation.png
 
+  # Node W2 Powers up in provisioned state
+  # Node W2 Listens for Parent/Neighbour candidates.
+  # W2 determines that GW is the best Node for a parent.
+  # W2 Sends a direct Join request to GW.
+  # GW Adds W2 to the Network Node table
+     # Assigns TDMA Slots.
+     # Assigns Short Address.
+     # Assigns Parent Node.
+  # GW sends a Direct Join Response Packet containing above information to W2
+  # W2 updates Neighbour Table with Join Response and in now in Associated State
+
 =Indirect Association=
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/IndirectNetworkAssociation.png
