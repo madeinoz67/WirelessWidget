@@ -2,3 +2,8 @@
 ----
 <wiki:toc max_depth="3" />
 ----
+
+=Example=
+
+
+http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation.png
