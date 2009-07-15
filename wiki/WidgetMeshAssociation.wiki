@@ -5,7 +5,7 @@
 =Introduction=
 When a node gets powered up it is not a member of the network and must associate itself with the gateway device before it can send data/requests over the network.  This is done by Association/Join Requests to the gateway device. 
 
-The gateway's/coordinators role is to manage the network, firstly by managing network association reques, then forming communication links between associated nodes and by routing packets to and from the WidgetMesh once the network has been formed.  This process is ongoing as new nodes may associate at anytime.
+The gateway's/coordinators role is to manage the network, firstly by managing network association reques, then forming communication links between associated nodes and by routing packets to and from the WidgetMesh once the network has been formed.  This process is ongoing as new nodes may associate at any time.
 
 =Forming= 
 
@@ -25,7 +25,9 @@ Association Request Parent selection could be be determined by:
 All nodes in the network can act as a routing device, but depending on their power requirements, i.e. very low battery life through to mains connected, will determine how they route packets.  i.e. a low powered devices may only route packets in the event there is no other paths back to the gateway.  While a mains connected devices will always route packets.
 
 =Example=
-In the following example Widgets W1 has already associated with the Gateway Device, Widget Nodes W2 and W3 are not yet associated with the network.
+In the following example Widget W1 has already associated with the Gateway Device (GW) and communicates with GW via it TDMA slot allocation.
+
+Widget Nodes W2 and W3 are not yet associated with the network.
 
 || UnAssociated || Associated || Meshing|| Meshed||
 ||http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation.png||http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation2.png || http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation3.png || http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation4.png ||
