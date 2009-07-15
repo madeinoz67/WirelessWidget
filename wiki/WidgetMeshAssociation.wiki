@@ -2,7 +2,12 @@
 ----
 <wiki:toc max_depth="3" />
 ----
-=Requirements=
+=Introduction=
+When a node gets powered up it is not a member of the network and must associate itself with a network before it can send data/requests over the network.  This is done by Association/Join Requests to the gateway device. The gateway's/coordinators role is to manage the network, both in forming links between nodes and by routing packets to and from the WidgetMesh.
+
+=Forming= 
+
+==Requirements==
   * Network Gateway/Coordinator - The Network Gateway manages the network and the join requests.
 
 Join Requests are sent either directly to the Gateway node or Indirectly via other nodes already associated in the network.
