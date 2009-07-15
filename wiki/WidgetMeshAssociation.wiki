@@ -3,7 +3,11 @@
 <wiki:toc max_depth="3" />
 ----
 
-=Example=
-
-
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation.png
+
+=Direct Association=
+
+http://strobit.googlecode.com/svn/wiki/images/widgetmesh/DirectNetworkAssociation.png
+
+=Indirect Association=
+http://strobit.googlecode.com/svn/wiki/images/widgetmesh/IndirectNetworkAssociation.png
