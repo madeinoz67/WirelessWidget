@@ -9,16 +9,28 @@ http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation.png
 
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/DirectNetworkAssociation.png
 
-  # Node W2 Powers up in provisioned state
+  # Node W2 Powers up in "Provisioned" state
   # Node W2 Listens for Parent/Neighbour candidates.
   # W2 determines that GW is the best Node for a parent.
-  # W2 Sends a direct Join request to GW.
+  # W2 Sends a DirectJoinRequest to GW and state changes to "Joining" state.
   # GW Adds W2 to the Network Node table
      # Assigns TDMA Slots.
      # Assigns Short Address.
      # Assigns Parent Node.
-  # GW sends a Direct Join Response Packet containing above information to W2
-  # W2 updates Neighbour Table with Join Response and in now in Associated State
+  # GW sends a DirectJoinResponse Packet containing above information to W2
+  # W2 updates Neighbour Table with Join Response data and in now in "Associated" State
 
 =Indirect Association=
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/IndirectNetworkAssociation.png
+  # Node W3 Powers up in "Provisioned" state
+  # Node W3 Listens for Parent/Neighbour candidates.
+  # W3 determines that W1 is the best Node for a parent.
+  # W3 Sends a direct Join request to W1 and stae changes to "Joining" state.
+  # W1 Receives DirectJoinRequest and changes it to Type IndirectJoinRequest and requeues Packet for GW  
+  # GW receives IndirectJoinRequest and adds W3 to the Network Node table
+     # Assigns TDMA Slots.
+     # Assigns Short Address.
+     # Assigns Parent Node.
+  # GW sends an IndirectJoinResponse Packet containing above information to W1
+  # W1 receives IndirectJoinResponse packet and changes type to DirectResponsePacket and requeues to W3
+  # W3 updates Neighbour Table with Join Response and in now in "Associated" State
