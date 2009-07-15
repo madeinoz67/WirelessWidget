@@ -8,8 +8,9 @@
 In the following example Widgets W2 and W3 are not associated with the network.
 
 || UnAssociated || Associated || Meshing|| Meshed||
-||http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation.png||      http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation2.png || http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation3.png||
-http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation4.png||
+||http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation.png||
+ http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation2.png ||   http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation3.png ||  
+http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation4.png || 
 
 =Direct Association=
 
