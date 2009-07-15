@@ -7,10 +7,10 @@
 
 Join Requests are sent either directly to the Gateway node or Indirectly via other nodes already associated in the network.
 
-Once Associated with the network a WidgetNode will have its TDMA schedule sent to it by the gateway/coordinator node as part of the association request.  The Gateway can also update nodes TDMA schedules in the network with additional neighbor links based on link quality / battery life etc, to create a fully meshed network.
+Once Associated with the network a WidgetNode will have its TDMA schedule sent to it by the gateway/coordinator node as part of the association request.  The Gateway can also update nodes TDMA schedules in the network with additional neighbour links based on link quality / battery life etc, to create a fully meshed network.
 
 ==Node Routing==
-All nodes in the network can act as a routing device, but depending on their powere requirments, i.e. very low battery life through to mains connected, is how they route packets.  i.e. a low powered devices may only route packets in the event there is no other paths back to the gateway.  While a mains connected devices will always route packets.   
+All nodes in the network can act as a routing device, but depending on their power requirements, i.e. very low battery life through to mains connected, will determine how they route packets.  i.e. a low powered devices may only route packets in the event there is no other paths back to the gateway.  While a mains connected devices will always route packets.
 
 =Example=
 In the following example Widgets W2 and W3 are not associated with the network.
@@ -36,7 +36,7 @@ http://strobit.googlecode.com/svn/wiki/images/widgetmesh/DirectNetworkAssociatio
 =Indirect Association=
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/IndirectNetworkAssociation.png
   # Node W3 Powers up in "Provisioned" state
-  # Node W3 Listens for Parent/Neighbour candidates.  It detects devices W1 and W2 as likely candidates. 
+  # Node W3 Listens for Parent/Neighbour candidates.  It detects devices W1 and W2 as likely candidates. GW is not detected.
   # W3 determines that W1 is the best Node for a parent due to RSSI strength.
   # W3 Sends a direct Join request to W1 and stae changes to "Joining" state.
   # W1 Receives DirectJoinRequest and changes it to Type IndirectJoinRequest and requeues Packet for GW  
