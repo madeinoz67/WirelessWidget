@@ -9,6 +9,11 @@ Join Requests are sent either directly to the Gateway node or Indirectly via oth
 
 Once Associated with the network a WidgetNode will have its TDMA schedule sent to it by the gateway/coordinator node as part of the association request.  The Gateway can also update nodes TDMA schedules in the network with additional neighbour links based on link quality / battery life etc, to create a fully meshed network.
 
+==Association Request Parent Selection==
+Association Request Parent selection could be be determined by:
+  * RSSI - Stronger RSSI is better than lower RSSI. 
+  * NodeID - Lowest NodeID is first choice.  Gateway/Cooridinator always has NodeId of 0x0000 so is always the lowest and therefore 1st choice if detected.
+
 ==Node Routing==
 All nodes in the network can act as a routing device, but depending on their power requirements, i.e. very low battery life through to mains connected, will determine how they route packets.  i.e. a low powered devices may only route packets in the event there is no other paths back to the gateway.  While a mains connected devices will always route packets.
 
