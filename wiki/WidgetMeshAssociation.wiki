@@ -23,7 +23,7 @@ In the following example Widgets W2 and W3 are not associated with the network.
 || UnAssociated || Associated || Meshing|| Meshed||
 ||http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation.png||http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation2.png || http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation3.png || http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation4.png ||
 
-=Direct Association=
+==Direct Association==
 
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/DirectNetworkAssociation.png
 
@@ -38,7 +38,7 @@ http://strobit.googlecode.com/svn/wiki/images/widgetmesh/DirectNetworkAssociatio
   # GW sends a DirectJoinResponse Packet containing above information to W2
   # W2 updates Neighbour Table with Join Response data and in now in "Associated" State
 
-=Indirect Association=
+==Indirect Association==
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/IndirectNetworkAssociation.png
   # Node W3 Powers up in "Provisioned" state
   # Node W3 Listens for Parent/Neighbour candidates.  It detects devices W1 and W2 as likely candidates. GW is not detected.
