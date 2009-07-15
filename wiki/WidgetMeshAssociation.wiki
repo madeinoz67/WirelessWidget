@@ -16,7 +16,7 @@ http://strobit.googlecode.com/svn/wiki/images/widgetmesh/DirectNetworkAssociatio
   # GW Adds W2 to the Network Node table
      # Assigns TDMA Slots.
      # Assigns Short Address.
-     # Assigns Parent Node.
+     # Assigns Parent Node as itself(GW).
   # GW sends a DirectJoinResponse Packet containing above information to W2
   # W2 updates Neighbour Table with Join Response data and in now in "Associated" State
 
@@ -30,7 +30,7 @@ http://strobit.googlecode.com/svn/wiki/images/widgetmesh/IndirectNetworkAssociat
   # GW receives IndirectJoinRequest and adds W3 to the Network Node table
      # Assigns TDMA Slots.
      # Assigns Short Address.
-     # Assigns Parent Node.
+     # Assigns Parent Node(W1).
   # GW sends an IndirectJoinResponse Packet containing above information to W1
   # W1 receives IndirectJoinResponse packet and changes type to DirectResponsePacket and requeues to W3
-  # W3 updates Neighbour Table with Join Response and in now in "Associated" State
+  # W3 updates Neighbour Table with Join Response data and in now in "Associated" State
