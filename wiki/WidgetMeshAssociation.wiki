@@ -43,7 +43,7 @@ http://strobit.googlecode.com/svn/wiki/images/widgetmesh/IndirectNetworkAssociat
   # Node W3 Powers up in "Provisioned" state
   # Node W3 Listens for Parent/Neighbour candidates.  It detects devices W1 and W2 as likely candidates. GW is not detected.
   # W3 determines that W1 is the best Node for a parent due to RSSI strength.
-  # W3 Sends a direct Join request to W1 and stae changes to "Joining" state.
+  # W3 Sends a DirectJoinRequest to W1 and state changes to "Joining" state.
   # W1 Receives DirectJoinRequest and changes it to Type IndirectJoinRequest and requeues Packet for GW  
   # GW receives IndirectJoinRequest and adds W3 to the Network Node table
      # Assigns TDMA Slots.
