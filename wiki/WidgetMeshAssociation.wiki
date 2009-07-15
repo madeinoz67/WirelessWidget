@@ -3,7 +3,7 @@
 <wiki:toc max_depth="3" />
 ----
 =Requirements=
-  *Network Gateway/Coordinator - The Network Gateway manages the network and the join requests.
+  * Network Gateway/Coordinator - The Network Gateway manages the network and the join requests.
 
 In the following example Widgets W2 and W3 are not associated with the network.
 
