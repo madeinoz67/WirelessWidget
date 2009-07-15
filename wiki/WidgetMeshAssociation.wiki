@@ -12,7 +12,7 @@ Once Associated with the network a WidgetNode will have its TDMA schedule sent t
 ==Association Request Parent Selection==
 Association Request Parent selection could be be determined by:
   * RSSI - Stronger RSSI is better than lower RSSI. 
-  * NodeID - Lowest NodeID is first choice.  Gateway/Cooridinator always has NodeId of 0x0000 so is always the lowest and therefore 1st choice if detected.
+  * NodeId - Lowest NodeId is first choice.  Gateway/Coordinator always has NodeId of 0x0000 so is always the lowest and therefore 1st choice if detected.
 
 ==Node Routing==
 All nodes in the network can act as a routing device, but depending on their power requirements, i.e. very low battery life through to mains connected, will determine how they route packets.  i.e. a low powered devices may only route packets in the event there is no other paths back to the gateway.  While a mains connected devices will always route packets.
