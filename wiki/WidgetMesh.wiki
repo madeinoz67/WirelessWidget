@@ -31,7 +31,7 @@ TODO: Picture of Superframe
 
 === Self Forming and Self Healing ===
 
-If the minimum network requirement are met then the network should be self forming.  A node when first powered up will listen for other node communications in its vicinity and allowing it to sent join requests to form network links.  The network will form from the gateway out.
+If the minimum network requirement are met then the network should be self forming.  A node when first powered up will listen for other node communications in its vicinity and allowing it to sent join requests to form network links ([WidgetMeshAssociation]).  The network will form from the gateway out.
 
 The network should be self healing, if a node fails or for some reasons is disconnected from the network, then the rest of the network should be able to re-form as best as possible.
 
