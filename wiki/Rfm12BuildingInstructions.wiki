@@ -76,6 +76,8 @@ TODO:  [http://www.octopart.com  Octopart] partlist.
 
 [http://sparkfun.com]
 
+[http://www.x-on.com.au/] (Mousers Australian Partner)
+
 [http://www.mouser.com/]
 
 [http://www.digikey.com]
