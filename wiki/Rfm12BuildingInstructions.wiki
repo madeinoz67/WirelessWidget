@@ -126,6 +126,7 @@ Most of these tools I purchased from [http://www.dealextreme.com]  (WARNING: Thi
 At the moment I don't use a solder paste stencil.  I apply it all by hand.  The first couple of boards I used a little too much solder and had some bridges I needed to remove, however after the 3rd board I don't have any solder bridges and I have a good idea of how much solder paste I need to apply. Actually very little solder paste actually is needed on most components, the only one that needs a bit more is the RFM12B transceiver, all the rest is but a smear on the pad, which causes a nice fillet on the finished joints.
 
   ==The steps I use - (Toaster Oven)==
+More information on this Blog Entry [http://blog.strobotics.com.au/2009/07/10/my-smd-process/]
    # Make sure you have all the correct components, I usually place mine into labelled SMD storage containers before I start.  It make it things much easier when I'm placing them. 
    # Clean the PCB with cleaning alcohol and wipe dry with a paper towel.
    # Apply solder paste to all components pads on the PCB for all that you're installing, only very small amounts are needed.
