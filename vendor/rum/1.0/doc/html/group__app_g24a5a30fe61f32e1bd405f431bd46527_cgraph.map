@@ -1,0 +1,8 @@
+<area shape="rect" href="$group__timer__module.html#g0155e5192956b3cd498751d8652f7773" title="Sets a general purpose timer." alt="" coords="564,76,663,103">
+<area shape="rect" href="$group__sensors.html#gbaa8d61c91f652d5e95e2ec6c9f00b4d" title="Handle a received packet." alt="" coords="179,102,301,128">
+<area shape="rect" href="$group__arm.html#g8ad2d7780b4815433b88ee56afa2830c" title="Returns a unique timer ID." alt="" coords="713,51,804,78">
+<area shape="rect" href="$group__timer__module.html#g55bef38a083b7a6478dd60c6668f3434" title="Start the hardware timer running." alt="" coords="720,102,797,128">
+<area shape="rect" href="$group__sensors.html#g18a4019e7e397a1127dc4f90ffdbf1b9" title="Callback function to receive calibration information from a sensor node." alt="" coords="372,51,492,78">
+<area shape="rect" href="$group__sensors.html#g30d62befb8ff70a3413363f9741c5c2c" title="Sensor node sends raw data back to coordinator." alt="" coords="360,102,504,128">
+<area shape="rect" href="$group__sensors.html#g2e7afcc8044d96300ecb9dc6d42aaf3d" title="Send a sensor reading to coordinator." alt="" coords="364,152,500,179">
+<area shape="rect" href="$group__sensors.html#g16a00091e33ba95a882e79844b59d3fc" title="Set the name of the sensor name." alt="" coords="349,203,515,230">

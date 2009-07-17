@@ -1,0 +1,173 @@
+<!DOCTYPE CrossStudio_Project_File>
+<solution Name="uTaskerV13" version="1">
+  <project Name="uTaskerV13">
+    <configuration Name="Common" Target="AT91SAM7X256" arm_architecture="v4T" arm_core_type="ARM7TDMI" arm_simulator_memory_simulation_filename="$(StudioDir)/targets/Atmel_AT91SAM7/AT91SAM7SimulatorMemory.dll" arm_simulator_memory_simulation_parameter="0x20000;0x4000" arm_target_debug_interface_type="ARM7TDI" arm_target_loader_parameter="18432000" gcc_entry_point="reset_handler" linker_memory_map_file="$(StudioDir)/targets/Atmel_AT91SAM7/AT91SAM7X256_MemoryMap.xml" linker_printf_fmt_level="int" linker_printf_width_precision_supported="No" linker_scanf_fmt_level="int" oscillator_frequency="18.432MHz" project_directory="" project_type="Executable" property_groups_file_path="$(StudioDir)/targets/Atmel_AT91SAM7/propertyGroups.xml"/>
+    <configuration Name="RAM" Placement="RAM" linker_section_placement_file="$(StudioDir)/targets/sram_placement.xml" target_reset_script="RAMReset()"/>
+    <configuration Name="Flash" Placement="Flash" arm_target_flash_loader_file_path="$(StudioDir)/targets/Atmel_AT91SAM7/Release/Loader.elf" linker_section_placement_file="$(StudioDir)/targets/flash_placement.xml" target_reset_script="FLASHReset()"/>
+    <folder Name="System Files">
+      <file Name="AT91SAM7_Target.js" file_name="$(StudioDir)/targets/Atmel_AT91SAM7/AT91SAM7_Target.js">
+        <configuration Name="Common" file_type="Reset Script"/>
+      </file>
+    </folder>
+    <folder Name="Source Files">
+      <configuration Name="Common" filter="c;cpp;cxx;cc;h;s;asm;inc"/>
+      <file Name="webInterface.c" file_name="../webInterface.c">
+        <configuration Name="THUMB Flash Release" build_debug_information="No"/>
+      </file>
+      <file Name="debug.c" file_name="../debug.c"/>
+      <file Name="KeyScan.c" file_name="../KeyScan.c"/>
+      <file Name="LCD.c" file_name="../LCD.c"/>
+      <file Name="NetworkIndicator.c" file_name="../NetworkIndicator.c"/>
+      <file Name="application.c" file_name="../application.c"/>
+    </folder>
+    <folder Name="Hardware">
+      <file Name="hardware.h" file_name="../../../Hardware/hardware.h"/>
+      <file Name="SAM7X.c" file_name="../../../Hardware/SAM7X/SAM7X.c"/>
+      <file Name="sam7x.h" file_name="../../../Hardware/SAM7X/sam7x.h"/>
+      <file Name="startup_gnu.s" file_name="../../../Hardware/SAM7X/startup_gnu.s"/>
+      <file Name="uTaskerSAM7X_FLASH.ld" file_name="uTaskerSAM7X_FLASH.ld">
+        <configuration Name="THUMB Flash Debug" build_exclude_from_build="No"/>
+        <configuration Name="Common" file_type="Linker Script"/>
+      </file>
+    </folder>
+    <configuration Name="THUMB RAM Debug" c_preprocessor_definitions="_HW_SAM7X; _GNU; ROWLEY" c_user_include_directories="..\\..\\..\\Applications\\uTaskerV1.3" gcc_entry_point="_vectors"/>
+    <folder Name="uTasker">
+      <file Name="Watchdog.c" file_name="../../../uTasker/Watchdog.c"/>
+      <file Name="can_drv.c" file_name="../../../uTasker/can_drv.c"/>
+      <file Name="Driver.c" file_name="../../../uTasker/Driver.c"/>
+      <file Name="driver.h" file_name="../../../uTasker/driver.h"/>
+      <file Name="eth_drv.c" file_name="../../../uTasker/eth_drv.c"/>
+      <file Name="GlobalTimer.c" file_name="../../../uTasker/GlobalTimer.c"/>
+      <file Name="iic_drv.c" file_name="../../../uTasker/iic_drv.c"/>
+      <file Name="low_power.c" file_name="../../../uTasker/low_power.c"/>
+      <file Name="Tty_drv.c" file_name="../../../uTasker/Tty_drv.c"/>
+      <file Name="uFile.c" file_name="../../../uTasker/uFile.c"/>
+      <file Name="uMalloc.C" file_name="../../../uTasker/uMalloc.C"/>
+      <file Name="uNetwork.c" file_name="../../../uTasker/uNetwork.c"/>
+      <file Name="uTasker.c" file_name="../../../uTasker/uTasker.c"/>
+      <file Name="uTasker.h" file_name="../../../uTasker/uTasker.h"/>
+      <file Name="USB_drv.c" file_name="../../../uTasker/USB_drv.c"/>
+    </folder>
+    <folder Name="Header Files">
+      <file Name="TaskConfig.h" file_name="../TaskConfig.h"/>
+      <file Name="types.h" file_name="../types.h"/>
+      <file Name="app_hw_sam7x.h" file_name="../app_hw_sam7x.h"/>
+      <file Name="application.h" file_name="../application.h"/>
+      <file Name="config.h" file_name="../config.h"/>
+      <file Name="stdint.h" file_name="$(StudioDir)/include/stdint.h"/>
+    </folder>
+    <folder Name="TCP/IP">
+      <file Name="arp.c" file_name="../../../stack/arp.c"/>
+      <file Name="dhcp.c" file_name="../../../stack/dhcp.c"/>
+      <file Name="dns.c" file_name="../../../stack/dns.c"/>
+      <file Name="Ethernet.c" file_name="../../../stack/Ethernet.c"/>
+      <file Name="ftp.c" file_name="../../../stack/ftp.c"/>
+      <file Name="http.c" file_name="../../../stack/http.c"/>
+      <file Name="icmp.c" file_name="../../../stack/icmp.c"/>
+      <file Name="ip.c" file_name="../../../stack/ip.c"/>
+      <file Name="ip_utils.c" file_name="../../../stack/ip_utils.c"/>
+      <file Name="pop3.c" file_name="../../../stack/pop3.c"/>
+      <file Name="smtp.c" file_name="../../../stack/smtp.c"/>
+      <file Name="tcp.c" file_name="../../../stack/tcp.c"/>
+      <file Name="tcpip.h" file_name="../../../stack/tcpip.h"/>
+      <file Name="telnet.c" file_name="../../../stack/telnet.c"/>
+      <file Name="tftp.c" file_name="../../../stack/tftp.c"/>
+      <file Name="udp.c" file_name="../../../stack/udp.c"/>
+      <file Name="webutils.c" file_name="../../../stack/webutils.c"/>
+      <file Name="NetBIOS.c" file_name="../../../stack/NetBIOS.c"/>
+    </folder>
+    <configuration Name="THUMB Flash Release" build_debug_information="Yes" c_preprocessor_definitions="_HW_SAM7X; _GNU; ROWLEY;BAND=BAND2400;PAN_CHANNEL=18;PAN_ID=0xBABE;IPV6LOWPAN=1;APP=SENSOR;RUMSLEEP=0;DEMO=0" c_system_include_directories="" c_user_include_directories="../../../Applications/uTaskerV1.3;../../../Applications/spitfire;../../../Applications/uip;../../../Applications/efsl/inc;($ProjectDir)" gcc_entry_point="_vectors" gcc_optimization_level="Optimize For Size" link_include_standard_libraries="Yes"/>
+    <configuration Name="THUMB Flash Debug" arm_instruction_set="Thumb" arm_library_instruction_set="Thumb" arm_linker_heap_size="0" arm_linker_irq_stack_size="512" arm_linker_stack_size="4096" arm_linker_svc_stack_size="256" arm_linker_und_stack_size="256" c_additional_options="-Wall" c_preprocessor_definitions="_HW_SAM7X;_GNU;ROWLEY;BAND=BAND2400;PAN_ID=0xBABE;IPV6LOWPAN=1;APP=SENSOR;RUMSLEEP=1;VLP=1;DEMO=0" c_user_include_directories="../../../Applications/uTaskerV1.3;../../../Applications/uip;../../../Applications/rum_src;../../../Applications/efsl/inc;($ProjectDir)" gcc_entry_point="_vectors" gcc_optimization_level="Optimize For Size" linker_additional_options="" linker_map_file="Yes" linker_memory_map_file="$(StudioDir)/targets/Atmel_AT91SAM7/AT91SAM7X256_MemoryMap.xml" linker_output_format="bin"/>
+    <folder Name="uipv6">
+      <file Name="contiki.h" file_name="../../uip/contiki.h"/>
+      <file Name="contiki-conf.h" file_name="../../uip/contiki-conf.h"/>
+      <file Name="interfaces.h" file_name="../../uip/interfaces.h"/>
+      <file Name="tuip.c" file_name="../../uip/tuip.c"/>
+      <file Name="tuip.h" file_name="../../uip/tuip.h"/>
+      <file Name="interfaces.c" file_name="../../uip/net/interfaces.c"/>
+      <file Name="sicslowpan.c" file_name="../../uip/net/sicslowpan.c"/>
+      <file Name="sicslowpan.h" file_name="../../uip/net/sicslowpan.h"/>
+      <file Name="tcpip.h" file_name="../../uip/net/tcpip.h"/>
+      <file Name="uip6.c" file_name="../../uip/net/uip6.c"/>
+      <file Name="uip.h" file_name="../../uip/net/uip.h"/>
+      <file Name="uip-icmp6.c" file_name="../../uip/net/uip-icmp6.c"/>
+      <file Name="uip-icmp6.h" file_name="../../uip/net/uip-icmp6.h"/>
+      <file Name="uip-nd6.c" file_name="../../uip/net/uip-nd6.c"/>
+      <file Name="uip-nd6.h" file_name="../../uip/net/uip-nd6.h"/>
+      <file Name="uip-nd6-io.c" file_name="../../uip/net/uip-nd6-io.c"/>
+      <file Name="uip-netif.c" file_name="../../uip/net/uip-netif.c"/>
+      <file Name="uip-netif.h" file_name="../../uip/net/uip-netif.h"/>
+      <file Name="uipopt.h" file_name="../../uip/net/uipopt.h"/>
+      <file Name="random.h" file_name="../../uip/lib/random.h"/>
+      <file Name="taskipv6io.c" file_name="../../uip/taskipv6io.c"/>
+    </folder>
+    <folder Name="efsl" file_name="">
+      <file Name="ui.c" file_name="../../efsl/ui.c"/>
+      <file Name="debug_fat.c" file_name="../../efsl/debug_fat.c"/>
+      <file Name="dir.c" file_name="../../efsl/dir.c"/>
+      <file Name="disc.c" file_name="../../efsl/disc.c"/>
+      <file Name="efs.c" file_name="../../efsl/efs.c"/>
+      <file Name="extract.c" file_name="../../efsl/extract.c"/>
+      <file Name="fat.c" file_name="../../efsl/fat.c"/>
+      <file Name="file.c" file_name="../../efsl/file.c"/>
+      <file Name="fs.c" file_name="../../efsl/fs.c"/>
+      <file Name="ioman.c" file_name="../../efsl/ioman.c"/>
+      <file Name="ls.c" file_name="../../efsl/ls.c"/>
+      <file Name="mkfs.c" file_name="../../efsl/mkfs.c"/>
+      <file Name="partition.c" file_name="../../efsl/partition.c"/>
+      <file Name="plibc.c" file_name="../../efsl/plibc.c"/>
+      <file Name="time.c" file_name="../../efsl/time.c"/>
+      <file Name="ui.h" file_name="../../efsl/inc/ui.h"/>
+      <file Name="config_fat.h" file_name="../../efsl/inc/config_fat.h"/>
+      <file Name="debug_fat.h" file_name="../../efsl/inc/debug_fat.h"/>
+      <file Name="dir.h" file_name="../../efsl/inc/dir.h"/>
+      <file Name="disc.h" file_name="../../efsl/inc/disc.h"/>
+      <file Name="efs.h" file_name="../../efsl/inc/efs.h"/>
+      <file Name="efs_types.h" file_name="../../efsl/inc/efs_types.h"/>
+      <file Name="error.h" file_name="../../efsl/inc/error.h"/>
+      <file Name="extract.h" file_name="../../efsl/inc/extract.h"/>
+      <file Name="fat.h" file_name="../../efsl/inc/fat.h"/>
+      <file Name="file.h" file_name="../../efsl/inc/file.h"/>
+      <file Name="fs.h" file_name="../../efsl/inc/fs.h"/>
+      <file Name="interface.h" file_name="../../efsl/inc/interface.h"/>
+      <file Name="ioman.h" file_name="../../efsl/inc/ioman.h"/>
+      <file Name="ioman_v2.h" file_name="../../efsl/inc/ioman_v2.h"/>
+      <file Name="ls.h" file_name="../../efsl/inc/ls.h"/>
+      <file Name="mkfs.h" file_name="../../efsl/inc/mkfs.h"/>
+      <file Name="partition.h" file_name="../../efsl/inc/partition.h"/>
+      <file Name="plibc.h" file_name="../../efsl/inc/plibc.h"/>
+      <file Name="time.h" file_name="../../efsl/inc/time.h"/>
+      <file Name="sd.h" file_name="../../efsl/inc/interfaces/sd.h"/>
+      <file Name="sam7x_spi.h" file_name="../../efsl/inc/interfaces/sam7x_spi.h"/>
+      <file Name="sd.c" file_name="../../efsl/interfaces/sd.c"/>
+      <file Name="sam7x_spi.c" file_name="../../efsl/interfaces/sam7x_spi.c"/>
+    </folder>
+    <folder Name="rum_src">
+      <file Name="arm_app.c" file_name="../../rum_src/arm_app.c"/>
+      <file Name="arm_timer.c" file_name="../../rum_src/arm_timer.c"/>
+      <file Name="arm_timer_event.c" file_name="../../rum_src/arm_timer_event.c"/>
+      <file Name="hal_arm.c" file_name="../../rum_src/hal_arm.c"/>
+      <file Name="mac.c" file_name="../../rum_src/mac.c"/>
+      <file Name="mac_associate.c" file_name="../../rum_src/mac_associate.c"/>
+      <file Name="mac_beacon.c" file_name="../../rum_src/mac_beacon.c"/>
+      <file Name="mac_data.c" file_name="../../rum_src/mac_data.c"/>
+      <file Name="mac_event.c" file_name="../../rum_src/mac_event.c"/>
+      <file Name="mac_route.c" file_name="../../rum_src/mac_route.c"/>
+      <file Name="mac_scan.c" file_name="../../rum_src/mac_scan.c"/>
+      <file Name="mac_start.c" file_name="../../rum_src/mac_start.c"/>
+      <file Name="radio.c" file_name="../../rum_src/radio.c"/>
+      <file Name="rumtask.c" file_name="../../rum_src/rumtask.c"/>
+      <file Name="sensors.c" file_name="../../rum_src/sensors.c"/>
+      <file Name="sixlowpan_wake.c" file_name="../../rum_src/sixlowpan_wake.c"/>
+      <file Name="rum_application.c" file_name="../../rum_src/rum_application.c"/>
+    </folder>
+  </project>
+  <configuration Name="THUMB RAM Debug" c_user_include_directories="..\\" gcc_optimization_level="Optimize For Size" inherited_configurations="THUMB;RAM;Debug"/>
+  <configuration Name="THUMB" arm_instruction_set="THUMB" arm_library_instruction_set="THUMB" c_preprocessor_definitions="__THUMB" hidden="Yes"/>
+  <configuration Name="RAM" c_preprocessor_definitions="__RAM_BUILD" hidden="Yes"/>
+  <configuration Name="Debug" build_debug_information="Yes" c_preprocessor_definitions="DEBUG" gcc_optimization_level="None" hidden="Yes" link_include_startup_code="No"/>
+  <configuration Name="THUMB Flash Debug" inherited_configurations="THUMB;Flash;Debug" linker_map_file="No" linker_section_placement_file=""/>
+  <configuration Name="Flash" c_preprocessor_definitions="__FLASH_BUILD" hidden="Yes"/>
+  <configuration Name="THUMB Flash Release" inherited_configurations="THUMB;Flash;Release" linker_output_format="bin"/>
+  <configuration Name="Release" build_debug_information="No" c_preprocessor_definitions="NDEBUG" gcc_optimization_level="Level 1" hidden="Yes" link_include_startup_code="No"/>
+</solution>

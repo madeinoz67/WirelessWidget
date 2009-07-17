@@ -1,0 +1,12 @@
+<area shape="rect" href="$group__radio.html#g324b48dc10d81456ce6ddd909f1d5e83" title="This function will put the radio transceiver to sleep." alt="" coords="139,183,283,210">
+<area shape="rect" href="$group__radio.html#g80178b680aa26b7a8e1a1ce8a4a824b3" title="This function return the Radio Transceivers current state." alt="" coords="559,360,679,387">
+<area shape="rect" href="$group__radio.html#g9b993ad338e639b917540d835079ce84" title="This function will take the radio transceiver from sleep mode and put it into the..." alt="" coords="137,82,284,108">
+<area shape="rect" href="$group__radio.html#g9c32d026c082234626f5f900077221bc" title="This function will change the current state of the radio transceiver&#39;s internal..." alt="" coords="152,310,269,336">
+<area shape="rect" href="$group__serial.html#g364b552759a6ed3c410d2ebb770975b7" title="USART initialization." alt="" coords="173,563,248,590">
+<area shape="rect" href="$group__radio.html#g29bbaf755e336eeec99729db6be0226c" title="This function checks if the radio transceiver is sleeping." alt="" coords="376,107,456,134">
+<area shape="rect" href="$group__radio.html#g847a215246618de0ba072d278f849da0" title="This function will reset the state machine (to TRX_OFF) from any of its states, except..." alt="" coords="335,208,497,235">
+<area shape="rect" href="$group__arm.html#g4e55279d2a68db6e6127b853baee2127" title="This function writes a new value to one of the radio transceiver&#39;s subregisters..." alt="" coords="547,208,691,235">
+<area shape="rect" href="$group__radio.html#g52391d34dfa78c4ad817e3f18b0de579" title="This function changes the prescaler on the CLKM pin." alt="" coords="347,6,485,32">
+<area shape="rect" href="$group__mac__scan.html#g92f5262200ca45d25313feb542d9c30b" title="Reports whether the MAC is currently scanning." alt="" coords="361,462,471,488">
+<area shape="rect" href="$group__radio.html#g2976f50bf538933d7eba0444494d6289" title="Returns the radio part number." alt="" coords="356,310,476,336">
+<area shape="rect" href="$group__radio.html#gb18f99759fd3d798150020e91e7b46e9" title="Check whether the radio chip is busy." alt="" coords="372,360,460,387">

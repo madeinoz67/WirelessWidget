@@ -1,0 +1,12 @@
+<area shape="rect" href="$group__app.html#g83f230018f0884c336002b3005395314" title="Example function, starts the network by scanning channels for a coordinator." alt="" coords="221,204,320,230">
+<area shape="rect" href="$group__timer__module.html#g0155e5192956b3cd498751d8652f7773" title="Sets a general purpose timer." alt="" coords="615,305,713,332">
+<area shape="rect" href="$group__sleep.html#g93b5cdc0c2f6e617c9e63fac53cc8271" title="Put the node to sleep." alt="" coords="623,78,705,105">
+<area shape="rect" href="$group__sensors.html#gcab00d2731b419ed4dbf8e29e57a712a" title="Begin auto&#45;sending data after powerup." alt="" coords="199,381,343,408">
+<area shape="rect" href="$group__sensors.html#ge0815bb7fb90effa997f450cedc67ec4" title="Initialize the sensor system by configuring the A/D converter." alt="" coords="232,28,309,54">
+<area shape="rect" href="$group__mac.html#gaa0748a32ee5741afc6a5078d92158bb" title="Init the mac, which includes initializing the radio chip." alt="" coords="632,129,696,156">
+<area shape="rect" href="$group__mac__scan.html#g9b962c94bc13ed89a2d2a8590ed487f4" title="Scan channels for coordinators." alt="" coords="441,204,516,230">
+<area shape="rect" href="$group__avr6lowpan__example.html#g31a4ca6d7db7f9ec030631ec2251fba2" title="Initilize the 6lowpan application." alt="" coords="393,254,564,281">
+<area shape="rect" href="$group__radio.html#g9c32d026c082234626f5f900077221bc" title="This function will change the current state of the radio transceiver&#39;s internal..." alt="" coords="764,78,881,105">
+<area shape="rect" href="$group__timer__module.html#g424100b5b43a9d709cec3d509ef6f48c" title="End the timer specified by ID, before it is expired." alt="" coords="428,457,529,484">
+<area shape="rect" href="$group__sensors.html#gc4fd19ca8f3d53a6d64bc4869713acbb" title="Send a single reading to the coordinator and go to sleep if required." alt="" coords="431,356,527,382">
+<area shape="rect" href="$group__radio.html#g301044554e9d047bf22935d01c615884" title="Returns a random number, composed of bits from the radio&#39;s random number generator..." alt="" coords="431,28,527,54">

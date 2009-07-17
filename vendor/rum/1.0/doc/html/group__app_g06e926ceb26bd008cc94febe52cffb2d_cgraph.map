@@ -1,0 +1,5 @@
+<area shape="rect" href="$group__mac__associate.html#ge044ad02d7a264fe88176c4076809853" title="Associate this node with a network." alt="" coords="155,81,259,108">
+<area shape="rect" href="$group__mac__associate.html#g43b554aefc8950ec2c7591a400fb8559" title="This function is called when the MAC receives an association response frame." alt="" coords="313,5,471,32">
+<area shape="rect" href="$group__timer__module.html#g0155e5192956b3cd498751d8652f7773" title="Sets a general purpose timer." alt="" coords="343,56,441,82">
+<area shape="rect" href="$group__mac.html#g62d975ef98590e2c23229df7b6d041c6" title="Set the radio&#39;s operating channel, and saves that channel to the MAC&#39;s global..." alt="" coords="308,106,476,133">
+<area shape="rect" href="$group__radio.html#g73d762673c6af21f4fb6b6ba6c06cc63" title="This function will download a frame to the radio transceiver&#39;s transmit buffer..." alt="" coords="339,157,445,184">

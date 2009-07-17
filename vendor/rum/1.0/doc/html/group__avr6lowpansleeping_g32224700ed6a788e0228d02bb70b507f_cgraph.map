@@ -1,0 +1,4 @@
+<area shape="rect" href="$group__avr6lowpansleeping.html#gb980ba45b5cff1682d93c61611e64eda" title="Sets up the periodic timer." alt="" coords="189,25,387,52">
+<area shape="rect" href="$group__timer__module.html#g0155e5192956b3cd498751d8652f7773" title="Sets a general purpose timer." alt="" coords="649,25,748,52">
+<area shape="rect" href="$group__timer__module.html#g8cccbbd337a60847f767aaca9da9743e" title="A long&#45;delay timer function, which can delay for up to 15.7 hours." alt="" coords="453,25,581,52">
+<area shape="rect" href="$group__avr6lowpansleeping.html#g82ac0055949c3812c0c6d86c56311be6" title="Called periodically by the node." alt="" coords="436,76,599,103">

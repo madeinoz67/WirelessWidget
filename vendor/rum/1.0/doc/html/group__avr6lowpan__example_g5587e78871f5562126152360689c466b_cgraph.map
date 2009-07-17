@@ -1,0 +1,8 @@
+<area shape="rect" href="$group__timer__module.html#ga2ba6a5f4d933213f7046c8c90108551" title="macGetTime" alt="" coords="231,56,327,83">
+<area shape="rect" href="$group__sensors.html#gbaa8d61c91f652d5e95e2ec6c9f00b4d" title="Handle a received packet." alt="" coords="217,107,340,134">
+<area shape="rect" href="$group__avr6lowpan__example.html#g8fa94ab893638c302dd83edf0833a0ea" title="Processes incomming TFTP Data." alt="" coords="213,183,344,210">
+<area shape="rect" href="$group__sensors.html#g18a4019e7e397a1127dc4f90ffdbf1b9" title="Callback function to receive calibration information from a sensor node." alt="" coords="415,6,535,32">
+<area shape="rect" href="$group__sensors.html#g30d62befb8ff70a3413363f9741c5c2c" title="Sensor node sends raw data back to coordinator." alt="" coords="403,56,547,83">
+<area shape="rect" href="$group__sensors.html#g2e7afcc8044d96300ecb9dc6d42aaf3d" title="Send a sensor reading to coordinator." alt="" coords="407,107,543,134">
+<area shape="rect" href="$group__sensors.html#g16a00091e33ba95a882e79844b59d3fc" title="Set the name of the sensor name." alt="" coords="392,158,557,184">
+<area shape="rect" href="$group__timer__module.html#g0155e5192956b3cd498751d8652f7773" title="Sets a general purpose timer." alt="" coords="607,158,705,184">

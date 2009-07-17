@@ -1,0 +1,14 @@
+<area shape="rect" href="$group__arm.html#g4e55279d2a68db6e6127b853baee2127" title="This function writes a new value to one of the radio transceiver&#39;s subregisters..." alt="" coords="339,110,483,137">
+<area shape="rect" href="$group__mac__associate.html#gc7cb66274b3cfecd07d44a4b122b1ad3" title="Initializes the nodes array of associatedNodes_t structures." alt="" coords="155,465,253,492">
+<area shape="rect" href="$group__radio.html#g8382b61a38d3757b316352ddbe2b144b" title="Initialize the radio chip." alt="" coords="171,262,237,289">
+<area shape="rect" href="$group__radio.html#gc2322c500c5cc9d4178d3231cac3aa51" title="This function will set the I_AM_COORD sub register." alt="" coords="137,60,271,86">
+<area shape="rect" href="$group__radio.html#gd4c77fb534211f3be22c6b4aa29b561e" title="This function will set a new extended address to be used by the address filter." alt="" coords="119,313,289,340">
+<area shape="rect" href="$group__radio.html#g14d426a54ebfc9514e5f6c23eb7fc736" title="This function will change the operating channel." alt="" coords="119,212,289,238">
+<area shape="rect" href="$group__radio.html#g8480a533bb1ba14171147bc1aeb78c7d" title="This function will set the PANID used by the address filter." alt="" coords="153,364,255,390">
+<area shape="rect" href="$group__radio.html#g2d1c441755a5b0f6215692474ae36f9f" title="This function will set the short address used by the address filter." alt="" coords="131,414,277,441">
+<area shape="rect" href="$group__radio.html#g9c32d026c082234626f5f900077221bc" title="This function will change the current state of the radio transceiver&#39;s internal..." alt="" coords="145,161,263,188">
+<area shape="rect" href="$group__radio.html#g8a0922b9e86e9c33c9abe3b4b6203df1" title="This function will enable or disable automatic CRC during frame transmission." alt="" coords="137,110,271,137">
+<area shape="rect" href="$group__arm.html#gf5ea8985a12feedc3ac25fbb50712183" title="This function initializes the Hardware Abstraction Layer." alt="" coords="380,262,441,289">
+<area shape="rect" href="$group__arm.html#g6e9e307a1b8e39fa9261ee12ced67314" title="This function writes a new value to one of the radio transceiver&#39;s registers..." alt="" coords="349,313,472,340">
+<area shape="rect" href="$group__radio.html#g828c12db6daeae4369180d52f1cbdffd" title="This function will reset all the registers and the state machine of the radio transceiver..." alt="" coords="360,212,461,238">
+<area shape="rect" href="$group__radio.html#g29bbaf755e336eeec99729db6be0226c" title="This function checks if the radio transceiver is sleeping." alt="" coords="371,161,451,188">

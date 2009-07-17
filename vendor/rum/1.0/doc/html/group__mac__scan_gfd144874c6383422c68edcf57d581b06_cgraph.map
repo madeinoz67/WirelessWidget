@@ -1,0 +1,7 @@
+<area shape="rect" href="$group__app.html#g43fb16d48be1908e0a007eaccb6280c9" title="Callback function, called when the MAC has completed its channel scan." alt="" coords="207,82,321,108">
+<area shape="rect" href="$group__mac.html#g62d975ef98590e2c23229df7b6d041c6" title="Set the radio&#39;s operating channel, and saves that channel to the MAC&#39;s global..." alt="" coords="180,132,348,159">
+<area shape="rect" href="$group__radio.html#g8480a533bb1ba14171147bc1aeb78c7d" title="This function will set the PANID used by the address filter." alt="" coords="213,183,315,210">
+<area shape="rect" href="$group__app.html#g06e926ceb26bd008cc94febe52cffb2d" title="Sample application function, associates this node to a network." alt="" coords="399,6,497,32">
+<area shape="rect" href="$group__app.html#g83f230018f0884c336002b3005395314" title="Example function, starts the network by scanning channels for a coordinator." alt="" coords="399,56,497,83">
+<area shape="rect" href="$group__timer__module.html#g0155e5192956b3cd498751d8652f7773" title="Sets a general purpose timer." alt="" coords="399,107,497,134">
+<area shape="rect" href="$group__sleep.html#g93b5cdc0c2f6e617c9e63fac53cc8271" title="Put the node to sleep." alt="" coords="407,158,489,184">

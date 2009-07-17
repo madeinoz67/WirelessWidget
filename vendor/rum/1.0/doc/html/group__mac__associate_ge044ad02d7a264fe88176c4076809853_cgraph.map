@@ -1,0 +1,6 @@
+<area shape="rect" href="$group__mac__associate.html#g43b554aefc8950ec2c7591a400fb8559" title="This function is called when the MAC receives an association response frame." alt="" coords="164,56,321,83">
+<area shape="rect" href="$group__timer__module.html#g0155e5192956b3cd498751d8652f7773" title="Sets a general purpose timer." alt="" coords="569,56,668,83">
+<area shape="rect" href="$group__mac.html#g62d975ef98590e2c23229df7b6d041c6" title="Set the radio&#39;s operating channel, and saves that channel to the MAC&#39;s global..." alt="" coords="159,157,327,184">
+<area shape="rect" href="$group__radio.html#g73d762673c6af21f4fb6b6ba6c06cc63" title="This function will download a frame to the radio transceiver&#39;s transmit buffer..." alt="" coords="189,208,296,235">
+<area shape="rect" href="$group__app.html#g85919e96b4d8f3aee13a5eb3a10dfd03" title="Callback function, called when the MAC receives an association confirm packet addressed..." alt="" coords="376,5,520,32">
+<area shape="rect" href="$group__timer__module.html#g424100b5b43a9d709cec3d509ef6f48c" title="End the timer specified by ID, before it is expired." alt="" coords="397,56,499,83">

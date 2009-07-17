@@ -1,0 +1,14 @@
+<area shape="rect" href="$group__mac.html#gaa0748a32ee5741afc6a5078d92158bb" title="Init the mac, which includes initializing the radio chip." alt="" coords="209,258,273,284">
+<area shape="rect" href="$group__mac__scan.html#g9b962c94bc13ed89a2d2a8590ed487f4" title="Scan channels for coordinators." alt="" coords="204,422,279,448">
+<area shape="rect" href="$group__avr6lowpan__example.html#g31a4ca6d7db7f9ec030631ec2251fba2" title="Initilize the 6lowpan application." alt="" coords="156,472,327,499">
+<area shape="rect" href="$group__arm.html#g4e55279d2a68db6e6127b853baee2127" title="This function writes a new value to one of the radio transceiver&#39;s subregisters..." alt="" coords="597,182,741,208">
+<area shape="rect" href="$group__mac__associate.html#gc7cb66274b3cfecd07d44a4b122b1ad3" title="Initializes the nodes array of associatedNodes_t structures." alt="" coords="413,106,512,132">
+<area shape="rect" href="$group__radio.html#g8382b61a38d3757b316352ddbe2b144b" title="Initialize the radio chip." alt="" coords="429,55,496,82">
+<area shape="rect" href="$group__radio.html#gc2322c500c5cc9d4178d3231cac3aa51" title="This function will set the I_AM_COORD sub register." alt="" coords="396,156,529,183">
+<area shape="rect" href="$group__radio.html#gd4c77fb534211f3be22c6b4aa29b561e" title="This function will set a new extended address to be used by the address filter." alt="" coords="377,258,548,284">
+<area shape="rect" href="$group__radio.html#g14d426a54ebfc9514e5f6c23eb7fc736" title="This function will change the operating channel." alt="" coords="377,207,548,234">
+<area shape="rect" href="$group__radio.html#g8480a533bb1ba14171147bc1aeb78c7d" title="This function will set the PANID used by the address filter." alt="" coords="619,486,720,512">
+<area shape="rect" href="$group__radio.html#g2d1c441755a5b0f6215692474ae36f9f" title="This function will set the short address used by the address filter." alt="" coords="389,410,536,436">
+<area shape="rect" href="$group__radio.html#g9c32d026c082234626f5f900077221bc" title="This function will change the current state of the radio transceiver&#39;s internal..." alt="" coords="404,308,521,335">
+<area shape="rect" href="$group__radio.html#g8a0922b9e86e9c33c9abe3b4b6203df1" title="This function will enable or disable automatic CRC during frame transmission." alt="" coords="396,359,529,386">
+<area shape="rect" href="$group__mac__scan.html#gfd144874c6383422c68edcf57d581b06" title="Trigger a call to appScanConfirm(), since the scanning process is done." alt="" coords="400,511,525,538">

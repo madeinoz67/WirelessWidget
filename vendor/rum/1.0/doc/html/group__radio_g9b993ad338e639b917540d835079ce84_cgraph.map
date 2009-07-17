@@ -1,0 +1,5 @@
+<area shape="rect" href="$group__radio.html#g29bbaf755e336eeec99729db6be0226c" title="This function checks if the radio transceiver is sleeping." alt="" coords="233,6,313,32">
+<area shape="rect" href="$group__radio.html#g80178b680aa26b7a8e1a1ce8a4a824b3" title="This function return the Radio Transceivers current state." alt="" coords="213,56,333,83">
+<area shape="rect" href="$group__radio.html#g52391d34dfa78c4ad817e3f18b0de579" title="This function changes the prescaler on the CLKM pin." alt="" coords="204,107,343,134">
+<area shape="rect" href="$group__arm.html#gbe3a54dd0c5f0231fb9ef72abd021486" title="This function reads the value of a specific subregister." alt="" coords="393,56,535,83">
+<area shape="rect" href="$group__arm.html#g4e55279d2a68db6e6127b853baee2127" title="This function writes a new value to one of the radio transceiver&#39;s subregisters..." alt="" coords="392,107,536,134">

@@ -1,0 +1,2937 @@
+Only in uTaskerV1.3.0_SAM7X/Applications: efsl
+Only in uTaskerV1.3.0_SAM7X/Applications: rum_src
+Only in uTaskerV1.3.0_SAM7X/Applications/uTaskerV1.3/Rowley_SAM7X: THUMB Flash Debug
+diff -r -U 8 uTaskerV1.3.0_before_rum/Applications/uTaskerV1.3/Rowley_SAM7X/uTaskerV13.hzp uTaskerV1.3.0_SAM7X/Applications/uTaskerV1.3/Rowley_SAM7X/uTaskerV13.hzp
+--- uTaskerV1.3.0_before_rum/Applications/uTaskerV1.3/Rowley_SAM7X/uTaskerV13.hzp	2008-01-02 20:04:44.000000000 -0700
++++ uTaskerV1.3.0_SAM7X/Applications/uTaskerV1.3/Rowley_SAM7X/uTaskerV13.hzp	2009-05-20 23:10:12.000000000 -0600
+@@ -1,86 +1,173 @@
+ <!DOCTYPE CrossStudio_Project_File>
+-<solution version="1" Name="uTaskerV13" >
+-  <project Name="uTaskerV13" >
+-    <configuration linker_scanf_fmt_level="int" arm_target_loader_parameter="18432000" Target="AT91SAM7X256" arm_simulator_memory_simulation_parameter="0x20000;0x4000" property_groups_file_path="$(StudioDir)/targets/Atmel_AT91SAM7/propertyGroups.xml" oscillator_frequency="18.432MHz" linker_memory_map_file="$(StudioDir)/targets/Atmel_AT91SAM7/AT91SAM7X256_MemoryMap.xml" gcc_entry_point="reset_handler" arm_architecture="v4T" project_directory="" project_type="Executable" linker_printf_width_precision_supported="No" linker_printf_fmt_level="int" Name="Common" arm_target_debug_interface_type="ARM7TDI" arm_core_type="ARM7TDMI" arm_simulator_memory_simulation_filename="$(StudioDir)/targets/Atmel_AT91SAM7/AT91SAM7SimulatorMemory.dll" />
+-    <configuration linker_section_placement_file="$(StudioDir)/targets/sram_placement.xml" target_reset_script="RAMReset()" Name="RAM" Placement="RAM" />
+-    <configuration arm_target_flash_loader_file_path="$(StudioDir)/targets/Atmel_AT91SAM7/Release/Loader.elf" linker_section_placement_file="$(StudioDir)/targets/flash_placement.xml" target_reset_script="FLASHReset()" Name="Flash" Placement="Flash" />
+-    <folder Name="System Files" >
+-      <file file_name="$(StudioDir)/targets/Atmel_AT91SAM7/AT91SAM7_Target.js" Name="AT91SAM7_Target.js" >
+-        <configuration Name="Common" file_type="Reset Script" />
++<solution Name="uTaskerV13" version="1">
++  <project Name="uTaskerV13">
++    <configuration Name="Common" Target="AT91SAM7X256" arm_architecture="v4T" arm_core_type="ARM7TDMI" arm_simulator_memory_simulation_filename="$(StudioDir)/targets/Atmel_AT91SAM7/AT91SAM7SimulatorMemory.dll" arm_simulator_memory_simulation_parameter="0x20000;0x4000" arm_target_debug_interface_type="ARM7TDI" arm_target_loader_parameter="18432000" gcc_entry_point="reset_handler" linker_memory_map_file="$(StudioDir)/targets/Atmel_AT91SAM7/AT91SAM7X256_MemoryMap.xml" linker_printf_fmt_level="int" linker_printf_width_precision_supported="No" linker_scanf_fmt_level="int" oscillator_frequency="18.432MHz" project_directory="" project_type="Executable" property_groups_file_path="$(StudioDir)/targets/Atmel_AT91SAM7/propertyGroups.xml"/>
++    <configuration Name="RAM" Placement="RAM" linker_section_placement_file="$(StudioDir)/targets/sram_placement.xml" target_reset_script="RAMReset()"/>
++    <configuration Name="Flash" Placement="Flash" arm_target_flash_loader_file_path="$(StudioDir)/targets/Atmel_AT91SAM7/Release/Loader.elf" linker_section_placement_file="$(StudioDir)/targets/flash_placement.xml" target_reset_script="FLASHReset()"/>
++    <folder Name="System Files">
++      <file Name="AT91SAM7_Target.js" file_name="$(StudioDir)/targets/Atmel_AT91SAM7/AT91SAM7_Target.js">
++        <configuration Name="Common" file_type="Reset Script"/>
+       </file>
+     </folder>
+-    <folder Name="Source Files" >
+-      <configuration filter="c;cpp;cxx;cc;h;s;asm;inc" Name="Common" />
+-      <file file_name="../application.c" Name="application.c" />
+-      <file file_name="../webInterface.c" Name="webInterface.c" />
+-      <file file_name="../debug.c" Name="debug.c" />
+-      <file file_name="../KeyScan.c" Name="KeyScan.c" />
+-      <file file_name="../LCD.c" Name="LCD.c" />
+-      <file file_name="../NetworkIndicator.c" Name="NetworkIndicator.c" />
+-    </folder>
+-    <folder Name="Hardware" >
+-      <file file_name="../../../Hardware/hardware.h" Name="hardware.h" />
+-      <file file_name="../../../Hardware/SAM7X/SAM7X.c" Name="SAM7X.c" />
+-      <file file_name="../../../Hardware/SAM7X/sam7x.h" Name="sam7x.h" />
+-      <file file_name="../../../Hardware/SAM7X/startup_gnu.s" Name="startup_gnu.s" />
+-      <file file_name="uTaskerSAM7X_FLASH.ld" Name="uTaskerSAM7X_FLASH.ld" >
+-        <configuration build_exclude_from_build="No" Name="THUMB Flash Debug" />
+-        <configuration Name="Common" file_type="Linker Script" />
++    <folder Name="Source Files">
++      <configuration Name="Common" filter="c;cpp;cxx;cc;h;s;asm;inc"/>
++      <file Name="webInterface.c" file_name="../webInterface.c">
++        <configuration Name="THUMB Flash Release" build_debug_information="No"/>
++      </file>
++      <file Name="debug.c" file_name="../debug.c"/>
++      <file Name="KeyScan.c" file_name="../KeyScan.c"/>
++      <file Name="LCD.c" file_name="../LCD.c"/>
++      <file Name="NetworkIndicator.c" file_name="../NetworkIndicator.c"/>
++      <file Name="application.c" file_name="../application.c"/>
++    </folder>
++    <folder Name="Hardware">
++      <file Name="hardware.h" file_name="../../../Hardware/hardware.h"/>
++      <file Name="SAM7X.c" file_name="../../../Hardware/SAM7X/SAM7X.c"/>
++      <file Name="sam7x.h" file_name="../../../Hardware/SAM7X/sam7x.h"/>
++      <file Name="startup_gnu.s" file_name="../../../Hardware/SAM7X/startup_gnu.s"/>
++      <file Name="uTaskerSAM7X_FLASH.ld" file_name="uTaskerSAM7X_FLASH.ld">
++        <configuration Name="THUMB Flash Debug" build_exclude_from_build="No"/>
++        <configuration Name="Common" file_type="Linker Script"/>
+       </file>
+     </folder>
+-    <configuration gcc_entry_point="_vectors" c_preprocessor_definitions="_HW_SAM7X; _GNU; ROWLEY" c_user_include_directories="..\\..\\..\\Applications\\uTaskerV1.3" Name="THUMB RAM Debug" />
+-    <folder Name="uTasker" >
+-      <file file_name="../../../uTasker/Watchdog.c" Name="Watchdog.c" />
+-      <file file_name="../../../uTasker/can_drv.c" Name="can_drv.c" />
+-      <file file_name="../../../uTasker/Driver.c" Name="Driver.c" />
+-      <file file_name="../../../uTasker/driver.h" Name="driver.h" />
+-      <file file_name="../../../uTasker/eth_drv.c" Name="eth_drv.c" />
+-      <file file_name="../../../uTasker/GlobalTimer.c" Name="GlobalTimer.c" />
+-      <file file_name="../../../uTasker/iic_drv.c" Name="iic_drv.c" />
+-      <file file_name="../../../uTasker/low_power.c" Name="low_power.c" />
+-      <file file_name="../../../uTasker/Tty_drv.c" Name="Tty_drv.c" />
+-      <file file_name="../../../uTasker/uFile.c" Name="uFile.c" />
+-      <file file_name="../../../uTasker/uMalloc.C" Name="uMalloc.C" />
+-      <file file_name="../../../uTasker/uNetwork.c" Name="uNetwork.c" />
+-      <file file_name="../../../uTasker/uTasker.c" Name="uTasker.c" />
+-      <file file_name="../../../uTasker/uTasker.h" Name="uTasker.h" />
+-    </folder>
+-    <folder Name="Header Files" >
+-      <file file_name="../TaskConfig.h" Name="TaskConfig.h" />
+-      <file file_name="../types.h" Name="types.h" />
+-      <file file_name="../app_hw_sam7x.h" Name="app_hw_sam7x.h" />
+-      <file file_name="../application.h" Name="application.h" />
+-      <file file_name="../config.h" Name="config.h" />
+-    </folder>
+-    <folder Name="TCP/IP" >
+-      <file file_name="../../../stack/arp.c" Name="arp.c" />
+-      <file file_name="../../../stack/dhcp.c" Name="dhcp.c" />
+-      <file file_name="../../../stack/dns.c" Name="dns.c" />
+-      <file file_name="../../../stack/Ethernet.c" Name="Ethernet.c" />
+-      <file file_name="../../../stack/ftp.c" Name="ftp.c" />
+-      <file file_name="../../../stack/http.c" Name="http.c" />
+-      <file file_name="../../../stack/icmp.c" Name="icmp.c" />
+-      <file file_name="../../../stack/ip.c" Name="ip.c" />
+-      <file file_name="../../../stack/ip_utils.c" Name="ip_utils.c" />
+-      <file file_name="../../../stack/pop3.c" Name="pop3.c" />
+-      <file file_name="../../../stack/smtp.c" Name="smtp.c" />
+-      <file file_name="../../../stack/tcp.c" Name="tcp.c" />
+-      <file file_name="../../../stack/tcpip.h" Name="tcpip.h" />
+-      <file file_name="../../../stack/telnet.c" Name="telnet.c" />
+-      <file file_name="../../../stack/tftp.c" Name="tftp.c" />
+-      <file file_name="../../../stack/udp.c" Name="udp.c" />
+-      <file file_name="../../../stack/webutils.c" Name="webutils.c" />
+-      <file file_name="../../../stack/NetBIOS.c" Name="NetBIOS.c" />
++    <configuration Name="THUMB RAM Debug" c_preprocessor_definitions="_HW_SAM7X; _GNU; ROWLEY" c_user_include_directories="..\\..\\..\\Applications\\uTaskerV1.3" gcc_entry_point="_vectors"/>
++    <folder Name="uTasker">
++      <file Name="Watchdog.c" file_name="../../../uTasker/Watchdog.c"/>
++      <file Name="can_drv.c" file_name="../../../uTasker/can_drv.c"/>
++      <file Name="Driver.c" file_name="../../../uTasker/Driver.c"/>
++      <file Name="driver.h" file_name="../../../uTasker/driver.h"/>
++      <file Name="eth_drv.c" file_name="../../../uTasker/eth_drv.c"/>
++      <file Name="GlobalTimer.c" file_name="../../../uTasker/GlobalTimer.c"/>
++      <file Name="iic_drv.c" file_name="../../../uTasker/iic_drv.c"/>
++      <file Name="low_power.c" file_name="../../../uTasker/low_power.c"/>
++      <file Name="Tty_drv.c" file_name="../../../uTasker/Tty_drv.c"/>
++      <file Name="uFile.c" file_name="../../../uTasker/uFile.c"/>
++      <file Name="uMalloc.C" file_name="../../../uTasker/uMalloc.C"/>
++      <file Name="uNetwork.c" file_name="../../../uTasker/uNetwork.c"/>
++      <file Name="uTasker.c" file_name="../../../uTasker/uTasker.c"/>
++      <file Name="uTasker.h" file_name="../../../uTasker/uTasker.h"/>
++      <file Name="USB_drv.c" file_name="../../../uTasker/USB_drv.c"/>
++    </folder>
++    <folder Name="Header Files">
++      <file Name="TaskConfig.h" file_name="../TaskConfig.h"/>
++      <file Name="types.h" file_name="../types.h"/>
++      <file Name="app_hw_sam7x.h" file_name="../app_hw_sam7x.h"/>
++      <file Name="application.h" file_name="../application.h"/>
++      <file Name="config.h" file_name="../config.h"/>
++      <file Name="stdint.h" file_name="$(StudioDir)/include/stdint.h"/>
++    </folder>
++    <folder Name="TCP/IP">
++      <file Name="arp.c" file_name="../../../stack/arp.c"/>
++      <file Name="dhcp.c" file_name="../../../stack/dhcp.c"/>
++      <file Name="dns.c" file_name="../../../stack/dns.c"/>
++      <file Name="Ethernet.c" file_name="../../../stack/Ethernet.c"/>
++      <file Name="ftp.c" file_name="../../../stack/ftp.c"/>
++      <file Name="http.c" file_name="../../../stack/http.c"/>
++      <file Name="icmp.c" file_name="../../../stack/icmp.c"/>
++      <file Name="ip.c" file_name="../../../stack/ip.c"/>
++      <file Name="ip_utils.c" file_name="../../../stack/ip_utils.c"/>
++      <file Name="pop3.c" file_name="../../../stack/pop3.c"/>
++      <file Name="smtp.c" file_name="../../../stack/smtp.c"/>
++      <file Name="tcp.c" file_name="../../../stack/tcp.c"/>
++      <file Name="tcpip.h" file_name="../../../stack/tcpip.h"/>
++      <file Name="telnet.c" file_name="../../../stack/telnet.c"/>
++      <file Name="tftp.c" file_name="../../../stack/tftp.c"/>
++      <file Name="udp.c" file_name="../../../stack/udp.c"/>
++      <file Name="webutils.c" file_name="../../../stack/webutils.c"/>
++      <file Name="NetBIOS.c" file_name="../../../stack/NetBIOS.c"/>
++    </folder>
++    <configuration Name="THUMB Flash Release" build_debug_information="Yes" c_preprocessor_definitions="_HW_SAM7X; _GNU; ROWLEY;BAND=BAND2400;PAN_CHANNEL=18;PAN_ID=0xBABE;IPV6LOWPAN=1;APP=SENSOR;RUMSLEEP=0;DEMO=0" c_system_include_directories="" c_user_include_directories="../../../Applications/uTaskerV1.3;../../../Applications/spitfire;../../../Applications/uip;../../../Applications/efsl/inc;($ProjectDir)" gcc_entry_point="_vectors" gcc_optimization_level="Optimize For Size" link_include_standard_libraries="Yes"/>
++    <configuration Name="THUMB Flash Debug" arm_instruction_set="Thumb" arm_library_instruction_set="Thumb" arm_linker_heap_size="0" arm_linker_irq_stack_size="512" arm_linker_stack_size="4096" arm_linker_svc_stack_size="256" arm_linker_und_stack_size="256" c_additional_options="-Wall" c_preprocessor_definitions="_HW_SAM7X;_GNU;ROWLEY;BAND=BAND2400;PAN_ID=0xBABE;PAN_CHANNEL=18;IPV6LOWPAN=1;APP=SENSOR;RUMSLEEP=1;DEMO=0" c_user_include_directories="../../../Applications/uTaskerV1.3;../../../Applications/uip;../../../Applications/rum_src;../../../Applications/efsl/inc;($ProjectDir)" gcc_entry_point="_vectors" gcc_optimization_level="Optimize For Size" linker_additional_options="" linker_map_file="Yes" linker_memory_map_file="$(StudioDir)/targets/Atmel_AT91SAM7/AT91SAM7X256_MemoryMap.xml" linker_output_format="bin"/>
++    <folder Name="uipv6">
++      <file Name="contiki.h" file_name="../../uip/contiki.h"/>
++      <file Name="contiki-conf.h" file_name="../../uip/contiki-conf.h"/>
++      <file Name="interfaces.h" file_name="../../uip/interfaces.h"/>
++      <file Name="tuip.c" file_name="../../uip/tuip.c"/>
++      <file Name="tuip.h" file_name="../../uip/tuip.h"/>
++      <file Name="interfaces.c" file_name="../../uip/net/interfaces.c"/>
++      <file Name="sicslowpan.c" file_name="../../uip/net/sicslowpan.c"/>
++      <file Name="sicslowpan.h" file_name="../../uip/net/sicslowpan.h"/>
++      <file Name="tcpip.h" file_name="../../uip/net/tcpip.h"/>
++      <file Name="uip6.c" file_name="../../uip/net/uip6.c"/>
++      <file Name="uip.h" file_name="../../uip/net/uip.h"/>
++      <file Name="uip-icmp6.c" file_name="../../uip/net/uip-icmp6.c"/>
++      <file Name="uip-icmp6.h" file_name="../../uip/net/uip-icmp6.h"/>
++      <file Name="uip-nd6.c" file_name="../../uip/net/uip-nd6.c"/>
++      <file Name="uip-nd6.h" file_name="../../uip/net/uip-nd6.h"/>
++      <file Name="uip-nd6-io.c" file_name="../../uip/net/uip-nd6-io.c"/>
++      <file Name="uip-netif.c" file_name="../../uip/net/uip-netif.c"/>
++      <file Name="uip-netif.h" file_name="../../uip/net/uip-netif.h"/>
++      <file Name="uipopt.h" file_name="../../uip/net/uipopt.h"/>
++      <file Name="random.h" file_name="../../uip/lib/random.h"/>
++      <file Name="taskipv6io.c" file_name="../../uip/taskipv6io.c"/>
++    </folder>
++    <folder Name="efsl" file_name="">
++      <file Name="ui.c" file_name="../../efsl/ui.c"/>
++      <file Name="debug_fat.c" file_name="../../efsl/debug_fat.c"/>
++      <file Name="dir.c" file_name="../../efsl/dir.c"/>
++      <file Name="disc.c" file_name="../../efsl/disc.c"/>
++      <file Name="efs.c" file_name="../../efsl/efs.c"/>
++      <file Name="extract.c" file_name="../../efsl/extract.c"/>
++      <file Name="fat.c" file_name="../../efsl/fat.c"/>
++      <file Name="file.c" file_name="../../efsl/file.c"/>
++      <file Name="fs.c" file_name="../../efsl/fs.c"/>
++      <file Name="ioman.c" file_name="../../efsl/ioman.c"/>
++      <file Name="ls.c" file_name="../../efsl/ls.c"/>
++      <file Name="mkfs.c" file_name="../../efsl/mkfs.c"/>
++      <file Name="partition.c" file_name="../../efsl/partition.c"/>
++      <file Name="plibc.c" file_name="../../efsl/plibc.c"/>
++      <file Name="time.c" file_name="../../efsl/time.c"/>
++      <file Name="ui.h" file_name="../../efsl/inc/ui.h"/>
++      <file Name="config_fat.h" file_name="../../efsl/inc/config_fat.h"/>
++      <file Name="debug_fat.h" file_name="../../efsl/inc/debug_fat.h"/>
++      <file Name="dir.h" file_name="../../efsl/inc/dir.h"/>
++      <file Name="disc.h" file_name="../../efsl/inc/disc.h"/>
++      <file Name="efs.h" file_name="../../efsl/inc/efs.h"/>
++      <file Name="efs_types.h" file_name="../../efsl/inc/efs_types.h"/>
++      <file Name="error.h" file_name="../../efsl/inc/error.h"/>
++      <file Name="extract.h" file_name="../../efsl/inc/extract.h"/>
++      <file Name="fat.h" file_name="../../efsl/inc/fat.h"/>
++      <file Name="file.h" file_name="../../efsl/inc/file.h"/>
++      <file Name="fs.h" file_name="../../efsl/inc/fs.h"/>
++      <file Name="interface.h" file_name="../../efsl/inc/interface.h"/>
++      <file Name="ioman.h" file_name="../../efsl/inc/ioman.h"/>
++      <file Name="ioman_v2.h" file_name="../../efsl/inc/ioman_v2.h"/>
++      <file Name="ls.h" file_name="../../efsl/inc/ls.h"/>
++      <file Name="mkfs.h" file_name="../../efsl/inc/mkfs.h"/>
++      <file Name="partition.h" file_name="../../efsl/inc/partition.h"/>
++      <file Name="plibc.h" file_name="../../efsl/inc/plibc.h"/>
++      <file Name="time.h" file_name="../../efsl/inc/time.h"/>
++      <file Name="sd.h" file_name="../../efsl/inc/interfaces/sd.h"/>
++      <file Name="sam7x_spi.h" file_name="../../efsl/inc/interfaces/sam7x_spi.h"/>
++      <file Name="sd.c" file_name="../../efsl/interfaces/sd.c"/>
++      <file Name="sam7x_spi.c" file_name="../../efsl/interfaces/sam7x_spi.c"/>
++    </folder>
++    <folder Name="rum_src">
++      <file Name="arm_app.c" file_name="../../rum_src/arm_app.c"/>
++      <file Name="arm_timer.c" file_name="../../rum_src/arm_timer.c"/>
++      <file Name="arm_timer_event.c" file_name="../../rum_src/arm_timer_event.c"/>
++      <file Name="hal_arm.c" file_name="../../rum_src/hal_arm.c"/>
++      <file Name="mac.c" file_name="../../rum_src/mac.c"/>
++      <file Name="mac_associate.c" file_name="../../rum_src/mac_associate.c"/>
++      <file Name="mac_beacon.c" file_name="../../rum_src/mac_beacon.c"/>
++      <file Name="mac_data.c" file_name="../../rum_src/mac_data.c"/>
++      <file Name="mac_event.c" file_name="../../rum_src/mac_event.c"/>
++      <file Name="mac_route.c" file_name="../../rum_src/mac_route.c"/>
++      <file Name="mac_scan.c" file_name="../../rum_src/mac_scan.c"/>
++      <file Name="mac_start.c" file_name="../../rum_src/mac_start.c"/>
++      <file Name="radio.c" file_name="../../rum_src/radio.c"/>
++      <file Name="rumtask.c" file_name="../../rum_src/rumtask.c"/>
++      <file Name="sensors.c" file_name="../../rum_src/sensors.c"/>
++      <file Name="sixlowpan_wake.c" file_name="../../rum_src/sixlowpan_wake.c"/>
++      <file Name="rum_application.c" file_name="../../rum_src/rum_application.c"/>
+     </folder>
+-    <configuration gcc_entry_point="_vectors" c_preprocessor_definitions="_HW_SAM7X; _GNU; ROWLEY" c_user_include_directories="..\\..\\..\\Applications\\uTaskerV1.3" link_include_standard_libraries="Yes" gcc_optimization_level="Optimize For Size" Name="THUMB Flash Release" c_system_include_directories="" />
+-    <configuration linker_map_file="Yes" linker_memory_map_file="$(StudioDir)/targets/Atmel_AT91SAM7/AT91SAM7X256_MemoryMap.xml" gcc_entry_point="_vectors" c_preprocessor_definitions="_HW_SAM7X; _GNU; ROWLEY" c_user_include_directories="..\\..\\..\\Applications\\uTaskerV1.3" gcc_optimization_level="Optimize For Size" c_additional_options="-Wall" linker_additional_options="" arm_linker_stack_size="1024" Name="THUMB Flash Debug" arm_linker_heap_size="0" />
+   </project>
+-  <configuration inherited_configurations="THUMB;RAM;Debug" c_user_include_directories="..\\" gcc_optimization_level="Optimize For Size" Name="THUMB RAM Debug" />
+-  <configuration arm_library_instruction_set="THUMB" c_preprocessor_definitions="__THUMB" arm_instruction_set="THUMB" hidden="Yes" Name="THUMB" />
+-  <configuration c_preprocessor_definitions="__RAM_BUILD" hidden="Yes" Name="RAM" />
+-  <configuration c_preprocessor_definitions="DEBUG" link_include_startup_code="No" gcc_optimization_level="None" build_debug_information="Yes" hidden="Yes" Name="Debug" />
+-  <configuration linker_map_file="No" inherited_configurations="THUMB;Flash;Debug" linker_section_placement_file="" Name="THUMB Flash Debug" />
+-  <configuration c_preprocessor_definitions="__FLASH_BUILD" hidden="Yes" Name="Flash" />
+-  <configuration inherited_configurations="THUMB;Flash;Release" Name="THUMB Flash Release" />
+-  <configuration c_preprocessor_definitions="NDEBUG" link_include_startup_code="No" gcc_optimization_level="Level 1" build_debug_information="No" hidden="Yes" Name="Release" />
++  <configuration Name="THUMB RAM Debug" c_user_include_directories="..\\" gcc_optimization_level="Optimize For Size" inherited_configurations="THUMB;RAM;Debug"/>
++  <configuration Name="THUMB" arm_instruction_set="THUMB" arm_library_instruction_set="THUMB" c_preprocessor_definitions="__THUMB" hidden="Yes"/>
++  <configuration Name="RAM" c_preprocessor_definitions="__RAM_BUILD" hidden="Yes"/>
++  <configuration Name="Debug" build_debug_information="Yes" c_preprocessor_definitions="DEBUG" gcc_optimization_level="None" hidden="Yes" link_include_startup_code="No"/>
++  <configuration Name="THUMB Flash Debug" inherited_configurations="THUMB;Flash;Debug" linker_map_file="No" linker_section_placement_file=""/>
++  <configuration Name="Flash" c_preprocessor_definitions="__FLASH_BUILD" hidden="Yes"/>
++  <configuration Name="THUMB Flash Release" inherited_configurations="THUMB;Flash;Release" linker_output_format="bin"/>
++  <configuration Name="Release" build_debug_information="No" c_preprocessor_definitions="NDEBUG" gcc_optimization_level="Level 1" hidden="Yes" link_include_startup_code="No"/>
+ </solution>
+diff -r -U 8 uTaskerV1.3.0_before_rum/Applications/uTaskerV1.3/Rowley_SAM7X/uTaskerV13.hzs uTaskerV1.3.0_SAM7X/Applications/uTaskerV1.3/Rowley_SAM7X/uTaskerV13.hzs
+--- uTaskerV1.3.0_before_rum/Applications/uTaskerV1.3/Rowley_SAM7X/uTaskerV13.hzs	2008-01-02 20:12:04.000000000 -0700
++++ uTaskerV1.3.0_SAM7X/Applications/uTaskerV1.3/Rowley_SAM7X/uTaskerV13.hzs	2009-05-21 00:16:38.000000000 -0600
+@@ -4,102 +4,102 @@
+   <Watches active="0" />
+  </Autos>
+  <Bookmarks>
+   <BookmarkItem column="48" line="137" path="C:\MJBC\Internal\uTaskerBeta\Applications\uTaskerV1.3\Rowley_SAM7X\THUMB RAM Debug\uTaskerV13.ld" number="1" name="Unnamed 1" />
+   <BookmarkItem column="7" line="284" path="C:\MJBC\Internal\uTaskerBeta\stack\http.c" number="1" name="Unnamed 1" />
+   <BookmarkItem column="113" line="154" path="C:\MJBC\Internal\uTaskerBeta\uTasker\Driver.c" number="2" name="Unnamed 2" />
+  </Bookmarks>
+  <Breakpoints>
+-  <BreakpointListItem actiontype="0" chainFrom="" line="0" length="0" triggertype="0" useHWbreakpoint="false" group="Breakpoints" breakdatatype="1" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="0x1005d2" filename="" />
+-  <BreakpointListItem actiontype="0" chainFrom="" line="0" length="0" triggertype="0" useHWbreakpoint="false" group="Breakpoints" breakdatatype="1" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="0x1030fe" filename="" />
+-  <BreakpointListItem actiontype="0" chainFrom="" line="99" length="0" triggertype="0" useHWbreakpoint="false" group="Breakpoints" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="C:\Programme\Rowley Associates Limited\CrossWorks for ARM 1.6\targets\Atmel_AT91SAM7\AT91SAM7_Startup.s" />
+-  <BreakpointListItem actiontype="0" chainFrom="" line="334" length="0" triggertype="0" useHWbreakpoint="false" group="Breakpoints" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="C:\MJBC\Internal\uTaskerBeta\Hardware\SAM7X\SAM7X.c" />
+-  <BreakpointListItem actiontype="0" chainFrom="" line="368" length="0" triggertype="0" useHWbreakpoint="false" group="Breakpoints" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="C:\MJBC\Internal\uTaskerBeta\Hardware\SAM7X\SAM7X.c" />
+-  <BreakpointListItem actiontype="0" chainFrom="" line="-1" length="0" triggertype="0" useHWbreakpoint="false" group="ARM Exceptions" breakdatatype="5" value="0" name="unnamed" counter="0" state="2" mask="0" comparison="0" expression="D_Abort" filename="" />
+-  <BreakpointListItem actiontype="0" chainFrom="" line="-1" length="0" triggertype="0" useHWbreakpoint="false" group="ARM Exceptions" breakdatatype="5" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="FIQ" filename="" />
+-  <BreakpointListItem actiontype="0" chainFrom="" line="-1" length="0" triggertype="0" useHWbreakpoint="false" group="ARM Exceptions" breakdatatype="5" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="IRQ" filename="" />
+-  <BreakpointListItem actiontype="0" chainFrom="" line="-1" length="0" triggertype="0" useHWbreakpoint="false" group="ARM Exceptions" breakdatatype="5" value="0" name="unnamed" counter="0" state="2" mask="0" comparison="0" expression="P_Abort" filename="" />
+-  <BreakpointListItem actiontype="0" chainFrom="" line="-1" length="0" triggertype="0" useHWbreakpoint="false" group="ARM Exceptions" breakdatatype="5" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="Reset" filename="" />
+-  <BreakpointListItem actiontype="0" chainFrom="" line="-1" length="0" triggertype="0" useHWbreakpoint="false" group="ARM Exceptions" breakdatatype="5" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="SWI" filename="" />
+-  <BreakpointListItem actiontype="0" chainFrom="" line="-1" length="0" triggertype="0" useHWbreakpoint="false" group="ARM Exceptions" breakdatatype="5" value="0" name="unnamed" counter="0" state="2" mask="0" comparison="0" expression="Undef" filename="" />
+-  <BreakpointListItem actiontype="0" chainFrom="" line="-1" length="0" triggertype="0" useHWbreakpoint="false" group="Cortex-M3 Exceptions" breakdatatype="5" value="0" name="unnamed" counter="0" state="2" mask="0" comparison="0" expression="BusFault" filename="" />
+-  <BreakpointListItem actiontype="0" chainFrom="" line="-1" length="0" triggertype="0" useHWbreakpoint="false" group="Cortex-M3 Exceptions" breakdatatype="5" value="0" name="unnamed" counter="0" state="2" mask="0" comparison="0" expression="ExceptionEntryReturnFault" filename="" />
+-  <BreakpointListItem actiontype="0" chainFrom="" line="-1" length="0" triggertype="0" useHWbreakpoint="false" group="Cortex-M3 Exceptions" breakdatatype="5" value="0" name="unnamed" counter="0" state="2" mask="0" comparison="0" expression="HardFault" filename="" />
+-  <BreakpointListItem actiontype="0" chainFrom="" line="-1" length="0" triggertype="0" useHWbreakpoint="false" group="Cortex-M3 Exceptions" breakdatatype="5" value="0" name="unnamed" counter="0" state="2" mask="0" comparison="0" expression="MemManage" filename="" />
+-  <BreakpointListItem actiontype="0" chainFrom="" line="-1" length="0" triggertype="0" useHWbreakpoint="false" group="Cortex-M3 Exceptions" breakdatatype="5" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="Reset" filename="" />
+-  <BreakpointListItem actiontype="0" chainFrom="" line="-1" length="0" triggertype="0" useHWbreakpoint="false" group="Cortex-M3 Exceptions" breakdatatype="5" value="0" name="unnamed" counter="0" state="2" mask="0" comparison="0" expression="UsageFault_CheckingError" filename="" />
+-  <BreakpointListItem actiontype="0" chainFrom="" line="-1" length="0" triggertype="0" useHWbreakpoint="false" group="Cortex-M3 Exceptions" breakdatatype="5" value="0" name="unnamed" counter="0" state="2" mask="0" comparison="0" expression="UsageFault_Coprocessor" filename="" />
+-  <BreakpointListItem actiontype="0" chainFrom="" line="-1" length="0" triggertype="0" useHWbreakpoint="false" group="Cortex-M3 Exceptions" breakdatatype="5" value="0" name="unnamed" counter="0" state="2" mask="0" comparison="0" expression="UsageFault_StateError" filename="" />
++  <BreakpointListItem actiontype="0" chainFrom="" line="0" defaultBreakType="true" length="0" triggertype="0" useHWbreakpoint="false" group="Breakpoints" breakdatatype="1" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="0x1005d2" filename="" />
++  <BreakpointListItem actiontype="0" chainFrom="" line="0" defaultBreakType="true" length="0" triggertype="0" useHWbreakpoint="false" group="Breakpoints" breakdatatype="1" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="0x1030fe" filename="" />
++  <BreakpointListItem actiontype="0" chainFrom="" line="99" defaultBreakType="true" length="0" triggertype="0" useHWbreakpoint="false" group="Breakpoints" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="C:\Programme\Rowley Associates Limited\CrossWorks for ARM 1.6\targets\Atmel_AT91SAM7\AT91SAM7_Startup.s" />
++  <BreakpointListItem actiontype="0" chainFrom="" line="334" defaultBreakType="true" length="0" triggertype="0" useHWbreakpoint="false" group="Breakpoints" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="C:\MJBC\Internal\uTaskerBeta\Hardware\SAM7X\SAM7X.c" />
++  <BreakpointListItem actiontype="0" chainFrom="" line="368" defaultBreakType="true" length="0" triggertype="0" useHWbreakpoint="false" group="Breakpoints" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="C:\MJBC\Internal\uTaskerBeta\Hardware\SAM7X\SAM7X.c" />
++  <BreakpointListItem actiontype="0" chainFrom="" line="-1" defaultBreakType="true" length="0" triggertype="0" useHWbreakpoint="false" group="ARM Exceptions" breakdatatype="5" value="0" name="unnamed" counter="0" state="2" mask="0" comparison="0" expression="D_Abort" filename="" />
++  <BreakpointListItem actiontype="0" chainFrom="" line="-1" defaultBreakType="true" length="0" triggertype="0" useHWbreakpoint="false" group="ARM Exceptions" breakdatatype="5" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="FIQ" filename="" />
++  <BreakpointListItem actiontype="0" chainFrom="" line="-1" defaultBreakType="true" length="0" triggertype="0" useHWbreakpoint="false" group="ARM Exceptions" breakdatatype="5" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="IRQ" filename="" />
++  <BreakpointListItem actiontype="0" chainFrom="" line="-1" defaultBreakType="true" length="0" triggertype="0" useHWbreakpoint="false" group="ARM Exceptions" breakdatatype="5" value="0" name="unnamed" counter="0" state="2" mask="0" comparison="0" expression="P_Abort" filename="" />
++  <BreakpointListItem actiontype="0" chainFrom="" line="-1" defaultBreakType="true" length="0" triggertype="0" useHWbreakpoint="false" group="ARM Exceptions" breakdatatype="5" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="Reset" filename="" />
++  <BreakpointListItem actiontype="0" chainFrom="" line="-1" defaultBreakType="true" length="0" triggertype="0" useHWbreakpoint="false" group="ARM Exceptions" breakdatatype="5" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="SWI" filename="" />
++  <BreakpointListItem actiontype="0" chainFrom="" line="-1" defaultBreakType="true" length="0" triggertype="0" useHWbreakpoint="false" group="ARM Exceptions" breakdatatype="5" value="0" name="unnamed" counter="0" state="2" mask="0" comparison="0" expression="Undef" filename="" />
++  <BreakpointListItem actiontype="0" chainFrom="" line="-1" defaultBreakType="true" length="0" triggertype="0" useHWbreakpoint="false" group="Cortex-M3 Exceptions" breakdatatype="5" value="0" name="unnamed" counter="0" state="2" mask="0" comparison="0" expression="BusFault" filename="" />
++  <BreakpointListItem actiontype="0" chainFrom="" line="-1" defaultBreakType="true" length="0" triggertype="0" useHWbreakpoint="false" group="Cortex-M3 Exceptions" breakdatatype="5" value="0" name="unnamed" counter="0" state="2" mask="0" comparison="0" expression="ExceptionEntryReturnFault" filename="" />
++  <BreakpointListItem actiontype="0" chainFrom="" line="-1" defaultBreakType="true" length="0" triggertype="0" useHWbreakpoint="false" group="Cortex-M3 Exceptions" breakdatatype="5" value="0" name="unnamed" counter="0" state="2" mask="0" comparison="0" expression="HardFault" filename="" />
++  <BreakpointListItem actiontype="0" chainFrom="" line="-1" defaultBreakType="true" length="0" triggertype="0" useHWbreakpoint="false" group="Cortex-M3 Exceptions" breakdatatype="5" value="0" name="unnamed" counter="0" state="2" mask="0" comparison="0" expression="MemManage" filename="" />
++  <BreakpointListItem actiontype="0" chainFrom="" line="-1" defaultBreakType="true" length="0" triggertype="0" useHWbreakpoint="false" group="Cortex-M3 Exceptions" breakdatatype="5" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="Reset" filename="" />
++  <BreakpointListItem actiontype="0" chainFrom="" line="-1" defaultBreakType="true" length="0" triggertype="0" useHWbreakpoint="false" group="Cortex-M3 Exceptions" breakdatatype="5" value="0" name="unnamed" counter="0" state="2" mask="0" comparison="0" expression="UsageFault_CheckingError" filename="" />
++  <BreakpointListItem actiontype="0" chainFrom="" line="-1" defaultBreakType="true" length="0" triggertype="0" useHWbreakpoint="false" group="Cortex-M3 Exceptions" breakdatatype="5" value="0" name="unnamed" counter="0" state="2" mask="0" comparison="0" expression="UsageFault_Coprocessor" filename="" />
++  <BreakpointListItem actiontype="0" chainFrom="" line="-1" defaultBreakType="true" length="0" triggertype="0" useHWbreakpoint="false" group="Cortex-M3 Exceptions" breakdatatype="5" value="0" name="unnamed" counter="0" state="2" mask="0" comparison="0" expression="UsageFault_StateError" filename="" />
+  </Breakpoints>
+  <ExecutionCountWindow/>
+  <Memory1>
+   <MemoryWindow autoEvaluate="1" addressText="0x00204141" numColumns="16" sizeText="1024" dataSize="1" radix="16" addressSpace="" />
+  </Memory1>
+  <Memory2>
+   <MemoryWindow autoEvaluate="0" addressText="0xfffff600" numColumns="16" sizeText="300" dataSize="4" radix="16" addressSpace="" />
+  </Memory2>
+  <Memory3>
+   <MemoryWindow autoEvaluate="0" addressText="ptrBuf" numColumns="16" sizeText="256" dataSize="1" radix="16" addressSpace="" />
+  </Memory3>
+  <Memory4>
+   <MemoryWindow autoEvaluate="0" addressText="0x201c2c" numColumns="16" sizeText="256" dataSize="4" radix="16" addressSpace="" />
+  </Memory4>
++ <MemoryUsageWindow>
++  <ProjectSessionItem path="uTaskerV13" name="unnamed" />
++  <ProjectSessionItem path="uTaskerV13;uTaskerV13" name="unnamed" />
++  <ProjectSessionItem path="uTaskerV13;uTaskerV13;Hardware" name="unnamed" />
++  <ProjectSessionItem path="uTaskerV13;uTaskerV13;Header Files" name="unnamed" />
++  <ProjectSessionItem path="uTaskerV13;uTaskerV13;rum_src" name="unnamed" />
++  <ProjectSessionItem path="uTaskerV13;uTaskerV13;Source Files" name="unnamed" />
++  <ProjectSessionItem path="uTaskerV13;uTaskerV13;System Files" name="unnamed" />
++  <ProjectSessionItem path="uTaskerV13;uTaskerV13;TCP/IP" name="unnamed" />
++  <ProjectSessionItem path="uTaskerV13;uTaskerV13;uTasker" name="unnamed" />
++ </MemoryUsageWindow>
+  <Project>
+   <ProjectSessionItem path="uTaskerV13" name="unnamed" />
+   <ProjectSessionItem path="uTaskerV13;uTaskerV13" name="unnamed" />
+   <ProjectSessionItem path="uTaskerV13;uTaskerV13;Hardware" name="unnamed" />
+   <ProjectSessionItem path="uTaskerV13;uTaskerV13;Header Files" name="unnamed" />
++  <ProjectSessionItem path="uTaskerV13;uTaskerV13;rum_src" name="unnamed" />
+   <ProjectSessionItem path="uTaskerV13;uTaskerV13;Source Files" name="unnamed" />
+   <ProjectSessionItem path="uTaskerV13;uTaskerV13;System Files" name="unnamed" />
+   <ProjectSessionItem path="uTaskerV13;uTaskerV13;TCP/IP" name="unnamed" />
+   <ProjectSessionItem path="uTaskerV13;uTaskerV13;uTasker" name="unnamed" />
+  </Project>
+  <Register1>
+-  <RegisterWindow unsignedDisplays="" asciiDisplays="" octalDisplays="" openGroups="CPU - All" visibleGroups="CPU - All" decimalDisplays="" binaryDisplays="" />
++  <RegisterWindow openNodes="" binaryNodes="" unsignedNodes="" visibleGroups="CPU - All" decimalNodes="" octalNodes="" asciiNodes="" />
+  </Register1>
+  <Register2>
+-  <RegisterWindow unsignedDisplays="" asciiDisplays="" octalDisplays="" openGroups="CPU - Current Mode" visibleGroups="CPU - Current Mode" decimalDisplays="" binaryDisplays="" />
++  <RegisterWindow openNodes="" binaryNodes="" unsignedNodes="" visibleGroups="CPU - Current Mode" decimalNodes="" octalNodes="" asciiNodes="" />
+  </Register2>
+  <Register3>
+-  <RegisterWindow unsignedDisplays="" asciiDisplays="" octalDisplays="" openGroups="CPU - Current Mode" visibleGroups="CPU - Current Mode" decimalDisplays="" binaryDisplays="" />
++  <RegisterWindow openNodes="" binaryNodes="" unsignedNodes="" visibleGroups="CPU - Current Mode" decimalNodes="" octalNodes="" asciiNodes="" />
+  </Register3>
+  <Register4>
+-  <RegisterWindow unsignedDisplays="" asciiDisplays="" octalDisplays="" openGroups="CPU - Current Mode" visibleGroups="CPU - Current Mode" decimalDisplays="" binaryDisplays="" />
++  <RegisterWindow openNodes="" binaryNodes="" unsignedNodes="" visibleGroups="CPU - Current Mode" decimalNodes="" octalNodes="" asciiNodes="" />
+  </Register4>
+  <SourceNavigatorWindow/>
+  <TraceWindow>
+   <Trace wrap="Yes" type="1" enabled="Yes" />
+  </TraceWindow>
+  <Watch1>
+   <Watches active="1" >
+-   <Watchpoint evalMode="1" linenumber="285" evalType="1" radix="-1" name="HTTP_session" expression="HTTP_session" filename="C:\MJBC\Internal\uTaskerBeta\stack\http.c" />
+-   <Watchpoint evalMode="1" linenumber="95" evalType="1" radix="-1" name="ptrHTTP" expression="ptrHTTP" filename="C:\MJBC\Internal\uTaskerBeta\stack\http.c" />
+    <Watchpoint evalMode="1" linenumber="360" evalType="1" radix="-1" name="temp_pars" expression="temp_pars" filename="C:\MJBC\Internal\uTaskerBeta\Applications\uTaskerV1.3\application.c" />
++   <Watchpoint evalMode="1" linenumber="95" evalType="1" radix="-1" name="ptrHTTP" expression="ptrHTTP" filename="C:\MJBC\Internal\uTaskerBeta\stack\http.c" />
++   <Watchpoint evalMode="1" linenumber="285" evalType="1" radix="-1" name="HTTP_session" expression="HTTP_session" filename="C:\MJBC\Internal\uTaskerBeta\stack\http.c" />
+   </Watches>
+  </Watch1>
+  <Watch2>
+   <Watches active="0" />
+  </Watch2>
+  <Watch3>
+   <Watches active="0" />
+  </Watch3>
+  <Watch4>
+   <Watches active="0" />
+  </Watch4>
+  <Files>
+-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" x="27" debugPath="C:\MJBC\Internal\uTaskerBeta\Hardware\SAM7X\startup_gnu.s" y="127" useHTMLEdit="0" path="C:\MJBC\Internal\uTaskerBeta\Hardware\SAM7X\startup_gnu.s" left="0" selected="0" name="unnamed" top="122" />
+-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" x="0" debugPath="C:\MJBC\Internal\uTaskerBeta\Hardware\SAM7X\SAM7X.c" y="228" useHTMLEdit="0" path="C:\MJBC\Internal\uTaskerBeta\Hardware\SAM7X\SAM7X.c" left="0" selected="0" name="unnamed" top="228" />
+-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" x="0" debugPath="C:\MJBC\Internal\uTaskerBeta\stack\http.c" y="688" useHTMLEdit="0" path="C:\MJBC\Internal\uTaskerBeta\stack\http.c" left="0" selected="0" name="unnamed" top="687" />
+-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" x="0" debugPath="C:\MJBC\Internal\uTaskerBeta\stack\tcp.c" y="1317" useHTMLEdit="0" path="C:\MJBC\Internal\uTaskerBeta\stack\tcp.c" left="0" selected="0" name="unnamed" top="1302" />
+-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" x="0" debugPath="C:\MJBC\Internal\uTaskerBeta\uTasker\uFile.c" y="214" useHTMLEdit="0" path="C:\MJBC\Internal\uTaskerBeta\uTasker\uFile.c" left="0" selected="0" name="unnamed" top="199" />
+-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" x="0" debugPath="C:\MJBC\Internal\uTaskerBeta\uTasker\uTasker.c" y="264" useHTMLEdit="0" path="C:\MJBC\Internal\uTaskerBeta\uTasker\uTasker.c" left="0" selected="0" name="unnamed" top="262" />
+-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" x="5" debugPath="C:\Programme\Rowley Associates Limited\CrossWorks for ARM 1.6\source\crt0.s" y="54" useHTMLEdit="0" path="C:\Programme\Rowley Associates Limited\CrossWorks for ARM 1.6\source\crt0.s" left="0" selected="0" name="unnamed" top="45" />
+-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" x="1" debugPath="C:\MJBC\Internal\uTaskerBeta\Applications\uTaskerV1.3\application.c" y="1383" useHTMLEdit="0" path="C:\MJBC\Internal\uTaskerBeta\Applications\uTaskerV1.3\application.c" left="0" selected="0" name="unnamed" top="1366" />
+-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" x="2" debugPath="C:\MJBC\Internal\uTaskerBeta\uTasker\Watchdog.c" y="21" useHTMLEdit="0" path="C:\MJBC\Internal\uTaskerBeta\uTasker\Watchdog.c" left="0" selected="0" name="unnamed" top="12" />
+-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" x="8" debugPath="C:\MJBC\Internal\uTaskerV1.3.0_SAM7X\test\uTaskerV1.3.0_SAM7X\Applications\uTaskerV1.3\Rowley_SAM7X\uTaskerSAM7X_FLASH.ld" y="6" useHTMLEdit="0" path="C:\MJBC\Internal\uTaskerV1.3.0_SAM7X\test\uTaskerV1.3.0_SAM7X\Applications\uTaskerV1.3\Rowley_SAM7X\uTaskerSAM7X_FLASH.ld" left="0" selected="0" name="unnamed" top="0" />
+-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" x="1" debugPath="C:\MJBC\Internal\uTaskerV1.3.0_SAM7X\test\uTaskerV1.3.0_SAM7X\Applications\uTaskerV1.3\application.c" y="7" useHTMLEdit="0" path="C:\MJBC\Internal\uTaskerV1.3.0_SAM7X\test\uTaskerV1.3.0_SAM7X\Applications\uTaskerV1.3\application.c" left="0" selected="0" name="unnamed" top="0" />
+-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" x="59" debugPath="C:\MJBC\Internal\uTaskerV1.3.0_SAM7X\test\uTaskerV1.3.0_SAM7X\Applications\uTaskerV1.3\Rowley_SAM7X\THUMB Flash Debug\uTaskerV13.map" y="519" useHTMLEdit="0" path="C:\MJBC\Internal\uTaskerV1.3.0_SAM7X\test\uTaskerV1.3.0_SAM7X\Applications\uTaskerV1.3\Rowley_SAM7X\THUMB Flash Debug\uTaskerV13.map" left="16" selected="0" name="unnamed" top="496" />
+-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" x="0" debugPath="C:\MJBC\Internal\uTaskerV1.3.0_SAM7X\test\uTaskerV1.3.0_SAM7X\Hardware\SAM7X\SAM7X.c" y="227" useHTMLEdit="0" path="C:\MJBC\Internal\uTaskerV1.3.0_SAM7X\test\uTaskerV1.3.0_SAM7X\Hardware\SAM7X\SAM7X.c" left="0" selected="1" name="unnamed" top="215" />
++  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Latin1" x="16" debugPath="C:\Documents and Settings\mvidales\Desktop\rowley_test\uTaskerV1.3.0_SAM7X\Applications\uTaskerV1.3\webInterface.c" y="492" path="C:\Documents and Settings\mvidales\Desktop\rowley_test\uTaskerV1.3.0_SAM7X\Applications\uTaskerV1.3\webInterface.c" left="0" selected="1" name="unnamed" top="482" />
+  </Files>
+  <ARMCrossStudioWindow activeProject="uTaskerV13" autoConnectTarget="/USB CrossConnect for ARM-RTCK" debugSearchFileMap="..\Hardware\SAM7X\startup_gnu.s
+ " fileDialogInitialDirectory="C:\MJBC\Internal\uTaskerBeta\Applications\uTaskerV1.3\Rowley_SAM7X" fileDialogDefaultFilter="*" autoConnectCapabilities="1407" debugSearchPath="" buildConfiguration="THUMB Flash Debug" />
+ </session>
+diff -r -U 8 uTaskerV1.3.0_before_rum/Applications/uTaskerV1.3/TaskConfig.h uTaskerV1.3.0_SAM7X/Applications/uTaskerV1.3/TaskConfig.h
+--- uTaskerV1.3.0_before_rum/Applications/uTaskerV1.3/TaskConfig.h	2008-11-24 17:35:56.000000000 -0700
++++ uTaskerV1.3.0_SAM7X/Applications/uTaskerV1.3/TaskConfig.h	2009-02-18 10:58:54.000000000 -0700
+@@ -45,16 +45,22 @@
+ #define TASK_NETWORK_INDICATOR  'N'                                      // task displaying network activity
+ #define TASK_DATA_SOCKET        's'                                      // task handling data socket
+ #define TASK_ICMP               'i'                                      // this is a pseudotask for sending ping results
+ #define TASK_LOW_POWER          'l'                                      // Task supporting power saving
+ #define TASK_SNMP               'M'                                      // snMp protocol task
+ #define TASK_USB                'u'                                      // USB task
+ #define TASK_MODBUS             'O'                                      // MODBUS task
+ #define TASK_MODBUS_MASTER      'b'                                      // MODBUS master task
++/**
++    @brief  The RUM protocol task is defined for utasker here. Additionally,
++            the IPv6 protocol requires an additional timer for longer periods.
++*/
++#define TASK_RUM		        'R'					                     // RUM protocol for Atmel 802.15.4 radios.
++#define TASK_TUIP_TIMER         'z'										 // uTasker to uIPv6 Task
+ 
+ #undef  OWN_TASK
+ 
+ #ifdef LAN_REPORT_ACTIVITY
+    #define INTERRUPT_TASK_PHY         TASK_NETWORK_INDICATOR             // This task is woken on PHY changes (set 0 for none)
+ #endif
+ #define UNETWORK_MASTER               TASK_APPLICATION                   // This task is worken on uNetwork error events
+ #define INTERRUPT_TASK_LAN_EXCEPTIONS TASK_NETWORK_INDICATOR             // This task is woken on Ethernet exceptions (set 0 for none)
+@@ -78,16 +84,21 @@
+ extern void fnTimer(TTASKTABLE *);
+ extern void fnNetworkIndicator(TTASKTABLE *);
+ extern void fnLowPower(TTASKTABLE *);
+ extern void fnSNMP(TTASKTABLE *);
+ extern void fnPPP(TTASKTABLE *);
+ extern void fnTaskUSB(TTASKTABLE *);
+ extern void fnMODBUS(TTASKTABLE *);
+ extern void fnMODBUS_master(TTASKTABLE *);
++/**
++    @brief  The RUM task and the IPv6 timer tasks are defined here.
++*/
++extern void fnTaskRUM(TTASKTABLE *);
++extern void fnTaskTimerTuip(TTASKTABLE *);
+ 
+ 
+ 
+ /************ uTasker task table is defined here but only used by the hardware module initiates the system ***********/
+ 
+ #define DEFAULT_NODE_NUMBER    1                                         // we use one fixed node in the system
+ 
+ #ifdef SUPPORT_DISTRIBUTED_NODES
+@@ -168,21 +179,30 @@
+   TASK_PPP,                                                              // PPP task
+ #endif
+ #ifdef SUPPORT_KEY_SCAN
+   TASK_KEY,                                                              // key scan task
+ #endif
+ #ifdef GLOBAL_TIMER_TASK
+   TASK_TIMER,                                                            // global Timer Task
+ #endif
+-  TASK_NETWORK_INDICATOR,                                                // network activity indicator task
+-  TASK_DATA_SOCKET,                                                      // data socket task
+ #ifdef SUPPORT_LOW_POWER
+   TASK_LOW_POWER,                                                        // low power task
+ #endif
++/**
++    @brief  The RUM task and IPv6 timer tasks are enabled based on defines.
++*/
++#ifdef SUPPORT_RUM
++  TASK_RUM,																 // Atmel RUM protocol for 802.15.4 radios
++#endif
++#if IPV6LOWPAN
++  TASK_TUIP_TIMER,
++#endif
++  TASK_NETWORK_INDICATOR,                                                // network activity indicator task
++  TASK_DATA_SOCKET,                                                      // data socket task
+   0,                                                                     // end of single configuration
+ 
+   // insert more node configurations here if required
+   0                                                                      // end of configuration list
+ };
+ 
+ 
+ const UTASKTABLEINIT ctTaskTable[] = {
+@@ -197,20 +217,20 @@
+ #endif
+ #ifdef ETH_INTERFACE
+   { "Eth",       fnTaskEthernet, (HEADER_LENGTH * 12),  (DELAY_LIMIT)(0.05 * SEC), 0, UTASKER_STOP}, // ethernet task - runs automatically
+ #endif
+ #ifdef USE_TCP
+   { "TCP",       fnTaskTCP,      MEDIUM_QUE,  (DELAY_LIMIT)(0.10 * SEC), 0, UTASKER_STOP}, // TCP task checks periodically state of session timeouts (controlled by task itself)
+ #endif
+ #ifdef USE_MODBUS_MASTER
+-  { "bMaster",   fnMODBUS_master,MEDIUM_QUE,  (DELAY_LIMIT)(NO_DELAY_RESERVE_MONO), 0, UTASKER_STOP}, // MODBUS master task  
++  { "bMaster",   fnMODBUS_master,MEDIUM_QUE,  (DELAY_LIMIT)(NO_DELAY_RESERVE_MONO), 0, UTASKER_STOP}, // MODBUS master task
+ #endif
+ #ifdef MODBUS_SERIAL
+-  { "O-MOD",     fnMODBUS,       MEDIUM_QUE, (DELAY_LIMIT)(NO_DELAY_RESERVE_MONO), 0, UTASKER_STOP}, // MODBUS task  
++  { "O-MOD",     fnMODBUS,       MEDIUM_QUE, (DELAY_LIMIT)(NO_DELAY_RESERVE_MONO), 0, UTASKER_STOP}, // MODBUS task
+ #endif
+   { "app",       fnApplication,  MEDIUM_QUE,  (DELAY_LIMIT)(0.10 * SEC), 0, UTASKER_STOP}, // Application - start after Ethernet to be sure we have Ethernet handle
+ #ifdef USE_BOOTP
+   { "BOOTP",     fnBootp,        SMALL_QUEUE, (DELAY_LIMIT)(0.10 * SEC), 0, UTASKER_STOP}, //
+ #endif
+ #ifdef USE_DHCP
+   { "DHCP",      fnDHCP,         SMALL_QUEUE, (DELAY_LIMIT)(NO_DELAY_RESERVE_MONO), 0, UTASKER_STOP}, // delay only for timer queue space
+ #endif
+@@ -237,22 +257,33 @@
+ #endif
+ #ifdef SUPPORT_KEY_SCAN
+   { "Key",       fnKey,          NO_QUE,      (DELAY_LIMIT)(0.1 * SEC), (DELAY_LIMIT)(0.1 * SEC), UTASKER_STOP},  //
+ #endif
+ #ifdef GLOBAL_TIMER_TASK
+   { "period",    fnTimer,        SMALL_QUEUE, (DELAY_LIMIT)(NO_DELAY_RESERVE_MONO), 0, UTASKER_STOP},   //
+ #endif
+ #ifdef USE_MAINTENANCE
+-  { "maintenace",fnDebug,        SMALL_QUEUE, (DELAY_LIMIT)(NO_DELAY_RESERVE_MONO), 0, UTASKER_STOP}, // Task used for debug messages (started by application)
++  { "maintenace", fnDebug,       SMALL_QUEUE, (DELAY_LIMIT)(NO_DELAY_RESERVE_MONO), 0, UTASKER_STOP}, // Task used for debug messages (started by application)
+ #endif
+ #ifdef LAN_REPORT_ACTIVITY
+   { "NetInd", fnNetworkIndicator,LARGE_QUE,   (DELAY_LIMIT)(NO_DELAY_RESERVE_MONO), 0, UTASKER_STOP}, // Network activity task
+ #endif
+ #ifdef USB_INTERFACE
+   { "usb", fnTaskUSB,            SMALL_QUEUE, (DELAY_LIMIT)(NO_DELAY_RESERVE_MONO), 0, UTASKER_STOP}, // USB (application) task
+ #endif
+ #ifdef SUPPORT_LOW_POWER
+   { "lowPower", fnLowPower,      NO_QUE,      0, 0, UTASKER_GO},         // Low power task
+ #endif
++/**
++    @brief  Both the RUM task and the IPv6 task are started after system
++            initialization has occured. The system is initialized in
++            u_application.c.
++*/
++#ifdef SUPPORT_RUM
++  { "Rum", fnTaskRUM,            NO_QUE,      0, 0, UTASKER_STOP},          // Polling mode, run as fast as possible
++#endif
++#if IPV6LOWPAN
++  { "z-uIPv6", fnTaskTimerTuip,  SMALL_QUEUE,      (DELAY_LIMIT)(NO_DELAY_RESERVE_MONO), 0, UTASKER_STOP}, //Run when asked
++#endif
+   { 0 }
+ };
+ #endif                                                                   // end of task configuration
+diff -r -U 8 uTaskerV1.3.0_before_rum/Applications/uTaskerV1.3/app_hw_sam7x.h uTaskerV1.3.0_SAM7X/Applications/uTaskerV1.3/app_hw_sam7x.h
+--- uTaskerV1.3.0_before_rum/Applications/uTaskerV1.3/app_hw_sam7x.h	2008-12-30 18:53:18.000000000 -0700
++++ uTaskerV1.3.0_SAM7X/Applications/uTaskerV1.3/app_hw_sam7x.h	2009-03-13 16:57:16.000000000 -0600
+@@ -123,17 +123,17 @@
+ //
+ #if defined SPI_FILE_SYSTEM && !defined FLASH_FILE_SYSTEM                // {4}
+     #define uFILE_START 0x0
+     #define EEPROM_32K                                                   // Device size used
+ #else
+     #define FILES_ADDRESSABLE                                            // file system is addressable (doesn't have to be retrieved)
+ #endif
+ 
+-#define USE_SPI1_FOR_SPI_FLASH
++//#define USE_SPI1_FOR_SPI_FLASH
+ 
+ #define CS_PORT                     PIO_ODSR_A
+ #define CS_PORT_CLR                 PIO_CODR_A
+ #define CS_PORT_SET                 PIO_SODR_A
+ 
+ // Use SPI0 and control CS0 as port output (also enable clocks to the port)
+ #ifdef USE_SPI1_FOR_SPI_FLASH                                            // when SPI1 is connected to SPI FLASH
+     #define CS_OUTPUT               SPI_CS0_1B
+@@ -321,36 +321,36 @@
+         #define SINGLE_FILE_SIZE (FILE_GRANULARITY)                      // each file a multiple of 32k (exact 33'792 bytes)
+         #if SPI_DATA_FLASH_SIZE < (64*SINGLE_FILE_SIZE)                  // {16} allow testing smallest SPI FLASH
+             #define FILE_SYSTEM_SIZE  SPI_DATA_FLASH_SIZE
+         #else
+             #define FILE_SYSTEM_SIZE (64*SINGLE_FILE_SIZE)               // 2Meg reserved for file system (plus parameter blocks) {16} [PAR_BLOCK_SIZE removed]
+         #endif
+         #define SPI_FLASH_START        (FLASH_START_ADDRESS + SIZE_OF_FLASH) // SPI FLASH starts immediately after FLASH
+     #else
+-        #define PARAMETER_BLOCK_START (FLASH_START_ADDRESS + 0x18000)    // {15} FLASH location at 2 parameter blocks short of end of internal FLASH
+-        #define uFILE_START (FLASH_START_ADDRESS + 0x18400)              // FLASH location at 97k start
++        #define PARAMETER_BLOCK_START (FLASH_START_ADDRESS + 0x32000)    // {15} FLASH location at 2 parameter blocks short of end of internal FLASH
++        #define uFILE_START (FLASH_START_ADDRESS + 0x32400)              // FLASH location at 201k start
+         #if defined SAM7X_EVAL || defined OLIMEX_EX256
+             #define SINGLE_FILE_SIZE (4*FLASH_GRANULARITY)               // each file a multiple of 1k
+-            #define FILE_SYSTEM_SIZE (159*SINGLE_FILE_SIZE)              // 159k reserved for file system
++            #define FILE_SYSTEM_SIZE (55*SINGLE_FILE_SIZE)               // 55k reserved for file system
+         #else                                                            // assume 128k FLASH in total - too small for bare minimum boot loader
+             #define SINGLE_FILE_SIZE (4*FLASH_GRANULARITY)               // each file a multiple of 1k
+             #define FILE_SYSTEM_SIZE (31*SINGLE_FILE_SIZE)               // 31k reserved for file system (including parameter blocks)
+         #endif
+     #endif
+ #endif
+ 
+ #define USB_DOWNLOAD_FILE              "z"                               // {11}
+ 
+ #ifdef OLIMEX_EX256                                                      // Olimex supports switching the full speed pullup resistor
+     #define USB_PUP                     PA25
+     #define ENABLE_DPLUS_PULLUP()       PIO_OER_A = USB_PUP; PIO_SODR_A = USB_PUP; _SIM_PORTS
+     #define ENABLE_DMINUS_PULLDOWN()
+ #else
+-    #define ENABLE_DPLUS_PULLUP()
++                #define ENABLE_DPLUS_PULLUP()
+     #define ENABLE_DMINUS_PULLDOWN()
+ #endif
+ 
+ #ifdef USE_PARAMETER_BLOCK
+     #define PARAMETER_BLOCK_SIZE    2*FLASH_GRANULARITY                  // use 512 byte parameter block (made up of two sectors)
+ 
+     #ifdef USE_PAR_SWAP_BLOCK
+         #define PAR_BLOCK_SIZE     (2*PARAMETER_BLOCK_SIZE)
+@@ -361,17 +361,17 @@
+     #define PAR_BLOCK_SIZE  (0)
+ #endif
+ 
+ #define SUPPORT_PORT_INTERRUPTS                                          // {18} support handling port interrupts
+ 
+ // Serial interfaces
+ //
+ #ifdef SERIAL_INTERFACE
+-    #define DBGU_UART                                                    // {10} activate UART support on DBG unit (interface 2)
++          #define DBGU_UART                                                    // {10} activate UART support on DBG unit (interface 2)
+     #ifdef DBGU_UART
+         #define NUMBER_SERIAL   (3)                                      // the number of physical queue needed for serial interface(s)
+     #else
+         #define NUMBER_SERIAL   (2)                                      // the number of physical queue needed for serial interface(s)
+     #endif
+     #define SERIAL_PORT_0       '1'                                      // if we open UART channel 0 we simulate using this COM port on the PC
+     #define SERIAL_PORT_1       '5'                                      // if we open UART channel 1 we simulate using this COM port on the PC
+     #define SERIAL_PORT_2       '4'                                      // if we open UART channel 2 we simulate using this COM port on the PC
+@@ -547,17 +547,17 @@
+     else {                                    \
+         PIO_SODR_B = BLINK_LED;               \
+     } _SIM_PORTS                                                         // blink the LED, if set as output
+ 
+ #define WATCHDOG_FORBIDDEN (unsigned long)(0.9*(SLOW_CLOCK/128))         // triggering faster that 0.1s is an error
+ #define WATCHDOG_TIMEOUT   (unsigned long)(1*(SLOW_CLOCK/128))           // watchdog fires after 1s without retrigger
+ #define CONFIGURE_WATCHDOG         (WDRSTEN | WDDBGHLT | WATCHDOG_TIMEOUT | (WATCHDOG_FORBIDDEN << 16)) // enable reset on fired watchdog, halt in debug mode
+ #define INIT_WATCHDOG_DISABLE()    PMC_PCER = (PIOA);                    // ensure clocks to port
+-#define WATCHDOG_DISABLE()         !((PIO_PDSR_A & PA30))                // pull this input down to disable watchdog (enable debugging)
++#define WATCHDOG_DISABLE()         1//!((PIO_PDSR_A & PA30))                // pull this input down to disable watchdog (enable debugging)
+ #define DISABLE_WATCHDOG()         WDT_MR = WDDIS                        // {6} disable watchdog (this regiszer can only be written once)
+ 
+ #define MEASURE_LOW_POWER_ON()
+ #define MEASURE_LOW_POWER_OFF()
+ 
+ #define PORTA_DEFAULT_INPUT        0xffffffff
+ #define PORTB_DEFAULT_INPUT        0xffffffff
+ 
+diff -r -U 8 uTaskerV1.3.0_before_rum/Applications/uTaskerV1.3/application.c uTaskerV1.3.0_SAM7X/Applications/uTaskerV1.3/application.c
+--- uTaskerV1.3.0_before_rum/Applications/uTaskerV1.3/application.c	2008-12-31 18:57:52.000000000 -0700
++++ uTaskerV1.3.0_SAM7X/Applications/uTaskerV1.3/application.c	2009-04-06 11:17:06.000000000 -0600
+@@ -51,17 +51,24 @@
+ */
+ 
+ 
+ /* =================================================================== */
+ /*                           include files                             */
+ /* =================================================================== */
+ 
+ #include "config.h"
+-
++// RUM includes
++#include "rumtask.h"
++#include "hal_arm.h"
++// EFSL include
++#include "efs.h"
++// UIP includes
++#include "tuip.h"
++#include "net/uip.h"
+ 
+ /*****************************************************************************/
+ // The project includes a variety of quick tests which can be activated here
+ /*****************************************************************************/
+ //#define TEST_MSG_MODE                                                  // test UART in message mode
+ //#define TEST_MSG_CNT_MODE                                              // test UART in message counter mode
+ #ifdef SUPPORT_DISTRIBUTED_NODES
+   //#define TEST_DISTRIBUTED_TX                                          // test some uNetwork messages
+@@ -347,38 +354,53 @@
+     static void fnRestartADC(ADC_SETUP *adc_setup);
+ #endif
+ 
+ /* =================================================================== */
+ /*                             constants                               */
+ /* =================================================================== */
+ 
+ // The application is responsible for defining the IP configuration - here are the default settings
++/**
++    @brief  The NETWORK_PARAMETERS network_default struct was changed to
++            set up an ethernet MAC address and an initial IP address. Note
++            that DHCP is not enabled. The IP address is fixed here and may be
++            changed via the menu after system start.
++*/
+ static const NETWORK_PARAMETERS network_default = {
+-    (AUTO_NEGOTIATE | FULL_DUPLEX | RX_FLOW_CONTROL),                    // usNetworkOptions - see driver.h for other possibilities
+-    {0x00, 0x00, 0x00, 0x00, 0x00, 0x00},                                // ucOurMAC - when no other value can be read from parameters this will be used
+-    { 192, 168, 0, 3 },                                                  // ucOurIP - our default IP address
++    (AUTO_NEGOTIATE | FULL_DUPLEX | RX_FLOW_CONTROL | PROMISCUOUS),                    // usNetworkOptions - see driver.h for other possibilities
++#ifdef LOCAL_DEBUG                                                       // Allows for static IP address with router.
++    {0x00, 0x41, 0x74, 0x6D, 0x65, 0x6C},                                // ucOurMAC - when no other value can be read from parameters this will be used
++    { 192, 168, 1, 50 },                                                 // ucOurIP - our default IP address
++    { 255, 255, 255, 0 },                                                // ucNetMask - Our default network mask
++    { 192, 168, 1, 1 },                                                  // ucDefGW - Our default gateway
++    { 192, 168, 1, 1 },                                                  // ucDNS_server - Our default DNS server
++
++#else
++    { 0x18, 0xF0, 0x9F, 0xE5, 0x18, 0xF1 },                              // ucOurMAC - when no other value can be read from parameters this will be used
++    { 192, 168, 1, 125 },                                                    // ucOurIP - our default IP address
+     { 255, 255, 255, 0 },                                                // ucNetMask - Our default network mask
+-    { 192, 168, 0, 1 },                                                  // ucDefGW - Our default gateway
+-    { 192, 168, 0, 1 },                                                  // ucDNS_server - Our default DNS server
++    { 192, 168, 1, 1 },                                                  // ucDefGW - Our default gateway
++    { 192, 168, 1, 1 },                                                  // ucDNS_server - Our default DNS server
++#endif
+ };
+ 
+ // The default user settings (factory settings)
+ const PARS cParameters = {
+     PARAMETER_BLOCK_VERSION,                                             // version number for parameter validity control
+     (unsigned short)(2*60),                                              // default telnet_timeout - 2 minutes
+     (CHAR_8 + NO_PARITY + ONE_STOP + USE_XON_OFF + CHAR_MODE + DCE_MODE),// serial interface settings
+     23,                                                                  // TELNET port number
+     (/*ACTIVE_DHCP +*/ ACTIVE_LOGIN + ACTIVE_FTP_SERVER /*+ ACTIVE_FTP_LOGIN*/ + ACTIVE_WEB_SERVER + ACTIVE_TELNET_SERVER + SMTP_LOGIN), // active servers (ACTIVE_DHCP and ACTIVE_FTP_LOGIN disabled)
+     SERIAL_BAUD_19200,                                                   // baud rate of serial interface
+     {0,0,0,0},                                                           // trusted dial out IP address (null IP means no checking)
+     {'A', 'D', 'M', 'I', 'N', 0, ' ', ' '},                              // default user name - & or null terminator closes sequence
+     {'u', 'T', 'a', 's', 'k', 'e', 'r', '&'},                            // default user password - & or null terminator closes sequence
+ 
+-    {'u', 'T', 'a', 's', 'k', 'e', 'r', ' ', 'N', 'u', 'm', 'b', 'e', 'r', ' ', '1',0,0,0,0,0},
++    {'R', 'U', 'M', ' ', 'C', 'o', 'o', 'r', 'd', 'i', 'n', 'a', 't', 'o', 'r', ' ', '1',0,0,0,0},
+     80,                                                                  // flow control at 80% high water
+     20,                                                                  // flow control at 20% low water
+ #ifdef _LM3SXXXX
+     (DEMO_LED_1),                                                        // user port DDR value
+ #else
+     (DEMO_LED_1 | DEMO_LED_2),                                           // user port DDR value
+ #endif
+     (DEMO_LED_1 | DEMO_LED_2),                                           // user port value of outputs
+@@ -390,16 +412,21 @@
+     {'m', 'a', 'i', 'l', '.', 'p', 'r', 'o', 'v', 'i', 'd', 'e', 'r', '.', 'c', 'o', 'm', 0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+ 
+     #ifdef USE_DNS
+     {0,0,0,0},
+     #else
+     SMTP_PROVIDER_IP_ADDRESS,
+     #endif
+ #endif
++
++#ifdef IPV6LOWPAN
++    DEFAULT_6LOWPAN_PREFIX,
++#endif
++
+ };
+ 
+ #ifdef SUPPORT_KEY_SCAN                                                  // support up to 4 x 4 for test purposes
+     static const char *cKey[] = {
+       "Key 1 pressed\r\n",                                               // First column, Row 1 press
+       "Key 1 released\r\n",                                              //               Row 1 release
+       "Key 4 pressed\r\n",                                               //               Row 2 press
+       "Key 4 released\r\n",                                              //               Row 2 release
+@@ -680,16 +707,19 @@
+ 
+ // Application task
+ //
+ extern void fnApplication(TTASKTABLE *ptrTaskTable)
+ {
+     QUEUE_HANDLE        PortIDInternal = ptrTaskTable->TaskID;           // queue ID for task input
+     unsigned char       ucInputMessage[RX_BUFFER_SIZE];                  // reserve space for receiving messages
+     #ifdef SERIAL_INTERFACE
++    /**
++        @brief  QUEUE_TRANSFER Length; Commented out to remove compiler warning...
++    */
+     QUEUE_TRANSFER Length;
+     #endif
+     #if defined TEST_IIC
+     QUEUE_TRANSFER LengthIIC;
+     #endif
+ 
+     if (!iAppState) {
+         parameters = uMalloc(sizeof(PARS));                              // get RAM for a local copy of device parameters
+@@ -707,27 +737,108 @@
+         fnInitialisePorts();                                             // set up ports as required by the user
+ #endif
+         uTaskerStateChange(TASK_DEBUG, UTASKER_ACTIVATE);
+ #ifdef SERIAL_INTERFACE                                                  // this serial interface is used for debug output and menu based control
+         if (!fnSetNewSerialMode(FOR_I_O)) {                              // open serial port for I/O
+             return;                                                      // if the serial port could not be opened we quit
+         }
+         DebugHandle = SerialPortID;                                      // assign our serial interface as debug port
++
++        fnDebugMsg("uTasker Online.\r\n");
+ #endif
++
++        /**
++            @brief  We have implemented IPv6 and 6LoWPAN on the SAM7X platform
++                    to work with our AVR based IPv6 and 6LoWPAN implementation.
++                    This allows uTasker to route IPv6 packets.
++        */
++#if IPV6LOWPAN
++        tuip_init();
++        uip_ip6addr(&lowpan_prefix, parameters->uc6lowpanPrefix[0],
++                                    parameters->uc6lowpanPrefix[1],
++                                    parameters->uc6lowpanPrefix[2],
++                                    parameters->uc6lowpanPrefix[3],
++                                    parameters->uc6lowpanPrefix[4],
++                                    parameters->uc6lowpanPrefix[5],
++                                    parameters->uc6lowpanPrefix[6],
++                                    parameters->uc6lowpanPrefix[7]);
++
++        tuip_init_ethernet(&network.ucOurMAC[0]);
++        fnDebugMsg("IPv6 Support Enabled\r\n");
++#endif // IPV6LOWPAN
++
++        /**
++            @brief  We used the efsl file system to enable FAT and FAT32 file
++                    systems on the SD card (up to 2 GB).
++                    See: http://www.efsl.be/
++        */
++        fnDebugMsg("Mounting SD card...");
++        if(efs_init(&efs,0)!=0)
++        {
++            fnDebugMsg("fails. Check SD card (must be =< 2GB) \r\n");
++        }
++        else
++        {
++            fnDebugMsg("OK.\r\n");
++
++#ifdef HELLTEST
++        /* SD-card hell-test for 1GB Card */
++        fnDebugMsg("Begin hell-test.");
++        int filenum = 0;
++        char filename[13];
++        File sd_file;
++        char stored_data[1024];
++
++        /* Test-array is just full of 'a' */
++        for (int j = 0; j < 1024; j++) {
++			stored_data[j] = 'a';
++        }
++
++        /* Write 1-MB files */
++        while (filenum < 1024) {
++               	sprintf(filename, "/test/%d.txt", filenum);
++
++               	/* If cannot write, we assume just need to make directory */
++               	if(file_fopen(&sd_file, &(efs.myFs), filename, MODE_APPEND)) {
++               		mkdir(&(efs.myFs), "/test");
++               		continue;
++               	}
++
++               	/* Write 1024 x 1024 bytes */
++               	for (int j = 0; j < 1024; j++) {
++               		file_write(&sd_file, 1024, stored_data);
++               	}
++
++               	file_fclose(&sd_file);
++
++               	/* Flush to the card to force write */
++               	fs_flushFs(&efs.myFs);
++
++               	fnDebugMsg(".");
++
++               	filenum++;
++        }
++
++        fs_umount(&efs.myFs);
++        fnDebugMsg("\r\nHell test done\r\n");
++#endif
++        }
++
++
+ #if (defined SPI_SW_UPLOAD || (defined (SPI_FILE_SYSTEM) && defined (FLASH_FILE_SYSTEM))) && defined TEST_SPI_FLASH // {14}
+         fnTestSPIFLASH();
+ #endif
+ #if defined TEST_IIC || defined TEST_DS1307
+         fnConfigIIC_Interface();
+ #endif
+ #ifdef USE_DHCP
+-        if (temp_pars->temp_parameters.ucServers & ACTIVE_DHCP) {
+-            fnStartDHCP((UTASK_TASK)(FORCE_INIT | OWN_TASK));            // activate DHCP
+-        }
++                    if (temp_pars->temp_parameters.ucServers & ACTIVE_DHCP) {
++                        fnStartDHCP((UTASK_TASK)(FORCE_INIT | OWN_TASK));            // activate DHCP
++                    }
+ #endif
+ #ifdef USE_HTTP
+         fnConfigureAndStartWebServer();
+ #endif
+ #ifdef USE_FTP
+         fnConfigureFtpServer(FTP_TIMEOUT);                               // {1}
+ #endif
+ #ifdef _WINDOWS
+@@ -751,16 +862,21 @@
+         fnSendSNMPTrap(SNMP_COLDSTART, 0);                               // send cold start trap to SNMP manager
+ #endif
+ #ifdef USE_PPP
+         uTaskerStateChange(TASK_PPP, UTASKER_ACTIVATE);                  // start the PPP task
+ #endif
+ #ifdef USB_INTERFACE
+         uTaskerStateChange(TASK_USB, UTASKER_ACTIVATE);                  // start USB task
+ #endif
++        /**
++            @brief  We have implemented Atmel's RUM protocol - Route Under MAC.
++                    This starts the RUM task.
++        */
++        uTaskerStateChange(TASK_RUM, UTASKER_GO);                  // start RUM task
+ #if defined (IRQ_TEST) && (defined _M5223X || defined _HW_SAM7X || defined _STR91XF) // {12}{13}
+         fnInitIRQ();                                                     // {2}
+ #endif
+ #ifdef RTC_TEST                                                          // {3}
+         fnTestRTC();
+ #endif
+ #ifdef TEST_ADC
+         fnConfigureADC();                                                // {17}
+@@ -1236,19 +1352,24 @@
+             INTERRUPT_SETUP interrupt_setup;
+ 
+             interrupt_setup.int_type = PORT_INTERRUPT;                   // identifier when configuring
+             interrupt_setup.int_handler = seconds_interrupt;             // handling function
+     #if defined _M5223X
+             interrupt_setup.int_priority = (INTERRUPT_LEVEL_6);          // edge port interrupt priority
+             interrupt_setup.int_port_bit = 1;                            // the IRQ input connected
+     #elif defined _HW_SAM7X
+-            interrupt_setup.int_priority = (0);                          // port interrupt priority
+-            interrupt_setup.int_port = PORT_A;                           // the port used
+-            interrupt_setup.int_port_bit = 30;                           // the input connected
++    /**
++        @brief  The AT86RF230, 231 and 212 radios use IRQ0 so these
++                utasker setups are removed - Just in case.
++
++                interrupt_setup.int_priority = (0);                          // port interrupt priority
++                interrupt_setup.int_port = PORT_A;                           // the port used
++                interrupt_setup.int_port_bit = 30;                           // the input connected
++    */
+     #elif defined _LM3SXXXX
+             interrupt_setup.int_priority = 3;                            // port interrupt priority
+             interrupt_setup.int_port = PORT_A;                           // the port used
+             interrupt_setup.int_port_bit = 6;                            // the input connected
+             interrupt_setup.int_port_characteristic = PULLUP_ON;         // enable a pullup
+     #endif
+             interrupt_setup.int_port_sense = IRQ_RISING_EDGE;            // interrupt on this edge
+             fnConfigureInterrupt((void *)&interrupt_setup);              // configure the 1 second interrupt
+@@ -1469,18 +1590,19 @@
+         #endif
+     tInterfaceParameters.usConfig &= ~USE_XON_OFF;
+     tInterfaceParameters.ucMessageTerminator = '\r';
+     #endif
+     #ifdef SERIAL_SUPPORT_DMA
+     tInterfaceParameters.ucDMAConfig = UART_TX_DMA;                      // activate DMA on transmission
+   //tInterfaceParameters.ucDMAConfig |= (UART_RX_DMA | UART_RX_DMA_HALF_BUFFER); // test half buffer DMA reception
+     #endif
+-    if ((SerialPortID = fnOpen( TYPE_TTY, ucDriverMode, &tInterfaceParameters )) != 0) { // open or change the channel with defined configurations (initially inactive)
+-        fnDriver( SerialPortID, ( TX_ON | RX_ON ), 0 );                  // enable rx and tx
++ if ((SerialPortID = fnOpen( TYPE_TTY, ucDriverMode, &tInterfaceParameters )) != 0) { // open or change the channel with defined configurations (initially inactive)
++        // Changed RX_ON to UTASKER_RX_ON for Atmel.
++        fnDriver( SerialPortID, ( TX_ON | UTASKER_RX_ON ), 0 );                  // enable rx and tx
+         if (tInterfaceParameters.usConfig & RTS_CTS) {                   // {8}
+             fnDriver( SerialPortID, (MODIFY_INTERRUPT | ENABLE_CTS_CHANGE), 0 ); // activate CTS interrupt when working with HW flow control (this returns also the present control line states)
+             fnDriver( SerialPortID, (MODIFY_CONTROL | SET_RTS), 0 );     // activate RTS line when working with HW flow control
+         }
+     }
+     return SerialPortID;
+ }
+ #endif
+@@ -1980,17 +2102,17 @@
+         #ifdef TEST_IIC_INTENSIVE                                        // {11}
+         iAppState |= STATE_POLLING;                                      // mark test running
+         uTaskerStateChange(OWN_TASK, UTASKER_GO);                        // set to polling mode
+         #else
+         static const unsigned char ucSetEEPROMAddress0[] = {ADD_EEPROM_WRITE, 0};
+         static const unsigned char ucReadEEPROM[] = {16, ADD_EEPROM_READ, OWN_TASK};
+         fnWrite(IICPortID, (unsigned char *)&ucSetEEPROMAddress0, sizeof(ucSetEEPROMAddress0)); // set the EEPROM address to read
+         fnRead(IICPortID, (unsigned char *)&ucReadEEPROM, 0);            // start the read process of 16 bytes
+-        #endif	
++        #endif
+     #elif defined TEST_DS1307
+         static const unsigned char ucStartRTC[] = {ADDRTC_WRITE, RTC_CONTROL, RTC_MODE};
+         fnWrite(IICPortID, (unsigned char *)ucStartRTC, sizeof(ucStartRTC)); // initialise RTC - set 1Hz output mode
+         fnGetRTCTime();                                                  // get the time (start RTC if not yet running)
+         iRTC_state = STATE_INIT_RTC;                                     // mark that we are initialising
+     #endif
+     }
+ }
+@@ -2079,31 +2201,37 @@
+     fnInterruptMessage(OWN_TASK, IRQ11_EVENT);
+ }
+ 
+ // Configure several IRQ inputs to demonstrate port change interrupts
+ //
+ static void fnInitIRQ(void)
+ {
+     INTERRUPT_SETUP interrupt_setup;                                     // interrupt configuration parameters
+-    #ifdef _HW_SAM7X                                                     // {23}
+-    _ENABLE_GLITCH_FILTER(A, PA29);                                      // enable glitch filters on inputs
+-    _ENABLE_GLITCH_FILTER(B, PB24 | PB25 | PB27);
+-    interrupt_setup.int_type = PORT_INTERRUPT;                           // identifier when configuring
+-    interrupt_setup.int_handler = test_irq_4;                            // handling function
+-    interrupt_setup.int_priority = PRIORITY_PIOA;                        // port interrupt priority
+-    interrupt_setup.int_port = PORT_A;                                   // the port used
+-    interrupt_setup.int_port_sense = IRQ_FALLING_EDGE;                   // {28} interrupt on this edge
+-    interrupt_setup.int_port_bits = PA29;                                // the input connected
+-    fnConfigureInterrupt((void *)&interrupt_setup);                      // configure test interrupt
+-
+-    interrupt_setup.int_port = PORTA_IRQ0;                               // the port used (fixed interrupt)
+-    interrupt_setup.int_handler = test_irq_5;                            // handling function
+-    interrupt_setup.int_port_sense = IRQ_FALLING_EDGE;                   // interrupt on this edge
+-    fnConfigureInterrupt((void *)&interrupt_setup);                      // configure test interrupt
++    #ifdef _HW_SAM7X                                                  // {23}
++    /**
++        @brief  The Atmel AT86RF230, 231 and 212 radios use IRQ0.
++                This section commented out to remove any possible
++                conflict with the uTasker system.
++
++                _ENABLE_GLITCH_FILTER(A, PA29);                                      // enable glitch filters on inputs
++                _ENABLE_GLITCH_FILTER(B, PB24 | PB25 | PB27);
++                interrupt_setup.int_type = PORT_INTERRUPT;                           // identifier when configuring
++                interrupt_setup.int_handler = test_irq_4;                            // handling function
++                interrupt_setup.int_priority = PRIORITY_PIOA;                        // port interrupt priority
++                interrupt_setup.int_port = PORT_A;                                   // the port used
++                interrupt_setup.int_port_sense = IRQ_FALLING_EDGE;                   // {28} interrupt on this edge
++                interrupt_setup.int_port_bits = PA29;                                // the input connected
++                fnConfigureInterrupt((void *)&interrupt_setup);                      // configure test interrupt
++
++                interrupt_setup.int_port = PORTA_IRQ0;                               // the port used (fixed interrupt)
++                interrupt_setup.int_handler = test_irq_5;                            // handling function
++                interrupt_setup.int_port_sense = IRQ_FALLING_EDGE;                   // interrupt on this edge
++                fnConfigureInterrupt((void *)&interrupt_setup);                      // configure test interrupt
++    */
+ 
+     interrupt_setup.int_handler = test_irq_7;                            // handling function
+     interrupt_setup.int_priority = PRIORITY_PIOB;                        // port interrupt priority
+     interrupt_setup.int_port = PORT_B;                                   // the port used
+     interrupt_setup.int_port_sense = (IRQ_RISING_EDGE);                  // interrupt on rising edges
+     interrupt_setup.int_port_bits = (PB25);                              // the inputs connected
+     fnConfigureInterrupt((void *)&interrupt_setup);                      // configure test interrupt
+ 
+diff -r -U 8 uTaskerV1.3.0_before_rum/Applications/uTaskerV1.3/application.h uTaskerV1.3.0_SAM7X/Applications/uTaskerV1.3/application.h
+--- uTaskerV1.3.0_before_rum/Applications/uTaskerV1.3/application.h	2008-12-31 15:15:12.000000000 -0700
++++ uTaskerV1.3.0_SAM7X/Applications/uTaskerV1.3/application.h	2009-04-06 09:27:10.000000000 -0600
+@@ -1,277 +1,284 @@
+-/**********************************************************************
+-   Mark Butcher    Bsc (Hons) MPhil MIET
+-
+-   M.J.Butcher Consulting
+-   Obere Bahnhofstrasse 13, 5507 Mellingen
+-
+-   www.uTasker.com      Skype: M_J_Butcher
+-
+-   ---------------------------------------------------------------------
+-   File:        application.h
+-   Project:     uTasker Demonstration project
+-   ---------------------------------------------------------------------
+-   Copyright (C) M.J.Butcher Consulting 2004..2008
+-   *********************************************************************
+-
+-   18.02.2006 Add SMTP parameter settings                                {1}
+-   03.06.2007 Add FTP user definable FTP timeout and ACTIVE_FTP_LOGIN    {2}
+-   29.06.2007 Add usUSB_state, SOURCE_USB, fnSendToUSB(), fnSetUSB_debug(),
+-                       ES_USB_LOGIN, ES_USB_COMMAND_MODE and USB_ON_LINE {3}
+-   30.10.2008 Add MODBUS (and version numbers incrimented)               {4}
+-
+-*/
+-
+-#define SOFTWARE_VERSION                    "V1.3.010"
+-
+-#ifdef SMTP_PARAMETERS
+-    #define PARAMETER_BLOCK_VERSION         (unsigned char)(9)           // ensure new version when adding/removing SMTP parameters
+-#else
+-    #define PARAMETER_BLOCK_VERSION         (unsigned char)(8)
+-#endif
+-
+-#define MY_PROJECT_NAME                     "uTasker Demo project"
+-
+-#define VALID_VERSION_MAGIC_NUMBER          0x1234                       // {3} - check used when downloading firmware via USB 
+-
+-extern const CHAR cSoftwareVersion[]; 
+-
+-extern QUEUE_TRANSFER fnSendToUSB(unsigned char *ptrData, QUEUE_TRANSFER Length); // {3}
+-extern void fnDownload(unsigned char *ptrData, QUEUE_TRANSFER Length);    // {3}
+-extern CHAR *fnSkipWhiteSpace(CHAR *ptr_input);
+-extern void fnEstablishDataConnection(void);
+-extern void fnTerminateDataConnection(void);
+-extern void fnEstablishManualDataConnection(unsigned char *ucDialinIP, unsigned short usSerialDialinPort);
+-extern void fnConfigureTelnetServer(void);
+-extern QUEUE_HANDLE fnSetNewSerialMode(unsigned char ucDriverMode);
+-extern unsigned short fnGetOurParameters(int iCase);
+-extern CHAR *fnUpTime(CHAR *cValue);
+-extern void fnConfigureFtpServer(unsigned short usTimeout);
+-extern void fnFlushSerialRx(void);
+-extern void fnSaveDebugHandle(int iState);
+-extern void fnRestoreDebugHandle(void);
+-extern void fnSetUSB_debug(void);                                        // {3}
+-extern int  fnCommandInput(unsigned char *ptrData, unsigned short usLen, int iSource);
+-    #define SOURCE_SERIAL      0
+-    #define SOURCE_NETWORK     1
+-    #define SOURCE_USB         2                                         // {3}
+-
+-extern int  fnCheckTelnet(QUEUE_TRANSFER Length, UTASK_TASK Owner);
+-extern void fnConfigureAndStartWebServer(void);
+-extern int  fnInitiateLogin(unsigned short usNextState);
+-    #define DIRECT_LOGIN       0
+-    #define DO_PASSWORD_ENTRY  1
+-    #define TELNET_ON_LINE     2
+-    #define USB_ON_LINE        3                                         // {3}
+-
+-extern void fnGotoNextState(unsigned short usNextState);
+-extern void fnEchoInput(unsigned char *ucInputMessage, QUEUE_TRANSFER Length);
+-extern void fnSetDefaultNetwork(NETWORK_PARAMETERS *);
+-extern int  fnConfigPort(CHAR cPortBit, CHAR cType);
+-extern void fnSetPortOut(unsigned char ucPortOutputs, int iInitialisation);
+-extern int  fnTogglePortOut(CHAR cPortBit);
+-extern int  fnUserPortState(CHAR cPortBit);
+-extern int  fnPortInputConfig(CHAR cPortBit);
+-extern void fnSendEmail(int iRepeat);
+-extern void fnSavePorts(void);
+-extern void fnResetChanges(void);
+-extern void fnInitialisePorts(void);
+-extern void fnRestoreFactory(void);
+-extern int  fnPortState(CHAR cPortBit);
+-extern int  fnPortAnalogConfig(CHAR cPortBit);
+-extern int  fnAreWeValidating(void);
+-extern void fnWeHaveBeenValidated(void);
+-extern int  fnSaveNewPars(int iTemp);
+-extern CHAR *fnShowSN(CHAR *cValue);
+-extern unsigned char fnAddTime(CHAR *ptrBuffer);
+-extern void fnSetNewValue(int iType, CHAR *ptr_input);
+-    #define WAIT_BUFFER_SIZE        1
+-    #define WAIT_BUFFER_DELAY       2
+-    #define FLOW_CONTROL_HIGH_WATER 3
+-    #define FLOW_CONTROL_LOW_WATER  4
+-    #define DIAL_OUT_PORT           5
+-    #define DIAL_IN_PORT            6
+-    #define TELNET_PORT             7
+-
+-
+-typedef struct stPARS
+-{
+-    unsigned char  ucParVersion;                                         // Versions number to avoid loading incorrect structure after major changes
+-    unsigned short telnet_timeout;                                       // TELNET timeout in seconds (0xffff means no timeout) - max 18 hours
+-    unsigned short usSerialMode;                                         // serial settings
+-    unsigned short usTelnetPort;                                         // the port number of our TELNET service
+-    unsigned char  ucServers;                                            // active servers
+-    unsigned char  ucSerialSpeed;                                        // Baud rate of serial interface
+-    unsigned char  ucTrustedIP[IPV4_LENGTH];                             // Trusted IP address
+-    CHAR           cUserName[8];                                         // The single user administrator
+-    CHAR           cUserPass[8];                                         // The administrator's password
+-    CHAR           cDeviceIDName[21];                                    // 20 characters for recognition plus null terminator
+-    unsigned char  ucFlowHigh;                                           // High water flow level for XOFF/CTS (%)
+-    unsigned char  ucFlowLow;                                            // Low water flow level for XON/CTS (%)
+-    unsigned char  ucUserOutputs;                                        // ports set as outputs
+-    unsigned char  ucUserOutputValues;                                   // port values
+-    unsigned short usUserDefinedOutputs;                                 // second set of user defined outputs
+-#ifdef SMTP_PARAMETERS                                                   // {1}
+-    unsigned char  ucSMTP_user_name[23];                                 // SMTP user's name plus terminator
+-    unsigned char  ucSMTP_password[11];                                  // SMTP user's password plus terminator
+-    unsigned char  ucSMTP_user_email[31];                                // SMTP user's email address plus terminator
+-    unsigned char  ucSMTP_server[31];                                    // SMTP server address plus terminator
+-    unsigned char  ucSMTP_server_ip[IPV4_LENGTH];                        // SMTP server IP address - either fixed or resolved by DNS
+-#endif
+-} PARS;
+-
+-
+-typedef struct stTEMPPARS
+-{
+-    NETWORK_PARAMETERS temp_network;
+-    PARS               temp_parameters;
+-#ifdef MODBUS_SERIAL                                                     // {4}
+-    MODBUS_PARS        modbus_parameters;
+-#endif
+-} TEMPPARS;
+-
+-
+-                                                                         // Parameters
+-#define PAR_SERIAL_NUMBER 0                                              // location of serial number
+-#define PAR_NETWORK (PAR_SERIAL_NUMBER + sizeof(unsigned long))          // location of network parameters
+-#define PAR_DEVICE  (PAR_NETWORK + sizeof(NETWORK_PARAMETERS))           // location of the device parameter block
+-#define PAR_MODBUS  (PAR_NETWORK + sizeof(NETWORK_PARAMETERS) + sizeof(PARS)) // {4} location of the MODBUS parameter block
+-
+-
+-// ucTransferMode defines
+-#define AUTO_SERIAL_TO_ETHERNET         0x01
+-#define ACTIVE_ESCAPE_SEQUENCE_SCANNING 0x02
+-#define AUTO_ETHERNET_TO_SERIAL         0x04
+-#define RAW_SOCKET_MODE                 0x08
+-#define ALLOW_SERIAL_ETHERNET_DIALIN    0x10
+-#define ALLOW_TELNET_DIALOUT            0x20
+-#define TELNET_ESCAPE_SEQUENCE_SCANNING 0x80
+-
+-// ucRAWMode defines
+-#define RX_TREATS_IAC                   0x01
+-#define TX_TREATS_IAC                   0x02
+-
+-// server defines
+-#define SMTP_LOGIN                      0x01                             // the smtp define for efficiency (there will be a warning of not the same)
+-#define ACTIVE_DHCP                     0x02                             // not a local server but means get info from a DHCP server
+-#define ACTIVE_FTP_SERVER               0x04
+-#define ACTIVE_WEB_SERVER               0x08
+-#define ACTIVE_TELNET_SERVER            0x10
+-#define AUTHENTICATE_WEB_SERVER         0x20
+-#define ACTIVE_LOGIN                    0x40
+-#define ACTIVE_FTP_LOGIN                0x80
+-
+-
+-extern PARS *parameters;
+-extern const PARS cParameters;
+-extern TEMPPARS *temp_pars;
+-extern NETWORK_PARAMETERS network_flash;
+-extern QUEUE_HANDLE SerialPortID;
+-extern CHAR cEmailAdd[41];
+-extern unsigned short usEthernet_Serial_state;
+-extern unsigned short usData_state;
+-extern unsigned short usUSB_state;                                       // {3}
+-
+-#ifdef USE_TIME_SERVER
+-  extern unsigned long ulPresentTime;
+-#endif
+-
+-#ifdef USE_SMTP
+-  extern unsigned char ucSMTP_server[IPV4_LENGTH];
+-#endif
+-
+-#define PASSWORD_IDLE             0
+-#define START_PASSWORD            1
+-#define ENTER_USER_NAME           2
+-#define ENTER_NEW_PASSWORD        3
+-#define CONFIRM_NEW_PASS          4
+-#define TELNET_LOGIN              5
+-
+-// Ethernet - Serial modes
+-#define ES_NO_CONNECTION          0x0000
+-#define ES_CONNECTING_SERVER      0x0001
+-#define ES_CONNECTING_CLIENT      0x0002
+-#define ES_NETWORK_COMMAND_MODE   0x0004
+-#define ES_DATA_MODE              0x0008
+-#define ES_TERMINATE_CONNECTION   0x0010
+-#define ES_SERIAL_COMMAND_MODE    0x0020
+-#define ES_STARTING_COMMAND_MODE  0x0040
+-#define ES_BINARY_DATA_MODE       0x0080
+-
+-#define ES_SERIAL_LOGIN           0x0100
+-#define ES_NETWORK_LOGIN          0x0200
+-#define ES_SERIAL_SUSPENDED       0x0400
+-#define ES_USB_LOGIN              0x0800                                 // {3}
+-#define ES_USB_COMMAND_MODE       0x1000                                 // {3}
+-#define ES_USB_DOWNLOAD_MODE      0x2000                                 // {3}
+-#define ES_USB_RS232_MODE         0x4000                                 // {3}
+-
+-
+-#define SAVE_NEW_PARAMETERS                0
+-#define SAVE_NEW_PARAMETERS_VALIDATE       1
+-#define SAVE_NEW_PARAMETERS_CHECK_CRITICAL 2
+-
+-#define WARN_BEFORE_SAVE   0                                             // the web page warning of critical changes - deactivated
+-#define BAD_PASSWORD_PAGE  0                                             // the web page informing of bad passowrd entry - deactivated
+-
+-#define FTP_TIMEOUT               60                                     // FTP connection times out after this delay with no activity {2}
+-
+-// LCD events
+-// Application To LCD
+-#define E_LCD_COMMAND             1
+-#define E_LCD_TEXT                2
+-#define E_LCD_PATTERN             3
+-#define E_LCD_READ_ADDRESS        4
+-#define E_LCD_READ_RAM            5
+-#define E_LCD_COMMAND_TEXT        6
+-
+-// LDC to application
+-#define E_LCD_INITIALISED         1
+-#define E_LCD_READY               2
+-#define E_LCD_READ                3
+-
+-
+-// Key pad events
+-// Keypad to application - sent as interrupt events!!
+-#define KEY_EVENT_COL_1_ROW_1_PRESSED  1
+-#define KEY_EVENT_COL_1_ROW_1_RELEASED 2
+-#define KEY_EVENT_COL_1_ROW_2_PRESSED  3
+-#define KEY_EVENT_COL_1_ROW_2_RELEASED 4
+-#define KEY_EVENT_COL_1_ROW_3_PRESSED  5
+-#define KEY_EVENT_COL_1_ROW_3_RELEASED 6
+-#define KEY_EVENT_COL_1_ROW_4_PRESSED  7
+-#define KEY_EVENT_COL_1_ROW_4_RELEASED 8
+-
+-#define KEY_EVENT_COL_2_ROW_1_PRESSED  9
+-#define KEY_EVENT_COL_2_ROW_1_RELEASED 10
+-#define KEY_EVENT_COL_2_ROW_2_PRESSED  11
+-#define KEY_EVENT_COL_2_ROW_2_RELEASED 12
+-#define KEY_EVENT_COL_2_ROW_3_PRESSED  13
+-#define KEY_EVENT_COL_2_ROW_3_RELEASED 14
+-#define KEY_EVENT_COL_2_ROW_4_PRESSED  15
+-#define KEY_EVENT_COL_2_ROW_4_RELEASED 16
+-
+-#define KEY_EVENT_COL_3_ROW_1_PRESSED  17
+-#define KEY_EVENT_COL_3_ROW_1_RELEASED 18
+-#define KEY_EVENT_COL_3_ROW_2_PRESSED  19
+-#define KEY_EVENT_COL_3_ROW_2_RELEASED 20
+-#define KEY_EVENT_COL_3_ROW_3_PRESSED  21
+-#define KEY_EVENT_COL_3_ROW_3_RELEASED 22
+-#define KEY_EVENT_COL_3_ROW_4_PRESSED  23
+-#define KEY_EVENT_COL_3_ROW_4_RELEASED 24
+-
+-#define KEY_EVENT_COL_4_ROW_1_PRESSED  25
+-#define KEY_EVENT_COL_4_ROW_1_RELEASED 26
+-#define KEY_EVENT_COL_4_ROW_2_PRESSED  27
+-#define KEY_EVENT_COL_4_ROW_2_RELEASED 28
+-#define KEY_EVENT_COL_4_ROW_3_PRESSED  29
+-#define KEY_EVENT_COL_4_ROW_3_RELEASED 30
+-#define KEY_EVENT_COL_4_ROW_4_PRESSED  31
+-#define KEY_EVENT_COL_4_ROW_4_RELEASED 32
+-
+-//..... up to KEY_EVENT_COL_16_ROW_16_RELEASED 128!!
+-
+-
+-#define E_SERVE_PAGE                   130                               // test
+-#define E_TIMER_SW_DELAYED_RESET       131
+-
+-#define WAKE_UP_LITTLE_BABY            132
++/**********************************************************************
++   Mark Butcher    Bsc (Hons) MPhil MIET
++
++   M.J.Butcher Consulting
++   Obere Bahnhofstrasse 13, 5507 Mellingen
++
++   www.uTasker.com      Skype: M_J_Butcher
++
++   ---------------------------------------------------------------------
++   File:        application.h
++   Project:     uTasker Demonstration project
++   ---------------------------------------------------------------------
++   Copyright (C) M.J.Butcher Consulting 2004..2008
++   *********************************************************************
++
++   18.02.2006 Add SMTP parameter settings                                {1}
++   03.06.2007 Add FTP user definable FTP timeout and ACTIVE_FTP_LOGIN    {2}
++   29.06.2007 Add usUSB_state, SOURCE_USB, fnSendToUSB(), fnSetUSB_debug(),
++                       ES_USB_LOGIN, ES_USB_COMMAND_MODE and USB_ON_LINE {3}
++   30.10.2008 Add MODBUS (and version numbers incrimented)               {4}
++
++*/
++
++#include <stdint.h>
++
++#define SOFTWARE_VERSION                    "V1.3.010"
++
++#ifdef SMTP_PARAMETERS
++    #define PARAMETER_BLOCK_VERSION         (unsigned char)(9)           // ensure new version when adding/removing SMTP parameters
++#else
++    #define PARAMETER_BLOCK_VERSION         (unsigned char)(8)
++#endif
++
++#define MY_PROJECT_NAME                     "uTasker Demo project"
++
++#define VALID_VERSION_MAGIC_NUMBER          0x1234                       // {3} - check used when downloading firmware via USB
++
++extern const CHAR cSoftwareVersion[];
++
++extern QUEUE_TRANSFER fnSendToUSB(unsigned char *ptrData, QUEUE_TRANSFER Length); // {3}
++extern void fnDownload(unsigned char *ptrData, QUEUE_TRANSFER Length);    // {3}
++extern CHAR *fnSkipWhiteSpace(CHAR *ptr_input);
++extern void fnEstablishDataConnection(void);
++extern void fnTerminateDataConnection(void);
++extern void fnEstablishManualDataConnection(unsigned char *ucDialinIP, unsigned short usSerialDialinPort);
++extern void fnConfigureTelnetServer(void);
++extern QUEUE_HANDLE fnSetNewSerialMode(unsigned char ucDriverMode);
++extern unsigned short fnGetOurParameters(int iCase);
++extern CHAR *fnUpTime(CHAR *cValue);
++extern void fnConfigureFtpServer(unsigned short usTimeout);
++extern void fnFlushSerialRx(void);
++extern void fnSaveDebugHandle(int iState);
++extern void fnRestoreDebugHandle(void);
++extern void fnSetUSB_debug(void);                                        // {3}
++extern int  fnCommandInput(unsigned char *ptrData, unsigned short usLen, int iSource);
++    #define SOURCE_SERIAL      0
++    #define SOURCE_NETWORK     1
++    #define SOURCE_USB         2                                         // {3}
++
++extern int  fnCheckTelnet(QUEUE_TRANSFER Length, UTASK_TASK Owner);
++extern void fnConfigureAndStartWebServer(void);
++extern int  fnInitiateLogin(unsigned short usNextState);
++    #define DIRECT_LOGIN       0
++    #define DO_PASSWORD_ENTRY  1
++    #define TELNET_ON_LINE     2
++    #define USB_ON_LINE        3                                         // {3}
++
++extern void fnGotoNextState(unsigned short usNextState);
++extern void fnEchoInput(unsigned char *ucInputMessage, QUEUE_TRANSFER Length);
++extern void fnSetDefaultNetwork(NETWORK_PARAMETERS *);
++extern int  fnConfigPort(CHAR cPortBit, CHAR cType);
++extern void fnSetPortOut(unsigned char ucPortOutputs, int iInitialisation);
++extern int  fnTogglePortOut(CHAR cPortBit);
++extern int  fnUserPortState(CHAR cPortBit);
++extern int  fnPortInputConfig(CHAR cPortBit);
++extern void fnSendEmail(int iRepeat);
++extern void fnSavePorts(void);
++extern void fnResetChanges(void);
++extern void fnInitialisePorts(void);
++extern void fnRestoreFactory(void);
++extern int  fnPortState(CHAR cPortBit);
++extern int  fnPortAnalogConfig(CHAR cPortBit);
++extern int  fnAreWeValidating(void);
++extern void fnWeHaveBeenValidated(void);
++extern int  fnSaveNewPars(int iTemp);
++extern CHAR *fnShowSN(CHAR *cValue);
++extern unsigned char fnAddTime(CHAR *ptrBuffer);
++extern void fnSetNewValue(int iType, CHAR *ptr_input);
++    #define WAIT_BUFFER_SIZE        1
++    #define WAIT_BUFFER_DELAY       2
++    #define FLOW_CONTROL_HIGH_WATER 3
++    #define FLOW_CONTROL_LOW_WATER  4
++    #define DIAL_OUT_PORT           5
++    #define DIAL_IN_PORT            6
++    #define TELNET_PORT             7
++
++
++typedef struct stPARS
++{
++    unsigned char  ucParVersion;                                         // Versions number to avoid loading incorrect structure after major changes
++    unsigned short telnet_timeout;                                       // TELNET timeout in seconds (0xffff means no timeout) - max 18 hours
++    unsigned short usSerialMode;                                         // serial settings
++    unsigned short usTelnetPort;                                         // the port number of our TELNET service
++    unsigned char  ucServers;                                            // active servers
++    unsigned char  ucSerialSpeed;                                        // Baud rate of serial interface
++    unsigned char  ucTrustedIP[IPV4_LENGTH];                             // Trusted IP address
++    CHAR           cUserName[8];                                         // The single user administrator
++    CHAR           cUserPass[8];                                         // The administrator's password
++    CHAR           cDeviceIDName[21];                                    // 20 characters for recognition plus null terminator
++    unsigned char  ucFlowHigh;                                           // High water flow level for XOFF/CTS (%)
++    unsigned char  ucFlowLow;                                            // Low water flow level for XON/CTS (%)
++    unsigned char  ucUserOutputs;                                        // ports set as outputs
++    unsigned char  ucUserOutputValues;                                   // port values
++    unsigned short usUserDefinedOutputs;                                 // second set of user defined outputs
++#ifdef SMTP_PARAMETERS                                                   // {1}
++    unsigned char  ucSMTP_user_name[23];                                 // SMTP user's name plus terminator
++    unsigned char  ucSMTP_password[11];                                  // SMTP user's password plus terminator
++    unsigned char  ucSMTP_user_email[31];                                // SMTP user's email address plus terminator
++    unsigned char  ucSMTP_server[31];                                    // SMTP server address plus terminator
++    unsigned char  ucSMTP_server_ip[IPV4_LENGTH];                        // SMTP server IP address - either fixed or resolved by DNS
++#endif
++#ifdef IPV6LOWPAN
++    uint16_t       uc6lowpanPrefix[8];                                  // IPv6 Prefix for 802.15.4 side
++#endif
++
++
++} PARS;
++
++
++typedef struct stTEMPPARS
++{
++    NETWORK_PARAMETERS temp_network;
++    PARS               temp_parameters;
++#ifdef MODBUS_SERIAL                                                     // {4}
++    MODBUS_PARS        modbus_parameters;
++#endif
++} TEMPPARS;
++
++
++                                                                         // Parameters
++#define PAR_SERIAL_NUMBER 0                                              // location of serial number
++#define PAR_NETWORK (PAR_SERIAL_NUMBER + sizeof(unsigned long))          // location of network parameters
++#define PAR_DEVICE  (PAR_NETWORK + sizeof(NETWORK_PARAMETERS))           // location of the device parameter block
++#define PAR_MODBUS  (PAR_NETWORK + sizeof(NETWORK_PARAMETERS) + sizeof(PARS)) // {4} location of the MODBUS parameter block
++
++
++// ucTransferMode defines
++#define AUTO_SERIAL_TO_ETHERNET         0x01
++#define ACTIVE_ESCAPE_SEQUENCE_SCANNING 0x02
++#define AUTO_ETHERNET_TO_SERIAL         0x04
++#define RAW_SOCKET_MODE                 0x08
++#define ALLOW_SERIAL_ETHERNET_DIALIN    0x10
++#define ALLOW_TELNET_DIALOUT            0x20
++#define TELNET_ESCAPE_SEQUENCE_SCANNING 0x80
++
++// ucRAWMode defines
++#define RX_TREATS_IAC                   0x01
++#define TX_TREATS_IAC                   0x02
++
++// server defines
++#define SMTP_LOGIN                      0x01                             // the smtp define for efficiency (there will be a warning of not the same)
++#define ACTIVE_DHCP                     0x02                             // not a local server but means get info from a DHCP server
++#define ACTIVE_FTP_SERVER               0x04
++#define ACTIVE_WEB_SERVER               0x08
++#define ACTIVE_TELNET_SERVER            0x10
++#define AUTHENTICATE_WEB_SERVER         0x20
++#define ACTIVE_LOGIN                    0x40
++#define ACTIVE_FTP_LOGIN                0x80
++
++
++extern PARS *parameters;
++extern const PARS cParameters;
++extern TEMPPARS *temp_pars;
++extern NETWORK_PARAMETERS network_flash;
++extern QUEUE_HANDLE SerialPortID;
++extern CHAR cEmailAdd[41];
++extern unsigned short usEthernet_Serial_state;
++extern unsigned short usData_state;
++extern unsigned short usUSB_state;                                       // {3}
++
++#ifdef USE_TIME_SERVER
++  extern unsigned long ulPresentTime;
++#endif
++
++#ifdef USE_SMTP
++  extern unsigned char ucSMTP_server[IPV4_LENGTH];
++#endif
++
++#define PASSWORD_IDLE             0
++#define START_PASSWORD            1
++#define ENTER_USER_NAME           2
++#define ENTER_NEW_PASSWORD        3
++#define CONFIRM_NEW_PASS          4
++#define TELNET_LOGIN              5
++
++// Ethernet - Serial modes
++#define ES_NO_CONNECTION          0x0000
++#define ES_CONNECTING_SERVER      0x0001
++#define ES_CONNECTING_CLIENT      0x0002
++#define ES_NETWORK_COMMAND_MODE   0x0004
++#define ES_DATA_MODE              0x0008
++#define ES_TERMINATE_CONNECTION   0x0010
++#define ES_SERIAL_COMMAND_MODE    0x0020
++#define ES_STARTING_COMMAND_MODE  0x0040
++#define ES_BINARY_DATA_MODE       0x0080
++
++#define ES_SERIAL_LOGIN           0x0100
++#define ES_NETWORK_LOGIN          0x0200
++#define ES_SERIAL_SUSPENDED       0x0400
++#define ES_USB_LOGIN              0x0800                                 // {3}
++#define ES_USB_COMMAND_MODE       0x1000                                 // {3}
++#define ES_USB_DOWNLOAD_MODE      0x2000                                 // {3}
++#define ES_USB_RS232_MODE         0x4000                                 // {3}
++
++
++#define SAVE_NEW_PARAMETERS                0
++#define SAVE_NEW_PARAMETERS_VALIDATE       1
++#define SAVE_NEW_PARAMETERS_CHECK_CRITICAL 2
++
++#define WARN_BEFORE_SAVE   0                                             // the web page warning of critical changes - deactivated
++#define BAD_PASSWORD_PAGE  0                                             // the web page informing of bad passowrd entry - deactivated
++
++#define FTP_TIMEOUT               60                                     // FTP connection times out after this delay with no activity {2}
++
++// LCD events
++// Application To LCD
++#define E_LCD_COMMAND             1
++#define E_LCD_TEXT                2
++#define E_LCD_PATTERN             3
++#define E_LCD_READ_ADDRESS        4
++#define E_LCD_READ_RAM            5
++#define E_LCD_COMMAND_TEXT        6
++
++// LDC to application
++#define E_LCD_INITIALISED         1
++#define E_LCD_READY               2
++#define E_LCD_READ                3
++
++
++// Key pad events
++// Keypad to application - sent as interrupt events!!
++#define KEY_EVENT_COL_1_ROW_1_PRESSED  1
++#define KEY_EVENT_COL_1_ROW_1_RELEASED 2
++#define KEY_EVENT_COL_1_ROW_2_PRESSED  3
++#define KEY_EVENT_COL_1_ROW_2_RELEASED 4
++#define KEY_EVENT_COL_1_ROW_3_PRESSED  5
++#define KEY_EVENT_COL_1_ROW_3_RELEASED 6
++#define KEY_EVENT_COL_1_ROW_4_PRESSED  7
++#define KEY_EVENT_COL_1_ROW_4_RELEASED 8
++
++#define KEY_EVENT_COL_2_ROW_1_PRESSED  9
++#define KEY_EVENT_COL_2_ROW_1_RELEASED 10
++#define KEY_EVENT_COL_2_ROW_2_PRESSED  11
++#define KEY_EVENT_COL_2_ROW_2_RELEASED 12
++#define KEY_EVENT_COL_2_ROW_3_PRESSED  13
++#define KEY_EVENT_COL_2_ROW_3_RELEASED 14
++#define KEY_EVENT_COL_2_ROW_4_PRESSED  15
++#define KEY_EVENT_COL_2_ROW_4_RELEASED 16
++
++#define KEY_EVENT_COL_3_ROW_1_PRESSED  17
++#define KEY_EVENT_COL_3_ROW_1_RELEASED 18
++#define KEY_EVENT_COL_3_ROW_2_PRESSED  19
++#define KEY_EVENT_COL_3_ROW_2_RELEASED 20
++#define KEY_EVENT_COL_3_ROW_3_PRESSED  21
++#define KEY_EVENT_COL_3_ROW_3_RELEASED 22
++#define KEY_EVENT_COL_3_ROW_4_PRESSED  23
++#define KEY_EVENT_COL_3_ROW_4_RELEASED 24
++
++#define KEY_EVENT_COL_4_ROW_1_PRESSED  25
++#define KEY_EVENT_COL_4_ROW_1_RELEASED 26
++#define KEY_EVENT_COL_4_ROW_2_PRESSED  27
++#define KEY_EVENT_COL_4_ROW_2_RELEASED 28
++#define KEY_EVENT_COL_4_ROW_3_PRESSED  29
++#define KEY_EVENT_COL_4_ROW_3_RELEASED 30
++#define KEY_EVENT_COL_4_ROW_4_PRESSED  31
++#define KEY_EVENT_COL_4_ROW_4_RELEASED 32
++
++//..... up to KEY_EVENT_COL_16_ROW_16_RELEASED 128!!
++
++
++#define E_SERVE_PAGE                   130                               // test
++#define E_TIMER_SW_DELAYED_RESET       131
++
++#define WAKE_UP_LITTLE_BABY            132
+diff -r -U 8 uTaskerV1.3.0_before_rum/Applications/uTaskerV1.3/config.h uTaskerV1.3.0_SAM7X/Applications/uTaskerV1.3/config.h
+--- uTaskerV1.3.0_before_rum/Applications/uTaskerV1.3/config.h	2007-02-05 09:34:48.000000000 -0700
++++ uTaskerV1.3.0_SAM7X/Applications/uTaskerV1.3/config.h	2009-03-26 10:16:42.000000000 -0600
+@@ -2,439 +2,525 @@
+    Mark Butcher      Bsc (Hons) MPhil MIEE
+ 
+    M.J.Butcher Consulting
+    Obere Bahnhofstrasse 13, 5507 Mellingen
+ 
+    www.uTasker.com      Skype: M_J_Butcher
+ 
+    ---------------------------------------------------------------------
+-   File:        config.h
++   File:        config.h (reference for SAM7X SP4)
+    Project:     Single Chip Embedded Internet
+    ---------------------------------------------------------------------
+-   Copyright (C) M.J.Butcher Consulting 2006
++   Copyright (C) M.J.Butcher Consulting 2004..2008
+    *********************************************************************/
+ 
+ #ifndef __CONFIG__
+ #define __CONFIG__
+ 
++/**
++    @brief  The following includes are for building within the Rowley
++            Crossworks IDE and integration with the Atmel RUM network
++            for use with AT86RF230, 231 and 212 radios.
++*/
++
++#define SUPPORT_RUM
++//#define LOCAL_DEBUG
++
++#ifndef IPV6LOWPAN
++    #define IPV6LOWPAN 0
++#endif // IPV6LOWPAN
++
+ 
+ #ifdef _CODE_WARRIOR_CF
+   #pragma const_strings on                                               // ensure strings are of const type when compiling with CodeWarrior
+ #endif
+ 
++
+ #ifdef _WINDOWS
+   #define MEM_FACTOR 1.2                                                 // Windows tends to use more memory so expand heap slightly
+ #else
+   #define MEM_FACTOR 1.0
+ #endif
+ 
+ 
+-#define USE_MAINTENANCE                                                  // include some maintenance support for the application
++#define USE_MAINTENANCE                                                  // include some maintenance support for the application (remove to reduce project size for special tests or possibly running from limited RAM)
+ 
+ 
+-#define UNUSED_STACK_PATTERN   0x55                                      // this is the stack fill pattern for recognising maximum statck usage
++#define UNUSED_STACK_PATTERN   0x55                                      // this is the stack fill pattern for recognising maximum stack usage
+ 
+ 
+ 
+ // Major hardware dependent settings for this project
+ //
+-#ifdef _HW_NE64
+-    #define DEMO9S12NE64                                                 // Hardware we are working on when using the NE64
+-    #define TARGET_HW           "DEMO9S12NE64"
+-
+-    #define OUR_HEAP_SIZE (unsigned short)((3.5*1024)*MEM_FACTOR)         // we can tune this value according to our real maximum heap requirements
+-    #define TICK_RESOLUTION      34                                      // 34.078 would give perfect accuracy. 40 ms system time period is the max possible with NE64 PIT !
+-#endif
+-
+ #ifdef _HW_SAM7X
+     #define SAM7X_EVAL                                                   // evaluation board from ATMEL
+-  //#define OLIMEX_EX256                                                 // Low cost evaluation board from Olimex
++  //#define OLIMEX_EX256                                                 // low cost evaluation board from Olimex
+     #if defined (SAM7X_EVAL)
+         #define TARGET_HW       "AT91SAM7X-EK"
+     #elif defined (OLIMEX_EX256)
+         #define TARGET_HW       "SAM7X-EX256"
+     #endif
+ 
+-    #define OUR_HEAP_SIZE (unsigned short)((25*1024 + 600)*MEM_FACTOR)   // we have the LAN buffers in HEAP and big RX/TX
++    #define OUR_HEAP_SIZE (HEAP_REQUIREMENTS)((25*1024 + 600)*MEM_FACTOR)// we have the LAN buffers in HEAP and big RX/TX
+     #define TICK_RESOLUTION      50                                      // 50 ms system time period - max possible with SAM7X at 55MHz PIT would be about 280ms !
+-#endif
+-
+-#ifdef _LPC23XX
+-    #define KEIL_MCB2300                                                 // Keil evaluation board
+-    #define TARGET_HW       "KEIL MCB2300"
+-
+-    #define OUR_HEAP_SIZE (unsigned short)((25*1024 + 600)*MEM_FACTOR)   // we have the LAN buffers in HEAP and big RX/TX
+-    #define TICK_RESOLUTION      50                                      // 50 ms system time period - max possible with ARM7X at 55MHz PIT would be about 280ms !
+-    #define _LITTLE_ENDIAN                                               // compile project in LITTLE ENDIAN mode
+-#endif
+-
+-#ifdef _M5223X
+-    #define M52235EVB                                                    // EVB Board for M52235
+-    //#define M52233DEMO                                                 // DEMO Board for M52233
+-
+-    #if defined (M52235EVB)
+-        #define TARGET_HW       "Freescale EVB"
+-    #elif defined (M52233DEMO)
+-        #define TARGET_HW       "Freescale DEMO"
+-    #endif
+-
+ 
+-    #define OUR_HEAP_SIZE (unsigned short)((19*1024)*MEM_FACTOR)         // we have the LAN buffers in HEAP and big RX/TX
+-    #define TICK_RESOLUTION      50                                      // 50 ms system time period - max possible with M5223X at 60MHz (with prescaler) PIT would be about 70s!
++  //#define SPI_SW_UPLOAD                                                // SW upload to SPI FLASH support enabled
+ #endif
+ 
+-#ifdef _STR91XF
+-  //#define REva_DAUGHTER                                                // Raisonance REva STR912F daughter board
+-    #define STR912_SK                                                    // IAR Evaluation Board
+-    #if defined (REva_DAUGHTER)
+-        #define TARGET_HW       "REva"
+-    #elif defined STR912_SK
+-        #define TARGET_HW       "IAR STR912-SK"
+-    #endif
+-
+-    #define OUR_HEAP_SIZE (unsigned short)((25*1024)*MEM_FACTOR)         // we have the LAN buffers in HEAP and big RX/TX
+-    #define TICK_RESOLUTION      50                                      // 50 ms system time period - max possible with ARM7X at 55MHz PIT would be about 280ms !
+-#endif
+-
+-
+-
+ 
+ /**************** Specify a file system for use by FTP, HTML and such functions *******************************/
+-#define USE_PARAMETER_BLOCK                                              // enable a parameter block for storing and retrieving non-volatile information
+-#define USE_PAR_SWAP_BLOCK                                               // We support a backup block which can be restored if desired (it is recommended to use this together with USE_PARAMETER_BLOCK
++#ifndef NO_FLASH_SUPPORT
++    #define USE_PARAMETER_BLOCK                                          // enable a parameter block for storing and retrieving non-volatile information
++    #define USE_PAR_SWAP_BLOCK                                           // we support a backup block which can be restored if desired (it is recommended to use this together with USE_PARAMETER_BLOCK
+ 
+-//#define SPI_FILE_SYSTEM                                                // we have an external file system via SPI interface, rather than internal in FLASH
+-#define FLASH_FILE_SYSTEM                                                // we have an internal file system in FLASH (either previous or this one)
++  //#define SPI_FILE_SYSTEM                                              // we have an external file system via SPI interface
++    #define FLASH_FILE_SYSTEM                                            // we have an internal file system in FLASH
++  //#define NVRAM                                                        // we have an external file system in non-volatile RAM
++#endif
+ 
+-#if defined (SPI_FILE_SYSTEM)
+-    #define ACTIVE_FILE_SYSTEM
+-#elif defined  (FLASH_FILE_SYSTEM)
++#if defined (SPI_FILE_SYSTEM) || defined (FLASH_FILE_SYSTEM)
+     #define ACTIVE_FILE_SYSTEM
+ #endif
+ 
+ #define SUPPORT_MIME_IDENTIFIER                                          // if the file type is to be handled (eg. when mixing HTML with JPGs etc.) this should be set - note that the file system header will be adjusted
+ 
+-
+ #ifdef FLASH_FILE_SYSTEM
+-    #define FILE_GRANULARITY (FLASH_GRANULARITY)                         // File granularity is equal to the FLASH granularity (as defined by the device)
++    #ifdef SPI_FILE_SYSTEM
++        #define SPI_FLASH_SST25                                          // use SST SPI FLASH
++      //#define SPI_FLASH_ST                                             // use ST FLASH rather than ATMEL
++        #define SPI_DATA_FLASH                                           // FLASH type is data FLASH supporting sub-sectors (relevant for ST types)
++        #if defined SPI_FLASH_ST
++            #if defined SPI_DATA_FLASH
++                #define FILE_GRANULARITY (4*SPI_FLASH_BLOCK_LENGTH)      // (4 x 4096 byte blocks) file granularity is equal to a multiple of the FLASH granularity (as defined by the device)
++            #else
++                #define FILE_GRANULARITY (SPI_FLASH_BLOCK_LENGTH)        // (65535 byte blocks) file granularity is equal to a multiple of the FLASH granularity (as defined by the device)
++            #endif
++        #elif defined SPI_FLASH_SST25
++            #define FILE_GRANULARITY (SPI_FLASH_BLOCK_LENGTH)            // (4096 byte blocks) file granularity is equal to sub-sector FLASH granularity (as defined by the device)
++        #else
++            #define FILE_GRANULARITY (8*SPI_FLASH_BLOCK_LENGTH)          // (4224/2112 byte blocks) file granularity is equal to a multiple of the FLASH granularity (as defined by the device)
++        #endif
++    #else
++        #define FILE_GRANULARITY (FLASH_GRANULARITY)                     // file granularity is equal to the FLASH granularity (as defined by the device)
++    #endif
+ #endif
+ 
+-
+-
+-
+-#define uFILE_SYSTEM_START     (unsigned char *)(uFILE_START + PAR_BLOCK_SIZE)
+-#define uFILE_SYSTEM_END       (unsigned char *)(uFILE_START + FILE_SYSTEM_SIZE)
+-#define LAST_FILE_BLOCK        (unsigned short)((FILE_SYSTEM_SIZE - PAR_BLOCK_SIZE)/FILE_GRANULARITY) // last block in our file system
+-
+-
+-#ifdef SUPPORT_MIME_IDENTIFIER
+-  #define FILE_HEADER (sizeof(MAX_FILE_LENGTH) + 1)                      // file length followed by MIME identifier
++#define uFILE_SYSTEM_START (MEMORY_RANGE_POINTER)(uFILE_START)
++#define uFILE_SYSTEM_END   (MEMORY_RANGE_POINTER)(uFILE_START + FILE_SYSTEM_SIZE)
++#if defined _STR91XF || defined _LPC23XX && (defined FLASH_FILE_SYSTEM && !defined SPI_FILE_SYSTEM) // positions parameter block in different FLASH bank and uses sub-files
++    #define LAST_FILE_BLOCK    (unsigned short)((FILE_SYSTEM_SIZE)/FILE_GRANULARITY) // last block in our file system
++    #define LAST_SUB_FILE_BLOCK  (unsigned short)((FILE_SYSTEM_SIZE)/SUB_FILE_SIZE)  // last sub-block in our file system
+ #else
+-  #define FILE_HEADER (sizeof(MAX_FILE_LENGTH))
++    #define LAST_FILE_BLOCK    (unsigned short)((FILE_SYSTEM_SIZE)/FILE_GRANULARITY) // last block in our file system
+ #endif
+ 
++#define POINTER_USER_NAME parameters->cUserName                          // define where the user name and password is taken from
++#define POINTER_USER_PASS parameters->cUserPass
++
+ 
+ /**************** Configure driver services *******************************************************************/
+ 
+ //#define CAN_INTERFACE                                                  // enable CAN bus interface
+ #ifdef CAN_INTERFACE
+     #define NUMBER_CAN   2                                               // the number of logical queues required for CAN support
+-  //#define UTASKER_SIM                                                  // Simulator HW extension
++  //#define UTASKER_SIM                                                  // simulator HW extension
+     #define SIM_HW_IP_ADD       192,168,0,4                              // IP address of our HW simulator extension
+-    #define SIM_HW_PORT_NUMBER  1234                                     // Port number used by out HW simulator
++    #define SIM_HW_PORT_NUMBER  1234                                     // port number used by out HW simulator
+ #else
+     #define NUMBER_CAN   0                                               // no physical queue needed
+ #endif
+ 
+-#define SERIAL_INTERFACE                                                 // enable serial interface driver
++/**
++    @brief  Terminal control and debug of the SAM7X system running the Atmel
++            RUM protocol and IPv6/6LoWPAN and onboard web pages and host
++            server interface... Both UART (RS232 COM PORT) and USB are active
++            when "SERIAL_INTERFACE" is defined.
++*/
++//#define SERIAL_INTERFACE                                                 // enable serial interface driver
+ #ifdef SERIAL_INTERFACE
+     #define SERIAL_STATS                                                 // keep statistics about serial interface use
+     #define SUPPORT_MSG_MODE                                             // enable terminator recognition (MSG_MODE)
+     #define SUPPORT_MSG_CNT                                              // enable the message counter mode (MSG_MODE_RX_CNT) - requires also SUPPORT_MSG_MODE
+     #define WAKE_BLOCKED_TX                                              // allow a blocked transmitter to continue after an interrupt event
+     #define SUPPORT_FLUSH                                                // support rx flush
+     #define SERIAL_SUPPORT_XON_XOFF                                      // enable XON/XOFF support in driver
+     #define HIGH_WATER_MARK   20                                         // stop flow control when the input buffer has less than this space (if variable settings are required, use SUPPORT_FLOW_HIGH_LOW define)
+     #define LOW_WATER_MARK    20                                         // restart when the input buffer content falls below this value
+-    #define SUPPORT_FLOW_HIGH_LOW                                        // Allow flow control levels to be configured (in % of buffer size)
++    #define SUPPORT_FLOW_HIGH_LOW                                        // allow flow control levels to be configured (in % of buffer size)
+     #define SERIAL_SUPPORT_ECHO                                          // enable echo mode in rx driver
+     #define SERIAL_SUPPORT_ESCAPE                                        // enable escape sequencing in driver
+-    #define SERIAL_SUPPORT_SCAN                                          // serial receiver supports scanning of input buffer for a sequence
++  //#define SERIAL_SUPPORT_SCAN                                          // serial receiver supports scanning of input buffer for a sequence
++  //#define SUPPORT_HW_FLOW                                              // support RTS/CTS flow control and other possible modem signals
+ 
+   //#define LOG_UART0                                                    // activate this option to log all data sent to UART 0 to a file called "UART0.txt"
+   //#define LOG_UART1                                                    // activate this option to log all data sent to UART 1 to a file called "UART1.txt"
+-  //#define LOG_UART2                                                    // activate this option to log all data sent to UART 2 to a file called "UART2.txt"
++    #define LOG_UART2                                                    // activate this option to log all data sent to UART 2 to a file called "UART2.txt"
++  //#define LOG_UART3                                                    // activate this option to log all data sent to UART 3 to a file called "UART3.txt"
++
++  //#define USE_MODBUS_MASTER                                            // support MODBUS master function
++    #ifdef USE_MODBUS_MASTER
++        #define TEST_SLAVE_ADDRESS    MAX_SLAVE_MODBUS_ADDRESS           // used by demo when testing master functionality
++    #endif
++  //#define MODBUS_SERIAL                                                // support MODBUS serial protocol
++    #ifdef MODBUS_SERIAL
++        #define MODBUS_RTU                                               // suppport binary RTU mode
++        #define MODBUS_ASCII                                             // support ASCII mode
++        #define STRICT_MODBUS_SERIAL_MODE                                // automatically adjust the character length according to mode
++        #define MODBUS_SERIAL_INTERFACES          2
++        #define MODBUS_SUPPORT_SERIAL_LINE_FUNCTIONS                     // support the serial line function at the slave
++        #define START_USER_CODE_BLOCK             100                    // user defined function code range start
++        #define END_USER_CODE_BLOCK               109                    // user defined function code range end
++        #define MODBUS_CRC_FROM_LOOKUP_TABLE                             // MODBUS RTU cyclic redundancy check performed with help of loop up table (requires 512 bytes FLASH table, but faster than calculation loop)
++        #if defined MODBUS_ASCII && MODBUS_SERIAL_INTERFACES > 1
++            #define GLOBAL_TIMER_TASK                                    // activate global software timer support - ensure that TIMER_QUANTITY is adequate (one for each ASCII serial connection)
++        #endif
++    #endif
+ #else
+     #define NUMBER_SERIAL  0                                             // no physical queue needed
+ #endif
+ 
+-
+-#define IIC_INTERFACE                                                    // enable IIC interface driver
+-#ifdef IIC_INTERFACE
+-    #define NUMBER_IIC     1                                             // one physical queue needed for IIC interface
++#ifdef DEVICE_WITHOUT_USB
++    #define NUMBER_USB     0                                             // no physical queue needed
+ #else
+-    #define NUMBER_IIC     0                                             // no physical queue needed
++    /**
++        @brief  USB is active for debug and user control in conjunction with
++                the Atmel RUM, IPv6/6LoWPAN protocol's.
++    */
++//    #define USB_INTERFACE                                                // enable USB driver interface
++    #ifdef USB_INTERFACE
++      //#define USB_HOST_SUPPORT
++        #define WAKE_BLOCKED_USB_TX                                      // allow a blocked USB transmitter to continue after an interrupt event
++        #define NUMBER_USB     (5 + 1)                                   // 6 physical queues (control plus 5 endpoints) needed for USB interface
++        #define LOG_USB_TX                                               // log USB transmissions in simulator
++        #define NUMBER_OF_POSSIBLE_CONFIGURATIONS  1                     // one USB configuration
++        #define ENDPOINT_0_SIZE                    8                     // maximum packet size for endpoint 0. Low speed devices must use 8 whereas full speed devices can chose to use 8, 16, 32 or 64 (SAM7X must use 8!!)
++        #define USB_STRING_OPTION                                        // support optional string descriptors
++        #define USB_RUN_TIME_DEFINABLE_STRINGS                           // enable USB string content to be defined at run time (variable)
++      //#define USE_USB_OTG_CHARGE_PUMP                                  // enable charge pump control in the driver
++        #ifdef USE_USB_OTG_CHARGE_PUMP
++            #define IIC_INTERFACE                                        // activate IIC interface since it will be needed
++        #endif
++    #else
++        #define NUMBER_USB     0                                         // no physical queue needed
++    #endif
+ #endif
+ 
++//#define IIC_INTERFACE                                                  // enable IIC interface driver
++#ifndef IIC_INTERFACE
++    #define NUMBER_IIC     0                                             // no physical queue needed
++#endif
+ 
+ 
+-#define ETH_INTERFACE                                                    // enable Ethernet interface driver
++#ifndef DEVICE_WITHOUT_ETHERNET
++    #define ETH_INTERFACE                                                // enable Ethernet interface driver
++#endif
+ #ifdef ETH_INTERFACE
+-    #define MAC_DELIMITER  '-'                                           // Used for diplay and entry of mac addresses
++    #define MAC_DELIMITER  '-'                                           // used for diplay and entry of mac addresses
+     #define NUMBER_LAN     1                                             // one physical interface needed for LAN
+ 
+   //#define LOG_ETHERNET                                                 // activate this option to log all transmitted data to a file called "Eth_tx.txt"
+   //#define SUPPORT_DISTRIBUTED_NODES
+     #ifdef SUPPORT_DISTRIBUTED_NODES
+-        #define PROTOCOL_UNETWORK 0x5555
++        #define PROTOCOL_UNETWORK 0x754e                                 // uN - uNetwork protocol
+         #define MAX_NETWORK_NODES 2
+         #define UPROTOCOL_WITH_RETRANS
+         #define MAX_STORED_MESSAGES       10                             // set TIMER_QUANTITY to at least this amount since each message needs a timer
+         #define MAX_UPROT_MSG_SIZE        255
+         #define UPROT_RETRANS_TIME        (CLOCK_LIMIT)(0.05 * SEC)
+         #define MAX_UPROT_RETRANS_ATTEMPS 5
+         #define GLOBAL_TIMER_TASK                                        // needs global timer to operate
+         #define USE_TIMER_FUNCTION_EVENT                                 // global timer handles messages to itself as function event
+     #endif
+ #endif
+ 
+ 
+ 
+-#define PHYSICAL_QUEUES   (NUMBER_SERIAL + NUMBER_LAN + NUMBER_IIC + NUMBER_CAN) // the number of physical queues in the system
++#define PHYSICAL_QUEUES   (NUMBER_SERIAL + NUMBER_LAN + NUMBER_IIC + NUMBER_CAN + NUMBER_USB) // the number of physical queues in the system
+ 
+ 
+ 
+ 
+ #ifdef ETH_INTERFACE
+ 
+ /**************** Configure TCP/IP services ******************************************************************/
+     #define USE_IP                                                       // enable IP and ARP and all other possible tcp/ip services
+     #ifdef USE_IP
+-        #define USE_IP_STATS                                             // Enable IP statistics (counters)
++        #define USE_IP_STATS                                             // enable IP statistics (counters)
+         #define ARP_TABLE_ENTRIES      8                                 // the maximum entries in ARP table
++        #define ARP_IGNORE_FOREIGN_ENTRIES                               // only add used addresses to ARP table
+         #define USE_ICMP                                                 // enable ICMP
+ 
+         #ifdef USE_ICMP                                                  // specify ICMP support details
+             #define ICMP_PING                                            // allow PING reply
+-            #define ICMP_SEND_PING                                       // support PING transmission
+-            #define ICMP_DEST_UNREACHABLE                                // allow destination unreachable if no UDP port exists
++      //    #define ICMP_SEND_PING                                       // support PING transmission
++      //    #define ICMP_DEST_UNREACHABLE                                // allow destination unreachable if no UDP port exists
+         #endif
+ 
+         #define USE_UDP                                                  // enable UDP over IP - needs IP
+         #define USE_TCP                                                  // enable TCP over IP - needs IP
+ 
+         #ifdef USE_TCP                                                   // specify TCP support details
+-            #define USER_TCP_SOCKETS      0                              // We use no non-standard TCP sockets
++            #define USER_TCP_SOCKETS      0                              // we use no non-standard TCP sockets
+ 
+             #define REUSE_TIME_WAIT_SOCKETS                              // allow sockets in 2MSL wait to be reallocated to different IP/port pairs
+             #define RST_ON_NO_TCP_PORT                                   // SYN to non-existing ports receive a RST
+             #define ANNOUNCE_MAX_SEGMENT_SIZE                            // we announce the maximum segment size we can handle when establishing a connection
+             #define SUPPORT_PEER_MSS                                     // respect peer's MSS when sending TCP frames
+             #define SUPPORT_PEER_WINDOW                                  // respect peer's Open Window when sending TCP frames
+-            #define WINDOWING_BUFFERS      4                             // we can send 5 frames before requiring ACKs
+-          //#define WEB_WINDOWING_BUFFERS  3                             // we can send 3 frames before requiring ACKs
++            #define WINDOWING_BUFFERS      4                             // we can send 4 frames before requiring ACKs
+             #define CONTROL_WINDOW_SIZE                                  // support variable windows size to quench reception
+             #define USE_FTP                                              // enable FTP   - needs TCP
+-          //#define USE_SMTP                                             // enable SMTP  - needs TCP
++            #define USE_SMTP                                             // enable SMTP  - needs TCP
+           //#define USE_POP3                                             // enable POP3 Email - needs TCP
+             #define USE_HTTP                                             // support embedded Web server - needs TCP
+             #define USE_TELNET                                           // enable TELNET support
+-          //#define USE_TIME_SERVER                                      // enable time server support - presently demonstarted in application
++          //#define USE_TIME_SERVER                                      // enable time server support - presently demo started in application
+ 
+          // Protocol test support
+          //
+           //#define TCP_TEST                                             // activate a test of TCP windowing with specific window ack losses
+             #define LOSE_ACKS              0                             // rate of simulated lost acks for reliability testing (0 is off, the higher the number, the higher the pseudo-random rate - up to 100%)
++
++          //#define MODBUS_TCP                                           // support MODBUS TCP protocol
+         #endif
+ 
+         #ifdef USE_UDP
+-            #define USER_UDP_SOCKETS       1                             // We reserve  one non-standard UDP socket in case the UDP demo is required
++            #define USER_UDP_SOCKETS       1                             // we reserve  one non-standard UDP socket in case the UDP demo is required
+ 
+           //#define USE_BOOTP                                            // enable BOOTP - needs UDP - IPCONFIG default zero.
+           //#define USE_DHCP                                             // enable DHCP  - needs UDP - IPCONFIG default zero. Needs 1k Ethernet RX Buffers!! (set random number also)
+-          //#define USE_DNS                                              // enable DNS   - needs UDP
++            #define USE_DNS                                              // enable DNS   - needs UDP
+           //#define USE_TFTP                                             // enable TFTP  - needs UDP
++            #define USE_NETBIOS                                          // enable NetBIOS - needs UDP
++          //#define USE_SNMP
+ 
+             #ifdef USE_DHCP
+                 #define DHCP_SOCKET 1
+             #else
+                 #define DHCP_SOCKET 0
+             #endif
+             #ifdef USE_DNS
+                 #define DNS_SOCKET 1
+             #else
+                 #define DNS_SOCKET 0
+             #endif
+             #ifdef USE_TFTP
+                 #define TFTP_SOCKET 1
+             #else
+                 #define TFTP_SOCKET 0
+             #endif
+-            #define UDP_SOCKETS   (DHCP_SOCKET + DNS_SOCKET + TFTP_SOCKET + USER_UDP_SOCKETS) // the number of UDP sockets supported
++            #ifdef USE_SNMP
++                #define SNMP_SOCKET 1
++            #else
++                #define SNMP_SOCKET 0
++            #endif
++            #ifdef USE_NETBIOS
++                #define NETBIOS_SOCKET 1
++                #define SUPPORT_SUBNET_BROADCAST                         // NetBIOS needs to receive sub-net broadcast frames
++            #else
++                #define NETBIOS_SOCKET 0
++            #endif
++            #define UDP_SOCKETS   (DHCP_SOCKET + DNS_SOCKET + SNMP_SOCKET + TFTP_SOCKET + NETBIOS_SOCKET + USER_UDP_SOCKETS) // the number of UDP sockets supported
+         #endif
+ 
+         #ifdef USE_FTP                                                   // specify FTP support details
+-            #define ANONYMOUS_LOGIN                                      // allow anonymous FTP without user/password
++          //#define ANONYMOUS_LOGIN                                      // allow anonymous FTP without user/password
+           //#define FILE_NAMES_PER_FTP_FRAME    6                        // limit size of buffers required to display files to this many names (remove to use maximum possible)
+             #define FTP_SOCKETS 2                                        // reserve 2 TCP sockets for command and data
+             #define FTP_SUPPORTS_NAME_DISPLAY                            // show details of files
+             #define FTP_SUPPORTS_DELETE                                  // enable delete of files via FTP
+-            #define FTP_SUPPORTS_UPLOAD                                  // support read of files via FTP
++            #define FTP_SUPPORTS_DOWNLOAD                                // support read of files via FTP
++            #define FTP_VERIFY_DATA_PORT                                 // check for valid data port when in active mode
++          //#define FTP_PASV_SUPPORT                                     // allow passive mode of operation
++            #define DATA_PORT_TRIGGERS_CONTROL                           // activity on the FTP data port resets the control port TCP idle timer - stops control connection timing out on large data transfers with short idle time value
++            #define FTP_USER_LOGIN
++            #define FTP_WILDCARD_DEL                                     // file system content delete using *.* supported
++            #define FTP_DATA_WINDOWS            2                        // allow transmission of FTP data with windowing support
+         #else
+             #define FTP_SOCKETS 0                                        // no TCP sockets needed
+         #endif
+ 
+         #ifdef USE_POP3
+             #define POP3_SOCKET 1                                        // reserve a TCP socket for POP3 use
+         #else
+             #define POP3_SOCKET 0                                        // no TCP socket needed
+         #endif
+ 
+         #ifdef USE_TIME_SERVER
+             #define TIME_SERVER_SOCKET 1                                 // reserve a TCP socket for time server use use
+         #else
+             #define TIME_SERVER_SOCKET 0                                 // no TCP socket needed
+         #endif
+ 
++        #ifdef MODBUS_TCP
++            #define MODBUS_TCP_GATEWAY                                   // support MODBUS TCP <-> MODBUS serial gateway
++            #define MODBUS_TCP_SERVERS 2
++            #define MODBUS_SOCKETS_0      5
++            #define MODBUS_SOCKETS_1      3
++            #define MODBUS_TCP_SOCKETS    8                              // total number of sockets required by MODBUS TCP
++        #else
++            #define MODBUS_TCP_SOCKETS 0
++        #endif
++
+         #ifdef USE_SMTP
+-            #define SMTP_MESSAGE_LEN   300                               // Frame length of SMTP transmissions (temporary on stack)
++            #define SMTP_MESSAGE_LEN   300                               // frame length of SMTP transmissions (temporary on stack)
+             #define SMTP_SOCKET 1                                        // reserve a TCP socket for SMTP use
+ 
+             #define OUR_USER_DOMAIN                       "my_domain.com";
+             #define DEFAULT_DESTINATION_EMAIL_ADDRESS     "test_name@test.com";
+             #define SMTP_PROVIDER_IP_ADDRESS              { 194,158,229,11 }
+             #define SMTP_PROVIDER_ADDRESS                 "mail.provider.com"
++            #define SMTP_PARAMETERS
++            #define USE_SMTP_AUTHENTICATION
+         #else
+             #define SMTP_SOCKET 0                                        // no TCP socket needed
+         #endif
+ 
+         #ifdef USE_TELNET
+             #define USE_BUFFERED_TCP                                     // always use buffered TCP for telnet
+             #define NO_OF_TELNET_SESSIONS   1                            // reserve sockets TELNET sessions
+         #else
+             #define NO_OF_TELNET_SESSIONS   0                            // no sockets reserved for Telnet
+         #endif
+ 
+         #ifdef USE_BUFFERED_TCP                                          // if using a buffer for TCP to allow interractive data applications (like TELNET)
+             #define WAKE_BLOCKED_TCP_BUF                                 // support waking blocked TCP buffer (with USE_BUFFERED_TCP)
+         #endif
+ 
+         #ifdef USE_HTTP                                                  // specify HTTP support details
++            #define HTTP_WINDOWING_BUFFERS     2                         // we can send 2 frames before requiring ACKs
++            #define HTTP_IGNORE_PARTIAL_ACKS                             // when transmission error rates are low, ignore partial ack handling in favour of retransmission on timeout
++
+             #define WEB_PARAMETER_GENERATION                             // support of parameter generating (eg. manipulating select and adding values)
+             #define WEB_PARAMETER_HANDLING                               // support  handling of received web parameters
+-            #define WEB_PARSER_START          '£'                        // This symbol is used in Web pages to instruct parsing to begin
++            #define WEB_PARSER_START          '$'                        // this symbol is used in Web pages to instruct parsing to begin
+             #define WEB_INSERT_STRING         'v'
+             #define WEB_DISABLE_FIELD         'D'
+             #define WEB_NOT_DISABLE_FIELD     'd'
+             #define WEB_SELECTED_FIELD        's'
+             #define WEB_INSERT_DYNAMIC        'H'
++          //#define WEB_ESCAPE_LEN             5                         // defaults to 4 if not defined
+             #define FILE404 (uFILE_SYSTEM_START + (FILE_GRANULARITY*(LAST_FILE_BLOCK-1)))// last block fixed for 404 error page
+-            #ifndef _HW_NE64
+-                #ifndef SPI_FILE_SYSTEM                                  // SPI file system requires 404 file also to be in file
+-                    #define FILE404_IN_PROG                              // Fixed FILE404 in Code (no NE64 support since it pages the file system in memory)
++          //#ifndef _HW_NE64
++                #if !defined SPI_FILE_SYSTEM || defined FLASH_FILE_SYSTEM// SPI file system requires 404 file also to be in file
++                    #define FILE404_IN_PROG                              // fixed FILE404 in Code (no NE64 support since it pages the file system in memory)
+                 #endif
+-            #endif
++          //#endif
+             #define FILE_404_CONTENT        "<html><head><title>uTasker No file</title></head><body bgcolor=#ff9000 text=#000000 topmargin=3 marginheight=3><center><td valign=top class=h><font color=#ff0000 style=font-size:30px><b style='mso-bidi-font-weight:normal'>uTasker</font> - Error 404</i></b></td><br></td><td align=left><br><br>The requested file has not been found on the server. Please check that html files have been loaded correctly.<br></font></td></tr></body></html>"
+ 
++            #define SUPPORT_CHROME                                       // always answer with HTTP header so that Chrome accepts date
++
+             #define SUPPORT_HTTP_POST                                    // support file uploads using POST command
+             #define SUPPORT_POST_BINARY
+-          //#define SUPPORT_POST_TEXT
++            #define SUPPORT_POST_TEXT
+             #define SUPPORT_POST_GIF
++            #define PLAIN_TEXT_POST                                      // allow posting parameters
++            #define X_WWW_FORM_URLENCODED                                // this encoding is also understood as plain text post (used in addition to PLAIN_TEXT_POST)
++            #define AUTO_ASCII_PLAIN_TEXT_DECODE                         // automatically decode any ASCII characters send as "%xx" - this require '%' to be avoided in post content! (Suggested for use with Chrome)
++            #define SUPPORT_HTTP_POST_TO_APPLICATION                     // allow application to handle posted data rather than always saving to file
+           //#define SUPPORT_DELAY_WEB_SERVING                            // enable delayed web page serving defined by the application
+ 
+             #define NO_OF_HTTP_SESSIONS        4                         // this many parallel HTTP sockets are reserved for this many parallel sessions
+             #define HTTP_AUTHENTICATION                                  // activate basic authentication
+             #define PROJECT_CREDENTIALS  "HTTP/1.0 401\r\nWWW-Authenticate: Basic realm=""uTasker""\r\n\r\n" // put project name here to spice up credential pop-up
+                                                                          //               ^^^^^^^
+-          //#define HTTP_DYNAMIC_CONTENT                                 // activate support of dynamic content generation
++          //#define PROJECT_CREDENTIALS  "HTTP/1.0 401\r\nWWW-Authenticate: Digest algorithm=MD5 realm=""uTasker"" nonce=""61ff892f""\r\n\r\n" // put project name here to spice up credential pop-up
++            #define HTTP_DYNAMIC_CONTENT                                 // activate support of dynamic content generation
++            #define DYNAMIC_DATA_FIXED_LENGTH  0
++            #ifdef HTTP_DYNAMIC_CONTENT
++                #define HTTP_USER_DETAILS                                // enable the application to manage details belonging to a particalar connection
++            #endif
+         #else
+             #define NO_OF_HTTP_SESSIONS        0                         // no TCP sockets are reserved for HTML
+         #endif
+ 
+         #define USER_NAME_AND_PASS                                       // routines for user name and password support
+ 
+-        #define NO_OF_TCPSOCKETS (NO_OF_HTTP_SESSIONS + FTP_SOCKETS + POP3_SOCKET + SMTP_SOCKET + NO_OF_TELNET_SESSIONS + TIME_SERVER_SOCKET + USER_TCP_SOCKETS)   // reserve the number of TCP sockets necessary for our configuration
++        #define NO_OF_TCPSOCKETS (NO_OF_HTTP_SESSIONS + FTP_SOCKETS + POP3_SOCKET + SMTP_SOCKET + NO_OF_TELNET_SESSIONS + TIME_SERVER_SOCKET + MODBUS_TCP_SOCKETS + USER_TCP_SOCKETS)   // reserve the number of TCP sockets necessary for our configuration
+     #endif
+ #else
+   #define NUMBER_LAN     0                                               // no physical queue needed
+ #endif
+ 
+ #define RANDOM_NUMBER_GENERATOR                                          // support a random number generator (useful for DHCP)
+ 
+-
+ //#define SUPPORT_LCD                                                    // enable a task for interfacing to an LCD
+ #ifdef SUPPORT_LCD
+     #define LCD_LINES              2                                     // use 2 x 16 LCD
+-    #define LCD_CHARACTERS         16                                    // Options are 1:8 / 1:16 / 1:20 / 1:24 / 1:40 / 2:x / 4:x
++    #define LCD_CHARACTERS         16                                    // options are 1:8 / 1:16 / 1:20 / 1:24 / 1:40 / 2:x / 4:x
+     #define LCD_ON_COLOUR          (COLORREF)RGB(60,220,60)              // RGB colour of LCD when backlight is on
+     #define LCD_OFF_COLOUR         (COLORREF)RGB(70,160,0)               // RGB colour of LCD when backlight is off
+     #define LCD_PARTNER_TASK       TASK_APPLICATION
+ #endif
+ 
+ //#define SUPPORT_KEY_SCAN                                               // enable a task for key pad scanning
+ #ifdef SUPPORT_KEY_SCAN
+-    #define KEY_ROWS                  4                                  // 4 rows by
++    #define KEY_ROWS                  1                                  // 4 rows by
+     #define KEY_COLUMNS               4                                  // 4 columns
+ #endif
+ 
+ 
+ #define GLOBAL_TIMER_TASK                                                // enable a task for global timer tasks
+ 
+ #ifdef GLOBAL_TIMER_TASK
+     #define TIMER_QUANTITY 10                                            // the number of global timers required
+-  //#define GLOBAL_HARDWARE_TIMER                                        // Global timer task supports hardware resolution
++    //#define GLOBAL_HARDWARE_TIMER                                        // global timer task supports hardware resolution
+ #endif
+ 
+-//#define SUPPORT_LOW_POWER                                              // A low power task supervises power reduction when possible
++//#define SUPPORT_LOW_POWER                                              // a low power task supervises power reduction when possible
+ 
+ #define SUPPORT_DOUBLE_QUEUE_WRITES                                      // allow double queue writes to improve efficiency of long queue copies
+ 
+ 
+ #define MULTISTART                                                       // enable a board to user multiple task configurations
+ 
+ // Project includes are set here for all files in the correct order
+ //
+ #include "types.h"                                                       // project specific type settings
+-#include "..\..\uTasker\driver.h"                                        // driver and general formatting routines
+-#include "..\..\stack\tcpip.h"                                           // TCP/IP stack and web utilities
+-#include "..\..\hardware\hardware.h"                                     // general hardware
+-#include "..\..\uTasker\uTasker.h"                                       // Operating system defines
+-#include "TaskConfig.h"                                                  // The specific task configuration
+-#include "application.h"                                                 // General project specific include
++#include "../../uTasker/driver.h"                                        // driver and general formatting routines
++#include "../../stack/tcpip.h"                                           // TCP/IP stack and web utilities
++#include "../../Hardware/hardware.h"                                     // general hardware
++#include "../../uTasker/uTasker.h"                                       // operating system defines
++#if defined MODBUS_SERIAL || defined MODBUS_MASTER
++    #include "../../uTasker/MODBUS/modbus.h"
++#endif
++#include "TaskConfig.h"                                                  // the specific task configuration
++#include "application.h"                                                 // general project specific include
+ #ifdef _WINDOWS
+-  #include "..\..\WinSim\WinSim.h"
++  #include "../../WinSim/WinSim.h"
+ #endif
+ 
+ 
+ 
+ #ifdef OPSYS_CONFIG                                                      // this is only set in the hardware module
+-    #ifdef ETH_INTERFACE                                                    // if we support Ethernet we define some constants for its (TCP/IP) use
++    #ifdef ETH_INTERFACE                                                 // if we support Ethernet we define some constants for its (TCP/IP) use
+         const unsigned char cucNullMACIP[MAC_LENGTH] = { 0, 0, 0, 0, 0, 0 };
+         const unsigned char cucBroadcast[MAC_LENGTH] = { 0xff, 0xff, 0xff, 0xff, 0xff, 0xff }; // used also for broadcase IP
+     #endif
+ 
+     #ifdef SUPPORT_MIME_IDENTIFIER
+-    const CHAR *cMimeTable[] = {                                         // keep the ordering in the table to match the MIME type defines below!! 
++    const CHAR *cMimeTable[] = {                                         // keep the ordering in the table to match the MIME type defines below!!
+         (const CHAR *)"HTM",                                             // HTML file - will be interpreted by web server
+         (const CHAR *)"JPG",                                             // JPG image
+         (const CHAR *)"GIF",                                             // GIF image
+         (const CHAR *)"CSS",                                             // CSS Cascading Style Sheets
+         (const CHAR *)"JS",                                              // Java script
+-        (const CHAR *)"BIN",                                             // Binary data file
+-        (const CHAR *)"TXT",                                             // Text data file
++        (const CHAR *)"BIN",                                             // binary data file
++        (const CHAR *)"TXT",                                             // text data file
++        (const CHAR *)"PNG",
+         (const CHAR *)"???",                                             // all other types will be displayed as unknown
+     };
+     #endif
+ #endif
+ 
+ // File type identifiers
+ #define MIME_HTML                  0
+ #define MIME_JPG                   1
+ #define MIME_GIF                   2
+ #define MIME_CSS                   3
+-#define MIME_JAWA_SCRIPT           4
++#define MIME_JAVA_SCRIPT           4
+ #define MIME_BINARY                5
+ #define MIME_TXT                   6
+-#define UNKNOWN_MIME               7                                     // This entry is needed to terminate the list
+-
++#define MIME_PNG                   7
++#define UNKNOWN_MIME               9                                     // this entry is needed to terminate the list
+ 
+ #endif
+diff -r -U 8 uTaskerV1.3.0_before_rum/Applications/uTaskerV1.3/debug.c uTaskerV1.3.0_SAM7X/Applications/uTaskerV1.3/debug.c
+--- uTaskerV1.3.0_before_rum/Applications/uTaskerV1.3/debug.c	2008-12-31 16:31:10.000000000 -0700
++++ uTaskerV1.3.0_SAM7X/Applications/uTaskerV1.3/debug.c	2009-04-06 11:17:06.000000000 -0600
+@@ -24,16 +24,18 @@
+    02.05.2008 Add dummy code to allow the project to use serial interface without USE_MAINTENANCE {6}
+    25.05.2008 Move fnAddTime() outside of USE_MAINTENANCE dependency     {7}
+    09.08.2008 Add USB_INTERFACE debug interface support                  {8}
+    08.10.2008 User POWER_UP macro for SAM7X code                         {9}
+ 
+ */
+ 
+ #include "config.h"
++// RUM includes
++#include "arm_app.h"
+ 
+ 
+ #if defined USE_TELNET || defined SERIAL_INTERFACE || defined USB_INTERFACE // {8}
+     #define KEEP_DEBUG
+ #endif
+ 
+ #if defined USE_MAINTENANCE || defined SERIAL_INTERFACE
+     unsigned short usData_state = 0;
+@@ -1717,17 +1719,18 @@
+                     fnGotoNextState(usData_state);                       // reinforce present state (to handle connection timers)
+                 }
+                 return 1;
+             }
+             ptrCom++;
+         }
+     }
+ 
+-    fnDebugMsg("\r\n??\r\n#");                                           // signal input non recognised and send prompt in command mode
++    // Commented out for Atmel menu.
++//    fnDebugMsg("\r\n??\r\n#");                                           // signal input non recognised and send prompt in command mode
+     return 0;
+ }
+ 
+ static void fnLoginSuccess(void)
+ {
+     if (ES_SERIAL_LOGIN == usData_state) {
+         fnGotoNextState(ES_SERIAL_COMMAND_MODE);
+     }
+@@ -1740,17 +1743,19 @@
+ #ifdef USE_TELNET
+     else {
+         usTelnet_state = ES_NETWORK_COMMAND_MODE;
+         fnTelnet(Telnet_socket, CLEAR_TEXT_ENTRY);                       // make sure telnet echos in clear text mode again
+     }
+ #endif
+     fnDoAdmin(DO_SHOW_CONFIG, 0);
+     ucMenu = 0;                                                          // set main menu
+-    fnDisplayHelp(0);                                                    // display main menu
++//    fnDisplayHelp(0);                                                    // display main menu
++    // Display Atmel menu when telnet starts.
++    printPrompt();
+ }
+ 
+ 
+ #ifdef USE_TELNET
+ // Telnet server
+ //
+ static int fnTELNETListener(USOCKET Socket, unsigned char ucEvent, unsigned char *ucIp_Data, unsigned short usPortLen)
+ {
+@@ -1850,16 +1855,20 @@
+                 fnDebugMsg((CHAR *)&cDeleteInput[1]);
+             }
+             continue;
+         }
+         if ((*ptrData == '\n') || (*ptrData == 0)) continue;             // some telnet clients send \r\n and some \r\0 - others only \r
+         cDebugIn[ucDebugCnt] = *ptrData;
+         if (*ptrData == '\r') {
+             cDebugIn[ucDebugCnt] = '\n';
++
++            // Setup to process 802.15.4 menu via telnet.
++            usTelnet_state = fnHandleTelnetInput((unsigned char *)cDebugIn, ucDebugCnt, usTelnet_state);
++
+             fnSaveDebugHandle(iSource);                                  // save present debug handle and set appropriate
+             fnDoDebug(cDebugIn, (unsigned char)(ucDebugCnt+1), iSource); // treat debug messages
+             fnRestoreDebugHandle();                                      // return the present debug output
+             iReturn = 1;                                                 // we will always send something so report that a transmission has been started
+             ucDebugCnt = 0;
+         }
+         else {
+             ucDebugCnt++;
+diff -r -U 8 uTaskerV1.3.0_before_rum/Applications/uTaskerV1.3/types.h uTaskerV1.3.0_SAM7X/Applications/uTaskerV1.3/types.h
+--- uTaskerV1.3.0_before_rum/Applications/uTaskerV1.3/types.h	2008-10-10 15:25:54.000000000 -0600
++++ uTaskerV1.3.0_SAM7X/Applications/uTaskerV1.3/types.h	2009-03-17 14:15:58.000000000 -0600
+@@ -46,17 +46,17 @@
+ typedef unsigned short    MAX_MALLOC;                                    // upto 64k heap chunks
+ typedef unsigned short    LENGTH_CHUNK_COUNT;                            // http string insertion and chunk counter for dynamic generation {}
+ #if defined (_M5223X) || defined (_STR91XF) || defined (_HW_SAM7X) || defined (_LM3SXXXX) || defined (_LPC23XX) // {1}
+     typedef unsigned long   MAX_FILE_LENGTH;                             // over 64k file lengths
+     typedef unsigned long   MAX_FILE_SYSTEM_OFFSET;                      // offsets of over 64k in file system - use for file system sizes of larger than 64k
+     #ifdef GLOBAL_HARDWARE_TIMER
+         typedef unsigned long   CLOCK_LIMIT;                             // 32 bit hardware timer support
+     #else
+-        typedef unsigned short  CLOCK_LIMIT;                             // 16 bit normal hardware timer support
++        typedef unsigned long  CLOCK_LIMIT;                             // 32 bit normal hardware timer support
+     #endif
+ #else
+     #if defined _HW_NE64 && (defined SPI_FILE_SYSTEM && defined FLASH_FILE_SYSTEM)
+         typedef unsigned long   MAX_FILE_LENGTH;                         // up to 64k file lengths
+         typedef unsigned long   MAX_FILE_SYSTEM_OFFSET;                  // offsets of up to 64k in file system
+     #else
+         typedef unsigned short  MAX_FILE_LENGTH;                         // up to 64k file lengths
+         typedef unsigned short  MAX_FILE_SYSTEM_OFFSET;                  // offsets of up to 64k in file system
+@@ -72,41 +72,46 @@
+ 
+ #if defined _HW_NE64 && defined SPI_FILE_SYSTEM && defined FLASH_FILE_SYSTEM // treat pointers as long so that extended virtual address range is possible
+     #define MEMORY_RANGE_POINTER   unsigned long
+ #else
+     #define MEMORY_RANGE_POINTER   unsigned char *
+ #endif
+ 
+ 
+-typedef unsigned int size_t;
++/**
++    @brief Atmel application uses string.h and stdlib.h functions. These re-define size_t,
++    therefore, we comment out size_t definition below and use stdlib.h size_t define.
++*/
++//typedef unsigned int size_t;
++#include <stdlib.h>
+ 
+ #ifdef _HW_NE64
+     #if defined (_CODE_WARRIOR) && !defined (_WINDOWS)
+         #include "stdtypes.h"                                            // some non-standard typedefs required with this compiler
+     #endif
+-    #include "..\..\hardware\ne64\ne64.h"
++    #include "../../hardware/ne64/ne64.h"
+     #include "app_hw_ne64.h"
+ #endif
+ #ifdef _HW_SAM7X
+-    #include "..\..\hardware\sam7x\sam7x.h"
++    #include "../../Hardware/SAM7X/sam7x.h"
+     #include "app_hw_sam7x.h"
+ #endif
+ #ifdef _M5223X
+-    #include "..\..\hardware\m5223x\M5223X.h"
++    #include "../../hardware/m5223x/M5223X.h"
+     #include "app_hw_m5223x.h"
+ #endif
+ #ifdef _STR91XF
+-    #include "..\..\hardware\STR91XF\STR91XF.h"
++    #include "../../hardware/STR91XF/STR91XF.h"
+     #include "app_hw_str91xf.h"
+ #endif
+ #ifdef _LPC23XX
+-    #include "..\..\hardware\LPC23XX\LPC23XX.h"
++    #include "../../hardware/LPC23XX/LPC23XX.h"
+     #include "app_hw_lpc23xx.h"
+ #endif
+ #ifdef _LM3SXXXX
+     #include "app_hw_LM3SXXXX.h"
+-    #include "..\..\hardware\LM3SXXXX\LM3SXXXX.h"
++    #include "../../hardware/LM3SXXXX/LM3SXXXX.h"
+ #endif
+ 
+ #endif                                                                   // end not defined __TYPES__
+ 
+ 
+diff -r -U 8 uTaskerV1.3.0_before_rum/Applications/uTaskerV1.3/webInterface.c uTaskerV1.3.0_SAM7X/Applications/uTaskerV1.3/webInterface.c
+--- uTaskerV1.3.0_before_rum/Applications/uTaskerV1.3/webInterface.c	2008-12-31 16:28:54.000000000 -0700
++++ uTaskerV1.3.0_SAM7X/Applications/uTaskerV1.3/webInterface.c	2009-04-06 11:17:06.000000000 -0600
+@@ -10,17 +10,17 @@
+    File:        webInterface.c
+    Project:     uTasker Demonstration project
+    ---------------------------------------------------------------------
+    Copyright (C) M.J.Butcher Consulting 2004..2008
+    *********************************************************************
+ 
+    26.02.2007 Added SMTP parameter support
+    17.03.2007 Corrected SMTP login flag so that it is not cleared when Ethernet settings are changed {1}
+-   17.03.2007 Decoded received SMTP string settings to support Firefox   {2} 
++   17.03.2007 Decoded received SMTP string settings to support Firefox   {2}
+    03.03.2007 Add configurable timeout when configuring FTP server       {3}
+    10.12.2007 Avoid displaying local password                            {4}
+    08.01.2008 Add dynamic insertion demo                                 {5}
+    12.01.2008 Adjust fnInsertValue() to accept sesssion information      {6}
+    17.01.2008 Ensure post defined file is returned when not SW upload    {7}
+    13.01.2008 fnInsertString TxLength type change (LENGTH_CHUNK_COUNT) for dynamic content generation {8}
+    22.03.2008 Correct length of MAC address string when displaying ARP entries {9}
+    11.04.2008 Add missing break                                          {10}
+@@ -30,22 +30,32 @@
+    16.07.2008 Correct length of MAC address string when displaying MAC address {14}
+    07.09.2008 Add demo reception of POST parameter data                  {15}
+    01.11.2008 Conditional call to enable project without parameters      {16}
+    07.11.2008 cOnColor[] conditional on USE_MAINTENANCE                  {17}
+ 
+ */
+ 
+ 
++#include <string.h>
+ #include "config.h"
++// RUM includes
++#include "arm_app.h"
++#include "mac.h"
+ 
+ 
++#if IPV6LOWPAN
++#include "tuip.h"
++#include "net/uip.h"
++extern uip_ipaddr_t lowpan_prefix;
++#endif
++
+ //#define REFRESH_DEMO                                                   // activate this for a demo of a delayed refresh
+ 
+-const CHAR            cSoftwareVersion[] = SOFTWARE_VERSION;
++const CHAR            cSoftwareVersion[] = RUM_VERSION;
+ 
+ #ifdef _STR91XF
+     extern int iTestIdle = 0;                                            // temporary test of idle mode
+ #endif
+ 
+ #ifdef USE_HTTP
+ 
+     #ifdef HTTP_DYNAMIC_CONTENT                                          // {5}
+@@ -216,16 +226,20 @@
+ #ifdef SERIAL_INTERFACE
+     static unsigned short usSerialMode;
+ #endif
+     static unsigned char  ucServers;
+     static unsigned char  usNewNetworkOptions;
+ #ifdef USE_MAINTENANCE                                                   // {12}
+     static CHAR           cUserName_and_pass[18];
+     static CHAR           cNewpass[9];
++
++    char          textPrefix[60];
++    uint16_t      ipAddr[8];
++    unsigned char i;
+ #endif
+     unsigned char        *ucPtr;
+ 
+     switch (ucType) {
+ #ifdef PLAIN_TEXT_POST                                                   // {15}
+     case POSTING_PARAMETER_DATA_TO_APP:                                  // the buffer contains POST parameter data, whose length is defined by http_session->FileLength
+         fnWrite(DebugHandle, (unsigned char *)ptrData, (QUEUE_TRANSFER)http_session->FileLength); // send to debug output
+         break;
+@@ -244,17 +258,17 @@
+         #endif
+         return DISPLAY_INTERNAL;                                         // inform that the entered page should be displayed
+     #endif
+ 
+     case INFORM_POST_SUCCESS:
+     #ifdef SUPPORT_MIME_IDENTIFIER
+         http_session->ucMimeType = MIME_HTML;                            // force HTML type
+     #endif
+-    #if FILE_SYSTEM_SIZE >= (156*1024) 
++    #if FILE_SYSTEM_SIZE >= (156*1024)
+         if (http_session->cDisplayFile == 'S') {                         // {13} software upload
+             http_session->ptrFileStart = (unsigned char*)cSuccessSW_HTML;
+             http_session->FileLength = sizeof(cSuccessSW_HTML)-1;
+             fnDelayResetBoard();                                         // after 2 seconds the application will reset and then the new software will be copied
+             return DISPLAY_INTERNAL;                                     // {7}
+         }
+     #endif
+         break;
+@@ -458,16 +472,56 @@
+         }
+     #ifdef SUPPORT_DELAY_WEB_SERVING                                     // test code
+         uTaskerMonoTimer( TASK_APPLICATION, (DELAY_LIMIT)(2*SEC), E_SERVE_PAGE );
+         return DELAY_SERVING;
+     #else
+         break;
+     #endif
+ #endif
++
++#ifdef USE_MAINTENANCE
++    //Store new prefix
++    case '6':
++#if IPV6LOWPAN
++        fnWebStrcpy(textPrefix, (++ptrData));
++
++        if(sscanf_ip(textPrefix, ipAddr))
++        {
++
++            // Take upper 64 bits only
++            for (i = 0; i < 4; i++)
++            {
++                temp_pars->temp_parameters.uc6lowpanPrefix[i] = ipAddr[i];
++            }
++
++            // Lower 64 bits always zero
++            for (; i < 8; i++)
++            {
++                temp_pars->temp_parameters.uc6lowpanPrefix[i] = 0;
++            }
++
++            uip_ip6addr(&lowpan_prefix,  temp_pars->temp_parameters.uc6lowpanPrefix[0],
++                    temp_pars->temp_parameters.uc6lowpanPrefix[1],
++                    temp_pars->temp_parameters.uc6lowpanPrefix[2],
++                    temp_pars->temp_parameters.uc6lowpanPrefix[3],
++                    temp_pars->temp_parameters.uc6lowpanPrefix[4],
++                    temp_pars->temp_parameters.uc6lowpanPrefix[5],
++                    temp_pars->temp_parameters.uc6lowpanPrefix[6],
++                    temp_pars->temp_parameters.uc6lowpanPrefix[7]);
++
++            fnSaveNewPars(SAVE_NEW_PARAMETERS);                 //save new parameters
++            fnDelayResetBoard();                                // reset to use new prefix
++
++        }
++
++#endif
++        break;
++#endif
++
+     /********************************************************************/
+         case 'n':                                                        // change a port number
+             if (*ptrData == 'T') {                                       // Telnet port
+                 fnSetNewValue(TELNET_PORT, (ptrData+2));
+             }
+             break;
+ #ifdef USE_MAINTENANCE                                                   // {12}
+         case 'P':                                                        // port settings (configure as input, output or ADC)
+@@ -555,16 +609,23 @@
+                             ptrMulTable->usRows = 1;
+                         }
+                         else if (ptrMulTable->usRows > 1000) {
+                             ptrMulTable->usRows = 1000;
+                         }
+                     }
+                 }
+                 break;
++
++            case 'r':
++            {
++                // This will call a ping request from the webserver.
++                armAppPingReq(ptrData);
++            }
++            break;
+     #endif
+ 
+         default:                                                         // page refreshes should be performed using 'r', which is then not processed
+             break;
+     }
+     return 0;                                                            // OK to display the requested file
+ }
+ 
+@@ -573,17 +634,17 @@
+ //
+ #ifdef HTTP_DYNAMIC_CONTENT                                              // {6}{8}
+ static CHAR *fnInsertString(unsigned char *ptrBuffer, LENGTH_CHUNK_COUNT TxLength, unsigned short *usLengthToSend, HTTP *http_session)
+ #else
+ static CHAR *fnInsertString(unsigned char *ptrBuffer, LENGTH_CHUNK_COUNT TxLength, unsigned short *usLengthToSend)
+ #endif
+ {
+     // £vXY commands - to display a value, string etc.
+-    #define MAX_SIMPLE_INSERT 60                                         // longest message
++    #define MAX_SIMPLE_INSERT 1000                                         // longest message
+ #ifdef REFRESH_DEMO
+     static int iTest = 0;
+ #endif
+     static const CHAR cNoEntry[] = {'-', ' ', '-', ' ', '-'};
+     static       CHAR cValue[MAX_SIMPLE_INSERT];                         // space to hold statistic strings (longest is device ID)
+     CHAR *cPtr = 0;
+ 
+     if (!TxLength) {                                                     // this means that we have a simple string field to be filled
+@@ -763,25 +824,40 @@
+                     uMemset(cValue, ' ', 4);
+                     *usLengthToSend = 4;
+                     iTest = 1;
+                 }
+ #endif
+             }
+             break;
+ 
++        case '6':                                                       // show IPv6 Prefix
++
++#if IPV6LOWPAN
++            sprint_ip(cValue, lowpan_prefix.u16);
++#else
++            strcpy(cValue, "UNSUPPORTED");
++#endif
++
++            *usLengthToSend = strlen(cValue);
++            break;
++
+         case 'S':                                                        // show serial number
+             cPtr = fnShowSN(cValue);
+             *usLengthToSend = (cPtr - cValue);
+             break;
+ 
+         case 'V':                                                        // show software version
+             *usLengthToSend = (sizeof(cSoftwareVersion)-1);
+             return (CHAR *)cSoftwareVersion;
+ 
++        case 'B':
++            // This will show the build information when requested from the webserver.
++            return(armAppBuildInfo(usLengthToSend));
++
+         case 'F':
+             if (*ptrBuffer == 'H') {                                     // show flow control high water level (%)
+                 cPtr = fnDebugDec(temp_pars->temp_parameters.ucFlowHigh, 0, cValue);
+             }
+             else {                                                       // assume show flow control low water level (%)
+                 cPtr = fnDebugDec(temp_pars->temp_parameters.ucFlowLow, 0, cValue);
+             }
+             *usLengthToSend = (cPtr - cValue);
+@@ -872,16 +948,23 @@
+                     break;
+ 
+                 default:
+                     return 0;
+                 }
+                 *usLengthToSend = (cPtr - cValue);
+             }
+             break;
++
++        case 'r':
++        {
++            // This will handle and parse the ping information from the webserver.
++            armAppPingHandler(ptrBuffer, usLengthToSend, cValue, cPtr);
++        }
++        break;
+ #endif
+ 
+         default:
+             *usLengthToSend = 0;
+             return 0;
+         }
+     }
+ #ifdef HTTP_DYNAMIC_CONTENT                                              // {5}
+@@ -947,16 +1030,21 @@
+                 x++;
+             }
+             *usLengthToSend = sizeof(ucTable);
+             if (TxLength == ((8*1024*1024)/256)) {                       // signal last chunk to ensure that no padding is added
+                 http_session->ucDynamicFlags |= LAST_DYNAMIC_CONTENT_DATA;
+             }
+             return (CHAR*)ucTable;
+         }
++        else if (*ptrBuffer == '5')
++        {
++            // Build dynamic network table data when requested from webserver.
++            return(armAppNetworkTable(TxLength, usLengthToSend, cValue, cPtr, http_session));
++        }
+     }
+ #endif
+     return cValue;
+ }
+ 
+ 
+ 
+ 
+Only in uTaskerV1.3.0_SAM7X/Applications: uip
+diff -r -U 8 uTaskerV1.3.0_before_rum/Hardware/sam7x/sam7x.c uTaskerV1.3.0_SAM7X/Hardware/sam7x/sam7x.c
+--- uTaskerV1.3.0_before_rum/Hardware/sam7x/sam7x.c	2008-12-30 19:53:32.000000000 -0700
++++ uTaskerV1.3.0_SAM7X/Hardware/sam7x/sam7x.c	2009-05-20 17:30:16.000000000 -0600
+@@ -116,16 +116,20 @@
+         #define _SPI_DEFINES
+             #include "spi_flash_sam7x_atmel.h"                           // {41}
+             #include "spi_flash_sam7x_stmicro.h"                         // {43}
+             #include "spi_flash_sam7x_sst25.h"                           // {43}
+         #undef _SPI_DEFINES
+     #endif
+ #endif
+ 
++#if defined SUPPORT_PORT_INTERRUPTS && defined INTERRUPT_TASK_PHY
++    static void fnPhyInterrupt(void);
++#endif
++
+ /* =================================================================== */
+ /*                             constants                               */
+ /* =================================================================== */
+ 
+ 
+ #ifdef ETH_INTERFACE
+     static const unsigned char EMAC_RX_int_message[ HEADER_LENGTH ] = { 0, 0 , TASK_ETHERNET, INTERRUPT_EVENT, EMAC_RX_INTERRUPT };   // define fixed interrupt event
+ #endif
+@@ -247,17 +251,17 @@
+         #pragma segment="DATA16_Z"
+         #define HEAP_START_ADDRESS __segment_end("DATA16_Z")             // IAR compiler - last location of static variables
+     #endif
+ #elif defined COMPILE_KEIL                                               // {44}
+     #define __root
+     extern unsigned char Stack_Mem;
+     #define HEAP_START_ADDRESS  &Stack_Mem                               // Keil - start of stack
+ #else
+-    #if defined _GNU || define ROWLEY
++    #if defined _GNU || defined ROWLEY
+         #define __root
+     #endif
+     extern void __irq_en(void);                                          // enable interrupt in assembler code
+     extern void __irq_dis(void);                                         // disable interrupt in assembler code
+     extern unsigned char __heap_end__;
+     #define HEAP_START_ADDRESS &__heap_end__                             // GNU last location of static variables
+ #endif
+ 
+@@ -842,17 +846,16 @@
+ 
+ 
+ // Ethernet configuration routine
+ //
+ extern void fnConfigEthernet(ETHTABLE *pars)
+ {
+ #ifdef SUPPORT_PORT_INTERRUPTS
+     #if defined INTERRUPT_TASK_PHY
+-    static void fnPhyInterrupt(void);
+     INTERRUPT_SETUP interrupt_setup;                                     // interrupt configuration parameters
+     #endif
+ #else
+     __interrupt void PortB_Interrupt(void);                              // phy interrupt
+ #endif
+     unsigned long ulPhyIdentifier;
+     unsigned short usMIIData;
+     volatile int i = 0;
+diff -r -U 8 uTaskerV1.3.0_before_rum/stack/Ethernet.c uTaskerV1.3.0_SAM7X/stack/Ethernet.c
+--- uTaskerV1.3.0_before_rum/stack/Ethernet.c	2008-09-14 14:53:40.000000000 -0600
++++ uTaskerV1.3.0_SAM7X/stack/Ethernet.c	2009-04-06 11:17:06.000000000 -0600
+@@ -17,16 +17,18 @@
+    14.03.2007 Added RARP reception support                               {2}
+    15.03.2007 Added VLAN support                                         {3}
+    09.06.2008 Allow variable uNetwork protocol                           {4}
+ 
+ */
+ 
+ 
+ #include "config.h"
++// UIP include
++#include "tuip.h"
+ 
+ 
+ 
+ #ifdef ETH_INTERFACE
+ 
+ #define OWN_TASK                 TASK_ETHERNET
+ 
+ 
+@@ -70,19 +72,19 @@
+                 extern fnHandleTestCase(ETHERNET_FRAME *rx_frame);
+                 fnHandleTestCase(&rx_frame);
+                 fnFreeBuffer(Ethernet_handle, cEthernetBuffer);  // free up the receiver buffer since we reject the frame
+                 continue;
+ #endif
+ #ifdef USE_IP
+     #ifdef SUPPORT_VLAN
+                 if (vlan_active) {                                       // if VLAN mode active, accept only frames to our identifier
+-                    if ((rx_frame.ptEth->ethernet_frame_type[0] != (unsigned char)(TAG_PROTOCOL_IDENTIFIER>>8)) 
++                    if ((rx_frame.ptEth->ethernet_frame_type[0] != (unsigned char)(TAG_PROTOCOL_IDENTIFIER>>8))
+                         || (rx_frame.ptEth->ethernet_frame_type[1] != (unsigned char)(TAG_PROTOCOL_IDENTIFIER))
+-                        || ((rx_frame.ptEth->ucData[0] & 0x0f) != (unsigned char)((vlan_vid >> 8) & 0x0f)) 
++                        || ((rx_frame.ptEth->ucData[0] & 0x0f) != (unsigned char)((vlan_vid >> 8) & 0x0f))
+                         || (rx_frame.ptEth->ucData[1] != (unsigned char)vlan_vid)) {
+                         fnFreeBuffer(Ethernet_handle, cEthernetBuffer);  // free up the receiver buffer since we reject the frame
+                         continue;
+                     }
+                     else {
+                         unsigned char *ptrTo = (unsigned char *)rx_frame.ptEth + (2*MAC_LENGTH + (VLAN_TAG_LENGTH - 1));
+                         unsigned char *ptrFrom = (unsigned char *)rx_frame.ptEth + (2*MAC_LENGTH - 1);
+                         while (ptrFrom >= (unsigned char *)rx_frame.ptEth) {
+@@ -91,19 +93,19 @@
+                         rx_frame.ptEth = (ETHERNET_FRAME_CONTENT*)((unsigned char *)rx_frame.ptEth + VLAN_TAG_LENGTH);
+                     }
+                 }
+     #endif
+ 
+                 // Note that we check whether it is probably an ARP message by looking only at the second byte in the protocol field
+                 // This is for efficiency - only call ARP routine when it is probably that it is an ARP (the ARP routine then only checks first byte in type field
+                 if (rx_frame.ptEth->ethernet_frame_type[0] == (unsigned char)(PROTOCOL_IPv4>>8)) {
+-                    if ((rx_frame.ptEth->ethernet_frame_type[1] != (unsigned char)PROTOCOL_ARP) 
++                    if ((rx_frame.ptEth->ethernet_frame_type[1] != (unsigned char)PROTOCOL_ARP)
+     #ifdef USE_RARP                                                      // {2}
+-                        && (rx_frame.ptEth->ethernet_frame_type[1] != (unsigned char)PROTOCOL_RARP) 
++                        && (rx_frame.ptEth->ethernet_frame_type[1] != (unsigned char)PROTOCOL_RARP)
+     #endif
+                         || (!fnProcessARP(&rx_frame))) {                 // if (R)ARP, handle it
+                         unsigned short usIPLength;
+                         unsigned short usTotalLength;
+ 
+                         if ((usIPLength = fnHandleIP(&rx_frame, &usTotalLength)) != 0) { // if IP handle it
+                             switch (rx_frame.ptEth->ucData[IP_PROTOCOL_OFFSET]) { // valid IP frame
+     #ifdef USE_ICMP
+@@ -122,16 +124,23 @@
+                                 break;
+     #endif
+                             default:
+                                 break;
+                             }
+                         }
+                     }                                                    // end if not ARP
+                 }                                                        // end if PROTOCOL IP V4
++
++	#if IPV6LOWPAN
++                else if ((rx_frame.ptEth->ethernet_frame_type[0] == (unsigned char)(PROTOCOL_IPv6>>8)) && (rx_frame.ptEth->ethernet_frame_type[1] == (unsigned char)(PROTOCOL_IPv6))) {
++                	ipv6_in_ethernet(&rx_frame);
++                }
++	#endif
++
+     #ifdef SUPPORT_DISTRIBUTED_NODES
+         #ifdef VARIABLE_PROTOCOL_UNETWORK                                // {4}
+                 else if ((rx_frame.ptEth->ethernet_frame_type[0] == uc_uNetworkProtocol[0]) && (rx_frame.ptEth->ethernet_frame_type[1] == uc_uNetworkProtocol[1])) {
+                     fnHandle_unet(rx_frame.ptEth->ucData);
+                 }
+         #else
+                 else if ((rx_frame.ptEth->ethernet_frame_type[0] == (unsigned char)(PROTOCOL_UNETWORK>>8)) && (rx_frame.ptEth->ethernet_frame_type[1] == (unsigned char)(PROTOCOL_UNETWORK))) {
+                     fnHandle_unet(rx_frame.ptEth->ucData);
+diff -r -U 8 uTaskerV1.3.0_before_rum/stack/ppp.c uTaskerV1.3.0_SAM7X/stack/ppp.c
+--- uTaskerV1.3.0_before_rum/stack/ppp.c	2008-09-14 15:14:16.000000000 -0600
++++ uTaskerV1.3.0_SAM7X/stack/ppp.c	2009-03-10 16:24:38.000000000 -0600
+@@ -81,17 +81,18 @@
+         tInterfaceParameters.ucFlowHighWater = 80;                       // set the flow control high and low water levels in %
+         tInterfaceParameters.ucFlowLowWater = 20;
+         #endif
+         tInterfaceParameters.usConfig = (CHAR_8 + NO_PARITY + ONE_STOP /*+ USE_XON_OFF*/ + CHAR_MODE + DCE_MODE);
+         #ifdef SERIAL_SUPPORT_DMA
+             tInterfaceParameters.ucDMAConfig = 0;
+         #endif
+         if ((PPP_PortID = fnOpen( TYPE_TTY, FOR_I_O, &tInterfaceParameters )) != 0) { // open serial port with defined parameters
+-            fnDriver( PPP_PortID, ( TX_ON | RX_ON ), 0 );                // enable rx and tx
++            // Changed RX_ON to UTASKER_RX_ON for Atmel.
++            fnDriver( PPP_PortID, ( TX_ON | UTASKER_RX_ON ), 0 );                // enable rx and tx
+         }
+         iPPP_State = PPP_STATE_IDLE;
+     }
+ 
+     while (fnRead(PPP_PortID, &ucInputMessage[ppp_frame_length], 1) != 0) { // while serial input waiting
+         switch (iPPP_State) {
+         case PPP_STATE_IDLE:                                             // waiting for dial in
+             if (ucInputMessage[ppp_frame_length] == cClient[ppp_frame_length]) {
+diff -r -U 8 uTaskerV1.3.0_before_rum/uTasker/Tty_drv.c uTaskerV1.3.0_SAM7X/uTasker/Tty_drv.c
+--- uTaskerV1.3.0_before_rum/uTasker/Tty_drv.c	2008-12-27 23:08:28.000000000 -0700
++++ uTaskerV1.3.0_SAM7X/uTasker/Tty_drv.c	2009-03-10 16:43:32.000000000 -0600
+@@ -113,17 +113,18 @@
+             }
+             else if (MODIFY_INTERRUPT & Counter) {
+                 rtn_val = fnControlLineInterrupt(channel, (unsigned short)Counter, ptTTYQue->opn_mode); // pass on to hardware
+                 fnRTC_change(channel, ((rtn_val & SET_CTS) != 0));       // synchronise control with buffer control
+                 break;
+             }
+             else {
+ #endif
+-                if (Counter & RX_ON) {
++                // Changed RX_ON to UTASKER_RX_ON for Atmel.
++                if (Counter & UTASKER_RX_ON) {
+ #ifdef SERIAL_SUPPORT_DMA
+                     if (ptTTYQue->ucDMA_mode & UART_RX_DMA) {
+                         QUEUE_TRANSFER transfer_length = ptTTYQue->tty_queue.buf_length;
+                         if (ptTTYQue->ucDMA_mode & UART_RX_DMA_HALF_BUFFER) {
+                             transfer_length /= 2;
+                         }
+                         if (ptTTYQue->opn_mode & MSG_MODE_RX_CNT) {
+     #ifdef MSG_CNT_WORD                                                  // {10}
+diff -r -U 8 uTaskerV1.3.0_before_rum/uTasker/driver.h uTaskerV1.3.0_SAM7X/uTasker/driver.h
+--- uTaskerV1.3.0_before_rum/uTasker/driver.h	2008-12-27 22:36:58.000000000 -0700
++++ uTaskerV1.3.0_SAM7X/uTasker/driver.h	2009-03-10 16:43:32.000000000 -0600
+@@ -71,17 +71,18 @@
+ 
+ // Open modes
+ #define FOR_READ          0x01
+ #define FOR_WRITE         0x02
+ #define FOR_I_O           (FOR_READ | FOR_WRITE)
+ #define MODIFY_CONFIG     0x04
+ 
+ // driver commands - on a bit basis
+-#define RX_ON             0x01                                           // turn receiver on
++// Changed RX_ON to UTASKER_RX_ON for Atmel.
++#define UTASKER_RX_ON     0x01                                           // turn receiver on
+ #define SET_RTS           0x01
+ #define ENABLE_DSR_CHANGE 0x01
+ 
+ #define RX_OFF            0x02                                           // turn receiver off
+ #define CLEAR_RTS         0x02
+ #define DISABLE_DSR_CHANGE 0x02
+ 
+ #define TX_ON             0x04                                           // turn transmitter on
+@@ -734,17 +735,17 @@
+                                                                          // interrupt debugging messages for PHY
+ #define AUTO_NEG_CHANGED            0xd8
+ #define AUTO_NEG_COMPLETE           0xd7
+ #define AUTO_NEG_COMMON_MODE        0xd6
+ #define ACK_BIT_REC                 0xd5
+ #define PAR_DET_FAULT               0xd4
+ #define REMOTE_FAULT                0xd3
+ #define JABBER_INT                  0xd2
+-#define AUTO_FULL_DUPLEX            0xd1  
++#define AUTO_FULL_DUPLEX            0xd1
+ #define AUTO_PAUSE_RESOLVED         0xd1
+ #define PAGE_REC                    0xd0
+ 
+ #define EVENT_USB_RESET             0xcf                                 // USB reset when in enumerated state
+ #define EVENT_USB_SUSPEND           0xce                                 // suspend condition detected
+ #define EVENT_USB_RESUME            0xcd                                 // resume sequence detected
+ 
+ #endif
+Only in uTaskerV1.3.0_SAM7X/uTasker: uMalloc.C
+Only in uTaskerV1.3.0_before_rum/uTasker: uMalloc.c

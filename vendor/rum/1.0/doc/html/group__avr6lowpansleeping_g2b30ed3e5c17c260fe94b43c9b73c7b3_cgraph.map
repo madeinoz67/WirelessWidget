@@ -1,0 +1,12 @@
+<area shape="rect" href="$group__sleep.html#g93b5cdc0c2f6e617c9e63fac53cc8271" title="Put the node to sleep." alt="" coords="475,132,557,159">
+<area shape="rect" href="$group__avr6lowpansleeping.html#g82ac0055949c3812c0c6d86c56311be6" title="Called periodically by the node." alt="" coords="204,360,367,387">
+<area shape="rect" href="$group__avr6lowpansleeping.html#gb980ba45b5cff1682d93c61611e64eda" title="Sets up the periodic timer." alt="" coords="664,411,861,438">
+<area shape="rect" href="$group__avr6lowpansleeping.html#gbff6dd85e394e368fd9a96b93cea835d" title="Checks for any pending messages." alt="" coords="424,462,608,488">
+<area shape="rect" href="$group__radio.html#g324b48dc10d81456ce6ddd909f1d5e83" title="This function will put the radio transceiver to sleep." alt="" coords="691,6,835,32">
+<area shape="rect" href="$group__radio.html#g80178b680aa26b7a8e1a1ce8a4a824b3" title="This function return the Radio Transceivers current state." alt="" coords="909,132,1029,159">
+<area shape="rect" href="$group__radio.html#g9b993ad338e639b917540d835079ce84" title="This function will take the radio transceiver from sleep mode and put it into the..." alt="" coords="689,107,836,134">
+<area shape="rect" href="$group__radio.html#g9c32d026c082234626f5f900077221bc" title="This function will change the current state of the radio transceiver&#39;s internal..." alt="" coords="704,208,821,235">
+<area shape="rect" href="$group__serial.html#g364b552759a6ed3c410d2ebb770975b7" title="USART initialization." alt="" coords="725,56,800,83">
+<area shape="rect" href="$group__timer__module.html#g0155e5192956b3cd498751d8652f7773" title="Sets a general purpose timer." alt="" coords="920,335,1019,362">
+<area shape="rect" href="$group__avr6lowpan__example.html#gae5d355e600a14de30bf3e45b2301714" title="6lowpan Periodic Function Call" alt="" coords="416,259,616,286">
+<area shape="rect" href="$group__avr6lowpansleeping.html#ga026ffcf6668bb4cb0bd547bacb59dfe" title="Will set the node to sleep if it should be sleeping." alt="" coords="423,310,609,336">

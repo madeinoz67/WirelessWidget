@@ -1,0 +1,3 @@
+<area shape="rect" href="$group__timer__module.html#g0155e5192956b3cd498751d8652f7773" title="Sets a general purpose timer." alt="" coords="191,31,289,57">
+<area shape="rect" href="$group__arm.html#g8ad2d7780b4815433b88ee56afa2830c" title="Returns a unique timer ID." alt="" coords="340,5,431,32">
+<area shape="rect" href="$group__timer__module.html#g55bef38a083b7a6478dd60c6668f3434" title="Start the hardware timer running." alt="" coords="347,56,424,83">

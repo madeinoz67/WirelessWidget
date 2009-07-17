@@ -1,0 +1,4 @@
+<area shape="rect" href="$group__arm.html#gf5ea8985a12feedc3ac25fbb50712183" title="This function initializes the Hardware Abstraction Layer." alt="" coords="161,5,223,32">
+<area shape="rect" href="$group__arm.html#g6e9e307a1b8e39fa9261ee12ced67314" title="This function writes a new value to one of the radio transceiver&#39;s registers..." alt="" coords="131,56,253,82">
+<area shape="rect" href="$group__arm.html#g4e55279d2a68db6e6127b853baee2127" title="This function writes a new value to one of the radio transceiver&#39;s subregisters..." alt="" coords="120,106,264,133">
+<area shape="rect" href="$group__radio.html#g828c12db6daeae4369180d52f1cbdffd" title="This function will reset all the registers and the state machine of the radio transceiver..." alt="" coords="141,157,243,184">

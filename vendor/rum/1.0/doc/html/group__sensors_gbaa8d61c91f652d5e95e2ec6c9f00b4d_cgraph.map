@@ -1,0 +1,10 @@
+<area shape="rect" href="$group__sensors.html#g18a4019e7e397a1127dc4f90ffdbf1b9" title="Callback function to receive calibration information from a sensor node." alt="" coords="199,38,319,64">
+<area shape="rect" href="$group__sensors.html#g30d62befb8ff70a3413363f9741c5c2c" title="Sensor node sends raw data back to coordinator." alt="" coords="187,183,331,210">
+<area shape="rect" href="$group__sensors.html#g2e7afcc8044d96300ecb9dc6d42aaf3d" title="Send a sensor reading to coordinator." alt="" coords="191,120,327,147">
+<area shape="rect" href="$group__sensors.html#g16a00091e33ba95a882e79844b59d3fc" title="Set the name of the sensor name." alt="" coords="176,234,341,260">
+<area shape="rect" href="$group__sensors.html#g2325880cddd8e5d5a5483312507a6ae2" title="Coord node calibration routine." alt="" coords="407,6,535,32">
+<area shape="rect" href="$group__timer__module.html#g0155e5192956b3cd498751d8652f7773" title="Sets a general purpose timer." alt="" coords="612,31,711,58">
+<area shape="rect" href="$group__mac__data.html#g57df637c21a2060c49e6e19c09b38d30" title="The macsixlowpanDataRequest function is used to send a frame over the air to another..." alt="" coords="601,158,721,184">
+<area shape="rect" href="$group__avr6lowpan__example.html#g71646ae68963dafaac0092b91eb68604" title="Called to send back a UDP packet to the source." alt="" coords="389,208,552,235">
+<area shape="rect" href="$group__timer__module.html#g424100b5b43a9d709cec3d509ef6f48c" title="End the timer specified by ID, before it is expired." alt="" coords="420,158,521,184">
+<area shape="rect" href="$group__sensors.html#gc4fd19ca8f3d53a6d64bc4869713acbb" title="Send a single reading to the coordinator and go to sleep if required." alt="" coords="423,107,519,134">

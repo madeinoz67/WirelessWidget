@@ -1,0 +1,9 @@
+<area shape="rect" href="$group__timer__module.html#g0155e5192956b3cd498751d8652f7773" title="Sets a general purpose timer." alt="" coords="193,56,292,83">
+<area shape="rect" href="$group__timer__module.html#g424100b5b43a9d709cec3d509ef6f48c" title="End the timer specified by ID, before it is expired." alt="" coords="192,107,293,134">
+<area shape="rect" href="$group__sensors.html#gc4fd19ca8f3d53a6d64bc4869713acbb" title="Send a single reading to the coordinator and go to sleep if required." alt="" coords="195,158,291,184">
+<area shape="rect" href="$group__arm.html#g8ad2d7780b4815433b88ee56afa2830c" title="Returns a unique timer ID." alt="" coords="384,6,475,32">
+<area shape="rect" href="$group__timer__module.html#g55bef38a083b7a6478dd60c6668f3434" title="Start the hardware timer running." alt="" coords="391,56,468,83">
+<area shape="rect" href="$group__mac__data.html#g57df637c21a2060c49e6e19c09b38d30" title="The macsixlowpanDataRequest function is used to send a frame over the air to another..." alt="" coords="369,107,489,134">
+<area shape="rect" href="$group__radio.html#gb89f723b3d8357a3c254083b36bef539" title="Retrieves the saved LQI (Link Quality Indication) value." alt="" coords="352,158,507,184">
+<area shape="rect" href="$group__sensors.html#g913e1051fb12e78a6174d8869a4b6ff3" title="Calculates a sensor reading, or returns a fake sensor reading if SENSOR_TYPE is set..." alt="" coords="365,208,493,235">
+<area shape="rect" href="$group__avr6lowpan__example.html#ge148b7a530a32b86d057b5cf6e76427b" title="Called to send a UDP packet to the periodic address." alt="" coords="343,259,516,286">
