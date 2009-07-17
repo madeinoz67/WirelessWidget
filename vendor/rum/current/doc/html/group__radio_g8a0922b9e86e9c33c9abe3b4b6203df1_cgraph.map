@@ -1,0 +1,3 @@
+<area shape="rect" href="$group__arm.html#g4e55279d2a68db6e6127b853baee2127" title="This function writes a new value to one of the radio transceiver&#39;s subregisters..." alt="" coords="187,5,331,32">
+<area shape="rect" href="$group__radio.html#g2976f50bf538933d7eba0444494d6289" title="Returns the radio part number." alt="" coords="199,56,319,83">
+<area shape="rect" href="$group__arm.html#gfd58b0cad5bbd45b1c4a8d30be4bc11c" title="This function reads data from one of the radio transceiver&#39;s registers." alt="" coords="379,56,499,83">

@@ -1,0 +1,40 @@
+#!/bin/sh
+
+HEX=raven-3290.hex
+AVR=atmega3290p
+
+
+dodialog ()
+{
+    # get Xdialog input for which jtag to use.
+    cmd='Xdialog --radiolist "Select JTAG" 0 0 4'
+    while [ -n "$1" ]
+    do
+      cmd="${cmd} $1 \"JTAGICE mkII\" off"
+      shift
+    done
+    echo "$cmd" > .script-delme
+    . ./.script-delme 2>&1
+}
+
+# check to see if there are multiple JTAG ICE units attached
+if [[ $(cat /proc/bus/usb/devices | sed -n '/JTAGICE mkII/{n;p;}'|sed 's,\(.*\)\(....\),\2,' | wc -l) -gt 1 ]]
+  then 
+    device=":$(dodialog $(cat /proc/bus/usb/devices | sed -n '/JTAGICE mkII/{n;p;}'|sed 's,\(.*\)\(....\),\2,'))"
+    echo "device=$device"
+  fi
+
+# only program if the file is newer than our marker
+if $(newer $HEX .avarice-marker$device)
+then
+  avarice -j usb$device -2 -P $AVR --erase -f $HEX
+  sleep 2
+fi
+touch .avarice-marker$device
+
+avarice -j usb$device -2 -P $AVR :4242 --detach
+
+sleep 1
+
+rm -f .script-delme
+

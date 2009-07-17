@@ -1,0 +1,7 @@
+<area shape="rect" href="$group__timer__module.html#g0155e5192956b3cd498751d8652f7773" title="Sets a general purpose timer." alt="" coords="183,56,281,82">
+<area shape="rect" href="$group__serial.html#gc0ee16939b4816b2ca3bb093c6891739" title="Captures a string from serial port." alt="" coords="191,106,273,133">
+<area shape="rect" href="$group__serial.html#g46a01c0d9f12d9deaf905f76463175ac" title="Check to see if any characters are waiting in the serial input buffer." alt="" coords="185,157,279,184">
+<area shape="rect" href="$group__arm.html#g8ad2d7780b4815433b88ee56afa2830c" title="Returns a unique timer ID." alt="" coords="337,5,428,32">
+<area shape="rect" href="$group__timer__module.html#g55bef38a083b7a6478dd60c6668f3434" title="Start the hardware timer running." alt="" coords="344,56,421,82">
+<area shape="rect" href="$group__serial.html#g4b0fa10a931750ad29deb068cfd1e54b" title="Returns a character from the serial port." alt="" coords="332,106,433,133">
+<area shape="rect" href="$group__serial.html#g10ca3a011a28e64adeb559fe71373c82" title="This function will place a character into the serial buffer." alt="" coords="332,157,433,184">

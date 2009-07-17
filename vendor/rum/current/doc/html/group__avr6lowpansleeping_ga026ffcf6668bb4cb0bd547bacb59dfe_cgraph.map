@@ -1,0 +1,9 @@
+<area shape="rect" href="$group__timer__module.html#g0155e5192956b3cd498751d8652f7773" title="Sets a general purpose timer." alt="" coords="940,37,1039,64">
+<area shape="rect" href="$group__avr6lowpansleeping.html#gb980ba45b5cff1682d93c61611e64eda" title="Sets up the periodic timer." alt="" coords="437,37,635,64">
+<area shape="rect" href="$group__avr6lowpansleeping.html#g2b30ed3e5c17c260fe94b43c9b73c7b3" title="Puts the node to sleep if it can." alt="" coords="240,139,389,165">
+<area shape="rect" href="$group__arm.html#g8ad2d7780b4815433b88ee56afa2830c" title="Returns a unique timer ID." alt="" coords="1132,37,1223,64">
+<area shape="rect" href="$group__timer__module.html#g55bef38a083b7a6478dd60c6668f3434" title="Start the hardware timer running." alt="" coords="1139,88,1216,115">
+<area shape="rect" href="$group__timer__module.html#g8cccbbd337a60847f767aaca9da9743e" title="A long&#45;delay timer function, which can delay for up to 15.7 hours." alt="" coords="925,88,1053,115">
+<area shape="rect" href="$group__avr6lowpansleeping.html#g82ac0055949c3812c0c6d86c56311be6" title="Called periodically by the node." alt="" coords="684,139,847,165">
+<area shape="rect" href="$group__avr6lowpansleeping.html#gbff6dd85e394e368fd9a96b93cea835d" title="Checks for any pending messages." alt="" coords="897,164,1081,191">
+<area shape="rect" href="$group__sleep.html#g93b5cdc0c2f6e617c9e63fac53cc8271" title="Put the node to sleep." alt="" coords="495,240,577,267">

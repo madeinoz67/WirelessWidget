@@ -1,0 +1,6 @@
+<area shape="rect" href="$group__radio.html#g14d426a54ebfc9514e5f6c23eb7fc736" title="This function will change the operating channel." alt="" coords="225,107,396,133">
+<area shape="rect" href="$group__arm.html#g6e9e307a1b8e39fa9261ee12ced67314" title="This function writes a new value to one of the radio transceiver&#39;s registers..." alt="" coords="471,5,593,32">
+<area shape="rect" href="$group__arm.html#g4e55279d2a68db6e6127b853baee2127" title="This function writes a new value to one of the radio transceiver&#39;s subregisters..." alt="" coords="460,56,604,83">
+<area shape="rect" href="$group__radio.html#g29bbaf755e336eeec99729db6be0226c" title="This function checks if the radio transceiver is sleeping." alt="" coords="492,107,572,133">
+<area shape="rect" href="$group__radio.html#g1c1b73c569365e457a1d9b9b773eadbb" title="This function will return the channel used by the radio transceiver." alt="" coords="445,157,619,184">
+<area shape="rect" href="$group__radio.html#g80178b680aa26b7a8e1a1ce8a4a824b3" title="This function return the Radio Transceivers current state." alt="" coords="472,208,592,235">

@@ -1,0 +1,9 @@
+binary
+dir
+put "0Menu.HTM"
+put "4Network.htm"
+put "Bbg2.gif"
+put "DAtmel_logo_blue.png"
+put "IAVR_logo_blue.png"
+dir
+quit

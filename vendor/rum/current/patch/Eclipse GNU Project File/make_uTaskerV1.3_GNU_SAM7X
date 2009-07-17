@@ -1,0 +1,301 @@
+#
+# On command line:
+#
+# make all = Make software.
+#
+# make clean = Clean out built project files.
+#
+
+# Project Name
+TARGET = uTaskerV1.3
+
+
+# List C source files here. (C dependencies are automatically generated.)
+SRC = application.c debug.c webInterface.c KeyScan.c LCD.c NetworkIndicator.c \
+      usb_application.c SAM7X.c eth_drv.c Driver.c uMalloc.c uTasker.c Tty_drv.c \
+      iic_drv.c uFile.c watchdog.c GlobalTimer.c low_power.c USB_drv.c Ethernet.c \
+      arp.c dhcp.c dns.c ftp.c http.c icmp.c ip_utils.c ip.c pop3.c smtp.c tcp.c \
+      telnet.c tftp.c udp.c webutils.c NetBIOS.c snmp.c \
+      \
+      efs.c plibc.c disc.c partition.c time.c fs.c fat.c file.c dir.c \
+      debug_fat.c ioman.c ui.c extract.c sd.c sam7x_spi.c \
+      \
+      hal_arm.c rum_application.c arm_timer.c mac.c mac_associate.c mac_beacon.c \
+      mac_data.c mac_event.c mac_route.c mac_scan.c mac_start.c radio.c \
+      sensors.c arm_timer_event.c rumtask.c arm_app.c sleep.c \
+      \
+      tuip.c interfaces.c sicslowpan.c uip6.c uip-icmp6.c uip-nd6.c uip-nd6-io.c \
+      uip-netif.c taskipv6io.c sixlowpan_wake.c
+      
+      
+
+#List all source directories here (space seperated)
+SOURCEDIRS = ../ ../../ ../../../stack ../../../uTasker ../../../Hardware/SAM7X \
+             ../../efsl ../../efsl/interfaces ../../rum_src ../../uip ../../uip/net
+
+# List Assembler source files here.
+#     Make them always end in a capital .S.  Files ending in a lowercase .s
+#     will not be considered source files but generated files (assembler
+#     output from the compiler), and will be deleted upon "make clean"!
+#     Even though the DOS/Win* filesystem matches both .s and .S the same,
+#     it will preserve the spelling of the filenames, and gcc itself does
+#     care about how the name is spelled on its command-line.
+ASRC = startup_gnu.S
+
+# Optimization level, can be [0, 1, 2, 3, s]. 
+#     0 = turn off optimization. s = optimize for size.
+#     (Note: 3 is not always the best optimization level. See avr-libc FAQ.)
+OPT = s
+
+# List any extra directories to look for include files here.
+#     Each directory must be seperated by a space.
+#     Use forward slashes for directory separators.
+#     For a directory that has spaces, enclose it in quotes.
+EXTRAINCDIRS =  ../../uTaskerV1.3 ../../efsl/inc ../../efsl/inc/interfaces \
+                ../rum_src ../../rum_src ../../uip ../../uip/net \
+                ../../uip/lib
+
+
+# Compiler flag to set the C Standard level.
+#     c89   = "ANSI" C
+#     gnu89 = c89 plus GCC extensions
+#     c99   = ISO C99 standard (not yet fully implemented)
+#     gnu99 = c99 plus GCC extensions
+CSTANDARD = -std=gnu99
+
+
+# Place -D or -U options here for C sources
+CDEFS = -D _GNU -D _HW_SAM7X -D __arm__ -DBAND=BAND2400 \
+        -DPAN_ID=0xBABE -DPAN_CHANNEL=15 -DIPV6LOWPAN=1 -DAPP=1 -DRUMSLEEP=1 -DVLP=1
+
+
+# Place -D or -U options here for ASM sources
+ADEFS = -D _GNU -D _HW_SAM7X -D __arm__
+
+# Linker script
+LD_SCRIPT = uTaskerV1.3_FLASH.ld
+
+# Object files directory
+#     To put object files in current directory, use a dot (.), do NOT make
+#     this an empty or blank macro!
+OBJDIR = Build
+
+
+#---------------- Compiler Options C ----------------
+#  -g*:          generate debugging information
+#  -O*:          optimization level
+#  -f...:        tuning, see GCC manual and avr-libc documentation
+#  -Wall...:     warning level
+#  -Wa,...:      tell GCC to pass this to the assembler.
+#    -adhlns...: create assembler listing
+CFLAGS = -g
+CFLAGS += $(CDEFS)
+CFLAGS += -O$(OPT)
+CFLAGS += -Wall
+CFLAGS += -Wstrict-prototypes
+#CFLAGS += -fno-unit-at-a-time
+#CFLAGS += -Wundef
+#CFLAGS += -Wunreachable-code
+#CFLAGS += -Wsign-compare
+#CFLAGS += -Wa,-adhlns=$(<:%.c=$(OBJDIR)/%.lst)
+CFLAGS += $(patsubst %,-I%,$(EXTRAINCDIRS))
+CFLAGS += $(CSTANDARD)
+
+AFLAGS = $(CFLAGS)
+
+# List any extra directories to look for libraries here.
+#     Each directory must be seperated by a space.
+#     Use forward slashes for directory separators.
+#     For a directory that has spaces, enclose it in quotes.
+EXTRALIBDIRS = 
+
+
+#---------------- Linker Options ----------------
+#  -Wl,...:     tell GCC to pass this to linker.
+#    -Map:      create map file
+#    --cref:    add cross reference to  map file
+LDFLAGS = -Wl,-Map=$(TARGET).map,--no-gc-sections -nostartfiles
+LDFLAGS += $(patsubst %,-L%,$(EXTRALIBDIRS))
+LDFLAGS += $(EXTRA_LIBS)
+LDFLAGS += -T$(LD_SCRIPT)
+
+
+#============================================================================
+
+
+# Define programs and commands.
+SHELL = sh
+CC = arm-elf-gcc
+OBJCOPY = arm-elf-objcopy
+OBJDUMP = arm-elf-objdump
+SIZE = arm-elf-size
+AR = arm-elf-ar rcs
+NM = arm-elf-nm
+REMOVE = rm -f
+REMOVEDIR = rm -rf
+COPY = cp
+WINSHELL = cmd
+
+
+# Define Messages
+# English
+MSG_ERRORS_NONE = Errors: none
+MSG_BEGIN = -------- begin --------
+MSG_END = --------  end  --------
+MSG_SIZE_BEFORE = Size before: 
+MSG_SIZE_AFTER = Size after:
+MSG_FLASH = Creating load file for Flash:
+MSG_EXTENDED_LISTING = Creating Extended Listing:
+MSG_SYMBOL_TABLE = Creating Symbol Table:
+MSG_LINKING = Linking:
+MSG_COMPILING = Compiling C:
+MSG_COMPILING_CPP = Compiling C++:
+MSG_ASSEMBLING = Assembling:
+MSG_CLEANING = Cleaning project:
+MSG_CREATING_LIBRARY = Creating library:
+
+# Define all object files.
+OBJ = $(SRC:%.c=$(OBJDIR)/%.o) $(ASRC:%.S=$(OBJDIR)/%.o) 
+
+# Define all listing files.
+LST = $(SRC:%.c=$(OBJDIR)/%.lst) $(ASRC:%.S=$(OBJDIR)/%.lst) 
+
+# Compiler flags to generate dependency files.
+GENDEPFLAGS = -MMD -MP -MF .dep/$(@F).d
+
+
+# Combine all necessary flags and optional flags.
+# Add target processor to flags.
+ALL_CFLAGS = -march=armv4t -mlittle-endian -mthumb -mthumb-interwork -I. $(CFLAGS) $(GENDEPFLAGS)
+ALL_ASFLAGS = -march=armv4t -mlittle-endian -mthumb -mthumb-interwork -I. $(AFLAGS) $(GENDEPFLAGS)
+
+# Default target.
+all: begin gccversion sizebefore build sizeafter end
+
+build: elf bin s19 
+
+#add the 'lss' and 'sym' targets for debugging info! Disabled to speed up build...
+
+
+elf: $(TARGET).elf
+bin: $(TARGET).bin
+s19: $(TARGET).s19
+lss: $(TARGET).lss
+sym: $(TARGET).sym
+
+
+#Where to find sources
+vpath %.c $(SOURCEDIRS)
+vpath %.S $(SOURCEDIRS)
+
+# Display size of file.
+HEXSIZE = $(SIZE) --target=bin $(TARGET).bin
+ELFSIZE = $(SIZE) $(TARGET).elf
+
+sizebefore:
+	@if test -f $(TARGET).elf; then echo; echo $(MSG_SIZE_BEFORE); $(ELFSIZE); \
+	2>/dev/null; echo; fi
+
+sizeafter:
+	@if test -f $(TARGET).elf; then echo; echo $(MSG_SIZE_AFTER); $(ELFSIZE); \
+	2>/dev/null; echo; fi
+
+
+
+# Display compiler version information.
+gccversion : 
+	@$(CC) --version
+
+# Create final output files (.bin & .s19) from ELF output file.
+%.bin: %.elf
+	@echo
+	@echo $(MSG_FLASH) $@
+	$(OBJCOPY) --only-section=.data --only-section=.init --only-section=.text --only-section=.rodata --only-section=.vectors --output-target=binary $< $@
+
+%.s19: %.elf
+	@echo
+	$(OBJCOPY) --only-section=.data --only-section=.init --only-section=.text --only-section=.rodata --only-section=.vectors --output-target=srec $< $@
+
+# Create extended listing file from ELF output file.
+%.lss: %.elf
+	@echo
+	@echo $(MSG_EXTENDED_LISTING) $@
+	$(OBJDUMP) -h -S -z $< > $@
+
+# Create a symbol table from ELF output file.
+%.sym: %.elf
+	@echo
+	@echo $(MSG_SYMBOL_TABLE) $@
+	$(NM) -n $< > $@
+
+
+# Link: create ELF output file from object files.
+.SECONDARY : $(TARGET).elf
+.PRECIOUS : $(OBJ)
+%.elf: $(OBJ)
+	@echo
+	@echo $(MSG_LINKING) $@
+	$(CC) $(ALL_CFLAGS) $^ --output $@ $(LDFLAGS)
+
+
+# Compile: create object files from C source files.
+$(OBJDIR)/%.o : %.c
+	@echo
+	@echo $(MSG_COMPILING) $<
+	$(CC) -c $(ALL_CFLAGS) $< -o $@ 
+
+
+# Compile: create assembler files from C source files.
+%.s : %.c
+	$(CC) -S $(ALL_CFLAGS) $< -o $@
+
+
+# Assemble: create object files from assembler source files.
+$(OBJDIR)/%.o : %.S
+	@echo
+	@echo $(MSG_ASSEMBLING) $<
+	$(CC) -c $(ALL_ASFLAGS) $< -o $@
+
+
+# Create preprocessed source for use in sending a bug report.
+%.i : %.c
+	$(CC) -E -mmcu=$(MCU) -I. $(CFLAGS) $< -o $@ 
+
+
+# Target: clean project.
+clean: begin clean_list end
+
+clean_list :
+	@echo
+	@echo $(MSG_CLEANING)
+	$(REMOVE) $(TARGET).bin
+	$(REMOVE) $(TARGET).s19
+	$(REMOVE) $(TARGET).elf
+	$(REMOVE) $(TARGET).map
+	$(REMOVE) $(TARGET).sym
+	$(REMOVE) $(TARGET).lss
+	$(REMOVE) $(SRC:%.c=$(OBJDIR)/%.o)
+	$(REMOVE) $(SRC:%.c=$(OBJDIR)/%.lst)
+	$(REMOVE) $(SRC:.c=.s)
+	$(REMOVE) $(SRC:.c=.d)
+	$(REMOVE) $(SRC:.c=.i)
+	$(REMOVEDIR) .dep
+
+
+# Create object files directory
+$(shell mkdir $(OBJDIR) 2>/dev/null)
+
+
+# Include the dependency files.
+-include $(shell mkdir .dep 2>/dev/null) $(wildcard .dep/*)
+
+
+# Listing of phony targets.
+.PHONY : all begin finish end sizebefore sizeafter gccversion \
+build elf bin s19 lss sym clean clean_list 
+
+
+
+
+
+

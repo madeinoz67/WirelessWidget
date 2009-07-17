@@ -1,0 +1,13 @@
+<area shape="rect" href="$group__mac__associate.html#g4a19318e111a0c13ce3ab17bcc65e37f" title="Add a node to the table of nodes, and return a short address for the new node." alt="" coords="272,5,344,32">
+<area shape="rect" href="$group__app.html#g8536fa62911e3b087d0811af3649b329" title="Callback function, called when the MAC has associated a child of this node to the..." alt="" coords="240,56,376,82">
+<area shape="rect" href="$group__timer__module.html#g0155e5192956b3cd498751d8652f7773" title="Sets a general purpose timer." alt="" coords="452,106,551,133">
+<area shape="rect" href="$group__app.html#g65f0f14844e8b09a2d33a5b377c56b1b" title="Callback function, called when the MAC has associated a new node to a network." alt="" coords="240,157,376,184">
+<area shape="rect" href="$group__mac__associate.html#g18f2eb5c764a757970e9d7d72e47425b" title="This will return the hop count for the associated node requested." alt="" coords="247,208,369,234">
+<area shape="rect" href="$group__mac__associate.html#g23e06fe2d0b2ad5f7653daa88d86d8c9" title="Find a node&#39;s short address given the node&#39;s long MAC address." alt="" coords="247,258,369,285">
+<area shape="rect" href="$group__mac__associate.html#g2dde2bdb54d1319810d247e434baa0d8" title="Sends a frame from the coordinator notifying a router to drop a child from its table..." alt="" coords="255,309,361,336">
+<area shape="rect" href="$group__mac__associate.html#g18e0aeff533ca9a9e8bb2788eb8648e1" title="Remove a node from the child table." alt="" coords="248,360,368,386">
+<area shape="rect" href="$group__mac.html#g2809f7f1254ef0b25b95136d2aff6b06" title="Create and send a routing packet, returns non&#45;zero if packet was sent." alt="" coords="228,410,388,437">
+<area shape="rect" href="$group__radio.html#g73d762673c6af21f4fb6b6ba6c06cc63" title="This function will download a frame to the radio transceiver&#39;s transmit buffer..." alt="" coords="448,461,555,488">
+<area shape="rect" href="$group__mac__associate.html#g4a6a372f2dd95a1cd7d0a3cb635bc4eb" title="Create a routing packet." alt="" coords="443,309,560,336">
+<area shape="rect" href="$group__mac__associate.html#gcfefe3f998d94f694b004a72b8b777fb" title="Get the last routed address of one of the router nodes in the network." alt="" coords="439,360,564,386">
+<area shape="rect" href="$group__mac__associate.html#geac81ec5acd0fa702167c9f8b0ce29b2" title="Sets the last routed address for a router node." alt="" coords="439,410,564,437">

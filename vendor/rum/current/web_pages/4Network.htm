@@ -1,0 +1,97 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Cache-Control" content="no-cache; no-store" />
+<style type="text/css">
+.style7 {
+	margin-bottom: 7px;
+}
+.style8 {
+	border-width: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+.style10 {
+	border-width: 0px;
+	margin-left: 0px;
+	margin-bottom: 0px;
+}
+.style16 {
+	margin-left: 0px;
+	margin-bottom: 0px;
+	text-align: center;
+	margin-right: 0px;
+}
+.style18 {
+	margin-left: 0px;
+	text-align: center;
+	margin-right: 0px;
+}
+.style23 {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+.style27 {
+	text-align: left;
+}
+.style28 {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+.style30 {
+	text-align: center;
+}
+.style32 {
+	margin-left: 0px;
+	text-align: center;
+	font-size: large;
+}
+</style>
+
+<title>Network Table</title>
+</head>
+<body style="background-image: url('Bbg2.gif')" onload="">
+
+<p class="style16" style="width: 1369px; height: 71px;">
+<a title="Everywhere you are..." href="http://www.atmel.com"><img src="DAtmel_logo_blue.png" class="style8" align="right" width="218" height="91"></a>
+<a title="MCU Wireless Home" href="http://www.atmel.com/products/zigbee"><img src="IAVR_logo_blue.png" class="style10" width="318" height="96" align="left"></a>&nbsp;
+</p>
+
+<p class="style23" style="width: 1369px;"><br>
+</p>
+
+<hr class="style7" color="#0099FF" />
+
+<h1 class="style18">Coordinator Network Table</h1>
+
+<p class="style32">Build Dynamic Coordinator Network Table upon refresh.</p>
+
+$H50
+<br>
+<br>
+<form action=4Network.htm name=T>
+    <div class="style30">
+        <input type=submit value="Update Network Table" align="middle"></div>
+</form>
+<p class="style32">Select a device from the Network Table to send a PING request to:</p>
+<form action=4Network.htm name=r1>
+<table border="3" align="center" style="width: 410px; height: 76px;">
+<tr><th class="style27">Ping address:(Use 0x0000 - 0xFFFF) 0x</th>
+    <th align=right style="width: 7px" class="style27"><input maxLength=4 size=4 name=r1 value="$vr1" class="style28" style="width: 100px"></th></tr>
+    <tr><th colspan="2"><input type=submit value="Ping" style="width: 96px"></th></tr>
+<tr><th class="style27">Last Ping Address:</th>
+    <th align=right style="width: 7px" class="style27"><input maxLength=4 size=4 name=r value="$vr2" disabled class="style28" style="width: 100px"></th></tr>
+<tr><th class="style27">Last Ping Response Time:</th>
+    <th align=right style="width: 7px" class="style27"><input maxLength=15 size=15 name=r value="$vr3" disabled class="style28" style="width: 100px"></th></tr>
+</table>
+</form>
+<br>
+<br>
+<form action=0Menu.htm name=M>
+    <div class="style30">
+        <input type=submit value="Back to Main" align="middle"></div>
+</form>
+
+</body>
+
+</html>

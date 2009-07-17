@@ -1,0 +1,17 @@
+/* Define groups in this file - allows you to control order they
+   will appear in Doxygen */
+
+/**
+
+  @defgroup mac          Route Under Mac (RUM)
+  @defgroup radio        Radio interface
+  @defgroup avr6lowpan   6LoWPAN implementation for AVR
+  @defgroup timer_module Timer module
+  @defgroup app          Sample Application
+
+  @defgroup sensors      Sensor Application
+  @ingroup app
+
+  @defgroup serial       Serial Port
+  
+*/

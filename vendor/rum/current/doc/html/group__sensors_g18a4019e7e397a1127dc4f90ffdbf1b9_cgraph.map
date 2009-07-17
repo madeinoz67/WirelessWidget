@@ -1,0 +1,4 @@
+<area shape="rect" href="$group__sensors.html#g2325880cddd8e5d5a5483312507a6ae2" title="Coord node calibration routine." alt="" coords="173,56,301,83">
+<area shape="rect" href="$group__timer__module.html#g0155e5192956b3cd498751d8652f7773" title="Sets a general purpose timer." alt="" coords="351,6,449,32">
+<area shape="rect" href="$group__serial.html#gc0ee16939b4816b2ca3bb093c6891739" title="Captures a string from serial port." alt="" coords="359,56,441,83">
+<area shape="rect" href="$group__serial.html#g46a01c0d9f12d9deaf905f76463175ac" title="Check to see if any characters are waiting in the serial input buffer." alt="" coords="353,107,447,134">

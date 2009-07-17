@@ -1,0 +1,14 @@
+<area shape="rect" href="$group__timer__module.html#g0155e5192956b3cd498751d8652f7773" title="Sets a general purpose timer." alt="" coords="325,56,424,82">
+<area shape="rect" href="$group__radio.html#g301044554e9d047bf22935d01c615884" title="Returns a random number, composed of bits from the radio&#39;s random number generator..." alt="" coords="327,157,423,184">
+<area shape="rect" href="$group__radio.html#g9c32d026c082234626f5f900077221bc" title="This function will change the current state of the radio transceiver&#39;s internal..." alt="" coords="316,106,433,133">
+<area shape="rect" href="$group__sensors.html#gc4fd19ca8f3d53a6d64bc4869713acbb" title="Send a single reading to the coordinator and go to sleep if required." alt="" coords="327,208,423,234">
+<area shape="rect" href="$group__avr6lowpan.html#g270d58c0390fa3a648de3d2df7a179b4" title="Get a pointer to the payload section of the UDP packet." alt="" coords="259,258,491,285">
+<area shape="rect" href="$group__avr6lowpan.html#gf25c7b0fc910cfbee13b71a0129e7f3c" title="Send a UDP Packet." alt="" coords="287,309,463,336">
+<area shape="rect" href="$group__avr6lowpan.html#g5aee4b0d2faa99889dde62f995f156ec" title="Set amount of data user has loaded into payload section." alt="" coords="253,360,496,386">
+<area shape="rect" href="$group__avr6lowpan.html#g805964e13e701bdde2a4058f8a44ce50" title="Setup a UDP packet for off&#45;link IP addresses." alt="" coords="259,410,491,437">
+<area shape="rect" href="$group__avr6lowpan.html#geda0cc06167d50c3dfc43eb8699548e0" title="Setup a UDP packet&#39;s port information." alt="" coords="267,461,483,488">
+<area shape="rect" href="$group__arm.html#g8ad2d7780b4815433b88ee56afa2830c" title="Returns a unique timer ID." alt="" coords="559,56,649,82">
+<area shape="rect" href="$group__timer__module.html#g55bef38a083b7a6478dd60c6668f3434" title="Start the hardware timer running." alt="" coords="565,5,643,32">
+<area shape="rect" href="$group__arm.html#gbe3a54dd0c5f0231fb9ef72abd021486" title="This function reads the value of a specific subregister." alt="" coords="712,157,853,184">
+<area shape="rect" href="$group__radio.html#g2976f50bf538933d7eba0444494d6289" title="Returns the radio part number." alt="" coords="544,157,664,184">
+<area shape="rect" href="$group__radio.html#g80178b680aa26b7a8e1a1ce8a4a824b3" title="This function return the Radio Transceivers current state." alt="" coords="544,106,664,133">

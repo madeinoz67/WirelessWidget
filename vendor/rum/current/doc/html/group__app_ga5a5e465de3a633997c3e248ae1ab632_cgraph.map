@@ -1,0 +1,5 @@
+<area shape="rect" href="$group__timer__module.html#g0155e5192956b3cd498751d8652f7773" title="Sets a general purpose timer." alt="" coords="180,31,279,57">
+<area shape="rect" href="$group__radio.html#gb89f723b3d8357a3c254083b36bef539" title="Retrieves the saved LQI (Link Quality Indication) value." alt="" coords="152,81,307,108">
+<area shape="rect" href="$group__radio.html#g8a4202486f04e061df72ec19973be447" title="Retrieves the saved RSSI (Received Signal Strength Indication) value." alt="" coords="148,132,311,159">
+<area shape="rect" href="$group__arm.html#g8ad2d7780b4815433b88ee56afa2830c" title="Returns a unique timer ID." alt="" coords="361,5,452,32">
+<area shape="rect" href="$group__timer__module.html#g55bef38a083b7a6478dd60c6668f3434" title="Start the hardware timer running." alt="" coords="368,56,445,83">
