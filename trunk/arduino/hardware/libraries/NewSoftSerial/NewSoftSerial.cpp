@@ -1,7 +1,7 @@
 /*
 NewSoftSerial.cpp - Multi-instance software serial library
 Copyright (c) 2006 David A. Mellis.  All rights reserved.
-Interrupt-driven receive and other improvements by ladyada 
+Interrupt-driven receive and other improvements by ladyada
 Tuning, circular buffer, derivation from class Print,
 multi-instance support, porting to 8MHz processors by
 Mikal Hart
@@ -22,6 +22,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 The latest version of this library can always be found at
 http://arduiniana.org.
+
+090721 - seaton@gateway.net.au - port to 10Mhz to support RFM12WidgetBoard (http://code.google.com/p/strobit/)
+
 */
 
 // When set, _DEBUG co-opts pins 11 and 13 for debugging with an
@@ -29,9 +32,9 @@ http://arduiniana.org.
 // the bit times, so don't rely on it too much at high baud rates
 #define _DEBUG 0
 
-// 
+//
 // Includes
-// 
+//
 #include <avr/interrupt.h>
 #include <avr/pgmspace.h>
 #include "WConstants.h"
@@ -51,7 +54,27 @@ typedef struct _DELAY_TABLE
 
 #if F_CPU == 16000000
 
-static const DELAY_TABLE PROGMEM table[] = 
+static const DELAY_TABLE PROGMEM table[] =
+{
+  //  baud    rxcenter   rxintra    rxstop    tx
+  { 115200,   /*5*/1,         17,        17,       /*15*/13,    },
+  { 57600,    /*15*/10,      37,        37,       34,    },
+  { 38400,    25,        57,        57,       54,    },
+  { 31250,    31,        70,        70,       68,    },
+  { 28800,    34,        77,        77,       74,    },
+  { 19200,    54,        117,       117,      114,   },
+  { 14400,    74,        156,       156,      153,   },
+  { 9600,     114,       236,       236,      233,   },
+  { 4800,     233,       474,       474,      471,   },
+  { 2400,     471,       950,       950,      947,   },
+  { 1200,     947,       1902,      1902,     1899,  },
+  { 300,      3804,      7617,      7617,     7614,  },
+};
+
+#define XMIT_START_ADJUSTMENT 5
+
+#elif F_CPU == 10000000
+static const DELAY_TABLE PROGMEM table[] =
 {
   //  baud    rxcenter   rxintra    rxstop    tx
   { 115200,   /*5*/1,         17,        17,       /*15*/13,    },
@@ -72,7 +95,7 @@ static const DELAY_TABLE PROGMEM table[] =
 
 #elif F_CPU == 8000000
 
-static const DELAY_TABLE table[] PROGMEM = 
+static const DELAY_TABLE table[] PROGMEM =
 {
   //  baud    rxcenter   rxintra    rxstop    tx
   { 115200,  1,          5,         5,      3,      },
@@ -93,7 +116,7 @@ static const DELAY_TABLE table[] PROGMEM =
 
 #else
 
-#error This version of NewSoftSerial supports only 16 and 8MHz processors
+#error This version of NewSoftSerial supports only 8, 10 and 16Mhz processors
 
 #endif
 
@@ -101,7 +124,7 @@ static const DELAY_TABLE table[] PROGMEM =
 // Statics
 //
 NewSoftSerial *NewSoftSerial::active_object = 0;
-char NewSoftSerial::_receive_buffer[_NewSS_MAX_RX_BUFF]; 
+char NewSoftSerial::_receive_buffer[_NewSS_MAX_RX_BUFF];
 volatile uint8_t NewSoftSerial::_receive_buffer_tail = 0;
 volatile uint8_t NewSoftSerial::_receive_buffer_head = 0;
 
@@ -126,8 +149,8 @@ inline void DebugPulse(uint8_t pin, uint8_t count)
 // Private methods
 //
 
-/* static */ 
-inline void NewSoftSerial::tunedDelay(uint16_t delay) { 
+/* static */
+inline void NewSoftSerial::tunedDelay(uint16_t delay) {
   uint8_t tmp=0;
 
   asm volatile("sbiw    %0, 0x01 \n\t"
@@ -141,7 +164,7 @@ inline void NewSoftSerial::tunedDelay(uint16_t delay) {
 }
 
 // This function sets the current object as the "active"
-// one and returns true if it replaces another 
+// one and returns true if it replaces another
 bool NewSoftSerial::activate(void)
 {
   if (active_object != this)
@@ -178,7 +201,7 @@ void NewSoftSerial::recv()
     "push r26 \n\t"
     "push r27 \n\t"
     ::);
-#endif  
+#endif
 
   uint8_t d = 0;
 
@@ -207,13 +230,13 @@ void NewSoftSerial::recv()
     DebugPulse(13, 1);
 
     // if buffer full, set the overflow flag and return
-    if ((_receive_buffer_tail + 1) % _NewSS_MAX_RX_BUFF != _receive_buffer_head) 
+    if ((_receive_buffer_tail + 1) % _NewSS_MAX_RX_BUFF != _receive_buffer_head)
     {
       // save new data in buffer: tail points to where byte goes
       _receive_buffer[_receive_buffer_tail] = d; // save new byte
       _receive_buffer_tail = (_receive_buffer_tail + 1) % _NewSS_MAX_RX_BUFF;
-    } 
-    else 
+    }
+    else
     {
 #if _DEBUG // for scope: bring pin 11 high: overflow indicator
       PORTB |= _BV(3);
@@ -240,9 +263,9 @@ void NewSoftSerial::recv()
 
 void NewSoftSerial::tx_pin_write(uint8_t pin_state)
 {
- 	if (pin_state == LOW) 
+ 	if (pin_state == LOW)
     *_transmitPortRegister &= ~_transmitBitMask;
-	else 
+	else
     *_transmitPortRegister |= _transmitBitMask;
 }
 
@@ -282,7 +305,7 @@ ISR(PCINT2_vect)
 //
 // Constructor
 //
-NewSoftSerial::NewSoftSerial(uint8_t receivePin, uint8_t transmitPin) : 
+NewSoftSerial::NewSoftSerial(uint8_t receivePin, uint8_t transmitPin) :
   _rx_delay_centering(0),
   _rx_delay_intrabit(0),
   _rx_delay_stopbit(0),
@@ -335,24 +358,24 @@ void NewSoftSerial::begin(long speed)
   // Set up RX interrupts, but only if we have a valid RX baud rate
   if (_rx_delay_stopbit)
   {
-    if (_receivePin < 8) 
+    if (_receivePin < 8)
     {
       // a PIND pin, PCINT16-23
       PCICR |= _BV(2);
       PCMSK2 |= _BV(_receivePin);
-    } 
-    else if (_receivePin <= 13) 
+    }
+    else if (_receivePin <= 13)
     {
       // a PINB pin, PCINT0-7
-      PCICR |= _BV(0);    
+      PCICR |= _BV(0);
       PCMSK0 |= _BV(_receivePin-8);
-    } 
-    else if (_receivePin <= 21) 
+    }
+    else if (_receivePin <= 21)
     {
       // a PINC pin, PCINT8-14/15
       PCICR |= _BV(1);
       PCMSK1 |= _BV(_receivePin-14);
-    } 
+    }
 
     tunedDelay(_tx_delay); // if we were low this establishes the end
   }
@@ -408,13 +431,13 @@ void NewSoftSerial::write(uint8_t b)
   tunedDelay(_tx_delay + XMIT_START_ADJUSTMENT);
 
   // Write each of the 8 bits
-  for (byte mask = 0x01; mask; mask <<= 1) 
+  for (byte mask = 0x01; mask; mask <<= 1)
   {
     if (b & mask) // choose bit
       tx_pin_write(HIGH); // send 1
     else
       tx_pin_write(LOW); // send 0
-  
+
     DebugPulse(13, 1);
     tunedDelay(_tx_delay);
     DebugPulse(13, 1);
@@ -428,15 +451,15 @@ void NewSoftSerial::write(uint8_t b)
 
 #define cbi(sfr, bit) (_SFR_BYTE(sfr) &= ~_BV(bit))
 #define sbi(sfr, bit) (_SFR_BYTE(sfr) |= _BV(bit))
-void NewSoftSerial::enable_timer0(bool enable) 
-{ 
-  if (enable) 
+void NewSoftSerial::enable_timer0(bool enable)
+{
+  if (enable)
 #if defined(__AVR_ATmega8__)
   	sbi(TIMSK, TOIE0);
 #else
 	  sbi(TIMSK0, TOIE0);
 #endif
-  else 
+  else
 #if defined(__AVR_ATmega8__)
   	cbi(TIMSK, TOIE0);
 #else
