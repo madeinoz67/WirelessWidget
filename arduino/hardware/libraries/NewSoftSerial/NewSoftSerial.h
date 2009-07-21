@@ -23,6 +23,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 The latest version of this library can always be found at
 http://arduiniana.org.
+
+090721 - seaton@gateway.net.au - port to 10Mhz to support RFM12WidgetBoard (http://code.google.com/p/strobit/)
 */
 
 #ifndef NewSoftSerial_h
@@ -59,7 +61,7 @@ private:
   bool _buffer_overflow;
 
   // static data
-  static char _receive_buffer[_NewSS_MAX_RX_BUFF]; 
+  static char _receive_buffer[_NewSS_MAX_RX_BUFF];
   static volatile uint8_t _receive_buffer_tail;
   static volatile uint8_t _receive_buffer_head;
   static NewSoftSerial *active_object;
@@ -99,6 +101,6 @@ public:
 #undef byte
 #undef float
 #undef abs
-#undef round 
+#undef round
 
 #endif
