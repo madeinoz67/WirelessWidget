@@ -1,3 +1,6 @@
+2009-07-21 se (seaton@gateway.net.au)
+- Changes to RFM12Demo.pde to flash Green Led on RFM12WidgetBoard on successful Receive of packet (checksums ok)
+
 2009-06-04 jcw
 - Made v2 protocol the default, i.e. crc includes group. Incompatible with v1!
 - Cleanups, remove some recent new ack code which won't be used after all.
