@@ -37,6 +37,45 @@ enum {
     TXPRE1, TXPRE2, TXPRE3, TXSYN1, TXSYN2,
 };
 
+// holds register config
+struct{
+    uint16_t REG_80C7;     // Band
+    uint16_t REG_9800;     // TX Config
+    uint16_t REG_8209;     // enable xtal, disable clk pin
+    uint16_t REG_A680;     // frequency
+    uint16_t REG_C606;     // bitrate 57.6Kbps (38.4: 8, 19.2: 11, 9.6: 23, 4.8: 47)
+    uint16_t REG_94A0;     // VDI,FAST,134kHz,0dBm,-103dBm
+    uint16_t REG_C2AC;     // AL,!ml,DIG,DQD4
+    uint16_t REG_CA83;     // FIFO8,SYNC,!ff,DR
+    uint16_t REG_CE00;     // SYNC=2DXX；
+    uint16_t REG_C483;     // @PWR,NO RSTRIC,!st,!fi,OE,EN
+    uint16_t REG_9850;     // !mp,90kHz,MAX OUT
+    uint16_t REG_CC77;     // OB1，OB0, LPX,！ddy，DDIT，BW0
+    uint16_t REG_E000;     // NOT USE
+    uint16_t REG_C800;     // NOT USE
+    uint16_t REG_C040;     // 1.66MHz,2.2V
+}rf12config;
+
+// holds last status reading
+struct{
+    //interrupts
+    uint8_t FFIT_RGIT : 1;  // Rx Interrupt or Tx Interrupt
+    uint8_t POR       : 1;  // Power On Reset
+    uint8_t FFOV_RGUR : 1;  // Tx Overflow / Rx Underrun
+    uint8_t WKUP      : 1;  // Wakeup
+    uint8_t EXT       : 1;  // External interrupt
+    uint8_t LBD       : 1;  // Low Battery Detect
+    //status
+    uint8_t FFEM      : 1;  // FIFO is empty
+    uint8_t ATS       : 1;  // Antenna tuning circuit detected strong signal
+    uint8_t RSSI      : 1;  // RSSI above pre-programmed limit
+    uint8_t DQD       : 1;  // Data Quality Detector output
+    uint8_t CRL       : 1;  // Clock recovery locked
+    uint8_t ATGL      : 1;  // Toggling each AFC Cycle
+    uint8_t OFFS_MSB  : 1;  // MSB of measured frequency offset (sign of offset value)
+    uint8_t OFFS_LSB  : 3;  // LSB of measured frequency offset (value to be added to offset)
+}rfm12Status;
+
 static uint8_t nodeid;              // address of this node
 static uint8_t group;               // network group
 static uint16_t crcInit;            // initial crc value
@@ -52,7 +91,7 @@ static void spi_initialize () {
     pinMode(SPI_MOSI, OUTPUT);
     pinMode(SPI_MISO, INPUT);
     pinMode(SPI_SCK, OUTPUT);
-    
+
 #if F_CPU <= 10000000
     // clk/4 is ok for the RF12's SPI
     SPCR = _BV(SPE) | _BV(MSTR);
@@ -81,8 +120,8 @@ static uint16_t rf12_xfer (uint16_t cmd) {
 
 static void rf12_interrupt() {
     // a transfer of 2x 16 bits @ 2 MHz over SPI takes 2x 8 us inside this ISR
-    rf12_xfer(0x0000);
-    
+    rf12Status = rf12_xfer(0x0000);
+
     if (rxstate == TXRECV) {
         uint8_t in = rf12_xfer(0xB000);
 
@@ -107,7 +146,7 @@ static void rf12_interrupt() {
                 case TXDONE: rf12_xfer(RF_IDLE_MODE); // fall through
                 default:     out = 0xAA;
             }
-            
+
         rf12_xfer(0xB800 + out);
     }
 }
@@ -115,7 +154,7 @@ static void rf12_interrupt() {
 static void rf12_recvStart () {
     rxfill = rf12_len = 0;
     rf12_crc = crcInit;
-    rxstate = TXRECV;    
+    rxstate = TXRECV;
     rf12_xfer(RF_RECEIVER_ON);
 }
 
@@ -140,7 +179,7 @@ uint8_t rf12_canSend () {
         cli(); // start critical section so we can call rf12_xfer() safely
         rf12_xfer(RF_IDLE_MODE); // stop receiver
         //XXX just in case, don't know whether these RF21 reads are needed!
-        rf12_xfer(0x0000); // status register
+        rf12Status = rf12_xfer(0x0000); // status register
         rf12_xfer(0xB000); // fifo read
         rxstate = TXIDLE;
         sei(); // end critical section
@@ -154,7 +193,7 @@ void rf12_sendStart (uint8_t hdr, const void* ptr, uint8_t len) {
                 (hdr & ~RF12_HDR_MASK) + (nodeid & NODE_ID);
     rf12_len = len;
     memcpy((void*) (2 + rf12_buf), ptr, len);
-    
+
     rf12_crc = crcInit;
     rxstate = TXPRE1;
     rf12_xfer(RF_XMITTER_ON); // bytes will be fed via interrupts
@@ -163,26 +202,26 @@ void rf12_sendStart (uint8_t hdr, const void* ptr, uint8_t len) {
 void rf12_initialize (uint8_t id, uint8_t band, uint8_t g) {
     nodeid = id;
     group = g;
-    
+
     spi_initialize();
-    
+
     pinMode(RFM_IRQ, INPUT);
     digitalWrite(RFM_IRQ, 1); // pull-up
-    
-    rf12_xfer(0x80C7 | (band << 4)); // EL,EF,12.0pF 
+
+    rf12_xfer(0x80C7 | (band << 4)); // EL,EF,12.0pF
     rf12_xfer(0x8209); // enable xtal, disable clk pin
-    rf12_xfer(0xA640); // 868MHz 
+    rf12_xfer(0xA640); // 868MHz
     rf12_xfer(0xC606); // 57.6Kbps (38.4: 8, 19.2: 11, 9.6: 23, 4.8: 47)
-    rf12_xfer(0x94A0); // VDI,FAST,134kHz,0dBm,-103dBm 
-    rf12_xfer(0xC2AC); // AL,!ml,DIG,DQD4 
-    rf12_xfer(0xCA83); // FIFO8,SYNC,!ff,DR 
-    rf12_xfer(0xCE00 | group); // SYNC=2DXX； 
-    rf12_xfer(0xC483); // @PWR,NO RSTRIC,!st,!fi,OE,EN 
-    rf12_xfer(0x9850); // !mp,90kHz,MAX OUT 
-    rf12_xfer(0xCC77); // OB1，OB0, LPX,！ddy，DDIT，BW0 
-    rf12_xfer(0xE000); // NOT USE 
-    rf12_xfer(0xC800); // NOT USE 
-    rf12_xfer(0xC040); // 1.66MHz,2.2V 
+    rf12_xfer(0x94A0); // VDI,FAST,134kHz,0dBm,-103dBm
+    rf12_xfer(0xC2AC); // AL,!ml,DIG,DQD4
+    rf12_xfer(0xCA83); // FIFO8,SYNC,!ff,DR
+    rf12_xfer(0xCE00 | group); // SYNC=2DXX；
+    rf12_xfer(0xC483); // @PWR,NO RSTRIC,!st,!fi,OE,EN
+    rf12_xfer(0x9850); // !mp,90kHz,MAX OUT
+    rf12_xfer(0xCC77); // OB1，OB0, LPX,！ddy，DDIT，BW0
+    rf12_xfer(0xE000); // NOT USE
+    rf12_xfer(0xC800); // NOT USE
+    rf12_xfer(0xC040); // 1.66MHz,2.2V
 
 #if RF12_VERSION == 1
     crcInit = ~0;
@@ -205,7 +244,7 @@ uint8_t rf12_config() {
         crc = _crc16_update(crc, eeprom_read_byte(RF12_EEPROM_ADDR + i));
     if (crc != 0)
         return 0;
-        
+
     uint8_t nodeId = 0, group = 0;
     for (uint8_t i = 0; i < RF12_EEPROM_SIZE - 2; ++i) {
         uint8_t b = eeprom_read_byte(RF12_EEPROM_ADDR + i);
@@ -219,7 +258,7 @@ uint8_t rf12_config() {
             Serial.print(b);
     }
     Serial.println();
-    
+
     rf12_initialize(nodeId, nodeId >> 6, group);
     return nodeId & 0x1F;
 }
@@ -234,4 +273,22 @@ void rf12_sleep (char n) {
             rf12_xfer(RF_WAKEUP_MODE);
     }
     rxstate = TXIDLE;
+}
+
+void rf12_txPower(rf12_tx_power_t level) {
+    if (rxstate == TX_IDLE)
+        //TODO: update rf12config structure
+        rf12_xfer(0x9800 | level);
+}
+
+void rf12_setFrequecy(uint16_t freq) {
+    if (rxstate == TX_IDLE){
+        if (freq < 96)
+            freq = 96;
+        if (freq > 3903)
+            freq = 3903;
+        rf12_xfer(RF12_CMD_FREQ | freq);  // set new frequency
+        rf12_xfer(0x8200);                // turn off everything and back on to get changes
+        rf12_xfer(0x8209);                // enable xtal, disable clk pin
+    }
 }
