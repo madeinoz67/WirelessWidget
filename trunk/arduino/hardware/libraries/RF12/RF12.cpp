@@ -36,7 +36,7 @@ enum {
     TXRECV,
     TXPRE1, TXPRE2, TXPRE3, TXSYN1, TXSYN2,
 };
-
+/*
 // holds register config
 struct{
     uint16_t REG_80C7;     // Band
@@ -54,7 +54,7 @@ struct{
     uint16_t REG_E000;     // NOT USE
     uint16_t REG_C800;     // NOT USE
     uint16_t REG_C040;     // 1.66MHz,2.2V
-}rf12config;
+}RF12_config_t RF12Config;
 
 // holds last status reading
 struct{
@@ -74,7 +74,8 @@ struct{
     uint8_t ATGL      : 1;  // Toggling each AFC Cycle
     uint8_t OFFS_MSB  : 1;  // MSB of measured frequency offset (sign of offset value)
     uint8_t OFFS_LSB  : 3;  // LSB of measured frequency offset (value to be added to offset)
-}rfm12Status;
+}__attribute__ ((__packed__)) RF12_status_t RF12Status;
+*/
 
 static uint8_t nodeid;              // address of this node
 static uint8_t group;               // network group
@@ -120,7 +121,7 @@ static uint16_t rf12_xfer (uint16_t cmd) {
 
 static void rf12_interrupt() {
     // a transfer of 2x 16 bits @ 2 MHz over SPI takes 2x 8 us inside this ISR
-    rf12Status = rf12_xfer(0x0000);
+    rf12_xfer(0x0000);
 
     if (rxstate == TXRECV) {
         uint8_t in = rf12_xfer(0xB000);
@@ -179,7 +180,7 @@ uint8_t rf12_canSend () {
         cli(); // start critical section so we can call rf12_xfer() safely
         rf12_xfer(RF_IDLE_MODE); // stop receiver
         //XXX just in case, don't know whether these RF21 reads are needed!
-        rf12Status = rf12_xfer(0x0000); // status register
+        rf12_xfer(0x0000); // status register
         rf12_xfer(0xB000); // fifo read
         rxstate = TXIDLE;
         sei(); // end critical section
@@ -275,14 +276,14 @@ void rf12_sleep (char n) {
     rxstate = TXIDLE;
 }
 
-void rf12_txPower(rf12_tx_power_t level) {
-    if (rxstate == TX_IDLE)
+void rf12_txPower (RF12_tx_power_t level) {
+    if (rxstate == TXIDLE)
         //TODO: update rf12config structure
         rf12_xfer(0x9800 | level);
 }
 
-void rf12_setFrequecy(uint16_t freq) {
-    if (rxstate == TX_IDLE){
+void rf12_setFrequecy (uint16_t freq) {
+    if (rxstate == TXIDLE){
         if (freq < 96)
             freq = 96;
         if (freq > 3903)

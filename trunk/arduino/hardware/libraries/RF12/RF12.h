@@ -13,18 +13,18 @@
 #define RF12_VERSION    2
 
 // Frequency control
-#define RFM12_CMD_FREQ  0xA000				                    // Frequency control register
-#define RFM12_FREQUENCY_CALC_433(f) (((f)-430000000UL)/2500UL)  // Calculate the RFM12 register value for a given Frequency at 433MHz in 2.5khz increments
-#define RFM12_FREQUENCY_CALC_868(f) (((f)-860000000UL)/5000UL)	// Calculate the RFM12 register value for a given Frequency at 868MHz in 5.0Khz increments
-#define RFM12_FREQUENCY_CALC_915(f) (((f)-900000000UL)/7500UL)	// Calculate the RFM12 register value for a given Frequency at 915MHz in 7.5Khz increments
+#define RF12_CMD_FREQ  0xA000				                    // Frequency control register
+#define RF12_FREQUENCY_CALC_433(f) (((f)-430000000UL)/2500UL)  // Calculate the RFM12 register value for a given Frequency at 433MHz in 2.5khz increments
+#define RF12_FREQUENCY_CALC_868(f) (((f)-860000000UL)/5000UL)	// Calculate the RFM12 register value for a given Frequency at 868MHz in 5.0Khz increments
+#define RF12_FREQUENCY_CALC_915(f) (((f)-900000000UL)/7500UL)	// Calculate the RFM12 register value for a given Frequency at 915MHz in 7.5Khz increments
 
 // Bitrate control
-#define RFM12_CMD_DATARATE 0xC600
-#define RFM12_DATARATE_CS 0x80
+#define RF12_CMD_DATARATE 0xC600
+#define RF12_DATARATE_CS 0x80
 //calculate setting for datarates >= 2700 Baud
-#define RFM12_DATARATE_CALC_HIGH(d) ((uint8_t)((10000000.0/29.0/d)-0.5))
+#define RF12_DATARATE_CALC_HIGH(d) ((uint8_t)((10000000.0/29.0/d)-0.5))
 //calculate setting for datarates < 2700 Baud
-#define RFM12_DATARATE_CALC_LOW(d) (RFM12_DATARATE_CS|(uint8_t)((10000000.0/29.0/8.0/d)-0.5))
+#define RF12_DATARATE_CALC_LOW(d) (RFM12_DATARATE_CS|(uint8_t)((10000000.0/29.0/8.0/d)-0.5))
 
 
 #define rf12_hdr        rf12_buf[0]
@@ -54,8 +54,8 @@ typedef enum  {
     RF12_TX_9DB  = 0x3,               // -9dB
     RF12_TX_12DB = 0x4,               // -12dB
     RF12_TX_15DB = 0x5,               // -15dB
-    RF12_TX_21DB = 0x6,               // -21dB Weakest
-} rf12_tx_power_t;
+    RF12_TX_21DB = 0x6                // -21dB Weakest
+} RF12_tx_power_t;
 
 extern volatile uint16_t rf12_crc;  // running crc value, should be zero at end
 extern volatile uint8_t rf12_buf[]; // recv/xmit buf including hdr & crc bytes
@@ -87,9 +87,9 @@ void (rf12_onOff) (uint8_t);
 void (rf12_sleep) (char);
 
 // sets Tx power Level
-void (rf12_txPower) (rfm12_tx_power_t);
+void (rf12_txPower) (RF12_tx_power_t);
 
 // sets Frequency/Channel
-void (rf12_setFrequency) (uint8_t);
+void (rf12_setFrequency) (uint16_t);
 
 #endif
