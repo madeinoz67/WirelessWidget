@@ -23,7 +23,15 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 The latest version of this library can always be found at
 http://arduiniana.org.
 
-090721 - seaton@gateway.net.au - port to 10Mhz to support RFM12WidgetBoard (http://code.google.com/p/strobit/)
+090721 - seaton@gateway.net.au - Added 10Mhz support RFM12WidgetBoard (http://code.google.com/p/strobit/)
+
+   The 10Mhz initial delay table values were calculated in excel using slope and Y-Intercept and may require tweaking but offer a good starting point.
+
+   Delays values found using initial 8 and 16Mhz as supplied:
+   1) find slope of each baud delay value (y) using 8 and 16Mhz values (x)
+   2) Intercept using baud delay value (y),  8 and 16Mhz values (x)
+   3) Calculating the delays for each baud rate using slope and intercept @ 10mhz
+     y=(m*x) + b
 
 */
 
@@ -77,21 +85,21 @@ static const DELAY_TABLE PROGMEM table[] =
 static const DELAY_TABLE PROGMEM table[] =
 {
   //  baud    rxcenter   rxintra    rxstop    tx
-  { 115200,   /*5*/1,         17,        17,       /*15*/13,    },
-  { 57600,    /*15*/10,      37,        37,       34,    },
-  { 38400,    25,        57,        57,       54,    },
-  { 31250,    31,        70,        70,       68,    },
-  { 28800,    34,        77,        77,       74,    },
-  { 19200,    54,        117,       117,      114,   },
-  { 14400,    74,        156,       156,      153,   },
-  { 9600,     114,       236,       236,      233,   },
-  { 4800,     233,       474,       474,      471,   },
-  { 2400,     471,       950,       950,      947,   },
-  { 1200,     947,       1902,      1902,     1899,  },
-  { 300,      3804,      7617,      7617,     7614,  },
+  { 115200,   1,         8,         8,        6,    },
+  { 57600,    3,         21,        21,       18,   },
+  { 38400,    8,         33,        33,       31,   },
+  { 31250,    13,        42,        42,       39,   },
+  { 28800,    17,        46,        46,       43,   },
+  { 19200,    29,        71,        71,       68,   },
+  { 14400,    41,        95,        95,       92,   },
+  { 9600,     66,        145,       145,      142,  },
+  { 4800,     141,       293,       293,      290,  },
+  { 2400,     290,       592,       592,      589,  },
+  { 1200,     587,       1187,      1187,     1184, },
+  { 300,      2372,      4758,      4758,     4755, },
 };
 
-#define XMIT_START_ADJUSTMENT 5
+#define XMIT_START_ADJUSTMENT 4
 
 #elif F_CPU == 8000000
 
@@ -100,7 +108,7 @@ static const DELAY_TABLE table[] PROGMEM =
   //  baud    rxcenter   rxintra    rxstop    tx
   { 115200,  1,          5,         5,      3,      },
   { 57600,   1,          15,        15,     /*12*/13,      },
-  { 38400,   /*6*/2,          25,        /*25*/26,     /*22*/23,     },
+  { 38400,   /*6*/2,     25,        /*25*/26,     /*22*/23,     },
   { 31250,   /*9*/7,     32,        33,     29,     },
   { 28800,   11,         35,        35,     32,     },
   { 19200,   20,         55,        55,     52,     },
