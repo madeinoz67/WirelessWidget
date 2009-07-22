@@ -23,9 +23,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 The latest version of this library can always be found at
 http://arduiniana.org.
 
-090721 - seaton@gateway.net.au - Added 10Mhz support RFM12WidgetBoard (http://code.google.com/p/strobit/)
+2009-07-21 Stephen Eaton (seaton@gateway.net.au) - Added 10Mhz support RFM12WidgetBoard (http://code.google.com/p/strobit/)
 
-   The 10Mhz initial delay table values were calculated in excel using slope and Y-Intercept and may require tweaking but offer a good starting point.
+   The 10Mhz initial delay table values were calculated in excel using slope and Y-Intercept
+   These may require further tweaking but offer a good starting point.
 
    Delays values found using initial 8 and 16Mhz as supplied:
    1) find slope of each baud delay value (y) using 8 and 16Mhz values (x)
