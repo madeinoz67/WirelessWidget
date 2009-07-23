@@ -1,0 +1,58 @@
+2009-07-22 se (seaton@gateway.net.au)
+- Added new rf12_txPower to set power level of Tx circuit.
+- Added new rf12_setFrequency to set the frequency of the module within the Band
+- Added new status structure to hold last status word received from module.
+
+2009-07-21 se (seaton@gateway.net.au)
+- Changes to RFM12Demo.pde to flash Green Led on RFM12WidgetBoard on successful Receive of packet (checksums ok)
+
+2009-06-04 jcw
+- Made v2 protocol the default, i.e. crc includes group. Incompatible with v1!
+- Cleanups, remove some recent new ack code which won't be used after all.
+
+2009-05-17 jcw
+- Added new rf12_recvAcked() code to take care of ack-sending as 0-byte reply.
+- Added new rf12_sleep() to manage RF12 power-down, with optional wakeup period.
+
+2009-05-07 jcw
+- Added first basic version of the new streaming I/O layer as "RF12sio.{h,c}".
+- Added rf12serial and rf12stream demo sketches to the RF12 library.
+
+2009-05-06 jcw
+- Changed the default group to 0xD4, other values only supported by RFM12B's.
+- Extended the RF12demo into a general RF12 EEPROM configuration utility.
+- Added rf12_config() to initialize the RF12 hardware from settings in EEPROM.
+- Added $Id comment lines to all source files so filenames are shown in files.
+
+2009-04-16 jcw
+- Added support for v2 protocol, with group added to crc and default group 0x51.
+- Removed rf12_group(), it's now an optional arg of rf12_initialize() instead.
+
+2009-03-22 jcw
+- Added README to "RF12demo" sketch with instructions on how to run some tests.
+- Added rf12_group() to allow changing the group from 0x50 to something else.
+
+2009-03-16 jcw
+- Extended RF12demo to also configure frequency band, not just the node id.
+
+2009-02-23 jcw
+- Regression fixed, failed to set up ack sending with proper source node id.
+
+2009-02-21 jcw
+- Changed rf12_initialize() args to node ID plus one of 3 frequency band codes.
+- Added rf12_onOff() for OOK emulation (must initialize with node ID zero).
+- Added new "fs20demo" example to control FS20 devices from the RFM12B.
+- Added new "kaku_demo" example to control KlikAanKlikUit devices at 433 MHz.
+- Replace EEPROM.h in "RF12.cpp" with eeprom_*() calls in "RF12demo.pde".
+
+2009-02-16 jcw
+- Subversion repository moved to Google code.
+
+2009-02-10 jcw
+- Comments added to RF12.h to describe each public function.
+- Made rf12_recvStart() private, this is handled by rf12_recvDone().
+- Replace ISR(INT0_vect) by call to attachInterrupt() to avoid duplicate
+  definition error. Code now also works with Arduino-0013.
+
+2009-02-09 jcw
+- Public release.
