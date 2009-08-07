@@ -46,12 +46,12 @@
 //#include "ieee-15-4-manager.h"
 
 #include "contiki.h"
-#include "contiki-net.h"
+//#include "contiki-net.h"
 #include "contiki-lib.h"
 
 #include "dev/rs232.h"
-#include "dev/serial-line.h"
-#include "dev/slip.h"
+//#include "dev/serial-line.h"
+//#include "dev/slip.h"
 
 //#ifdef RAVEN_LCD_INTERFACE
 //#include "raven-lcd.h"
@@ -66,7 +66,7 @@ FUSES =
 		.high = 0x99,
 		.extended = 0xff,
 	};
-	
+
 
 /* Put default MAC address in EEPROM */
 uint8_t mac_address[8] EEMEM = {0x02, 0x11, 0x22, 0xff, 0xfe, 0x33, 0x44, 0x55};

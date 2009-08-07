@@ -30,13 +30,13 @@
  *
  * Author: Adam Dunkels <adam@sics.se>
  *
- * $Id: contiki-version.h,v 1.3 2007/11/28 23:04:55 adamdunkels Exp $
+ * $Id: contiki-version.h,v 1.7 2009/03/24 14:09:22 adamdunkels Exp $
  */
 #ifndef __CONTIKI_VERSION__
 #define __CONTIKI_VERSION__
 
 #ifndef CONTIKI_VERSION_STRING
-#define CONTIKI_VERSION_STRING "Contiki 2.1"
+#define CONTIKI_VERSION_STRING "Contiki 2.2.3"
 #endif /* CONTIKI_VERSION_STRING */
 
 #endif /* __CONTIKI_VERSION__ */

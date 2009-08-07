@@ -53,9 +53,8 @@ LDFLAGS  = -mmcu=$(MCU) -Wl,-Map=contiki-$(TARGET).map \
 CONTIKI_TARGET_DIRS_CONCAT = ${addprefix $(CONTIKI)/platform/$(TARGET)/, \
                                $(CONTIKI_TARGET_DIRS)}
 
-vpath %.c $(PROJECTDIRS) $(CONTIKI)/cpu/avr/dev $(CONTIKI)/cpu/avr/dev/usb \
-      $(CONTIKI)/cpu/avr/dev/usb/rndis $(CONTIKI)/cpu/avr/dev/usb/serial \
-      $(CONTIKI)/cpu/avr/dev/usb/storage \
+vpath %.c $(PROJECTDIRS) $(CONTIKI)/cpu/avr/dev \
+      $(CONTIKI)/cpu/avr/dev/usb/serial \
 	  $(CONTIKI_CPU) $(CONTIKI)/cpu/avr/radio/rf230 $(CONTIKI)/cpu/avr/radio/mac \
 	  $(CONTIKIDIRS) $(APPDIRS) $(CONTIKI_TARGET_DIRS_CONCAT)
 
@@ -81,7 +80,7 @@ $(OBJECTDIR)/%.o: %.c
 	$(CONTIKI)/tools/make-empty-symbols
 	$(CC) $(LDFLAGS) $(CFLAGS) -o $@ $^ $(LIBC) symbols.c
 ifdef SYMBOLS
-	$(CONTIKI)/tools/avr-make-symbols $@ 
+	$(CONTIKI)/tools/avr-make-symbols $@
 	$(CC) $(LDFLAGS) $(CFLAGS) -o $@ $^ $(LIBC) symbols.c
 	$(CONTIKI)/tools/avr-make-symbols $@
 	$(CC) $(LDFLAGS) $(CFLAGS) -o $@ $^ $(LIBC) symbols.c

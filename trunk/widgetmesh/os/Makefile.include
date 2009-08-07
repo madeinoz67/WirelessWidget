@@ -35,7 +35,8 @@ ifeq (${wildcard $(OBJECTDIR)},)
 DUMMY := ${shell mkdir $(OBJECTDIR)}
 endif
 
-include $(CONTIKI)/../freakz/Makefile.freakz
+### Include widgetmesh Stack
+include $(CONTIKI)/../widgetmesh/Makefile.widgetmesh
 
 SYSTEM  = process.c procinit.c autostart.c profile.c profile-aggregates.c
 LIBS    = memb.c timer.c list.c etimer.c energest.c rtimer.c ctimer.c mmem.c
