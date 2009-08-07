@@ -45,9 +45,6 @@
  * @(#)$Id: rtimer.c,v 1.5 2007/10/23 20:33:19 adamdunkels Exp $
  */
 
-// suppress all lint messages for this file
-//lint --e{*}
-
 #include "sys/rtimer.h"
 #include "contiki.h"
 
@@ -88,13 +85,13 @@ rtimer_set(struct rtimer *rtimer, rtimer_clock_t time,
 
   rtimer->func = func;
   rtimer->ptr = ptr;
-
+  
   /* Check if rtimer queue is full. */
   if(firstempty == (next - 1) % LIST_SIZE) {
     PRINTF("rtimer_set: next %d firstempty %d full\n", next, firstempty);
     return RTIMER_ERR_FULL;
   }
-
+  
   /* Check if it is possible to run this rtimer at the requested
      time. */
   for(i = next; i != firstempty;
@@ -104,7 +101,7 @@ rtimer_set(struct rtimer *rtimer, rtimer_clock_t time,
       /* Check if timer is already scheduled. If so, we do not
 	 schedule it again. */
       return RTIMER_ERR_ALREADY_SCHEDULED;
-
+      
     }
     /* XXX: should check a range of time not just the same precise
        moment. */
@@ -127,12 +124,12 @@ rtimer_set(struct rtimer *rtimer, rtimer_clock_t time,
   /* Check if this is the first rtimer on the list. If so, we need to
      run the rtimer_arch_schedule() function to get the ball rolling. */
   if(firstempty == (next + 1) % LIST_SIZE) {
-
+    
     PRINTF("rtimer_set scheduling %d %p (%d)\n",
 	 next, rtimers[next], rtimers[next]->time);
     rtimer_arch_schedule(rtimers[next]->time);
   }
-
+  
   return RTIMER_OK;
 }
 /*---------------------------------------------------------------------------*/
@@ -146,12 +143,12 @@ rtimer_run_next(void)
   if(next == firstempty) {
     return;
   }
-
+  
   t = rtimers[next];
 
   /* Increase the pointer to the next rtimer. */
   next = (next + 1) % LIST_SIZE;
-
+  
   /* Run the rtimer. */
   PRINTF("rtimer_run_next running %p\n", t);
   t->func(t, t->ptr);
@@ -175,7 +172,7 @@ rtimer_run_next(void)
 
   PRINTF("rtimer_run_next next rtimer is %d %p (%d)\n",
 	 n, rtimers[n], rtimers[n]->time);
-
+  
   /* Put the next rtimer first in the rtimer list. */
   t = rtimers[next];
   rtimers[next] = rtimers[n];

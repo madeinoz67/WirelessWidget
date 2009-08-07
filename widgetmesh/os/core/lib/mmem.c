@@ -41,7 +41,7 @@
  *         Implementation of the managed memory allocator
  * \author
  *         Adam Dunkels <adam@sics.se>
- *
+ * 
  */
 
 
@@ -50,7 +50,11 @@
 #include "contiki-conf.h"
 #include <string.h>
 
-#define MMEM_SIZE 2048
+#ifdef MMEM_CONF_SIZE
+#define MMEM_SIZE MMEM_CONF_SIZE
+#else
+#define MMEM_SIZE 4096
+#endif
 
 LIST(mmemlist);
 unsigned int avail_memory;
@@ -122,7 +126,7 @@ mmem_free(struct mmem *m)
        by moving it downwards. */
     memmove(m->ptr, m->next->ptr,
 	    &memory[MMEM_SIZE - avail_memory] - (char *)m->next->ptr);
-
+    
     /* Update all the memory pointers that points to memory that is
        after the allocation that is to be removed. */
     for(n = m->next; n != NULL; n = n->next) {

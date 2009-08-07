@@ -39,7 +39,7 @@
  *
  * This file is part of the Contiki desktop OS
  *
- * $Id: cc.h,v 1.4 2007/11/18 01:37:48 oliverschmidt Exp $
+ * $Id: cc.h,v 1.6 2008/07/02 08:35:29 adamdunkels Exp $
  *
  */
 #ifndef __CC_H__
@@ -75,6 +75,15 @@
 #define CC_FASTCALL CC_CONF_FASTCALL
 #else /* CC_CONF_FASTCALL */
 #define CC_FASTCALL
+#endif /* CC_CONF_FASTCALL */
+
+/**
+ * Configure if the C compiler have problems with const function pointers
+ */
+#ifdef CC_CONF_CONST_FUNCTION_BUG
+#define CC_CONST_FUNCTION
+#else /* CC_CONF_FASTCALL */
+#define CC_CONST_FUNCTION const
 #endif /* CC_CONF_FASTCALL */
 
 /**
@@ -117,4 +126,15 @@
 #ifndef NULL
 #define NULL 0
 #endif /* NULL */
+
+#define CC_CONCAT2(s1, s2) s1##s2
+/**
+ * A C preprocessing macro for concatenating to
+ * strings.
+ *
+ * We need use two macros (CC_CONCAT and CC_CONCAT2) in order to allow
+ * concatenation of two #defined macros.
+ */
+#define CC_CONCAT(s1, s2) CC_CONCAT2(s1, s2)
+
 #endif /* __CC_H__ */

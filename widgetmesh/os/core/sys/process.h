@@ -28,7 +28,7 @@
  *
  * This file is part of the Contiki operating system.
  *
- * @(#)$Id: process.h,v 1.12 2007/11/17 22:11:19 adamdunkels Exp $
+ * @(#)$Id: process.h,v 1.16 2008/10/14 12:46:39 nvt-se Exp $
  */
 
 /**
@@ -257,7 +257,7 @@ typedef unsigned char process_num_events_t;
 /** @} */
 
 /**
- * \name Process declaration and definion
+ * \name Process declaration and definition
  * @{
  */
 
@@ -276,13 +276,6 @@ static PT_THREAD(process_thread_##name(struct pt *process_pt,	\
 				       process_event_t ev,	\
 				       process_data_t data))
 
-#if PROCESS_LOADABLE
-#define PROCESS_LOAD(name) const struct process *process_load = &name
-#else  /* PROCESS_LOADABLE */
-#define PROCESS_LOAD(name) extern int _dummy
-#endif /* PROCESS_LOADABLE */
-CLIF extern const struct process *process_load;
-
 /**
  * Declare the name of a process.
  *
@@ -293,10 +286,6 @@ CLIF extern const struct process *process_load;
  */
 #define PROCESS_NAME(name) extern struct process name
 
-#define PROCESS_NOLOAD(name, strname)			\
-  PROCESS_THREAD(name, ev, data);			\
-  struct process name = { NULL, strname,		\
-                          process_thread_##name }
 /**
  * Declare a process.
  *
@@ -305,13 +294,14 @@ CLIF extern const struct process *process_load;
  * and a human readable string name, which is used when debugging.
  *
  * \param name The variable name of the process structure.
- * \param strname The string repressentation of the process' name.
+ * \param strname The string representation of the process' name.
  *
  * \hideinitializer
  */
-#define PROCESS(name, strname)			\
-  PROCESS_NOLOAD(name, strname);		\
-  PROCESS_LOAD(name)
+#define PROCESS(name, strname)				\
+  PROCESS_THREAD(name, ev, data);			\
+  struct process name = { NULL, strname,		\
+                          process_thread_##name }
 
 /** @} */
 
@@ -320,7 +310,7 @@ struct process {
   const char *name;
   PT_THREAD((* thread)(struct pt *, process_event_t, process_data_t));
   struct pt pt;
-  unsigned char state;
+  unsigned char state, needspoll;
 };
 
 /**
@@ -337,7 +327,7 @@ struct process {
  * process
  *
  */
-void process_start(struct process *p, char *arg);
+CCIF void process_start(struct process *p, const char *arg);
 
 /**
  * Post an asynchronous event.
@@ -350,7 +340,7 @@ void process_start(struct process *p, char *arg);
  *
  * \param ev The event to be posted.
  *
- * \param data The auxillary data to be sent with the event
+ * \param data The auxiliary data to be sent with the event
  *
  * \param p The process to which the event should be posted, or
  * PROCESS_BROADCAST if the event should be posted to all processes.
@@ -372,8 +362,8 @@ CCIF int process_post(struct process *p, process_event_t ev, void* data);
  * \param data A pointer to additional data that is posted together
  * with the event.
  */
-void process_post_synch(struct process *p,
-			process_event_t ev, void* data);
+CCIF void process_post_synch(struct process *p,
+			     process_event_t ev, void* data);
 
 /**
  * \brief      Cause a process to exit
@@ -448,7 +438,7 @@ process_current = p
  * \note       There currently is no way to deallocate an allocated event
  *             number.
  */
-process_event_t process_alloc_event(void);
+CCIF process_event_t process_alloc_event(void);
 
 /** @} */
 
@@ -496,6 +486,18 @@ void process_init(void);
  * event queue.
  */
 int process_run(void);
+
+
+/**
+ * Check if a process is running.
+ *
+ * This function checks if a specific process is running.
+ *
+ * \param p The process.
+ * \retval Non-zero if the process is running.
+ * \retval Zero if the process is not running.
+ */
+CCIF int process_is_running(struct process *p);
 
 /**
  *  Number of events waiting to be processed.

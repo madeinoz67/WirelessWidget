@@ -53,14 +53,24 @@
  *
  * Author: Adam Dunkels <adam@sics.se>
  *
- * $Id: clock.h,v 1.3 2007/09/07 10:20:30 fros4943 Exp $
+ * $Id: clock.h,v 1.11 2009/01/24 15:20:11 adamdunkels Exp $
  */
 #ifndef __CLOCK_H__
 #define __CLOCK_H__
 
 #include "contiki-conf.h"
 
-#define CLOCK_LT(a,b)     ((signed short)((a)-(b)) < 0)
+#if 0 /* XXX problems with signedness and use in timer_expired(). #if:ed it out for now. */
+/**
+ * Check if a clock time value is less than another clock time value.
+ *
+ * This macro checks if a clock time value is less than another clock
+ * time value. This macro is needed to correctly handle wrap-around of
+ * clock time values.
+ *
+ */
+#define CLOCK_LT(a, b) ((clock_time_t)((a) - (b)) < ((clock_time_t)(~((clock_time_t)0)) >> 1))
+#endif /* 0 */
 
 /**
  * Initialize the clock library.
@@ -78,7 +88,7 @@ void clock_init(void);
  *
  * \return The current clock time, measured in system ticks.
  */
-clock_time_t clock_time(void);
+CCIF clock_time_t clock_time(void);
 
 void clock_delay(unsigned int);
 
@@ -95,6 +105,8 @@ void clock_delay(unsigned int);
 
 int clock_fine_max(void);
 unsigned short clock_fine(void);
+
+CCIF unsigned long clock_seconds(void);
 
 
 #endif /* __CLOCK_H__ */

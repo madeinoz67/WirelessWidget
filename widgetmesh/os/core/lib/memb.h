@@ -30,7 +30,7 @@
  *
  * Author: Adam Dunkels <adam@sics.se>
  *
- * $Id: memb.h,v 1.3 2007/03/25 17:15:43 adamdunkels Exp $
+ * $Id: memb.h,v 1.6 2009/04/06 21:18:04 adamdunkels Exp $
  */
 
 /**
@@ -64,18 +64,12 @@
 #ifndef __MEMB_H__
 #define __MEMB_H__
 
-/*
- * Here we define a C preprocessing macro for concatenating to
- * strings. We need use two macros in order to allow concatenation of
- * two #defined macros.
- */
-#define MEMB_CONCAT2(s1, s2) s1##s2
-#define MEMB_CONCAT(s1, s2) MEMB_CONCAT2(s1, s2)
+#include "sys/cc.h"
 
 /**
  * Declare a memory block.
  *
- * This macro is used to staticall declare a block of memory that can
+ * This macro is used to statically declare a block of memory that can
  * be used by the block allocation functions. The macro statically
  * declares a C array with a size that matches the specified number of
  * blocks and their individual sizes.
@@ -94,13 +88,13 @@ MEMB(connections, struct connection, 16);
  *
  */
 #define MEMB(name, structure, num) \
-        static char MEMB_CONCAT(name,_memb_count)[num]; \
-        static structure MEMB_CONCAT(name,_memb_mem)[num]; \
-        static struct memb_blocks name = {sizeof(structure), num, \
-                                          MEMB_CONCAT(name,_memb_count), \
-                                          (void *)MEMB_CONCAT(name,_memb_mem)}
+        static char CC_CONCAT(name,_memb_count)[num]; \
+        static structure CC_CONCAT(name,_memb_mem)[num]; \
+        static struct memb name = {sizeof(structure), num, \
+                                          CC_CONCAT(name,_memb_count), \
+                                          (void *)CC_CONCAT(name,_memb_mem)}
 
-struct memb_blocks {
+struct memb {
   unsigned short size;
   unsigned short num;
   char *count;
@@ -110,22 +104,22 @@ struct memb_blocks {
 /**
  * Initialize a memory block that was declared with MEMB().
  *
- * \param m A memory block previosly declared with MEMB().
+ * \param m A memory block previously declared with MEMB().
  */
-void  memb_init(struct memb_blocks *m);
+void  memb_init(struct memb *m);
 
 /**
  * Allocate a memory block from a block of memory declared with MEMB().
  *
- * \param m A memory block previosly declared with MEMB().
+ * \param m A memory block previously declared with MEMB().
  */
-void *memb_alloc(struct memb_blocks *m);
+void *memb_alloc(struct memb *m);
 
 /**
  * Deallocate a memory block from a memory block previously declared
  * with MEMB().
  *
- * \param m m A memory block previosly declared with MEMB().
+ * \param m m A memory block previously declared with MEMB().
  *
  * \param ptr A pointer to the memory block that is to be deallocated.
  *
@@ -133,9 +127,9 @@ void *memb_alloc(struct memb_blocks *m);
  * if successfully deallocated) or -1 if the pointer "ptr" did not
  * point to a legal memory block.
  */
-char  memb_free(struct memb_blocks *m, void *ptr);
+char  memb_free(struct memb *m, void *ptr);
 
-int memb_inmemb(struct memb_blocks *m, void *ptr);
+int memb_inmemb(struct memb *m, void *ptr);
 
 
 /** @} */

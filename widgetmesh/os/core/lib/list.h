@@ -17,7 +17,7 @@
  * either sides of the list (list_push(), list_add(), list_pop(),
  * list_chop()). A specified element can also be removed from inside a
  * list with list_remove(). The head and tail of a list can be
- * extracted using list_head() and list_tail(), respecitively.
+ * extracted using list_head() and list_tail(), respectively.
  *
  * @{
  */
@@ -64,7 +64,7 @@
  *
  * Author: Adam Dunkels <adam@sics.se>
  *
- * $Id: list.h,v 1.1 2006/06/17 22:41:18 adamdunkels Exp $
+ * $Id: list.h,v 1.3 2009/05/06 15:07:35 adamdunkels Exp $
  */
 #ifndef __LIST_H__
 #define __LIST_H__
@@ -79,6 +79,10 @@
  * type \b must be a structure (\c struct) with its first element
  * being a pointer. This pointer is used by the linked list library to
  * form the linked lists.
+ *
+ * The list variable is declared as static to make it easy to use in a
+ * single C module without unnecessarily exporting the name to other
+ * modules. 
  *
  * \param name The name of the list.
  */
