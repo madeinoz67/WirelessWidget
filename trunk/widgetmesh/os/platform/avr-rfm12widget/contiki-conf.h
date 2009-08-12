@@ -69,47 +69,6 @@ typedef int32_t s32_t;
 #define CCIF
 #define CLIF
 
-//#define RIMEADDR_CONF_SIZE       8
-//#define PACKETBUF_CONF_HDR_SIZE    0
-
-/* 0 for IPv6, or 1 for HC1, 2 for HC01 */
-//#define SICSLOWPAN_CONF_COMPRESSION_IPV6 0 
-//#define SICSLOWPAN_CONF_COMPRESSION_HC1  1 
-//#define SICSLOWPAN_CONF_COMPRESSION_HC01 2
-
-//#define SICSLOWPAN_CONF_COMPRESSION       SICSLOWPAN_CONF_COMPRESSION_HC01 
-//#define SICSLOWPAN_CONF_MAX_ADDR_CONTEXTS 2
-//#define SICSLOWPAN_CONF_FRAG              1 
-
-//#define SICSLOWPAN_CONF_MAXAGE 5
-
-//#define UIP_CONF_LL_802154       1
-//#define UIP_CONF_LLH_LEN         0
-
-//#define UIP_CONF_MAX_CONNECTIONS 2
-//#define UIP_CONF_MAX_LISTENPORTS 2
-//#define UIP_CONF_UDP_CONNS       2
-
-//#define UIP_CONF_IP_FORWARD      0
-//#define UIP_CONF_FWCACHE_SIZE    0
-
-//#define UIP_CONF_IPV6            1
-//#define UIP_CONF_IPV6_CHECKS     1
-//#define UIP_CONF_IPV6_QUEUE_PKT  1
-//#define UIP_CONF_IPV6_REASSEMBLY 0
-//#define UIP_CONF_NETIF_MAX_ADDRESSES  3
-//#define UIP_CONF_ND6_MAX_PREFIXES     3
-//#define UIP_CONF_ND6_MAX_NEIGHBORS    4  
-//#define UIP_CONF_ND6_MAX_DEFROUTERS   2
-//#define UIP_CONF_ICMP6           1
-
-//#define UIP_CONF_UDP             1
-//#define UIP_CONF_UDP_CHECKSUMS   1
-
-//#define UIP_CONF_TCP             1
-//#define UIP_CONF_TCP_SPLIT       1
-
-
 typedef unsigned short clock_time_t;
 typedef unsigned char u8_t;
 typedef unsigned short u16_t;

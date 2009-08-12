@@ -37,8 +37,8 @@
 #include <stdio.h>
 
 //#include "lib/mmem.h"
-#include "loader/symbols-def.h"
-#include "loader/symtab.h"
+//#include "loader/symbols-def.h"
+//#include "loader/symtab.h"
 #include <stdbool.h>
 //#include "mac.h"
 //#include "sicslowmac.h"
