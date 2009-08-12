@@ -39,7 +39,7 @@
 #include "contiki-conf.h"
 #include "contiki.h"
 
-#include "dev/slip.h"
+//#include "dev/slip.h"
 #include "dev/rs232.h"
 
 #ifdef RS232_CONF_PRINTF_BUFFER_LENGTH
@@ -211,7 +211,7 @@ rs232_set_input(uint8_t port, int (*f)(unsigned char))
 void
 slip_arch_writeb(unsigned char c)
 {
-  rs232_send(SLIP_PORT, c);
+  //rs232_send(SLIP_PORT, c);
 }
 /*---------------------------------------------------------------------------*/
 int rs232_stdout_putchar(char c, FILE *stream);

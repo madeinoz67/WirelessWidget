@@ -45,40 +45,18 @@ UPPERCASE = _ABCDEFGHIJKLMNOPQRSTUVWXYZ
 TARGET_UPPERCASE := ${shell echo $(TARGET) | sed 'y!$(LOWERCASE)!$(UPPERCASE)!'}
 CFLAGS += -DCONTIKI_TARGET_$(TARGET_UPPERCASE)
 
-include $(CONTIKI)/core/net/routing/Makefile.routing
-include $(CONTIKI)/core/net/rime/Makefile.rime
-include $(CONTIKI)/core/net/mac/Makefile.mac
 SYSTEM  = process.c procinit.c autostart.c elfloader.c profile.c \
           timetable.c timetable-aggregate.c compower.c serial-line.c
-THREADS = mt.c
 LIBS    = memb.c timer.c list.c etimer.c energest.c rtimer.c stimer.c \
           print-stats.c ifft.c crc16.c random.c checkpoint.c ringbuf.c
 
-ifdef UIP_CONF_IPV6
-CFLAGS += -DUIP_CONF_IPV6
-  UIP   = uip6.c tcpip.c psock.c uip-udp-packet.c uip-split.c \
-          uip-over-mesh.c resolv.c hc.c tcpdump.c uiplib.c
-  NET   = $(UIP) uip-icmp6.c uip-nd6.c uip-nd6-io.c uip-netif.c sicslowpan.c
-else # UIP_CONF_IPV6
-  UIP   = uip.c uiplib.c resolv.c tcpip.c psock.c hc.c uip-split.c uip-fw.c \
-          uip-fw-drv.c uip_arp.c tcpdump.c uip-neighbor.c uip-udp-packet.c \
-          uip-over-mesh.c #rawpacket-udp.c
-  NET   = $(UIP) uaodv.c uaodv-rt.c
-endif # UIP_CONF_IPV6
 
-CTK     = ctk.c
-CTKVNC  = $(CTK) ctk-vncserver.c libconio.c vnc-server.c vnc-out.c ctk-vncfont.c
-
-ifndef CONTIKI_NO_NET
-  CONTIKIFILES = $(SYSTEM) $(LIBS) $(NET) $(THREADS) $(DHCP)
-else
-  CONTIKIFILES = $(SYSTEM) $(LIBS) $(THREADS) sicslowpan.c fakeuip.c
-endif
+CONTIKIFILES = $(SYSTEM) $(LIBS)
 
 CONTIKI_SOURCEFILES += $(CONTIKIFILES)
 
-CONTIKIDIRS += ${addprefix $(CONTIKI)/core/,dev lib net net/mac net/rime \
-                 net/routing sys cfs ctk lib/ctk loader . }
+CONTIKIDIRS += ${addprefix $(CONTIKI)/core/,dev lib sys \
+                  loader . }
 
 oname = ${patsubst %.c,%.o,${patsubst %.S,%.o,$(1)}}
 
