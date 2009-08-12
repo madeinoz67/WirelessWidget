@@ -34,7 +34,7 @@
  */
 
 #include "contiki-rfm12widget.h"
-#include "contiki-net.h"
+//#include "contiki-net.h"
 
 
 void

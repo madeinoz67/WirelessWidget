@@ -2,6 +2,10 @@ ifndef CONTIKI
   ${error CONTIKI not defined! You must specify where CONTIKI resides}
 endif
 
+
+OBJECTDIR = obj_$(TARGET)
+CFLAGS += -DCONTIKI_TARGET=$(TARGET) -fpack-struct
+
 ifeq ($(TARGET),)
   -include Makefile.target
   ifeq ($(TARGET),)
@@ -45,17 +49,19 @@ UPPERCASE = _ABCDEFGHIJKLMNOPQRSTUVWXYZ
 TARGET_UPPERCASE := ${shell echo $(TARGET) | sed 'y!$(LOWERCASE)!$(UPPERCASE)!'}
 CFLAGS += -DCONTIKI_TARGET_$(TARGET_UPPERCASE)
 
-SYSTEM  = process.c procinit.c autostart.c elfloader.c profile.c \
-          timetable.c timetable-aggregate.c compower.c serial-line.c
-LIBS    = memb.c timer.c list.c etimer.c energest.c rtimer.c stimer.c \
-          print-stats.c ifft.c crc16.c random.c checkpoint.c ringbuf.c
+#SYSTEM  = process.c procinit.c autostart.c profile.c \
+#          timetable.c timetable-aggregate.c compower.c serial-line.c
+#LIBS    = memb.c timer.c list.c etimer.c energest.c rtimer.c stimer.c \
+#          print-stats.c ifft.c crc16.c random.c checkpoint.c ringbuf.c
 
+SYSTEM  = process.c procinit.c autostart.c profile.c
+LIBS    = memb.c timer.c list.c etimer.c energest.c rtimer.c stimer.c mmem.c
 
 CONTIKIFILES = $(SYSTEM) $(LIBS)
 
 CONTIKI_SOURCEFILES += $(CONTIKIFILES)
 
-CONTIKIDIRS += ${addprefix $(CONTIKI)/core/,dev lib sys \
+CONTIKIDIRS = . ${addprefix $(CONTIKI)/core/,dev lib sys \
                   loader . }
 
 oname = ${patsubst %.c,%.o,${patsubst %.S,%.o,$(1)}}
@@ -63,6 +69,8 @@ oname = ${patsubst %.c,%.o,${patsubst %.S,%.o,$(1)}}
 CONTIKI_OBJECTFILES = ${addprefix $(OBJECTDIR)/,${call oname, $(CONTIKI_SOURCEFILES)}}
 
 PROJECT_OBJECTFILES = ${addprefix $(OBJECTDIR)/,${call oname, $(PROJECT_SOURCEFILES)}}
+
+CONTIKI_ASMOBJECTFILES = ${addprefix $(OBJECTDIR)/,$(CONTIKI_ASMFILES:.S=.o)}
 
 ### Include application makefiles
 ifdef APPS
@@ -99,7 +107,7 @@ CONTIKI_TARGET_DIRS_CONCAT = ${addprefix $(CONTIKI)/platform/$(TARGET)/, \
 CONTIKI_CPU_DIRS_CONCAT    = ${addprefix $(CONTIKI_CPU)/, \
                                $(CONTIKI_CPU_DIRS)}
 
-SOURCEDIRS = . $(PROJECTDIRS) $(CONTIKI_TARGET_DIRS_CONCAT) \
+SOURCEDIRS += $(PROJECTDIRS) $(CONTIKI_TARGET_DIRS_CONCAT) \
              $(CONTIKI_CPU_DIRS_CONCAT) $(CONTIKIDIRS) $(APPDIRS)
 
 vpath %.c $(SOURCEDIRS)
