@@ -54,8 +54,8 @@ CFLAGS += -DCONTIKI_TARGET_$(TARGET_UPPERCASE)
 #LIBS    = memb.c timer.c list.c etimer.c energest.c rtimer.c stimer.c \
 #          print-stats.c ifft.c crc16.c random.c checkpoint.c ringbuf.c
 
-SYSTEM  = process.c procinit.c autostart.c profile.c
-LIBS    = memb.c timer.c list.c etimer.c energest.c rtimer.c stimer.c mmem.c
+SYSTEM  = process.c procinit.c autostart.c
+LIBS    = memb.c timer.c list.c etimer.c rtimer.c stimer.c mmem.c
 
 CONTIKIFILES = $(SYSTEM) $(LIBS)
 

@@ -10,8 +10,8 @@ CONTIKIBOARD=.
 
 CONTIKI_PLAT_DEFS = -DF_CPU=8000000UL -DAUTO_CRC_PADDING=2
 
-MCU=atmega328p
-AVRDUDE_PROGRAMMER=jtag2
+MCU=atmega168
+AVRDUDE_PROGRAMMER=stk500
 
 # For usb devices, you may either use PORT=usb, or (e.g. if you have more than one
 # programmer connected) you can use the following trick to find out the serial number:
