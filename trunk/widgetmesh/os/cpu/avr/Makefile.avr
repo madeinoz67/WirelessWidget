@@ -37,6 +37,7 @@ AS       = avr-as
 AR       = avr-ar
 OBJCOPY  = avr-objcopy
 STRIP    = avr-strip
+SIZE     = avr-size
 CFLAGSNO = -I. -I$(CONTIKI)/core -I$(CONTIKI_CPU) $(USB_INCLUDES) \
            -I$(CONTIKI)/platform/$(TARGET) \
            ${addprefix -I,$(APPDIRS)} \
@@ -54,7 +55,7 @@ CONTIKI_TARGET_DIRS_CONCAT = ${addprefix $(CONTIKI)/platform/$(TARGET)/, \
 
 vpath %.c $(PROJECTDIRS) $(CONTIKI)/cpu/avr/dev \
 	  $(CONTIKIDIRS) $(APPDIRS) $(CONTIKI_TARGET_DIRS_CONCAT) \
-	  $(CONTIKI_CPU) 
+	  $(CONTIKI_CPU)
 
 ### Compilation rules
 
@@ -72,6 +73,7 @@ $(OBJECTDIR)/%.o: %.c
 
 %.hex: %.out
 	$(OBJCOPY) $^ -O ihex $@
+	$(SIZE) $^ -C --mcu=$(MCU)
 
 # Add a namelist to the kernel
 %.out: %.co $(PROJECT_OBJECTFILES) contiki-$(TARGET).a

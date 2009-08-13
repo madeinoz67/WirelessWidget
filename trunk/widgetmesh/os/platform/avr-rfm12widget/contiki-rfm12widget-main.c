@@ -39,7 +39,7 @@
 //#include "lib/mmem.h"
 //#include "loader/symbols-def.h"
 //#include "loader/symtab.h"
-#include <stdbool.h>
+//#include <stdbool.h>
 //#include "mac.h"
 //#include "sicslowmac.h"
 //#include "sicslowpan.h"
@@ -47,7 +47,7 @@
 
 #include "contiki.h"
 //#include "contiki-net.h"
-#include "contiki-lib.h"
+//#include "contiki-lib.h"
 
 #include "dev/rs232.h"
 //#include "dev/serial-line.h"
@@ -58,8 +58,8 @@
 #if 0
 FUSES =
 	{
-		.low = 0xe2,
-		.high = 0x99,
+		.low = 0xe6,
+		.high = 0xdf,
 		.extended = 0xff,
 	};
 
