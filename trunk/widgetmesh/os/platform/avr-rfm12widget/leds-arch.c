@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005, Swedish Institute of Computer Science
+ * Copyright (c) 2005, Swedish Institute of Computer Science.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,38 +26,39 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  *
- * This file is part of the Contiki operating system.
+ * This file is part of the Configurable Sensor Network Application
+ * Architecture for sensor nodes running the Contiki operating system.
  *
- * @(#)$Id: contiki-conf.h,v 1.11 2008/10/15 09:14:25 adamdunkels Exp $
+ * This is a dummy non-functional dummy implementation.
+ *
+ * $Id: leds-arch.c,v 1.1 2006/12/22 17:05:31 barner Exp $
+ *
+ * -----------------------------------------------------------------
+ *
+ * Author  : Adam Dunkels, Joakim Eriksson, Niclas Finne, Simon Barner
+ * Created : 2005-11-03
+ * Updated : $Date: 2006/12/22 17:05:31 $
+ *           $Revision: 1.1 $
  */
 
-#ifndef __CONTIKI_CONF_H__
-#define __CONTIKI_CONF_H__
+#include "contiki-conf.h"
+#include "dev/leds.h"
 
-#include <inttypes.h>
+/*---------------------------------------------------------------------------*/
+void
+leds_arch_init(void)
+{
+}
+/*---------------------------------------------------------------------------*/
+unsigned char
+leds_arch_get(void)
+{
+    return 0;
+}
+/*---------------------------------------------------------------------------*/
+void
+leds_arch_set(unsigned char leds)
+{
 
-#define CC_CONF_REGISTER_ARGS          1
-#define CC_CONF_FUNCTION_POINTER_ARGS  1
-#define CC_CONF_FASTCALL
-#define CC_CONF_VA_ARGS                1
-#define CC_CONF_INLINE                 inline
-
-#define CCIF
-#define CLIF
-
-typedef uint8_t   u8_t;
-typedef uint16_t u16_t;
-typedef uint32_t u32_t;
-typedef  int32_t s32_t;
-typedef unsigned short uip_stats_t;
-
-typedef unsigned long clock_time_t;
-
-#define CLOCK_CONF_SECOND 1000
-
-#define LOG_CONF_ENABLED 1
-
-/* Not part of C99 but actually present */
-int strcasecmp(const char*, const char*);
-
-#endif /* __CONTIKI_CONF_H__ */
+}
+/*---------------------------------------------------------------------------*/
