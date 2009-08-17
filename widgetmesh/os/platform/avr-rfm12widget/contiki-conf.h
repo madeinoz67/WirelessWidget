@@ -49,14 +49,14 @@ typedef int32_t s32_t;
 /*
  * MCU and clock rate
  */
-#define MCU_MHZ 8
+#define MCU_MHZ 10
 #define PLATFORM PLATFORM_AVR
 
 /* Clock ticks per second */
 #define CLOCK_CONF_SECOND 125
 
 /* COM port to be used for SLIP connection */
-#define SLIP_PORT RS232_PORT_0
+//#define SLIP_PORT RS232_PORT_0
 
 /* Pre-allocated memory for loadable modules heap space (in bytes)*/
 #define MMEM_CONF_SIZE 256
@@ -80,5 +80,17 @@ void clock_delay(unsigned int us2);
 void clock_wait(int ms10);
 void clock_set_seconds(unsigned long s);
 unsigned long clock_seconds(void);
+
+/*
+ * Definitions below are dictated by the hardware and not really
+ * changeable!
+ */
+
+/* LED ports */
+#define LEDS_PxDIR P5DIR
+#define LEDS_PxOUT P5OUT
+#define LEDS_CONF_RED    0x10
+#define LEDS_CONF_GREEN  0x20
+#define LEDS_CONF_YELLOW 0x40
 
 #endif /* __CONTIKI_CONF_H__ */

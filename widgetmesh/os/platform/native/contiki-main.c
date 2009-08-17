@@ -39,9 +39,6 @@
 
 #include "contiki.h"
 
-#include "dev/serial-line.h"
-
-#include "net/uip.h"
 
 #include "dev/button-sensor.h"
 #include "dev/pir-sensor.h"
@@ -59,20 +56,20 @@ main(void)
   process_init();
 
   procinit_init();
-  
+
   autostart_start(autostart_processes);
 
   /* Make standard output unbuffered. */
   setvbuf(stdout, (char *)NULL, _IONBF, 0);
-  
+
   while(1) {
     fd_set fds;
     int n;
     struct timeval tv;
-    
+
     n = process_run();
 
-    
+
     tv.tv_sec = 0;
     tv.tv_usec = 1;
 
@@ -86,10 +83,10 @@ main(void)
 	serial_line_input_byte(c);
       }
     }
-    
+
     etimer_request_poll();
   }
-  
+
   return 0;
 }
 /*---------------------------------------------------------------------------*/

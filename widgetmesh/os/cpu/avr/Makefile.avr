@@ -20,8 +20,8 @@ CONTIKI_CPU=$(CONTIKI)/cpu/avr
 
 ### Define the source files we have in the AVR port
 
-AVR        = clock.c random.c
-TARGETLIBS = clock.c flash.c
+AVR        = clock.c random.c leds.c
+TARGETLIBS = clock.c flash.c leds.c
 
 CONTIKI_TARGET_SOURCEFILES += ${AVR} $(SENSORS) \
                               $(SYSAPPS) \
@@ -43,7 +43,7 @@ CFLAGSNO = -I. -I$(CONTIKI)/core -I$(CONTIKI_CPU) $(USB_INCLUDES) \
            ${addprefix -I,$(APPDIRS)} \
            -Wall -mmcu=$(MCU) -gdwarf-2 $(CONTIKI_PLAT_DEFS)
 CFLAGS   += $(CFLAGSNO) -O$(OPTI)
-BOOTLOADER_START = 0x1FC00
+BOOTLOADER_START = 0x1C00
 LDFLAGS  = -mmcu=$(MCU) -Wl,-Map=contiki-$(TARGET).map \
 		-Wl,--section-start=.bootloader=$(BOOTLOADER_START)
 
