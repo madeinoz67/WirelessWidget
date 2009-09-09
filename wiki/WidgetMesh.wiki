@@ -37,6 +37,14 @@ The network should be self healing, if a node fails or for some reasons is disco
 
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/mesh_overview.png
 
+==Implementation==
+widgetMesh is implemented on the [http://www.sics.se/contiki/ ContikiOS] and is available via the [http://code.google.com/p/strobit/source/browse/#svn/trunk/widgetmesh project SVN].
+
+Current Status: 
+  * ContikiOS ported to RFM12Widget Platform
+  * Hello-world example successfully running.
+  * no networking.
+
 ==Stack Overview==
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/stacksml.png
 
