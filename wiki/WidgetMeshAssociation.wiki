@@ -3,7 +3,7 @@
 <wiki:toc max_depth="3" />
 ----
 =Introduction=
-When a node gets powered up it is not a member of the network and must associate itself with the gateway device before it can send data/requests over the network.  This is done by Association/Join Requests to the gateway device. 
+When a node gets powered up its not a member of any network and must associate itself with a network before it can send data/requests over the network.  This is done by Association/Join Requests to the gateway device. 
 
 The gateway's/coordinators role is to manage the network, firstly by managing network association requests, then forming communication links between associated nodes and by routing packets to and from the WidgetMesh once the network has been formed.  This process is ongoing as new nodes may associate at any time.
 
@@ -16,8 +16,8 @@ Join Requests are sent either directly to the Gateway node or Indirectly via oth
 
 Once Associated with the network a WidgetNode will have its TDMA schedule sent to it by the gateway/coordinator node as part of the association request.  The Gateway can also update nodes TDMA schedules in the network with additional neighbour links based on link quality / battery life etc, to create a fully meshed network.
 
-==Who is out there?==
-When nodes are powered up for the first time they will cycle through the default TDMA sequence of channels on a slow hopping scheme listening for advertisement packets.  This allows new nodes to build up a list of candidate association partners.  This process will continue until it is successfully associated with the network.
+==Network discovery - Who's out there?==
+When nodes are powered up for the first time they'll cycle through the default TDMA sequence of channels on a slow hopping scheme listening for advertisement packets.  This allows new nodes to build up a list of candidate association partners.  This process will continue until it is successfully associated with the network.
 
 Advertisements are send via two ways.
   # Associated nodes that are mains powered will broadcast an advertisement to announce their presence at particular time/frequency slots as allocated from the gateway device. This advertisement will contain information such as valid channels for association requests.
