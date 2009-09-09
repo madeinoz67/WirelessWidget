@@ -61,15 +61,19 @@ http://strobit.googlecode.com/svn/wiki/images/widgetmesh/mpdu.png
 ===Data Link Layer===
 
 DPDU 
+
 ----
+
 ==Design==
 
 ===MAC===
 
+
 ===DataLinkLayer===
-   * [WidgetMeshAssociation]
+   * [WidgetMeshAssociation Network Discovery and Association ]
 
 ----
+
 ==Implementation==
 widgetMesh is implemented on the [http://www.sics.se/contiki/ ContikiOS] and is available via the [http://code.google.com/p/strobit/source/browse/#svn/trunk/widgetmesh project SVN].
 
