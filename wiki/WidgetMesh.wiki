@@ -27,7 +27,7 @@ This consists of a repeating superframe made up of individual time slots of set 
 
 To use a slotted access scheme, a notion of network time needs to be available across the network, this should be synchronised either from the Gateway or Coordinator node or a time source.
 
-http://strobit.googlecode.com/svn/wiki/images/widgetmesh/superframe.png
+http://strobit.googlecode.com/svn/wiki/images/widgetmesh/SuperFrame.png
 
 === Self Forming and Self Healing ===
 
