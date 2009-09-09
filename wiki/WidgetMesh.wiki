@@ -20,14 +20,15 @@ the network consists of the following:
 === Frequency Hopping===
 To provide resistance to RF interference, the mesh should provide the ability for the nodes to communicate over a number of different frequencies.  These frequencies are switched on a regular basis in a set pattern, so all nodes on the network know what channel to communicate on.
 
-http://strobit.googlecode.com/svn/wiki/images/widgetmesh/SuperFrame.png
-
 === TDMA Slotted Access ===
 [http://en.wikipedia.org/wiki/Time_division_multiple_access Time Division Multiple Access (TDMA)] provides a shared slotted access to the RF media.  
 
 This consists of a repeating superframe made up of individual time slots of set length. Each timeslot slots can be assigned for a different purposes, i.e. node A and B to communicate with each other, or a broadcast slot for join advertisements. During a timeslot that is not assigned to an individual node then the node can have the Rx circuit turned off to save power.  
 
 To use a slotted access scheme, a notion of network time needs to be available across the network, this should be synchronised either from the Gateway or Coordinator node or a time source.
+
+The diagram below (based on SP100A) shows how the frequency hopping is integrated into TDMA
+http://strobit.googlecode.com/svn/wiki/images/widgetmesh/SuperFrame.png
 
 === Self Forming and Self Healing ===
 
