@@ -27,7 +27,7 @@ This consists of a repeating superframe made up of individual time slots of set 
 
 To use a slotted access scheme, a notion of network time needs to be available across the network, this should be synchronised either from the Gateway or Coordinator node or a time source.
 
-The diagram below (based on SP100A) shows how the frequency hopping is integrated into TDMA
+The diagram below (based on SP100A) shows how the frequency hopping is integrated into TDMA as seen from a single device on the network.  Link Assignments between other nodes in the network are shown as dedicated links i.e. can only Send/Receive between node a and node b, additional nodes will be assigned their own slots.  Shared Links are used as advertisement or broadcast slots by all nodes assigned.
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/SuperFrame.png
 
 === Self Forming and Self Healing ===
