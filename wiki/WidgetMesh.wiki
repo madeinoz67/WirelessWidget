@@ -42,9 +42,11 @@ Cells can be assigned link functions such as unicast cells (A --> B), Broadcast 
 To use this slotted access scheme, a notion of network time needs to be available across the network, this should be synchronised either from the Gateway or Coordinator node or a time source.
 
 The diagram below (based on SP100A) shows a portion (250mSec) of a Super-frame and how the frequency hopping is integrated into TDMA as seen from a single device on the network.  Other nodes will have Cell offsets assigned to them and is overlaid on this diagram.   Link Assignments between other nodes in the network are shown as dedicated links i.e. can only Send/Receive between node a and node b, additional nodes will be assigned their own cells.  Shared Links are used as advertisement or broadcast slots by all nodes assigned.
+
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/SuperFrame.png
 
-The diagram below shows offsets of the same hopping sequence interleaved with the original hopping pattern.  The numbers in the cells represent the offset applied to the hopping pattern.  The offset of hopping patterns allow different networks to work in the same physical area with no RF interference. 
+The diagram below shows offsets of the same hopping sequence interleaved with the original hopping pattern.  The numbers in the cells represent the offset applied to the hopping pattern.  The offset of hopping patterns allow different networks to work in the same physical area with no RF interference.
+
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/SuperFrame1.png
 
 === Self Forming and Self Healing ===
