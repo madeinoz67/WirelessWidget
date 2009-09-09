@@ -42,6 +42,10 @@ http://strobit.googlecode.com/svn/wiki/images/widgetmesh/mesh_overview.png
 ==stack Overview==
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/stacksml.png
 
+----
+
+==Design==
+
 ===Physical Layer===
 The Physical Layer is provided by the RFM12 Driver.
 
@@ -59,17 +63,6 @@ http://strobit.googlecode.com/svn/wiki/images/widgetmesh/mpdu.png
 || 0xAA || 0xAA || 0x2D || 0xD4 || DPDU (2 - n bytes) || 0xAA||
 
 ===Data Link Layer===
-
-DPDU 
-
-----
-
-==Design==
-
-===MAC===
-
-
-===DataLinkLayer===
    * [WidgetMeshAssociation Network Discovery and Association ]
 
 ----
