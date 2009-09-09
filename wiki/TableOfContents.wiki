@@ -14,6 +14,7 @@
     * [BuildingTheHardware]
   * [Software]
     * [Networking] 
+      * [WidgetMesh]
     * [Applications]
   * [FAQ]
   * [WebLinks]
