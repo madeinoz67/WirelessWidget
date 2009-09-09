@@ -5,7 +5,7 @@
 =Introduction=
 When a node gets powered up it is not a member of the network and must associate itself with the gateway device before it can send data/requests over the network.  This is done by Association/Join Requests to the gateway device. 
 
-The gateway's/coordinators role is to manage the network, firstly by managing network association reques, then forming communication links between associated nodes and by routing packets to and from the WidgetMesh once the network has been formed.  This process is ongoing as new nodes may associate at any time.
+The gateway's/coordinators role is to manage the network, firstly by managing network association requests, then forming communication links between associated nodes and by routing packets to and from the WidgetMesh once the network has been formed.  This process is ongoing as new nodes may associate at any time.
 
 =Forming= 
 
@@ -15,6 +15,13 @@ The gateway's/coordinators role is to manage the network, firstly by managing ne
 Join Requests are sent either directly to the Gateway node or Indirectly via other nodes already associated in the network.
 
 Once Associated with the network a WidgetNode will have its TDMA schedule sent to it by the gateway/coordinator node as part of the association request.  The Gateway can also update nodes TDMA schedules in the network with additional neighbour links based on link quality / battery life etc, to create a fully meshed network.
+
+==Who is out there?==
+When nodes are powered up for the first time they will listen through the default TDMA sequence of channels on a slow hopping scheme for advertisement packets.  This allows new nodes to build up a list of candidate association partners.
+
+Advertisements are send via two ways.
+  # Associated nodes that are mains powered will broadcast an advertisement to announce their presence at particular time/frequency slots as allocated from the gateway device. This advertisement will contain information such as valid channels for association requests.
+  # Low powered devices will try to minimise their power usage, so unless specifically configured to announce their presence will only listen on their associated time slots and will respond to Advertisement solicitation packets with advertisement packet in the same time slot if received.  
 
 ==Association Request Parent Selection==
 Association Request Parent selection could be be determined by:
