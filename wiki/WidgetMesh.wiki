@@ -74,7 +74,7 @@ TODO: May want to handle error detection at this level so extra work is not requ
 
 TODO: May also want to implement Forward Error correction using Manchester Encoding in this layer.  Will halve data rate if implemented.
 
-TODO: Encryption.  Implement payload encryption using [http://www.efton.sk/crypt/index.htm XTEA], RC4?, AES?, Skipjack?
+TODO: Encryption.  Implement payload encryption using [http://www.efton.sk/crypt/index.htm XTEA], RC4?, AES?, Skipjack?  resource required?  Data throughput?
 
 ===Data Link Layer===
 
