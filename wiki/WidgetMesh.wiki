@@ -70,9 +70,11 @@ http://strobit.googlecode.com/svn/wiki/images/widgetmesh/mpdu.png
 
 0xD4 is the network ID
 
-TODO: May want to handle error detection at this level so extra work is not required by the upper layers if a corrupt packet, i.e. drop the packet here if corrupt.  To do handle CRC then an extra 3 bytes are required data byte count and CRC16.
+TODO: May want to handle error detection at this level so extra work is not required by the upper layers if a corrupt packet, i.e. drop the packet here if corrupt.  To handle CRC then an extra 3 bytes are required. DPDU payload byte count and CRC16 bytes.
 
 TODO: May also want to implement Forward Error correction using Manchester Encoding in this layer.  Will halve data rate if implemented.
+
+TODO: Encryption.  Possibly implement payload encryption using [http://en.wikipedia.org/wiki/XTEA XTEA]
 
 ===Data Link Layer===
 
