@@ -17,7 +17,7 @@ Join Requests are sent either directly to the Gateway node or Indirectly via oth
 Once Associated with the network a WidgetNode will have its TDMA schedule sent to it by the gateway/coordinator node as part of the association request.  The Gateway can also update nodes TDMA schedules in the network with additional neighbour links based on link quality / battery life etc, to create a fully meshed network.
 
 ==Who is out there?==
-When nodes are powered up for the first time they will listen through the default TDMA sequence of channels on a slow hopping scheme for advertisement packets.  This allows new nodes to build up a list of candidate association partners.
+When nodes are powered up for the first time they will cycle through the default TDMA sequence of channels on a slow hopping scheme listening for advertisement packets.  This allows new nodes to build up a list of candidate association partners.  This process will continue until it is successfully associated with the network.
 
 Advertisements are send via two ways.
   # Associated nodes that are mains powered will broadcast an advertisement to announce their presence at particular time/frequency slots as allocated from the gateway device. This advertisement will contain information such as valid channels for association requests.
