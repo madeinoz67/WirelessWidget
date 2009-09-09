@@ -80,6 +80,7 @@ TODO: Encryption.  Implement payload encryption using [http://www.efton.sk/crypt
 
 The majority of network functions are handled by this layer.
    * [WidgetMeshAssociation Network Discovery and Association]
+   * [WidgetMeshRouting Network Routing]
 
 ----
 
