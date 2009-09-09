@@ -70,7 +70,7 @@ The majority of network functions are handled by this layer.
 ----
 
 ==Implementation==
-widgetMesh is implemented on the [http://www.sics.se/contiki/ ContikiOS] and is available via the [http://code.google.com/p/strobit/source/browse/#svn/trunk/widgetmesh project SVN].
+WidgetMesh is implemented on the [http://www.sics.se/contiki/ ContikiOS] and is available via the [http://code.google.com/p/strobit/source/browse/#svn/trunk/widgetmesh project SVN].
 
 Current Status: 
   * ContikiOS ported to RFM12Widget Platform
