@@ -23,6 +23,8 @@ Advertisements are send via two ways.
   # Associated nodes that are mains powered will broadcast an advertisement to announce their presence at particular time/frequency slots as allocated from the gateway device. This advertisement will contain information such as valid channels for association requests.
   # Low powered devices will try to minimise their power usage, so unless specifically configured to announce their presence will only listen on their associated time slots and will respond to Advertisement solicitation packets with advertisement packet in the same time slot if received.  
 
+http://strobit.googlecode.com/svn/wiki/images/widgetmesh/advertisement.png
+
 ==Association Request Parent Selection==
 Association Request Parent selection could be be determined by:
   * RSSI - Stronger RSSI is better than lower RSSI. 
