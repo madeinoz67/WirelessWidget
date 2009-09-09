@@ -20,14 +20,26 @@ the network consists of the following:
 === Frequency Hopping===
 To provide resistance to RF interference, the mesh should provide the ability for the nodes to communicate over a number of different frequencies.  These frequencies are switched on a regular basis in a set pattern, so all nodes on the network know what channel to communicate on.
 
+Each node on the network has a default channel hopping pattern in the firmware, additional channel patterns can be assigned by the gateway device.
+
+The Frequency of the channel is based on a lookup table and is different each time. 
+
 === TDMA Slotted Access ===
 [http://en.wikipedia.org/wiki/Time_division_multiple_access Time Division Multiple Access (TDMA)] provides a shared slotted access to the RF media.  
 
-This consists of a repeating superframe made up of individual time slots of set length. Each timeslot slots can be assigned for a different purposes, i.e. node A and B to communicate with each other, or a broadcast slot for join advertisements. During a timeslot that is not assigned to an individual node then the node can have the Rx circuit turned off to save power.  
+This consists of a repeating superframe made up of individual time slots of set length. e.g. 10mSec slots and superframe of 1 Second = 100 slots.
 
-To use a slotted access scheme, a notion of network time needs to be available across the network, this should be synchronised either from the Gateway or Coordinator node or a time source.
+This length of the time slot must allow for a single packet to be sent with a response acknowledgement packet.
 
-The diagram below (based on SP100A) shows how the frequency hopping is integrated into TDMA as seen from a single device on the network.  Link Assignments between other nodes in the network are shown as dedicated links i.e. can only Send/Receive between node a and node b, additional nodes will be assigned their own slots.  Shared Links are used as advertisement or broadcast slots by all nodes assigned.
+Each timeslot consists of a number of communication cells, these cells can be assigned non overlapping frequencies so are without RF collisions at any timeslot. e.g. a 16 cell timeslot can be assigned 16 different functions (unicast, broadcast, anycast) that will not interfere with each other, therefore 16 devices can transmit in the same area at the same time with no interference to each other.
+
+The frequency/channel for each cell will hop and is not fixed.  i.e. The cell is not the absolute channel but an offset derived from a frequency table and will change each timeslot.
+
+Cells can be assigned as unicast cells (A --> B), Broadcast Cells (Q --> *) or Shared Access Cells (* --> *).  During a timeslot that is not assigned to an individual node then the node can have the Rx circuit turned off to save power.   Cell function assignment is performed by the gateway device during association requests or network reconfiguration (i.e. dis-association or lost nodes).
+
+To use this slotted access scheme, a notion of network time needs to be available across the network, this should be synchronised either from the Gateway or Coordinator node or a time source.
+
+The diagram below (based on SP100A) shows a portion (250mSec) of a Superframe and how the frequency hopping is integrated into TDMA as seen from a single device on the network.  Othernodes will have Cell offsets assifned to them and is overlayed over this diagram.   Link Assignments between other nodes in the network are shown as dedicated links i.e. can only Send/Receive between node a and node b, additional nodes will be assigned their own cells.  Shared Links are used as advertisement or broadcast slots by all nodes assigned.
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/SuperFrame.png
 
 === Self Forming and Self Healing ===
