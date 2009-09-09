@@ -33,7 +33,9 @@ This length of the time slot must allow for a single packet to be sent with a re
 
 Each timeslot consists of a number of communication cells, these cells can be assigned non overlapping frequencies so are without RF collisions at any timeslot. e.g. a 16 cell timeslot can be assigned 16 different functions (unicast, broadcast, anycast) that will not interfere with each other, therefore 16 devices can transmit in the same area at the same time with no interference to each other.
 
-The frequency/channel for each cell will hop and is not fixed.  i.e. The cell is not the absolute channel but an offset derived from a frequency table and will change each timeslot.
+The frequency/channel for each cell will hop and is not fixed.  i.e. The cell is not the absolute channel but an offset derived from a frequency table and will change each timeslot.  The offset effectively shifts the hopping pattern to the left by 
+
+e.g. with a hopping pattern of 2,8,13,5,10,14,4,11,7,12,1,6,15,9,0 and offset of 2 gives a hopping pattern of 13,5,10,14,4,11,7,12,1,6,15,9,0,2,8
 
 Cells can be assigned as unicast cells (A --> B), Broadcast Cells (Q --> `*`) or Shared Access Cells (`*` --> `*`).  During a timeslot that is not assigned to an individual node then the node can have the Rx circuit turned off to save power.   Cell function assignment is performed by the gateway device during association requests or network reconfiguration (i.e. dis-association or lost nodes).
 
@@ -41,6 +43,9 @@ To use this slotted access scheme, a notion of network time needs to be availabl
 
 The diagram below (based on SP100A) shows a portion (250mSec) of a Super-frame and how the frequency hopping is integrated into TDMA as seen from a single device on the network.  Other nodes will have Cell offsets assigned to them and is overlaid on this diagram.   Link Assignments between other nodes in the network are shown as dedicated links i.e. can only Send/Receive between node a and node b, additional nodes will be assigned their own cells.  Shared Links are used as advertisement or broadcast slots by all nodes assigned.
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/SuperFrame.png
+
+The diagram below shows an offset applied to the hopping pattern.  The numbers in the cells represent the offset applied to the hopping pattern.  
+http://strobit.googlecode.com/svn/wiki/images/widgetmesh/SuperFrame1.png
 
 === Self Forming and Self Healing ===
 
