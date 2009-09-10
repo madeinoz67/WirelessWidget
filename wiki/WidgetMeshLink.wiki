@@ -1,4 +1,4 @@
-#summary WidgetMesh - Mesh Network Protocol for Widgets
+#summary WidgetMesh - MEsh Link Assignment
 ----
 <wiki:toc max_depth="3" />
 ----
