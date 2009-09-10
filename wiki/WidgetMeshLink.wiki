@@ -4,7 +4,7 @@
 ----
 =Link Assignments=
 
-As discussed in the [WidgetMesh TDMA description], the mesh network is made up of communication links between nodes that have been assigned to a timeslot. These link assignments are assigned by the Gateway/coordinator device.
+As part of the [WidgetMesh Slotted TDMA access], the mesh network is made up of communication links between nodes that have been assigned to a timeslot. These link assignments are assigned by the Gateway/coordinator device.
 
 =Link Types=
 There are a few different link types.
