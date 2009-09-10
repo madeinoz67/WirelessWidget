@@ -27,27 +27,31 @@ The Frequency of the channel is based on a lookup table and is different each ti
 === TDMA Slotted Access ===
 [http://en.wikipedia.org/wiki/Time_division_multiple_access Time Division Multiple Access (TDMA)] provides a shared slotted access to the RF media.  
 
-This consists of a repeating superframe made up of individual time slots of set length. e.g. 10mSec slots and superframe of 1 Second = 100 slots.
+This consists of a repeating superframe made up of individual time slots of a set length. e.g. 10mSec slots and superframe of 1 Second = 100 slots.
 
-This length of the time slot must allow for a single packet to be sent with a response acknowledgement packet.
+The length of the time slot must allow for a single packet to be sent with a response acknowledgement packet.
 
-Each timeslot consists of a number of communication cells, these cells can be assigned non overlapping frequencies so are without RF collisions at any timeslot. e.g. a 16 cell timeslot can be assigned 16 different devices that will not interfere with each other.
+Each timeslot consists of a number of communication cells, these cells are assigned non overlapping frequencies so are without RF collisions at any timeslot. e.g. a 16 cell timeslot can be assigned 16 different devices that will not interfere with each other.
 
-The frequency/channel for each cell will hop and is not fixed.  i.e. The cell is not the absolute channel but an offset derived from a frequency table and will change at each timeslot.  The offset effectively shifts the hopping pattern to the left by the value of the offset. 
-
-e.g. with a hopping pattern of 2,8,13,5,10,14,4,11,7,12,1,6,15,9,0 and offset of 2 gives a hopping pattern of 13,5,10,14,4,11,7,12,1,6,15,9,0,2,8
+The frequency/channel for each cell will change at each time slot is not fixed.  i.e. The cell is not the absolute channel but an offset derived from a frequency table and will change at each timeslot, a hopping pattern.  The hopping pattern is repeated (cycles) across the length of the superframe.
 
 Cells can be assigned link functions such as unicast cells (A --> B), Broadcast Cells (Q --> `*`) or Shared Access Cells (`*` --> `*`).  During a timeslot that is not assigned to an individual node then the node can have the Rx circuit turned off to save power.   Cell function assignment is performed by the gateway device during association requests or network reconfiguration (i.e. dis-association or lost nodes).
 
-To use this slotted access scheme, a notion of network time needs to be available across the network, this should be synchronised either from the Gateway or Coordinator node or a time source.
+The diagram below (based on SP100A) shows a portion, (250mSec in this example), of a Super-frame and how the frequency hopping is integrated into TDMA as seen from a single device on the network.   Link Assignments between this node and other nodes in the network are shown as dedicated links i.e. unicast Send or Receive.  Additional nodes will be assigned their own link cells.  Shared Links are used as [WidgetMeshAssociation advertisement] or broadcast slots by all nodes assigned.
 
-The diagram below (based on SP100A) shows a portion (250mSec) of a Super-frame and how the frequency hopping is integrated into TDMA as seen from a single device on the network.  Other nodes will have Cell offsets assigned to them and is overlaid on this diagram.   Link Assignments between nodes in the network are shown as dedicated links i.e. can only Send or Receive between node a and node b, additional nodes will be assigned their own cells.  Shared Links are used as advertisement or broadcast slots by all nodes assigned.
+These assigned communication links are the basis of the meshed network.
 
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/SuperFrame.png
+
+Each device on the same network will have the identical hopping pattern, however for addition networks operating in the same vicinity, an offset to the hopping pattern can be applied that effectively shifts the hopping pattern to the left by the value of the offset, effectively interleaving the devices.
+
+e.g. with a hopping pattern of 2,8,13,5,10,14,4,11,7,12,1,6,15,9,0 and offset of 2 gives a hopping pattern of 13,5,10,14,4,11,7,12,1,6,15,9,0,2,8
 
 The diagram below shows offsets of the same hopping sequence interleaved with the original hopping pattern.  The numbers in the cells represent the offset applied to the hopping pattern.  This offset allows different devices to work in the same physical area with no RF interference.
 
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/SuperFrame1.png
+
+To use this slotted access scheme, a notion of network time needs to be available across the network, this should be synchronised either from the Gateway or Coordinator node or a time source.
 
 === Self Forming and Self Healing ===
 
