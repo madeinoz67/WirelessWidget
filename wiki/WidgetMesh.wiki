@@ -29,6 +29,8 @@ The Frequency of the channel is based on a lookup table and is different each ti
 
 This consists of a repeating superframe made up of individual time slots of a set length. e.g. 10mSec slots and superframe of 1 Second = 100 slots.
 
+http://strobit.googlecode.com/svn/wiki/images/widgetmesh/SuperFrame0.png
+
 The length of the time slot must allow for a single packet to be sent with a response acknowledgement packet.
 
 Each timeslot consists of a number of communication cells, these cells are assigned non overlapping frequencies so are without RF collisions at any timeslot. e.g. a 16 cell timeslot can be assigned 16 different devices that will not interfere with each other.
