@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006, Technical University of Munich
+ * Copyright (c) 2006, Swedish Institute of Computer Science
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,24 +26,56 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  *
- * This file is part of the Contiki operating system.
+ * @(#)$Id: minileds.c,v 1.1 2006/12/22 17:05:31 barner Exp $
  *
- * Author: Simon Barner <barner@in.tum.de>
- *
- * @(#)$$
+
+ **
+ * \file
+ *         implementation of minileds module for RFM12WidgetBoard
+ * \author
+ *         Stephen Eaton <seaton@gateway.net.au>
  */
-#include "contiki-rfm12widget.h"
+
+#include "contiki.h"
+
+#include "dev/leds.h"
+
+
+#define LED_RED     PB0
+#define LED_YELLOW  PB1
+#define LED_ALL    (LED_YELLOW | LED_RED)
+
+#define LED_DDR     DDRB
+#define LED_PORT    PORTB
 
 void
-init_lowlevel(void)
+leds_init(void)
 {
+    LED_DDR |= _BV(LED_ALL);
 
-  /* configure onboard LEDS */
-  leds_init();
+    //turn off widget LEDS, HI = off
+    LED_PORT |= _BV(LED_ALL);
+}
 
-  /* Configure rs232 port for debugging */
-  rs232_init(RS232_PORT_0, USART_BAUD_57600, USART_PARITY_NONE | USART_STOP_BITS_1 | USART_DATA_BITS_8);
+void
+leds_on(unsigned char leds)
+{
+    LED_PORT &= ~_BV(leds);     //LOW = ON
+}
 
-  /* Redirect stdout to default port */
-  rs232_redirect_stdout (RS232_PORT_0);
+void
+leds_off(unsigned char leds)
+{
+    LED_PORT |= _BV(leds);      //HI = OFF
+}
+
+void
+leds_toggle(unsigned char leds)
+{
+  /*
+   * Synonym: void leds_invert(unsigned char leds);
+   */
+  asm(".global leds_invert\nleds_invert:\n");
+
+  LED_PORT ^= _BV(leds);
 }

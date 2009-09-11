@@ -18,7 +18,8 @@
    * pre-scale factor is 1024, i.e. we have 125 "ticks" / sec: \
    * 16000000 = 1024 * 125 * 125 \
    */ \
-  OCR0 = 125; \
+  OCR0A = 125; \
+
 \
   /* 								\
    * Set timer control register: 	\
@@ -86,7 +87,8 @@
    * pre-scale factor is 1024, i.e. we have 125 "ticks" / sec: \
    * 16000000 = 1024 * 125 * 125 \
    */ \
-  OCR0A = 125; \
+  //OCR0A = 125; \
+  OCR0A = 78;   // 10000000 = 1024 *125 * 78.5 \
 \
   /* 								\
    * Set timer control register: 	\

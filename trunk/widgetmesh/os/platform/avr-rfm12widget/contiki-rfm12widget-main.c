@@ -35,6 +35,7 @@
 #include <avr/fuse.h>
 #include <avr/eeprom.h>
 #include <stdio.h>
+#include "contiki-rfm12widget.h"
 
 //#include "lib/mmem.h"
 //#include "loader/symbols-def.h"
@@ -70,16 +71,6 @@ FUSES =
 
 PROCINIT(&etimer_process);
 
-void
-init_lowlevel(void)
-{
-  rs232_init(RS232_PORT_0, USART_BAUD_57600,
-             USART_PARITY_NONE | USART_STOP_BITS_1 | USART_DATA_BITS_8);
-
-  /* Redirect stdout to second port */
-  rs232_redirect_stdout(RS232_PORT_0);
-}
-
 int
 main(void)
 {
@@ -104,7 +95,7 @@ main(void)
   //Give ourselves a prefix
   //init_net();
 
-  printf_P(PSTR("\n********BOOTING CONTIKI*********\n"));
+  printf_P(PSTR("\n********BOOTING RFM12Widget*********\n"));
 
   printf_P(PSTR("System online.\n"));
 

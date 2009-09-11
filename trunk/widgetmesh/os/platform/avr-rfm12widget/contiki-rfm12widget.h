@@ -33,10 +33,10 @@
 
 /**
  * \file
- *        Sample Contiki kernel for STK 501 development board
+ *       Contiki kernel for RFM12WidgetBoard
  *
  * \author
- *         Simon Barner <barner@in.tum.de
+ *         Stephen Eaton <seaton@gateway.net.au>
  */
 
 #ifndef __CONTIKI_RFM12WIDGET_H__
