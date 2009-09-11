@@ -85,6 +85,8 @@ unsigned long clock_seconds(void);
  * Definitions below are dictated by the hardware and not really
  * changeable!
  */
-
+#define LED_RED     _BV(PB0)
+#define LED_YELLOW  _BV(PB1)
+#define LED_ALL    (LED_YELLOW | LED_RED)
 
 #endif /* __CONTIKI_CONF_H__ */

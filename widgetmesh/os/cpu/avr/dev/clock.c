@@ -33,9 +33,9 @@ clock_init(void)
   TIMSK &= ((unsigned char)~(1 << (OCIE0)));
   /* Disable TC0 interrupt */
 
-  /** 
-   *  set Timer/Counter0 to be asynchronous 
-   *  from the CPU clock with a second external 
+  /**
+   *  set Timer/Counter0 to be asynchronous
+   *  from the CPU clock with a second external
    *  clock(32,768kHz)driving it
    */
   ASSR |= (1 << (AS0));
@@ -43,12 +43,56 @@ clock_init(void)
 
   TCNT0 = 0;
   OCR0 = 128;
-  
+
   TIMSK |= (1 << (OCIE0));
   TIMSK |= (1 << (TOIE0));
   sei ();
 }
 #endif
+
+
+/**************************************************************************/
+/*!
+    Set up the clock for a 1 msec tick interval
+*/
+/**************************************************************************/
+void clock_setup()
+{
+    // choose internal clock as source
+    ASSR    = 0;
+
+    // reset the timer 0 counter to zero
+    TCNT0   = 0;
+
+    // set the compare reg to 32. With a prescaler val of 256, this would
+    // give us a ~1 msec interrupt
+    //OCR0A = 32;
+
+    // Set comparison register:
+    // Crystal freq. is 16000000,
+    // pre-scale factor is 1024, i.e. we have 125 "ticks" / sec:
+    // 10000000 = 1024 * 125 * 78.5
+    OCR0A = 78;
+
+    // Set timer control register:
+    //  - prescale: 256
+    //  - counter reset via comparison register (WGM01)
+    //TCCR0A = _BV(WGM01);
+    //TCCR0B = _BV(CS02);
+
+    // Set timer control register:
+    //  - prescale: 1024 (CS00 - CS02)
+    //  - counter reset via comparison register (WGM01)
+    TCCR0A =  _BV(WGM01);
+    TCCR0B =  _BV(CS00) | _BV(CS02);
+
+    // Clear interrupt flag register
+    TIFR0 = TIFR0;
+
+    // Raise interrupt when value in OCR0 is reached. Note that the
+    // counter value in TCNT0 is cleared automatically.
+    TIMSK0 = _BV (OCIE0A);
+}
 
 /*---------------------------------------------------------------------------*/
 void
@@ -56,8 +100,8 @@ clock_init(void)
 {
   cli ();
 
-
-  OCRSetup();
+  clock_setup();
+  //OCRSetup();
 
   /*
    * Counts the number of ticks. Since clock_time_t is an unsigned
