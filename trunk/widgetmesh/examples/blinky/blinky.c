@@ -36,7 +36,7 @@
 #include "dev/leds.h"
 
 
-static int period = CLOCK_SECOND / 2;
+static int period = CLOCK_CONF_SECOND / 2;
 
 PROCESS(blinker, "Blinker");
 AUTOSTART_PROCESSES(&blinker);
@@ -48,15 +48,15 @@ PROCESS_THREAD(blinker, ev, data)
    PROCESS_BEGIN();
 
    etimer_set(&et, period);
+   printf("Is there anybody out there?\n");
    while(1) {
       PROCESS_WAIT_EVENT();
-      if(etimer_expired(&et)) {
-         /* Toggle LED state */
-         leds_invert(LEDS_ALL);
-         printf("Is there anybody out there?\n");
+      if(ev == PROCESS_EVENT_TIMER)
+      /* Toggle LED state */
+         leds_invert(LED_ALL);
+         printf("There is!\n");
          /* Set timer again */
-         etimer_set(&et, period);
-      }
-   }
+         etimer_reset(&et);
+    }
    PROCESS_END();
 }

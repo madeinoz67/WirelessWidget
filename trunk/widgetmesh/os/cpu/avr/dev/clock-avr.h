@@ -105,7 +105,7 @@
    * Raise interrupt when value in OCR0 is reached. Note that the \
    * counter value in TCNT0 is cleared automatically. \
    */ \
-  TIMSK0 = _BV (OCIE0A);
+  TIMSK0 |= _BV(OCIE0A) | _BV(TOIE0);
 
 #define AVR_OUTPUT_COMPARE_INT TIMER0_COMPA_vect
 #else

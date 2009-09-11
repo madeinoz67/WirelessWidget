@@ -41,32 +41,28 @@
 #include "dev/leds.h"
 
 
-#define LED_RED     PB0
-#define LED_YELLOW  PB1
-#define LED_ALL    (LED_YELLOW | LED_RED)
-
 #define LED_DDR     DDRB
 #define LED_PORT    PORTB
 
 void
 leds_init(void)
 {
-    LED_DDR |= _BV(LED_ALL);
+    LED_DDR |= LED_ALL;
 
     //turn off widget LEDS, HI = off
-    LED_PORT |= _BV(LED_ALL);
+    LED_PORT |= LED_ALL;
 }
 
 void
 leds_on(unsigned char leds)
 {
-    LED_PORT &= ~_BV(leds);     //LOW = ON
+    LED_PORT &= ~ leds;     //LOW = ON
 }
 
 void
 leds_off(unsigned char leds)
 {
-    LED_PORT |= _BV(leds);      //HI = OFF
+    LED_PORT |= leds;      //HI = OFF
 }
 
 void
@@ -77,5 +73,5 @@ leds_toggle(unsigned char leds)
    */
   asm(".global leds_invert\nleds_invert:\n");
 
-  LED_PORT ^= _BV(leds);
+  LED_PORT ^= leds;
 }
