@@ -86,11 +86,5 @@ unsigned long clock_seconds(void);
  * changeable!
  */
 
-/* LED ports */
-#define LEDS_PxDIR P5DIR
-#define LEDS_PxOUT P5OUT
-#define LEDS_CONF_RED    0x10
-#define LEDS_CONF_GREEN  0x20
-#define LEDS_CONF_YELLOW 0x40
 
 #endif /* __CONTIKI_CONF_H__ */

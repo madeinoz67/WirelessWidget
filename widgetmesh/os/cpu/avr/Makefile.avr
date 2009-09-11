@@ -13,18 +13,19 @@ endif
 .SUFFIXES:
 
 ### Optimization setting
-OPTI=0
+OPTI=s
 
 ### Define the CPU directory
 CONTIKI_CPU=$(CONTIKI)/cpu/avr
 
 ### Define the source files we have in the AVR port
 
-AVR        = clock.c random.c leds.c
-TARGETLIBS = clock.c flash.c leds.c
+AVR        = clock.c random.c
+ELFLOADER  = elfloader.c elfloader-avr.c symtab-avr.c
+TARGETLIBS = clock.c flash.c
 
 CONTIKI_TARGET_SOURCEFILES += ${AVR} $(SENSORS) \
-                              $(SYSAPPS) \
+                              $(SYSAPPS) $(ELFLOADER)\
                               $(TARGETLIBS)
 
 CONTIKI_SOURCEFILES        += $(CONTIKI_TARGET_SOURCEFILES)
