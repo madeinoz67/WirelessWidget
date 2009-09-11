@@ -4,7 +4,7 @@
 ----
 =Widget Mesh=
 ==Goal==
-The goal of this sub project is to provide simple mesh networking for the widgets.  Something along the lines of a cutdown [http://en.wikipedia.org/wiki/Zigbee Zigbee]/SP100a/[http://www.atmel.com/dyn/products/tools_card.asp?tool_id=4578&family_id=676 RUM] stack.
+The goal of this sub project is to provide wireless sensor mesh networking for the widgets.  Something along the lines of a cut down [http://en.wikipedia.org/wiki/Zigbee Zigbee]/SP100a/[http://www.atmel.com/dyn/products/tools_card.asp?tool_id=4578&family_id=676 RUM] stack.
 
 Some of the features I'd ultimately like to implement:
  * Frequency hopping to give diversity to interference.
