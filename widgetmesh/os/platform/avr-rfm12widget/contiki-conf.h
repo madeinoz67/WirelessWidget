@@ -53,10 +53,7 @@ typedef int32_t s32_t;
 #define PLATFORM PLATFORM_AVR
 
 /* Clock ticks per second */
-#define CLOCK_CONF_SECOND 125
-
-/* COM port to be used for SLIP connection */
-//#define SLIP_PORT RS232_PORT_0
+#define CLOCK_CONF_SECOND 200
 
 /* Pre-allocated memory for loadable modules heap space (in bytes)*/
 #define MMEM_CONF_SIZE 256

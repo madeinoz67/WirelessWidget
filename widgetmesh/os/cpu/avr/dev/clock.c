@@ -53,7 +53,7 @@ clock_init(void)
 
 /**************************************************************************/
 /*!
-    Set up the clock for a 1 msec tick interval
+    Set up the clock for a 5 msec tick interval
 */
 /**************************************************************************/
 void clock_setup()
@@ -64,27 +64,17 @@ void clock_setup()
     // reset the timer 0 counter to zero
     TCNT0   = 0;
 
-    // set the compare reg to 32. With a prescaler val of 256, this would
-    // give us a ~1 msec interrupt
-    //OCR0A = 32;
-
     // Set comparison register:
-    // Crystal freq. is 16000000,
-    // pre-scale factor is 1024, i.e. we have 125 "ticks" / sec:
-    // 10000000 = 1024 * 125 * 78.5
-    OCR0A = 78;
+    // Crystal freq. is 10000000,
+    // pre-scale factor is 512, i.e. we have 200 "ticks" / sec:
+    // 10000000 = 512 * 200 * 195
+    OCR0A = 195;
 
     // Set timer control register:
     //  - prescale: 256
     //  - counter reset via comparison register (WGM01)
-    //TCCR0A = _BV(WGM01);
-    //TCCR0B = _BV(CS02);
-
-    // Set timer control register:
-    //  - prescale: 1024 (CS00 - CS02)
-    //  - counter reset via comparison register (WGM01)
-    TCCR0A =  _BV(WGM01);
-    TCCR0B =  _BV(CS00) | _BV(CS02);
+    TCCR0A = _BV(WGM01);
+    TCCR0B = _BV(CS02);
 
     // Clear interrupt flag register
     TIFR0 = TIFR0;
@@ -139,7 +129,7 @@ clock_delay(unsigned int i)
 
 /*---------------------------------------------------------------------------*/
 /**
- * Wait for a multiple of 1 / 125 sec = 0.008 ms.
+ * Wait for a multiple of 1 / 200 sec = 5 ms.
  *
  */
 void
