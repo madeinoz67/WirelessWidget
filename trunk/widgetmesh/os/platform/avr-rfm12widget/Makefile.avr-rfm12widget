@@ -1,10 +1,14 @@
-CONTIKI_TARGET_DIRS = . loader dev radio
+WIDGET = rs232.c eeprom.c random.c minileds.c \
+       mmem.c contiki-rfm12widget-main.c \
+       contiki-rfm12widget-default-init-net.c contiki-rfm12widget-default-init-lowlevel.c
+RADIO =
+
+
+CONTIKI_TARGET_DIRS = . dev radio/rfm12
 CONTIKI_CORE=contiki-rfm12widget-main
 CONTIKI_TARGET_MAIN = ${CONTIKI_CORE}.o
 
-CONTIKI_TARGET_SOURCEFILES +=	rs232.c eeprom.c random.c minileds.c \
-				mmem.c contiki-rfm12widget-main.c contiki-rfm12widget-default-init-net.c contiki-rfm12widget-default-init-lowlevel.c
-
+CONTIKI_TARGET_SOURCEFILES += $(RADIO) $(WIDGET) $
 CONTIKIAVR=$(CONTIKI)/cpu/avr
 CONTIKIBOARD=.
 

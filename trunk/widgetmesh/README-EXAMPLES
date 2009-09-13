@@ -21,19 +21,51 @@ hello-world/
 
     make
 
-  This will compile the hello-world program in the 'native' target.
+  This will compile the hello-world program in the 'rfm12widgetboard' target.
   This causes the entire Contiki operating system and the hello-world
-  application to be compiled into a single program that can be run by
+  application to be compiled into a single program that can be uploaded to the widget board by
   typing the following command:
 
-    ./hello-world.native
+    make hello-world.u
 
-  This will print out the following text:
+  This will upload and program the widgetboard and then print out on the serial console:
 
     Contiki initiated, now starting process scheduling
     Hello, world
 
-  The program will then appear to hang, and must be stopped by
-  pressing the C key while holding down the Control key.
+blinky/
+
+  A really simple Contiki program that shows how to write Contiki
+  programs. To compile and test the program, go into the blinky
+  directory:
+
+    cd examples/blinky
+
+  Run the 'make' command.
+
+    make
+
+  This will compile the hello-world program in the 'rfm12widgetboard' target.
+  This causes the entire Contiki operating system and the blinky
+  application to be compiled and uploaded to the widgetboard by
+  typing the following command:
+
+    make blinky.u
+
+  This will print out the following text:
+
+
+   Is there anybody out there?
+
+   ********BOOTING RFM12Widget*********
+   System online.
+   There is!
+   There is!
+   There is!
+   There is!
+   There is!
+   There is!
+
+  Each time "There is!" is printed the onboard leds will toggle on or off at approx 1Hz
 
 
