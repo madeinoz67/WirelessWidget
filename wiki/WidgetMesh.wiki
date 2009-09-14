@@ -98,6 +98,7 @@ http://strobit.googlecode.com/svn/wiki/images/widgetmesh/mpdu.png
 
 *LEN:* DPDU Packet Length
 
+During reception the Preamble and Sync bytes are handled automatically by the RFM12 transceiver and will not be passed to the MAC layer, however these bytes need to be added during the packet building process of the MAC layer before data transmission.
 
 TODO: May also want to implement Forward Error correction using [http://en.wikipedia.org/wiki/Hamming_code Hamming code] 
 
