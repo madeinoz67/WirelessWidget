@@ -3,7 +3,8 @@
 <wiki:toc max_depth="3" />
 ----
 
-=Schematics=
+=Hardware=
+==Schematics==
 
 Available from the Downloads area or the 'Featured Downloads' on the from the front page.  The design files are in Eagle format or as a Printable PDF.  You can also view Schematics of each design from the [http://code.google.com/p/strobit/wiki/RFM12BWidgetBoard#Schematics Hardware] Page
 
