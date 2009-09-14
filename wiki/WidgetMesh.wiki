@@ -96,7 +96,7 @@ http://strobit.googlecode.com/svn/wiki/images/widgetmesh/mpdu.png
 
 *DID:* Destination Address
 
-*LEN:* Packet Length
+*LEN:* DPDU Packet Length
 
 
 TODO: May also want to implement Forward Error correction using [http://en.wikipedia.org/wiki/Hamming_code Hamming code] 
