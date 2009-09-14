@@ -8,7 +8,7 @@ All countries have different regulatory requirements when it comes to unlicensed
 When using the RFM12, you will need to make sure that you are using the correct frequencies for your country, not just the correct band.  e.g. in Australia I can use the 915Mhz RFM12B which can operate from 902Mhz - 928Mhz, I need to make sure that my application meets my countries regulatory requirements of 915 - 928Mhz.
 
 
-NOTE: I've intentionally not included the 2.4GHZ bands etc in this list, only bands covered by the RFM12 Tranceivers.
+NOTE: I've intentionally not included the 2.4GHZ bands etc in this list, only bands covered by the RFM12 transceivers.
 
 = Countries = 
 ==Australia==
