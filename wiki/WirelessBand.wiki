@@ -19,6 +19,7 @@ NOTE: I've intentionally not included the 2.4GHZ bands etc in this list, only ba
 ==European Union==
 
 433.05 – 434.79 MHz
+
 868 MHz
 
 == New Zealand ==
