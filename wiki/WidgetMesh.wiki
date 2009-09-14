@@ -92,11 +92,12 @@ Sync Bytes:  The sync bytes are required by the RFM12B transceiver, the first is
 
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/mpdu.png
 
-|| 0xAA || 0xAA || 0x2D || 0xD4 || DPDU (2 - n bytes) || 0xAA||
+SID: Sender Address
 
-0xD4 is the network ID
+DID: Destination Address
 
-TODO: May want to handle error detection at this level so extra work is not performed by the upper layers if a corrupt packet, i.e. drop the packet here if corrupt.  To handle CRC then an extra 3 bytes are required. DPDU payload byte count and CRC16 bytes.
+LEN: Packet Length
+
 
 TODO: May also want to implement Forward Error correction using [http://en.wikipedia.org/wiki/Hamming_code Hamming code] 
 
