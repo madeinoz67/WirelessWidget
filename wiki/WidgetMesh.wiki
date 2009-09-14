@@ -92,11 +92,11 @@ Sync Bytes:  The sync bytes are required by the RFM12B transceiver, the first is
 
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/mpdu.png
 
-SID: Sender Address
+*SID:* Sender Address
 
-DID: Destination Address
+*DID:* Destination Address
 
-LEN: Packet Length
+*LEN:* Packet Length
 
 
 TODO: May also want to implement Forward Error correction using [http://en.wikipedia.org/wiki/Hamming_code Hamming code] 
