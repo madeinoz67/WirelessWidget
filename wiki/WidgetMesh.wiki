@@ -112,6 +112,14 @@ The majority of network functions are handled by this layer.
    * [WidgetMeshAssociation Network Discovery and Association]
    * [WidgetMeshRouting Network Routing]
 
+===Network Layer===
+
+A network layer is not required as a WidgetMesh network will only be sending/receiving data to/from the co-oridinator/Gateway Node or other nodes in the mesh, no routing between networks i.e. node to internet or internet to node, is required.
+
+===Application Layer===
+
+TODO:
+
 ----
 
 ==Implementation==
