@@ -93,6 +93,7 @@ Sync Bytes:  The sync bytes are required by the RFM12B transceiver, the first is
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/mpdu.png
 
 *NID:* Network ID = second Sync byte
+
 *SID:* Sender Address
 
 *DID:* Destination Address
