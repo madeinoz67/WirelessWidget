@@ -118,6 +118,8 @@ The majority of network functions are handled by this layer.
 
 A network layer is not required as a WidgetMesh network will only be sending/receiving data to/from the co-oridinator/Gateway Node or other nodes in the mesh, no routing between networks i.e. node to internet or internet to node, is required.
 
+Future work could include integrating contiki's implementation of 6LoWPAN into widetmesh, currently resource constraints would be too significant i.e. lack of ram and program memory.
+
 ===Application Layer===
 
 TODO:
