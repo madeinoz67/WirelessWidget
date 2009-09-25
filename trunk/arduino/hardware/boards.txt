@@ -137,46 +137,111 @@ lilypad.bootloader.lock_bits=0x0F
 lilypad.build.mcu=atmega168
 lilypad.build.f_cpu=8000000L
 lilypad.build.core=arduino
-##############################################################
-strobit1.name=Strobit Wireless Widget (10 Mhz) Atmega168
-
-strobit1.upload.protocol=stk500
-strobit1.upload.maximum_size=14336
-strobit1.upload.speed=19200
-
-strobit1.bootloader.low_fuses=0xE6
-strobit1.bootloader.high_fuses=0xDF
-strobit1.bootloader.extended_fuses=0x00
-strobit1.bootloader.path=strobit
-strobit1.bootloader.file=strobitBOOT_168_10MHZ.hex
-strobit1.bootloader.unlock_bits=0x3F
-strobit1.bootloader.lock_bits=0x0F
-
-strobit1.build.mcu=atmega168
-strobit1.build.f_cpu=10000000L
-strobit1.build.core=arduino
 
 ##############################################################
 
-strobit.name=Strobit Wireless Widget (8 Mhz) Atmega168
+rfm12widget168_8.name=RFM12WidgetBoard (8 Mhz) Atmega168
 
-strobit.upload.protocol=stk500
-strobit.upload.maximum_size=14336
-strobit.upload.speed=19200
+rfm12widget168_8.upload.protocol=stk500
+rfm12widget168_8.upload.maximum_size=14336
+rfm12widget168_8.upload.speed=19200
 
-strobit.bootloader.low_fuses=0xE2
-strobit.bootloader.high_fuses=0xDF
-strobit.bootloader.extended_fuses=0x00
-strobit.bootloader.path=strobit
-strobit.bootloader.file=strobitBOOT_168_8MHZ.hex
-strobit.bootloader.unlock_bits=0x3F
-strobit.bootloader.lock_bits=0x0F
+rfm12widget168_8.bootloader.low_fuses=0xE2
+rfm12widget168_8.bootloader.high_fuses=0xDD
+rfm12widget168_8.bootloader.extended_fuses=0x00
+rfm12widget168_8.bootloader.path=strobit
+rfm12widget168_8.bootloader.file=BOOT__rfm12widget168_8mhz.hex.hex
+rfm12widget168_8.bootloader.unlock_bits=0x3F
+rfm12widget168_8.bootloader.lock_bits=0x0F
 
-strobit.build.mcu=atmega168
-strobit.build.f_cpu=8000000L
-strobit.build.core=arduino
+rfm12widget168_8.build.mcu=atmega168
+rfm12widget168_8.build.f_cpu=8000000L
+rfm12widget168_8.build.core=arduino
 
 ##############################################################
+
+rfm12widget168_10.name=RFM12WidgetBoard (10 Mhz) Atmega168
+
+rfm12widget168_10.protocol=stk500
+rfm12widget168_10.maximum_size=14336
+rfm12widget168_10.speed=19200
+
+rfm12widget168_10.bootloader.low_fuses=0xF7
+rfm12widget168_10.bootloader.high_fuses=0xDD
+rfm12widget168_10.bootloader.extended_fuses=0x00
+rfm12widget168_101.bootloader.path=strobit
+rfm12widget168_10.bootloader.file=BOOT_rfm12widget168_10mhz.hex
+rfm12widget168_10.bootloader.unlock_bits=0x3F
+rfm12widget168_10.bootloader.lock_bits=0x0F
+
+rfm12widget168_10.build.mcu=atmega168
+rfm12widget168_10.build.f_cpu=10000000L
+rfm12widget168_10.build.core=arduino
+
+
+
+##############################################################
+
+rfm12widget328_8.name=RFM12WidgetBoard (8 Mhz) Atmega328P
+
+rfm12widget328_8.upload.protocol=stk500
+rfm12widget328_8.upload.maximum_size=30720
+rfm12widget328_8.upload.speed=19200
+
+rfm12widget328_8.bootloader.low_fuses=0xFF
+rfm12widget328_8.bootloader.high_fuses=0xDA
+rfm12widget328_8.bootloader.extended_fuses=0x05
+rfm12widget328_8.bootloader.path=strobit
+rfm12widget328_8.bootloader.file=BOOT_rfm12widget328_8mhz.hex
+rfm12widget328_8.bootloader.unlock_bits=0x3F
+rfm12widget328_8.bootloader.lock_bits=0x0F
+
+rfm12widget328_8.build.mcu=atmega328p
+rfm12widget328_8.build.f_cpu=8000000L
+rfm12widget328_8.build.core=arduino
+
+##############################################################
+
+rfm12widget328_10.name=RFM12WidgetBoard (10 Mhz) Atmega328P
+
+rfm12widget328_10.upload.protocol=stk500
+rfm12widget328_10.upload.maximum_size=30720
+rfm12widget328_10.upload.speed=19200
+
+rfm12widget328_10.bootloader.low_fuses=0xF7
+rfm12widget328_10.bootloader.high_fuses=0xDA
+rfm12widget328_10.bootloader.extended_fuses=0x05
+rfm12widget328_10.bootloader.path=strobit
+rfm12widget328_10.bootloader.file=BOOT_rfm12widget328_10mhz.hex
+rfm12widget328_10.bootloader.unlock_bits=0x3F
+rfm12widget328_10.bootloader.lock_bits=0x0F
+
+rfm12widget328_10.build.mcu=atmega328p
+rfm12widget328_10.build.f_cpu=10000000L
+rfm12widget328_10.build.core=arduino
+##############################################################
+
+rfm12widget328_16.name=RFM12WidgetBoard (16 Mhz) Atmega328P
+
+rfm12widget328_16.upload.protocol=stk500
+rfm12widget328_16.upload.maximum_size=30720
+rfm12widget328_16.upload.speed=19200
+
+rfm12widget328_16.bootloader.low_fuses=0xF7
+rfm12widget328_16.bootloader.high_fuses=0xDA
+rfm12widget328_16.bootloader.extended_fuses=0x05
+rfm12widget328_16.bootloader.path=strobit
+rfm12widget328_16.bootloader.file=BOOT_rfm12widget328_16mhz.hex
+rfm12widget328_16.bootloader.unlock_bits=0x3F
+rfm12widget328_16.bootloader.lock_bits=0x0F
+
+rfm12widget328_16.build.mcu=atmega328p
+rfm12widget328_16.build.f_cpu=16000000L
+rfm12widget328_16.build.core=arduino
+
+##############################################################
+
+
 
 pro.name=Arduino Pro or Pro Mini (8 MHz) w/ ATmega168
 
