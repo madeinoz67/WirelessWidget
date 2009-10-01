@@ -20,7 +20,7 @@
  http://code.google.com/p/strobit/
  ***************************************************************************/
 /*!
- $Id: $
+ $Id$
  Created on: 01/10/2009
  Author: Stephen Eaton <seaton@gateway.net.au>
 
