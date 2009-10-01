@@ -1,4 +1,4 @@
-WIDGET = rs232.c eeprom.c random.c minileds.c \
+WIDGET = rs232.c eeprom.c random.c minileds.c watchdog.c \
        mmem.c contiki-rfm12widget-main.c \
        contiki-rfm12widget-default-init-net.c contiki-rfm12widget-default-init-lowlevel.c
 RADIO =
@@ -8,26 +8,29 @@ CONTIKI_TARGET_DIRS = . dev radio/rfm12
 CONTIKI_CORE=contiki-rfm12widget-main
 CONTIKI_TARGET_MAIN = ${CONTIKI_CORE}.o
 
-CONTIKI_TARGET_SOURCEFILES += $(RADIO) $(WIDGET) $
+CONTIKI_TARGET_SOURCEFILES += $(RADIO) $(WIDGET)
 CONTIKIAVR=$(CONTIKI)/cpu/avr
 CONTIKIBOARD=.
 
 CONTIKI_PLAT_DEFS = -DF_CPU=10000000UL -DAUTO_CRC_PADDING=2
 
 MCU=atmega168
-AVRDUDE_PROGRAMMER=stk500v1
+#MCU=atmega328p
+AVRDUDE_PROGRAMMER=stk500
+
 
 # For usb devices, you may either use PORT=usb, or (e.g. if you have more than one
 # programmer connected) you can use the following trick to find out the serial number:
 #
 # The example is for an JTAGICE mkII used to program an ATmega128:
 # avrdude -v -P usb:xxxx -c jtag2 -p atmega128
-AVRDUDE_PORT=//./COM18
+AVRDUDE_PORT=//./COM2
 
 
 # Additional avrdude options
 # Verify off
 AVRDUDE_OPTIONS=-F -v -b19200 -D
+#AVRDUDE_OPTIONS=-F -v -b57600 -D
 
 
 include $(CONTIKIAVR)/Makefile.avr

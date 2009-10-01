@@ -1,39 +1,41 @@
-/*
- * Copyright (c) 2006, Technical University of Munich
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in the
- *    documentation and/or other materials provided with the distribution.
- * 3. Neither the name of the Institute nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE INSTITUTE AND CONTRIBUTORS ``AS IS'' AND
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED.  IN NO EVENT SHALL THE INSTITUTE OR CONTRIBUTORS BE LIABLE
- * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
- * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
- * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
- * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
- * SUCH DAMAGE.
- *
- * This file is part of the Contiki operating system.
- *
- * @(#)$$
+/***************************************************************************
+ Copyright (C) 2009 Stephen Eaton
+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License along
+ with this program; if not, write to the Free Software Foundation, Inc.,
+ 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+ Originally written by Stephen Eaton.
+ Please post support questions to the WirelessWidget Discussion Group.
+ http://code.google.com/p/strobit/
+ ***************************************************************************/
+/*!
+ $Id: $
+ Created on: 01/10/2009
+ Author: Stephen Eaton <seaton@gateway.net.au>
+
+ \file contiki-rfm12widget-main.c
+ \ingroup rfm12widget
+
+ \brief
+
  */
+/**************************************************************************/
 
 #include <avr/pgmspace.h>
 #include <avr/fuse.h>
 #include <avr/eeprom.h>
+#include <avr/sleep.h>
 #include <stdio.h>
 #include "contiki-rfm12widget.h"
 
@@ -53,6 +55,7 @@
 #include "dev/rs232.h"
 //#include "dev/serial-line.h"
 //#include "dev/slip.h"
+#include "dev/watchdog.h"
 
 //#include "sicslowmac.h"
 
@@ -82,7 +85,6 @@ main(void)
   /* Clock */
   clock_init();
 
-
   /* Process subsystem */
   process_init();
 
@@ -92,8 +94,13 @@ main(void)
   /* Autostart processes */
   autostart_start(autostart_processes);
 
-  //Give ourselves a prefix
+  //start the network
   //init_net();
+
+  // initialiase watchdog timer
+  watchdog_init();
+
+  static int r;
 
   printf_P(PSTR("\n********BOOTING RFM12Widget*********\n"));
 
@@ -102,7 +109,18 @@ main(void)
   /* Main scheduler loop */
   while(1) {
     process_run();
-  }
 
+    watchdog_start();
+
+    do{
+    	watchdog_periodic();
+        r = process_run();
+    } while(r>0);
+
+    watchdog_stop();
+    set_sleep_mode(SLEEP_MODE_IDLE);
+    sleep_mode();
+
+  }
   return 0;
 }
