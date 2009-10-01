@@ -1,3 +1,4 @@
+//$Id$//
 /***************************************************************************
  Copyright (C) 2009 Stephen Eaton
 
@@ -20,14 +21,14 @@
  http://code.google.com/p/strobit/
  ***************************************************************************/
 /*!
- $Id: $
+
  Created on: 01/10/2009
  Author: Stephen Eaton <seaton@gateway.net.au>
 
  \file contiki-rfm12widget-main.c
  \ingroup rfm12widget
 
- \brief
+ \brief RFM12Widget platform mainline.
 
  */
 /**************************************************************************/
