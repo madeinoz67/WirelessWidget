@@ -34,8 +34,8 @@
 /**************************************************************************/
 
 #include <avr/pgmspace.h>
-#include <avr/fuse.h>
-#include <avr/eeprom.h>
+//#include <avr/fuse.h>
+//#include <avr/eeprom.h>
 #include <avr/sleep.h>
 #include <stdio.h>
 #include "contiki-rfm12widget.h"
@@ -51,12 +51,10 @@
 
 #include "contiki.h"
 //#include "contiki-net.h"
-//#include "contiki-lib.h"
+#include "contiki-lib.h"
 
-#include "dev/rs232.h"
-//#include "dev/serial-line.h"
-//#include "dev/slip.h"
-#include "dev/watchdog.h"
+//#include "dev/rs232.h"
+
 
 //#include "sicslowmac.h"
 

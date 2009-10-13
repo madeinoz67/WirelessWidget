@@ -1,12 +1,12 @@
 WIDGET = rs232.c eeprom.c random.c minileds.c watchdog.c \
        mmem.c contiki-rfm12widget-main.c \
        contiki-rfm12widget-default-init-net.c contiki-rfm12widget-default-init-lowlevel.c
-RADIO = radio.c
+RADIO = rfm12_drvr.c rfm12_spi.c rfm12_eeprom.c
 
 NET =
 
 
-CONTIKI_TARGET_DIRS = . dev net rfm12
+CONTIKI_TARGET_DIRS = . dev
 CONTIKI_CORE=contiki-rfm12widget-main
 CONTIKI_TARGET_MAIN = ${CONTIKI_CORE}.o
 
@@ -14,7 +14,7 @@ CONTIKI_TARGET_SOURCEFILES += $(RADIO) $(WIDGET) $(NET)
 CONTIKIAVR=$(CONTIKI)/cpu/avr
 CONTIKIBOARD=.
 
-CONTIKI_PLAT_DEFS = -DF_CPU=10000000UL -DAUTO_CRC_PADDING=2
+CONTIKI_PLAT_DEFS = -DF_CPU=10000000UL
 
 MCU=atmega168
 #MCU=atmega328p

@@ -31,21 +31,25 @@
  \brief Contiki kernel for RFM12WidgetBoard
 
  */
-
 #ifndef __CONTIKI_RFM12WIDGET_H__
 #define __CONTIKI_RFM12WIDGET_H__
 
 #include "contiki.h"
-//#include "contiki-net.h"
 #include "contiki-lib.h"
 
-#include "dev/rs232.h"
+#include "lib/sensors.h"
 
-//#include "dev/serial-line.h"
-//#include "dev/slip.h"
+#include "dev/rs232.h"
+#include "dev/watchdog.h"
+
+//#include "dev/button-sensor.h"
+//#include "dev/radio-sensor.h"
+//#include "dev/battery-sensor.h"
+//#include "dev/temperature-sensor.h"
+
+#include "dev/rfm12_drvr.h"
 
 void init_lowlevel(void);
 void init_net(void);
-
 
 #endif /* #ifndef __CONTIKI_RFM12WIDGET_H__ */

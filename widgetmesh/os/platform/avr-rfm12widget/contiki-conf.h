@@ -37,8 +37,6 @@
 
 #include <stdint.h>
 
-typedef int32_t s32_t;
-
 /*
  * MCU and clock rate
  */
@@ -49,7 +47,8 @@ typedef int32_t s32_t;
 #define CLOCK_CONF_SECOND 200
 
 /* Pre-allocated memory for loadable modules heap space (in bytes)*/
-#define MMEM_CONF_SIZE 256
+//#define MMEM_CONF_SIZE 256
+
 
 /* Use the following address for code received via the codeprop
  * facility
@@ -65,6 +64,7 @@ typedef unsigned short u16_t;
 typedef unsigned long u32_t;
 typedef unsigned short uip_stats_t;
 typedef unsigned long off_t;
+typedef int32_t s32_t;
 
 void clock_delay(unsigned int us2);
 void clock_wait(int ms10);
@@ -75,8 +75,10 @@ unsigned long clock_seconds(void);
  * Definitions below are dictated by the hardware and not really
  * changeable!
  */
-#define LED_RED     _BV(PINB0)
+#define LED_GREEN   _BV(PINB0)
 #define LED_YELLOW  _BV(PINB1)
-#define LED_ALL    (LED_YELLOW | LED_RED)
+#define LED_ALL    (LED_YELLOW | LED_GREEN)
+
+
 
 #endif /* __CONTIKI_CONF_H__ */
