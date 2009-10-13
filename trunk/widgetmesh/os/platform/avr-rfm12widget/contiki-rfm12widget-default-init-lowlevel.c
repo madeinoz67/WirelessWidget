@@ -47,4 +47,7 @@ init_lowlevel(void)
 
   /* Redirect stdout to default port */
   rs232_redirect_stdout (RS232_PORT_0);
+
+  //start driver
+  //rfm12_drvr_init(rfm12_config);
 }
