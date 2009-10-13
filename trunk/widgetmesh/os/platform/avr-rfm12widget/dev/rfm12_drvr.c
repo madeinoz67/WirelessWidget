@@ -32,7 +32,10 @@
 /**************************************************************************/
 
 #include "rfm12_drvr.h"
+#include "rfm12_frame.h"
 #include "radio.h"
+#include "contiki.h"
+
 #include <string.h>
 
 #define DEBUG 1
@@ -52,6 +55,39 @@
 static struct timer rxtimer;
 
 /**
+ *
+ *  \brief  This enumeration defines the valid states for RFM12 radio transceiver.
+ *
+ *   register | eb or et | en  | ex |
+ *   Active   |     X    |  1  |  1 |
+ *   Idle     |     X    |  0  |  1 |
+ *   Sleep    |     1    |  0  |  0 |
+ *   Standby  |     0    |  0  |  0 |
+ *
+ */
+enum rfm12_internal_state{
+        RFM12_IDLE,
+        RFM12_SLEEP,
+        RFM12_WAKEUP,
+        RFM12_RX_CHECK_PL,
+        RFM12_RX_DATA_BYTE,
+        RFM12_RX_CRC1,
+        RFM12_RX_CRC2,
+        RFM12_RX_END,
+        RFM12_TX_CHECK_CHANNEL,
+        RFM12_TX_ERROR,
+        RFM12_TX_SEND_PREAMBLE,
+        RFM12_TX_SEND_SYNC0,
+        RFM12_TX_SEND_SYNC1,
+        RFM12_TX_SEND_HEADER1,
+        RFM12_TX_SEND_HEADER2,
+        RFM12_TX_SEND_DATA,
+        RFM12_TX_CALC_CRC1,
+        RFM12_Tx_CALC_CRC2,
+        RFM12_TX_SEND_EDC,
+        RFM12_TX_END
+};
+/**
  * RFM12 states
  */
 static volatile enum radio_state radio_state = RADIO_SLEEP;
@@ -68,6 +104,7 @@ static uint8_t rfm12_txlen = 0;
 /* CRC */
 static uint16_t rxcrc, rxcrctmp;
 
+
 static void (*receiver_callback)(const struct radio_driver *);
 
 const struct radio_driver rfm12_driver =
@@ -80,8 +117,72 @@ const struct radio_driver rfm12_driver =
   };
 
 
-/*---------------------------------------------------------------------------*/
+/**
+ * \brief valid RFM12 channel frequencies are set in this array.
+ *
+ *         These values can be set to anything but will depend on the datarate and bandwidth set
+ *         these initial values have been set to 802.15.4 900Mhz defaults:
+ *         channels 1-10 frequencies
+ *
+ *         These channels should be redefined to suit your counties regulatory requirements.
+ *
+ */
+const uint16_t rfm12_channel[RFM12_MAX_CHANNELS] =
+{
+    0xA320,     // 906.00
+    0xA42B,     // 908.00
+    0xA536,     // 910.00
+    0xA640,     // 912.00
+    0xA74B,     // 914.00
+    0xA856,     // 916.00
+    0xA960,     // 918.00
+    0xAA6B,     // 920.00
+    0xAB76,     // 922.00
+    0xAC80      // 924.00
+};
 
+#ifdef RFM12_CONFIG_915_57600
+const uint16_t rfm12_config[RFM12_CONFIG_COUNT] =
+{
+                0x80F8,                         //< 915mhz EL,EF,12.0pF
+                0x8209,                         //< enable crystal, disable CLK
+                0xC606,                         //< 57600bps
+                0x9460,                         //< VDI,FAST,270kHz,0dBm,-103dBm
+                0xC2AC,                         //< AL,!ml,DIG,DQD4
+                0xCA83,                         //< FIFO8,SYNC,!ff,DR
+                0xCED4,                         //< 2nd Sync Byte D4
+                0xC483,                         //< @PWR,NO RSTRIC,!st,!fi,OE,EN
+                0x9880,                         //< mp,135kHz,MAX OUT
+                0xCC77,                         //< OB1 OB0, LPX, ddy, DDIT, BW0
+                0xE000,                         //< wakeup off
+                0xC800,                         //< duty cycle - not used
+                0xC040                          //< 1.66MHz, 2.2V
+};
+
+#elif RFM12_CONFIG_915_115200
+const uint16_t rfm12_config[RFM12_CONFIG_COUNT] =
+{
+                0x80F8,                         //< 915mhz EL,EF,12.0pF
+                0x8209,                         //< enable crystal, disable CLK
+                0xC602,                         //< 115200bps
+                0x9440,                         //< VDI,FAST,340kHz,0dBm,-103dBm
+                0xC2AC,                         //< AL,!ml,DIG,DQD4
+                0xCA83,                         //< FIFO8,SYNC,!ff,DR
+                0xCED4,                         //< 2nd Sync Byte D4
+                0xC483,                         //< @PWR,NO RSTRIC,!st,!fi,OE,EN
+                0x98B0,                         //< mp,180kHz,MAX OUT
+                0xCC77,                         //< OB1 OB0, LPX, ddy, DDIT, BW0
+                0xE000,                         //< wakeup off
+                0xC800,                         //< duty cycle - not used
+                0xC040                          //< 1.66MHz, 2.2V
+};
+
+#else
+#error "RFM12_CONFIG_XXX not defined"
+#endif
+
+/*---------------------------------------------------------------------------*/
+PROCESS(rfm12_driver_process, "RFM12 driver");
 PT_THREAD(rfm12_rx_handler_pt(unsigned char c));
 static struct pt rx_handler_pt;
 /*---------------------------------------------------------------------------*/
