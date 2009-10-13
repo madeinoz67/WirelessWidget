@@ -56,7 +56,7 @@ CONTIKI_TARGET_DIRS_CONCAT = ${addprefix $(CONTIKI)/platform/$(TARGET)/, \
 
 vpath %.c $(PROJECTDIRS) $(CONTIKI)/cpu/avr/dev \
 	  $(CONTIKIDIRS) $(APPDIRS) $(CONTIKI_TARGET_DIRS_CONCAT) \
-	  $(CONTIKI_CPU) $(CONTIKI)/cpu/avr/radio/rfm12
+	  $(CONTIKI_CPU)
 
 ### Compilation rules
 
