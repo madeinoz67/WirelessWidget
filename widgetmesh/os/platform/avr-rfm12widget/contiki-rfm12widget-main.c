@@ -84,6 +84,8 @@ main(void)
   /* Clock */
   clock_init();
 
+  //rtimer_init();
+
   /* Process subsystem */
   process_init();
 
@@ -94,7 +96,7 @@ main(void)
   autostart_start(autostart_processes);
 
   //start the network
-  //init_net();
+  init_net();
 
   // initialiase watchdog timer
   watchdog_init();

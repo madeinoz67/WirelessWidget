@@ -37,24 +37,20 @@
 #include <avr/interrupt.h>
 #include "rfm12_spi.h"
 
-#define RFM12_MAX_PAYLOAD       127
+#define RFM12_MAX_PAYLOAD       66      //< size of packet payload in bytes
 
+// un-comment only ONE of the following reset configurations
 //#define RFM12_CONFIG_433_57600        1
 //#define RFM12_CONFIG_868_57600        1
 #define RFM12_CONFIG_915_57600          1
-//#define RFM12_CONFIG_915_115200         1
-
-#define RFM12_CMD_WKUP          0x820D    //< EX, EB, DC
-#define RFM12_CMD_IDLE          0x820D    //< EX, EB, DC
-#define RFM12_CMD_SLEEP         0x8205    //< EB, DC, !EX
-#define RFM12_CMD_FIFO_RST      0xCA81    //< Reset FIFO
-#define RFM12_CMD_FIFO_EN       0xCA83    //< Enable FIFO Fill
+//#define RFM12_CONFIG_915_115200       1
 
 // RFM12 hardware config
 #define RFM12_IRQ_PORT          PORTD
 #define RFM12_IRQ_DDR           DDRD
 #define RFM12_IRQ_PIN           2
 #define RFM12_RADIO_IRQ         INT0_vect // IRQ for RFM12 - INT0 falling trigger interrupt
+
 
 // RFM12 Interrupt sources
 #define RFM12_IRQ_FIFO          0X80      //< (NIRQ) FIFO Interrupt - Rx = byte received, Tx = ready for next byte
@@ -65,21 +61,34 @@
 #define RFM12_IRQ_LOWBAT        0x04      //< (NIRQ) Battery voltage below threshold.
 #define RFM12_IRQ_COMM_OVUR     0XA0      //<< FIFO AND overrun/underrun
 
+
 #define RFM12_ENTER_CRIT()      {uint8_t volatile saved_sreg = SREG; cli()
 #define RFM12_LEAVE_CRIT()      SREG = saved_sreg;}
 #define RFM12_ENABLE_RADIO_INTERRUPT( ) { ( EIMSK |= _BV(INT0) ) ; EICRA |= 0x02 ; RFM12_IRQ_PORT &= ~_BV(RFM12_IRQ_PIN);  RFM12_IRQ_DDR &= ~_BV(RFM12_IRQ_PIN); }
 #define RFM12_DISABLE_RADIO_INTERRUPT( ) ( EIMSK &= ~ _BV(INT0)
 
 // RFM12 Channels
-#define RFM12_MAX_CHANNELS 10
+#define RFM12_MAX_CHANNELS      10
 extern const uint16_t rfm12_channel[RFM12_MAX_CHANNELS];
 
-// config array
-#define RFM12_CONFIG_COUNT 13
-extern const uint16_t rfm12_config[RFM12_CONFIG_COUNT];
+
+// rfm12 configurattion  array
+#define RFM12_MAX_CONFIG        13
+extern const uint16_t rfm12_config[RFM12_MAX_CONFIG];
+
 extern const struct radio_driver rfm12_driver;
 
+// common commands used in the driver
+#define RFM12_CMD_WKUP          0x820D    //< EX, EB, DC
+#define RFM12_CMD_IDLE          0x820D    //< EX, EB, DC
+#define RFM12_CMD_SLEEP         0x8205    //< EB, DC, !EX
+#define RFM12_CMD_FIFO_RST      0xCA81    //< Reset FIFO
+#define RFM12_CMD_FIFO_EN       0xCA83    //< Enable FIFO Fill
+#define RFM12_CMD_TX            0xB800    //< Tx buffer write
+#define RFM12_CMD_READ          0xB000    //< Rx buffer read
+
 enum{
+  RFM12_TX_POWER_MAX            = 0x00,
   RFM12_TXCONF_POWER_0          = 0x00,  //  0db  (Strongest Tx)
   RFM12_TXCONF_POWER_2_5        = 0x01,  // -2.5db
   RFM12_TXCONF_POWER_5          = 0x02,  // -5.0db
@@ -87,7 +96,8 @@ enum{
   RFM12_TXCONF_POWER_10         = 0x04,  // -10.0dB
   RFM12_TXCONF_POWER_12_5       = 0x05,  // -12.5dB
   RFM12_TXCONF_POWER_15         = 0x06,  // -15.0dB
-  RFM12_TXCONF_POWER_17_5       = 0x07   // -17.5dB (Weakest)
+  RFM12_TXCONF_POWER_17_5       = 0x07,  // -17.5dB (Weakest)
+  RFM12_TX_POWER_MIN            = 0x07
 };
 
 /**************************************************************************/
@@ -145,20 +155,21 @@ enum radio_state{
  *
  */
 enum{
-    TIME_PWR_ON                      = 5000,    /**<  Transition time from VCC/RESET is applied to PWR_ON. (max 100msec)*/
-    TIME_PWR_ON_TO_TRX_OFF           = 510,     /**<  Transition time from P_ON to TRX_OFF. */
-    TIME_SLEEP_TO_TRX_OFF            = 1000,    /**<  Transition time from SLEEP to TRX_OFF. */
-    TIME_DQD                         = 6,       /**<  Time it takes to do a DQD measurement. */
-    TIME_DRSSI                       = 500,     /**<  Time it takes for DRSSI to go high after signal is above the preprogrammed limit. */
-    TIME_TRX_OFF_TO_PLL_ACTIVE       = 180,     /**<  Time for transition of Transceiver off to PLL being active */
-    TIME_STATE_TRANSITION_PLL_ACTIVE = 1,       /**<  Transition time from PLL active state to another. */
-    TIME_PLL_LOCK                    = 30,      /**<  Maximum time it should take for the PLL to lock After 10MHz step, frequency error <10 kHz*/
-    TIME_PLL_STARTUP                 = 200,     /**<  Initial calibration after power-up with running crystal oscillator        */
-    TIME_OSC_STARTUP                 = 5000,    /**<  Max Crystal oscillator startup time (1msec typ  5msec Max)        */
-    TIME_TX_RX_XTAL_ON               = 250,     /**<  Synthesizer off, crystal oscillator on during TX/RX change with 10 MHz step       */
-    TIME_RX_TX_XTAL_ON               = 250,     /**<  Synthesizer off, crystal oscillator on during RX/TX change with 10 MHz step       */
-    TIME_TX_RX_SYNTH_ON              = 150,     /**<  Synthesizer and crystal oscillator on during TX/RX change with 10 MHz step. */
-    TIME_RX_TX_SYNTH_ON              = 150      /**<  Synthesizer and crystal oscillator on during RX/TX change with 10 MHz step.       */
+    TIME_PWR_ON                      = 5000,    //<  Transition time from VCC/RESET is applied to PWR_ON. (max 100msec)
+    TIME_PWR_ON_TO_TRX_OFF           = 510,     //<  Transition time from P_ON to TRX_OFF.
+    TIME_SLEEP_TO_TRX_OFF            = 1000,    //<  Transition time from SLEEP to TRX_OFF.
+    TIME_DQD                         = 6,       //<  Time it takes to do a DQD measurement.
+    TIME_DRSSI                       = 500,     //<  Time it takes for DRSSI to go high after signal is above the preprogrammed limit.
+    TIME_TRX_OFF_TO_PLL_ACTIVE       = 180,     //<  Time for transition of Transceiver off to PLL being active
+    TIME_STATE_TRANSITION_PLL_ACTIVE = 1,       //<  Transition time from PLL active state to another.
+    TIME_PLL_LOCK                    = 30,      //<  Maximum time it should take for the PLL to lock After 10MHz step, frequency error <10 kHz
+    TIME_PLL_STARTUP                 = 200,     //<  Initial calibration after power-up with running crystal oscillator
+    TIME_OSC_STARTUP                 = 5000,    //<  Max Crystal oscillator startup time (1msec typ  5msec Max)
+    TIME_TX_RX_XTAL_ON               = 250,     //<  Synthesizer off, crystal oscillator on during TX/RX change with 10 MHz step
+    TIME_RX_TX_XTAL_ON               = 250,     //<  Synthesizer off, crystal oscillator on during RX/TX change with 10 MHz step
+    TIME_TX_RX_SYNTH_ON              = 150,     //<  Synthesizer and crystal oscillator on during TX/RX change with 10 MHz step.
+    TIME_RX_TX_SYNTH_ON              = 150,     //<  Synthesizer and crystal oscillator on during RX/TX change with 10 MHz step.
+    TIME_TRX_INTERBYTE               = 500      //<  Inter-byte timing for Tx/Rx
 };
 
 
