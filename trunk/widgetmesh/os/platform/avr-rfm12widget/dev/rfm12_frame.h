@@ -32,33 +32,24 @@
  \brief
  */
 /**************************************************************************/
-
+#include <stdint.h>
 
 /******************************************************************************
  * @name        RFM12 Packet specification
  * @{
  */
 
-//extern const uint8_t syncword[2];
 const uint8_t syncword[2] = {0x2D,0xD4};
 
 // header: number of bytes in packet including header
 struct rfm12_header {
-  uint8_t  length;
-  uint8_t  src_addr;
-  uint8_t  dest_addr;
+  uint8_t  length;      //< length of packet
+  uint8_t  src_addr;    //< senders address
+  uint8_t  dest_addr;   //< receivers address
+  uint8_t  ctrl;        //< packet control
 } __attribute__((packed));
 
-typedef struct
-{
-    uint8_t len;
-    uint8_t src_addr;
-    uint8_t dest_addr;
-    uint8_t data[RFM12_MAX_PAYLOAD];
-} rfm_rx_data_t;
-
-#define RFM12_BUFFERSIZE        128
-#define PREAMBLE_SIZE           4
+#define PREAMBLE_SIZE           6
 #define PREAMBLE                0xAA
 #define SYNCWORD_SIZE           (sizeof (syncword))
 #define HDR_SIZE                (sizeof (struct rfm12_header))

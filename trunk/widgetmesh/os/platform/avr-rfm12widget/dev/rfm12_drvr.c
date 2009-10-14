@@ -24,10 +24,11 @@
  Created on: 12/10/2009
  Author: Stephen Eaton <seaton@gateway.net.au>
 
- \file rfm12_drvr.c
+ \file          rfm12_drvr.c
  \ingroup
 
- \brief
+ \brief         Packet driver for the RFM12
+
  */
 /**************************************************************************/
 
@@ -46,13 +47,7 @@
 #define LOG(...)
 #endif
 
-/*
- * This timer is used to keep track of when the last byte was received / sent
- * over the radio. If the inter-byte time is too large, the packet
- * currently being received is discarded and a new packet reception is
- * initiated.
- */
-static struct timer rxtimer;
+
 
 /**
  *
@@ -93,9 +88,14 @@ enum rfm12_internal_state{
 static volatile enum radio_state radio_state = RADIO_SLEEP;
 static volatile enum rfm12_internal_state rfm12_internal_state = RFM12_IDLE;
 
+// define some packet sizes
+#define MIN_TX_PACKET_SIZE      PREAMBLE_SIZE + SYNCWORD_SIZE + HDR_SIZE + TAIL_SIZE
+#define MAX_TX_PACKET_SIZE      PREAMBLE_SIZE + SYNCWORD_SIZE + HDR_SIZE + RFM12_MAX_PAYLOAD + TAIL_SIZE
+#define MAX_RX_PACKET_SIZE      HDR_SIZE + RFM12_MAX_PAYLOAD
+
 // Buffers
-static volatile uint8_t rfm12_rxbuf[HDR_SIZE + RFM12_BUFFERSIZE];
-static volatile uint8_t rfm12_txbuf[PREAMBLE_SIZE + SYNCWORD_SIZE + HDR_SIZE + RFM12_BUFFERSIZE + TAIL_SIZE];
+static volatile uint8_t rfm12_rxbuf[MAX_RX_PACKET_SIZE];
+static volatile uint8_t rfm12_txbuf[MAX_TX_PACKET_SIZE];
 
 /* number of bytes in receive and transmit buffers respectively. */
 static uint8_t rfm12_rxlen = 0;
@@ -104,8 +104,7 @@ static uint8_t rfm12_txlen = 0;
 /* CRC */
 static uint16_t rxcrc, rxcrctmp;
 
-
-static void (*receiver_callback)(const struct radio_driver *);
+static void (*receiver_callback)(const struct radio_driver *);  //< callback to upper layer on packet reception
 
 const struct radio_driver rfm12_driver =
   {
@@ -116,15 +115,16 @@ const struct radio_driver rfm12_driver =
     rfm12_drvr_sleep
   };
 
-
 /**
  * \brief valid RFM12 channel frequencies are set in this array.
  *
- *         These values can be set to anything but will depend on the datarate and bandwidth set
- *         these initial values have been set to 802.15.4 900Mhz defaults:
+ *         The number of channels and frequency values can be set to anything but will depend on the datarate
+ *         due to the Rx bandwidth setting.
+ *
+ *         These initial values have been set to 802.15.4 900Mhz defaults:
  *         channels 1-10 frequencies
  *
- *         These channels should be redefined to suit your counties regulatory requirements.
+ *         These channels should be redefined to suit the regulatory requirements of your country.
  *
  */
 const uint16_t rfm12_channel[RFM12_MAX_CHANNELS] =
@@ -141,8 +141,11 @@ const uint16_t rfm12_channel[RFM12_MAX_CHANNELS] =
     0xAC80      // 924.00
 };
 
+/**
+ *  band and datarate optimised configurations defined here
+ */
 #ifdef RFM12_CONFIG_915_57600
-const uint16_t rfm12_config[RFM12_CONFIG_COUNT] =
+const uint16_t rfm12_config[RFM12_MAX_CONFIG] =
 {
                 0x80F8,                         //< 915mhz EL,EF,12.0pF
                 0x8209,                         //< enable crystal, disable CLK
@@ -184,7 +187,10 @@ const uint16_t rfm12_config[RFM12_CONFIG_COUNT] =
 /*---------------------------------------------------------------------------*/
 PROCESS(rfm12_driver_process, "RFM12 driver");
 PT_THREAD(rfm12_rx_handler_pt(unsigned char c));
+PT_THREAD(rfm12_tx_handler_pt(void));
+static struct pt tx_handler_pt;
 static struct pt rx_handler_pt;
+static struct timer trxtimer;                  //< interbyte transmission-reception timer
 /*---------------------------------------------------------------------------*/
 static void load_config(const uint16_t *config);
 static void dump_packet(int len);
@@ -198,7 +204,6 @@ static void delay_us(uint16_t delay);
 void
 rfm12_drvr_init(const uint16_t* config)
 {
-
 
     PT_INIT(&rx_handler_pt);
     delay_us(TIME_PWR_ON);
@@ -219,7 +224,7 @@ rfm12_drvr_init(const uint16_t* config)
     RFM12_ENABLE_RADIO_INTERRUPT();
 
 
-    timer_set(&rxtimer, CLOCK_SECOND / 4);
+    timer_set(&trxtimer, CLOCK_SECOND / 4);
 
 }
 
@@ -283,7 +288,7 @@ rfm12_drvr_set_channel(uint8_t channel)
  *               RFM12_TXCONF_POWER_15 = 0x5 -15dB
  *               RFM12_TXCONF_POWER_21 = 0x6 -21dB Weakest
  *
- * @param power                         new power setting to change to
+ * @param power                         power setting to change to
  *
  * @return RADIO_SUCCESS                Tx power changed successfully
  * @return RADIO_WRONG_STATE            must be in idle state to change the power
@@ -333,7 +338,7 @@ rfm12_drvr_sleep(void)
 
 /**
  *  \brief      wakes up the RFM12.
- *              OSC is turned on.
+ *              XTAL OSC is turned on.
  *
  *  \return RADIO_SUCCESS       RFM12 successfully woken up
  *  \return RADIO_WRONG_STATE   not in sleep mode
@@ -381,7 +386,7 @@ rfm12_drvr_idle()
         // receiving or transmission is in progress?
         if ((radio_state == RADIO_RX_RECEIVING) || (radio_state == RADIO_TX_TRANSMITTING))
             return RADIO_TRX_BUSY;
-;
+
         //reset FIFO sync latch
         rfm12_spi_xfer(RFM12_CMD_FIFO_RST);
 
@@ -398,8 +403,8 @@ rfm12_drvr_idle()
  * \brief       Starts transmitting the contents of the tx_buffer
  *
  * \return RADIO_WKUP_ERROR             still in sleep state or an unfinished wakeup
- * \return RADIO_WRONG_STATE            is not in the idel state
- * \return RADIO_INVALID_ARGUMENT       nothing to transmit tx buffer length is 0
+ * \return RADIO_WRONG_STATE            is not in the idle state
+ * \return RADIO_INVALID_ARGUMENT       nothing to transmit
  * \return RADIO_SUCCESS                transmission started successfully
  */
 int
@@ -413,10 +418,12 @@ rfm12_drvr_transmit()
             return RADIO_WRONG_STATE;
 
         //check if we have something to transmit
-        if ((rfm12_txlen > RFM12_BUFFERSIZE ) || (rfm12_txlen < 1 ))
+        if ((rfm12_txlen > MAX_TX_PACKET_SIZE ) || (rfm12_txlen < MIN_TX_PACKET_SIZE))
             return RADIO_INVALID_ARGUMENT;
 
-        //TODO: transmit sequence
+        //TODO: reset transmit buffer read pointer
+
+        //TODO: start transmit sequence
         // listen before talk enabled?
             // spi_xfer(0x0000);
             // spi_xfer(rfm12_config[1] | 0x0080 );  // turn on receiver
@@ -426,7 +433,14 @@ rfm12_drvr_transmit()
             // set timer for first DQD check
          // else
 
-            rfm12_spi_xfer(0x0000);
+            // load the first two bytes into RFM12 Tx buffer
+            //rfm12_spi_xfer(RFM12_CMD_TX | TODO: );
+            //rfm12_spi_xfer(RFM12_CMD_TX | TODO: );
+
+            RFM12_SPI_ENABLE();
+            rfm12_spi_cmd0();                           // clear onboard RFM12 interrupts
+            RFM12_SPI_DISABLE();
+
             rfm12_spi_xfer(rfm12_config[1] | 0x0020 );  // turn on transmitter
 
             radio_state = RADIO_TX_TRANSMITTING;
@@ -456,15 +470,19 @@ rfm12_drvr_receive()
         return RADIO_SUCCESS;
 }
 
-/**************************************************************************/
-/*!
-    Each nop takes 2 cycles so this should give us an 8 cycle delay or 1 usec.
-    I'm just too lazy to implement the timer interrupt right now.
-    Gimme a break, its almost midnight on a friday...
-
-    TODO: replace this with a proper interrupt driven delay
-*/
-/**************************************************************************/
+/**
+ *      /brief        usec timer using asm("nop") so is hardware dependant
+ *
+ *                    This function is blocking
+ *
+ *                    Each nop takes 2 cycles so this should give us an 10 cycle delay or 1 usec @ 10mhz.
+ *
+ *                      4 nop @ 8Mhz
+ *                      5 nop @ 10Mhz
+ *
+ * TODO: implement using timer
+ * @param usec
+ */
 static void delay_us(uint16_t usec)
 {
     do
@@ -473,7 +491,8 @@ static void delay_us(uint16_t usec)
         asm("nop");
         asm("nop");
         asm("nop");
-    } while (--usec);
+        asm("nop");
+     } while (--usec);
 }
 /*---------------------------------------------------------------------------*/
 int
@@ -499,10 +518,8 @@ rfm12_drvr_set_receiver(void (*recv)(const struct radio_driver *))
 }
 
 /**
- * \brief       loads the config tothe RFM12 using an optimised configuration
- *              based on:
- *                 RFM12_BAND_XXX
- *                 RFM12_DATARATE_XXX
+ * \brief       loads the config in RFM12 using an optimised configuration
+ *              for the band and datarate
  *
  * \param config - rfm12_config
  */
@@ -527,13 +544,38 @@ dump_packet(int len)
     LOG("%d: 0x%02x\n", i, rfm12_rxbuf[i]);
   }
 }
+
+/*---------------------------------------------------------------------------*/
+PROCESS_THREAD(rfm12_driver_process, ev, data)
+{
+  PROCESS_BEGIN();
+
+  /* Reset reception state now that the process is ready to receive data. */
+  //reset_receiver();
+
+  while(1) {
+    PROCESS_YIELD_UNTIL(ev == PROCESS_EVENT_POLL);
+    if(receiver_callback != NULL) {
+      receiver_callback(&rfm12_driver);
+    } else {
+      LOG("rfm12 has no receive function\n");
+      /* Perform a dummy read to drop the message. */
+      rfm12_drvr_read(&data, 0);
+    }
+  }
+  PROCESS_END();
+}
+
+/**************************************************************************/
 /**
  * \brief Task that handles the incoming data from the receiver
  *        this task checks header address information.
  *
  *        Checks:
+ *        DRSSI valid before receive first byte
  *        Dest address not for this address then the packet is dropped
  *        CRC is checked if incorrect then the packet is dropped.
+ *
  *
  * \param incoming_byte from the interrupt handler
  * \return
@@ -542,11 +584,11 @@ PT_THREAD(rfm12_rx_handler_pt(unsigned char incoming_byte))
 {
   static unsigned char rxtmp, tmppos;
 
-  if(timer_expired(&rxtimer)) {
-    PT_INIT(&rx_handler_pt);
+  if(timer_expired(&trxtimer)) {
+    PT_INIT(&rx_handler_pt);   // restart the receive as we have not received data within given time
   }
 
-  timer_restart(&rxtimer);
+  timer_restart(&trxtimer);
 
   PT_BEGIN(&rx_handler_pt);
   while(1) {
@@ -577,26 +619,12 @@ PT_THREAD(rfm12_rx_handler_pt(unsigned char incoming_byte))
   PT_END(&rx_handler_pt);
 }
 
-/*---------------------------------------------------------------------------*/
-PROCESS_THREAD(rfm12_driver_process, ev, data)
-{
-  PROCESS_BEGIN();
 
-  /* Reset reception state now that the process is ready to receive data. */
-  //reset_receiver();
+PT_THREAD(rfm12_tx_handler_pt(void)){
 
-  while(1) {
-    PROCESS_YIELD_UNTIL(ev == PROCESS_EVENT_POLL);
-    if(receiver_callback != NULL) {
-      receiver_callback(&rfm12_driver);
-    } else {
-      LOG("rfm12 has no receive function\n");
-      /* Perform a dummy read to drop the message. */
-      rfm12_drvr_read(&data, 0);
-    }
-  }
-  PROCESS_END();
 }
+
+
 /*----------------------------------------------------------------------------*/
 /* This #if compile switch is used to provide a "standard" function body for the */
 /* doxygen documentation. */

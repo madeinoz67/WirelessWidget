@@ -39,7 +39,8 @@
 void
 init_net(void)
 {
-
+  //start radio driver
+   rfm12_drvr_init(rfm12_config);
 
 /*  uip_ipaddr_t ipprefix;
 

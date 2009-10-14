@@ -1,7 +1,7 @@
 WIDGET = rs232.c eeprom.c random.c minileds.c watchdog.c \
        mmem.c contiki-rfm12widget-main.c \
        contiki-rfm12widget-default-init-net.c contiki-rfm12widget-default-init-lowlevel.c
-RADIO = rfm12_drvr.c rfm12_spi.c rfm12_eeprom.c
+RADIO = rfm12_drvr.c rfm12_spi.c rfm12_eeprom.c rfm12_buf.c
 
 NET =
 
