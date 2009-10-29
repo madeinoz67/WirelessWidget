@@ -90,6 +90,8 @@ The driver provides the following functions:
  * process received bytes and performs running CRC, will discard packet if invalid
  * append preamble and sync bytes and frame header to outgoing transmitted data.
 
+http://strobit.googlecode.com/svn/wiki/images/widgetmesh/rfm12_states.png
+
 http://strobit.googlecode.com/svn/wiki/images/widgetmesh/phy_frame.png
 
  Pre-amble Bytes:  Required by the RFM12B transceiver for FSK lock, always 0xAA.
