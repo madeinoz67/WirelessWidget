@@ -114,13 +114,14 @@ http://strobit.googlecode.com/svn/wiki/images/widgetmesh/phy_frame.png
 
  TODO: Encryption.  Implement payload encryption using [http://www.efton.sk/crypt/index.htm XTEA], RC4?, AES?, Skipjack?  resources required?  Data throughput? Resources required?
 
-===MAC Layer ===
+===Link Layer===
 
-TODO
+The majority of network functions are handled by this layer and has two sublayers: Media Control Access (MAC) and Logical Link Control (LLC)
 
-===Data Link Layer===
+The MAC sublayer interacts directly with the Radio, it's main function is to provide device addressing, performing framing and de-framing, along with managing the timing necessary to communicate with neighbouring nodes in an energy efficient manner by controlling the RFM12 via the driver.
 
-The majority of network functions are handled by this layer.
+The LLC sublayer resides on top of the MAC layer and it's main function is link management along with error control.
+
    * [WidgetMeshAssociation Network Discovery and Association]
    * [WidgetMeshRouting Network Routing]
 
