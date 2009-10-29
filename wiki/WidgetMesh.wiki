@@ -77,14 +77,14 @@ The Physical Layer is provided by the RFM12 Driver process.
 
 The driver provides the following functions:
  * Initialiases the RFM12 tranceiver.
- * defines a psuedo channel table
+ * defines a psuedo channel table of frequencies
  * provides api to change Channel
  * provides api to change Tx Power
  * provides api to send data
  * provides api to receive data
  * notifies upper layer that a data frame has been received.
- * Performs either Digital RSSI  or reads analogue RSSI
- * Perform Clear Channel Assesment i.e. tests than nothing is tranmitting on the current channel.
+ * Performs either Digital RSSI or reads analogue RSSI
+ * Performs Carrier Assesement i.e. tests than nothing is tranmitting on the current channel.
  * Put RF into Low Power/Sleep Mode.
  * Rx guard time, if byte is not received within certian period.
  * process received bytes and performs running CRC, will discard packet if invalid
