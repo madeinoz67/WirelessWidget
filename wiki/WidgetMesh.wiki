@@ -22,10 +22,10 @@ To provide resistance to RF interference, the mesh should provide the ability fo
 
 Each node on the network has a default channel hopping pattern in the firmware, additional channel patterns can be assigned by the gateway device.
 
-The Frequency of the channel is based on a lookup table and is different each time. 
+The Frequency of the channel is based on a lookup table and is different each time.
 
 === TDMA Slotted Access ===
-[http://en.wikipedia.org/wiki/Time_division_multiple_access Time Division Multiple Access (TDMA)] provides a shared slotted access to the RF media.  
+[http://en.wikipedia.org/wiki/Time_division_multiple_access Time Division Multiple Access (TDMA)] provides a shared slotted access to the RF media.
 
 This consists of a repeating superframe made up of individual time slots of a set length. e.g. 10mSec slots and superframe of 1 Second = 100 slots.
 
@@ -73,40 +73,56 @@ http://strobit.googlecode.com/svn/wiki/images/widgetmesh/stacksml.png
 ==Design==
 
 ===Physical Layer===
-The Physical Layer is provided by the RFM12 Driver.
+The Physical Layer is provided by the RFM12 Driver process.
 
-The driver will provide functions to:
- * Change frequency
- * Change Tx Power
- * Report RSSI (Optional)
- * Put RF into Low Power/Sleep Mode
- * Tx Data
- * Rx Data
+The driver provides the following functions:
+ * Initialiases the RFM12 tranceiver.
+ * defines a psuedo channel table
+ * provides api to change Channel
+ * provides api to change Tx Power
+ * provides api to send data
+ * provides api to receive data
+ * notifies upper layer that a data frame has been received.
+ * Performs either Digital RSSI  or reads analogue RSSI
+ * Perform Clear Channel Assesment i.e. tests than nothing is tranmitting on the current channel.
+ * Put RF into Low Power/Sleep Mode.
+ * Rx guard time, if byte is not received within certian period.
+ * process received bytes and performs running CRC, will discard packet if invalid
+ * append preamble and sync bytes and frame header to outgoing transmitted data.
+
+ http://strobit.googlecode.com/svn/wiki/images/widgetmesh/phy_frame.png
+
+ *Pre-amble Bytes:*  Required by the RFM12B transceiver for FSK lock, always 0xAA.
+
+ *Sync Bytes:*  The sync bytes are required by the RFM12B transceiver, the first is fixed and cannot be changed, the second byte is user defined, default sync Bytes are Sync1: 0x2D Sync2: 0xD4
+
+ *LEN:* Packet payload length
+
+ *Payload: * Data to be transmitted/received by the RFM12
+
+ *CRC-16:* 16 bit CRC calculation.  Includes the SYNC1, SYNC2, LEN, Payload in the CRC-16 calculation.
+
+ *Tail:* the tail is the same as the preamble (0xAA) and is appended to the frame being transmitted to make sure that all the data is flushed from the FIFO during the Tx process.
+
+ During reception the Preamble and Sync bytes are handled automatically by the RFM12 transceiver and will not be passed to the MAC layer, however these bytes need to be added during the packet building process before data transmission.
+
+ TODO: May also want to implement Forward Error correction using [http://en.wikipedia.org/wiki/Hamming_code Hamming code]
+
+ TODO: Data Whitening with Manchester Encoding in this layer.  Will halve data rate if implemented.
+
+ TODO: Encryption.  Implement payload encryption using [http://www.efton.sk/crypt/index.htm XTEA], RC4?, AES?, Skipjack?  resources required?  Data throughput? Resources required?
 
 ===MAC Layer ===
 The purpose of the MAC layer is to add the required preamble and SYNC bytes to the data packets being transmitted.
 
-Pre-amble Bytes:  Required by the RFM12B transceiver for FSK lock, always 0xAA.  
 
-Sync Bytes:  The sync bytes are required by the RFM12B transceiver, the first is fixed and cannot be changed, the second byte is used to represent network ID.
-
-http://strobit.googlecode.com/svn/wiki/images/widgetmesh/mpdu.png
-
-*NID:* Network ID = second Sync byte
+*NID:* Network ID
 
 *SID:* Sender Address
 
 *DID:* Destination Address
 
-*LEN:* DPDU Packet Length
 
-During reception the Preamble and Sync bytes are handled automatically by the RFM12 transceiver and will not be passed to the MAC layer, however these bytes need to be added during the packet building process of the MAC layer before data transmission.
-
-TODO: May also want to implement Forward Error correction using [http://en.wikipedia.org/wiki/Hamming_code Hamming code] 
-
-TODO: Data Whitening with Manchester Encoding in this layer.  Will halve data rate if implemented.
-
-TODO: Encryption.  Implement payload encryption using [http://www.efton.sk/crypt/index.htm XTEA], RC4?, AES?, Skipjack?  resources required?  Data throughput?
 
 ===Data Link Layer===
 
@@ -129,7 +145,7 @@ TODO:
 ==Implementation==
 WidgetMesh is implemented on the [http://www.sics.se/contiki/ ContikiOS] and is available via the [http://code.google.com/p/strobit/source/browse/#svn/trunk/widgetmesh project SVN].
 
-Current Status: 
+Current Status:
   * ContikiOS ported to RFM12Widget Platform
   * Hello-world example successfully running.
   * no networking.
