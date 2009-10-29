@@ -113,16 +113,8 @@ http://strobit.googlecode.com/svn/wiki/images/widgetmesh/phy_frame.png
  TODO: Encryption.  Implement payload encryption using [http://www.efton.sk/crypt/index.htm XTEA], RC4?, AES?, Skipjack?  resources required?  Data throughput? Resources required?
 
 ===MAC Layer ===
-The purpose of the MAC layer is to add the required preamble and SYNC bytes to the data packets being transmitted.
 
-
-*NID:* Network ID
-
-*SID:* Sender Address
-
-*DID:* Destination Address
-
-
+TODO
 
 ===Data Link Layer===
 
