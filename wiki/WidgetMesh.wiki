@@ -92,17 +92,17 @@ The driver provides the following functions:
 
  http://strobit.googlecode.com/svn/wiki/images/widgetmesh/phy_frame.png
 
- *Pre-amble Bytes:*  Required by the RFM12B transceiver for FSK lock, always 0xAA.
+ * Pre-amble Bytes: *  Required by the RFM12B transceiver for FSK lock, always 0xAA.
 
- *Sync Bytes:*  The sync bytes are required by the RFM12B transceiver, the first is fixed and cannot be changed, the second byte is user defined, default sync Bytes are Sync1: 0x2D Sync2: 0xD4
+ * Sync Bytes: *  The sync bytes are required by the RFM12B transceiver, the first is fixed and cannot be changed, the second byte is user defined, default sync Bytes are Sync1: 0x2D Sync2: 0xD4
 
- *LEN:* Packet payload length
+ * LEN: * Packet payload length
 
- *Payload: * Data to be transmitted/received by the RFM12
+ * Payload: * Data to be transmitted/received by the RFM12
 
- *CRC-16:* 16 bit CRC calculation.  Includes the SYNC1, SYNC2, LEN, Payload in the CRC-16 calculation.
+ * CRC-16: * 16 bit CRC calculation.  Includes the SYNC1, SYNC2, LEN, Payload in the CRC-16 calculation.
 
- *Tail:* the tail is the same as the preamble (0xAA) and is appended to the frame being transmitted to make sure that all the data is flushed from the FIFO during the Tx process.
+ * Tail: * the tail is the same as the preamble (0xAA) and is appended to the frame being transmitted to make sure that all the data is flushed from the FIFO during the Tx process.
 
  During reception the Preamble and Sync bytes are handled automatically by the RFM12 transceiver and will not be passed to the MAC layer, however these bytes need to be added during the packet building process before data transmission.
 
