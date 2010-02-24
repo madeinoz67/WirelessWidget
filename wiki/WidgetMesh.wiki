@@ -141,6 +141,6 @@ TODO:
 WidgetMesh is implemented on the [http://www.sics.se/contiki/ ContikiOS] and is available via the [http://code.google.com/p/strobit/source/browse/#svn/trunk/widgetmesh project SVN].
 
 Current Status:
-  * ContikiOS ported to RFM12Widget Platform
+  * ContikiOS ported to RFM12Widget Platform [http://blog.strobotics.com.au/2009/09/12/contiki-os-port-progress/]
   * Hello-world example successfully running.
   * no networking.
