@@ -35,7 +35,9 @@
 #include "rfm12_drvr.h"
 #include "rfm12_frame.h"
 #include "radio.h"
+#include "lib/crc16.h"
 #include "contiki.h"
+#include <avr/pgmspace.h>
 
 #include <string.h>
 
@@ -64,22 +66,18 @@ enum rfm12_internal_state{
         RFM12_IDLE,
         RFM12_SLEEP,
         RFM12_WAKEUP,
-        RFM12_RX_CHECK_PL,
-        RFM12_RX_DATA_BYTE,
-        RFM12_RX_CRC1,
-        RFM12_RX_CRC2,
+        RFM12_SCAN,
+        RFM12_RX_READY,
         RFM12_RX_END,
         RFM12_TX_CHECK_CHANNEL,
         RFM12_TX_ERROR,
-        RFM12_TX_SEND_PREAMBLE,
-        RFM12_TX_SEND_SYNC0,
-        RFM12_TX_SEND_SYNC1,
-        RFM12_TX_SEND_HEADER1,
-        RFM12_TX_SEND_HEADER2,
-        RFM12_TX_SEND_DATA,
-        RFM12_TX_CALC_CRC1,
-        RFM12_Tx_CALC_CRC2,
-        RFM12_TX_SEND_EDC,
+        RFM12_TX_PREAMBLE,
+        RFM12_TX_SYNC,
+        RFM12_TX_HEADER,
+        RFM12_TX_DATA,
+        RFM12_TX_CRC1,
+        RFM12_TX_CRC2,
+        RFM12_TX_TAIL,
         RFM12_TX_END
 };
 /**
@@ -88,31 +86,30 @@ enum rfm12_internal_state{
 static volatile enum radio_state radio_state = RADIO_SLEEP;
 static volatile enum rfm12_internal_state rfm12_internal_state = RFM12_IDLE;
 
-// define some packet sizes
-#define MIN_TX_PACKET_SIZE      PREAMBLE_SIZE + SYNCWORD_SIZE + HDR_SIZE + TAIL_SIZE
-#define MAX_TX_PACKET_SIZE      PREAMBLE_SIZE + SYNCWORD_SIZE + HDR_SIZE + RFM12_MAX_PAYLOAD + TAIL_SIZE
-#define MAX_RX_PACKET_SIZE      HDR_SIZE + RFM12_MAX_PAYLOAD
+// define syncword and packet sizes
+const uint8_t syncword[SYNCWORD_SIZE] = {0x2D, 0xD4};
+#define MIN_PACKET_SIZE      HDR_SIZE + CRC_SIZE
+#define MAX_PACKET_SIZE      HDR_SIZE + MAX_PHY_PAYLOAD + CRC_SIZE
 
-// Buffers
-static volatile uint8_t rfm12_rxbuf[MAX_RX_PACKET_SIZE];
-static volatile uint8_t rfm12_txbuf[MAX_TX_PACKET_SIZE];
-
-/* number of bytes in receive and transmit buffers respectively. */
-static uint8_t rfm12_rxlen = 0;
-static uint8_t rfm12_txlen = 0;
+// Buffer
+static volatile uint8_t rfm12_trxbuf[MAX_PACKET_SIZE];
+static volatile uint8_t data_len = 0;   // length of data packet
+static volatile uint8_t buf_pos = 0;    // used in IRQ
+static volatile uint8_t irq_cnt = 0;    // used in IRQ
 
 /* CRC */
-static uint16_t rxcrc, rxcrctmp;
+volatile static uint16_t crc_expected, crc_actual;
+
 
 static void (*receiver_callback)(const struct radio_driver *);  //< callback to upper layer on packet reception
 
 const struct radio_driver rfm12_driver =
   {
-    rfm12_drvr_send,
-    rfm12_drvr_read,
-    rfm12_drvr_set_receiver,
-    rfm12_drvr_wakeup,
-    rfm12_drvr_sleep
+    drvr_send,
+    drvr_read,
+    drvr_set_receiver,
+    drvr_wakeup,
+    drvr_sleep
   };
 
 /**
@@ -127,7 +124,7 @@ const struct radio_driver rfm12_driver =
  *         These channels should be redefined to suit the regulatory requirements of your country.
  *
  */
-const uint16_t rfm12_channel[RFM12_MAX_CHANNELS] =
+const uint16_t rfm12_channel[DRVR_MAX_CHANNELS] =
 {
     0xA320,     // 906.00
     0xA42B,     // 908.00
@@ -147,37 +144,35 @@ const uint16_t rfm12_channel[RFM12_MAX_CHANNELS] =
 #ifdef RFM12_CONFIG_915_57600
 const uint16_t rfm12_config[RFM12_MAX_CONFIG] =
 {
-                0x80F8,                         //< 915mhz EL,EF,12.0pF
-                0x8209,                         //< enable crystal, disable CLK
+                0x80F8,                         //< 915mhz EL,EF,12.5pF
+                RFM12_CMD_SLEEP,                //< low power mode with CLK disabled
                 0xC606,                         //< 57600bps
                 0x9460,                         //< VDI,FAST,270kHz,0dBm,-103dBm
                 0xC2AC,                         //< AL,!ml,DIG,DQD4
-                0xCA83,                         //< FIFO8,SYNC,!ff,DR
                 0xCED4,                         //< 2nd Sync Byte D4
                 0xC483,                         //< @PWR,NO RSTRIC,!st,!fi,OE,EN
                 0x9880,                         //< mp,135kHz,MAX OUT
                 0xCC77,                         //< OB1 OB0, LPX, ddy, DDIT, BW0
                 0xE000,                         //< wakeup off
                 0xC800,                         //< duty cycle - not used
-                0xC040                          //< 1.66MHz, 2.2V
+                0xC000                          //< 1.00MHz, 2.2V
 };
 
 #elif RFM12_CONFIG_915_115200
 const uint16_t rfm12_config[RFM12_CONFIG_COUNT] =
 {
-                0x80F8,                         //< 915mhz EL,EF,12.0pF
-                0x8209,                         //< enable crystal, disable CLK
+                0x80F8,                         //< 915mhz EL,EF,12.5pF
+                RFM12_CMD_SLEEP,                //< low power mode with CLK disabled
                 0xC602,                         //< 115200bps
                 0x9440,                         //< VDI,FAST,340kHz,0dBm,-103dBm
                 0xC2AC,                         //< AL,!ml,DIG,DQD4
-                0xCA83,                         //< FIFO8,SYNC,!ff,DR
                 0xCED4,                         //< 2nd Sync Byte D4
                 0xC483,                         //< @PWR,NO RSTRIC,!st,!fi,OE,EN
                 0x98B0,                         //< mp,180kHz,MAX OUT
                 0xCC77,                         //< OB1 OB0, LPX, ddy, DDIT, BW0
                 0xE000,                         //< wakeup off
                 0xC800,                         //< duty cycle - not used
-                0xC040                          //< 1.66MHz, 2.2V
+                0xC000                          //< 1.00MHz, 2.2V
 };
 
 #else
@@ -185,16 +180,15 @@ const uint16_t rfm12_config[RFM12_CONFIG_COUNT] =
 #endif
 
 /*---------------------------------------------------------------------------*/
-PROCESS(rfm12_driver_process, "RFM12 driver");
+PROCESS(driver_process, "RFM12 driver");
 PT_THREAD(rfm12_rx_handler_pt(unsigned char c));
-PT_THREAD(rfm12_tx_handler_pt(void));
-static struct pt tx_handler_pt;
 static struct pt rx_handler_pt;
-static struct timer trxtimer;                  //< interbyte transmission-reception timer
+static struct timer rxtimer;                  //< interbyte transmission-reception timer
 /*---------------------------------------------------------------------------*/
 static void load_config(const uint16_t *config);
 static void dump_packet(int len);
 static void delay_us(uint16_t delay);
+static void rx_reset(void);
 
 /**
  * \brief               this function initializes the driver
@@ -202,7 +196,7 @@ static void delay_us(uint16_t delay);
  * \param config        needs to be defined by setting the RFM12_BAND and RFM12_DATARATE
  */
 void
-rfm12_drvr_init(const uint16_t* config)
+drvr_init(void)
 {
 
     PT_INIT(&rx_handler_pt);
@@ -212,30 +206,25 @@ rfm12_drvr_init(const uint16_t* config)
     RFM12_IRQ_PORT |= _BV(RFM12_IRQ_PIN);
 
     rfm12_spi_init();
-    load_config(config);
+    load_config(rfm12_config);
 
-    /* pre-fill tx buffer with preamble + syncword */
-    memset(rfm12_txbuf, PREAMBLE, PREAMBLE_SIZE);
-    memcpy((char *)rfm12_txbuf + PREAMBLE_SIZE, &syncword, SYNCWORD_SIZE);
-
-    process_start(&rfm12_driver_process, NULL);
+    process_start(&driver_process, NULL);
 
     //enable interrupt
     RFM12_ENABLE_RADIO_INTERRUPT();
 
-
-    timer_set(&trxtimer, CLOCK_SECOND / 4);
+    timer_set(&rxtimer, CLOCK_SECOND / 4);
 
 }
 
 /**
- * \brief       changes the channel of the RFM12.
+ * \brief       Changes the channel of the RFM12.
  *
  *              The rfm12 does not have a concept of channels but has the ability to change to a frequency
  *
  *              channels are configured in the rfm12_channel LUT.
  *
- *              This example is basedon the 802.15.4 900MHZ frequency allocation for channels 1-10
+ *              This example is based on the 802.15.4 900MHZ frequency allocation for channels 1-10
  *
  *              E.G. const uint16_t rfm12_channel[10] =
  *                     {
@@ -260,16 +249,16 @@ rfm12_drvr_init(const uint16_t* config)
  *
  */
 int
-rfm12_drvr_set_channel(uint8_t channel)
+drvr_set_channel(uint8_t channel)
 {
         if(radio_state!= RADIO_IDLE)
           return RADIO_WRONG_STATE;
 
-        if((channel < 0)||(channel > RFM12_MAX_CHANNELS-1))
+        if((channel < 0)||(channel > DRVR_MAX_CHANNELS-1))
           return RADIO_INVALID_ARGUMENT;
 
-        rfm12_spi_xfer(rfm12_channel[channel]);            // change the channel
-        rfm12_spi_xfer(RFM12_CMD_FIFO_RST);                  // reset fifo to initiate PLL re-lock
+        rfm12_spi_xfer(rfm12_channel[channel]);         // change the channel
+        rfm12_spi_xfer(RFM12_CMD_FIFO_RST);                             // reset fifo to initiate PLL re-lock
 
         delay_us(TIME_PLL_LOCK);                     // wait for PLL to lock after freq change
 
@@ -295,18 +284,18 @@ rfm12_drvr_set_channel(uint8_t channel)
  * @return RADIO_INVALID_ARGUMENT       incorrect power setting requested
  */
 int
-rfm12_drvr_set_power(uint8_t power)
+drvr_set_power(uint8_t power)
 {
     if (radio_state != RADIO_IDLE)
       return RADIO_WRONG_STATE;
 
-    if ((power < RFM12_TXCONF_POWER_0) || (power > RFM12_TXCONF_POWER_17_5))
+    if ((power < PHY_TX_POWER_MIN) || (power > PHY_TX_POWER_MAX))
       return RADIO_INVALID_ARGUMENT;
 
-    rfm12_spi_xfer(rfm12_config[8] & (0xfff0 | power));       // set TX power
+    rfm12_spi_xfer(rfm12_config[8] & (0xfff0 | power));         // set TX power
     rfm12_spi_xfer(RFM12_CMD_FIFO_RST);                         // reset fifo to initiate PLL re-lock
 
-    delay_us(TIME_PLL_LOCK);                            // wait for PLL to lock after freq change
+    delay_us(TIME_PLL_LOCK);                                    // wait for PLL to lock after freq change
 
     return RADIO_SUCCESS;
 }
@@ -319,15 +308,15 @@ rfm12_drvr_set_power(uint8_t power)
  * \return RADIO_WRONG_STATE    RFM12 must be in the idle state first
  */
 int
-rfm12_drvr_sleep(void)
+drvr_sleep(void)
 {
         if(radio_state!= RADIO_IDLE)
                 return RADIO_WRONG_STATE;
 
         /* Discard the current read buffer when the radio is shutting down. */
-        rfm12_rxlen = 0;
+        data_len=0;
 
-        rfm12_spi_xfer(RFM12_CMD_FIFO_RST);               //  Reset the Fifo
+        rfm12_spi_xfer(RFM12_CMD_FIFO_RST);             //  Reset the Fifo
         rfm12_spi_xfer(RFM12_CMD_SLEEP);                //  XTAL off, CLK off
 
         radio_state = RADIO_SLEEP;
@@ -344,7 +333,7 @@ rfm12_drvr_sleep(void)
  *  \return RADIO_WRONG_STATE   not in sleep mode
  */
 int
-rfm12_drvr_wakeup(void)
+drvr_wakeup(void)
 {
         if(radio_state != RADIO_SLEEP)
           return RADIO_WRONG_STATE;
@@ -373,8 +362,8 @@ rfm12_drvr_wakeup(void)
  * \return RADIO_WKUP_ERROR     sleep mode or unfinished wakeup
  * \return RADIO_TRX_BUSY       RFM12 is busy either transmitting or receiving
  */
-int
-rfm12_drvr_idle()
+static int
+drvr_idle()
 {
         if(radio_state == RADIO_IDLE)
                 return RADIO_SUCCESS;         // already idle
@@ -382,10 +371,6 @@ rfm12_drvr_idle()
         // sleep mode or unfinished wakeup
         if ((radio_state==RADIO_WAKEUP) || (radio_state==RADIO_SLEEP))
                 return RADIO_WKUP_ERROR;
-
-        // receiving or transmission is in progress?
-        if ((radio_state == RADIO_RX_RECEIVING) || (radio_state == RADIO_TX_TRANSMITTING))
-            return RADIO_TRX_BUSY;
 
         //reset FIFO sync latch
         rfm12_spi_xfer(RFM12_CMD_FIFO_RST);
@@ -396,19 +381,28 @@ rfm12_drvr_idle()
         radio_state = RADIO_IDLE;
         rfm12_internal_state = RFM12_IDLE;
 
+        RFM12_DISABLE_RADIO_INTERRUPT();         // interrupts off
+
         return RADIO_SUCCESS;
 }
 
 /**
- * \brief       Starts transmitting the contents of the tx_buffer
+ * \brief       Starts transmitting the contents of the trx_buffer
+ *
+ *              To successfully start a transmission the RFM12 must be in idle and have
+ *              a valid buffer length.
+ *
+ *              The buffer will already have header pre-filled with the packet length
+ *              The correct number of preamble and sync bytes will be transmitted accordingly
+ *              CRC is calculated and transmitted during the Tx process.
  *
  * \return RADIO_WKUP_ERROR             still in sleep state or an unfinished wakeup
  * \return RADIO_WRONG_STATE            is not in the idle state
- * \return RADIO_INVALID_ARGUMENT       nothing to transmit
+ * \return RADIO_INVALID_ARGUMENT       packet size either too big or small to transmit
  * \return RADIO_SUCCESS                transmission started successfully
  */
-int
-rfm12_drvr_transmit()
+static int
+drvr_transmit()
 {
         // sleep mode or unfinished wakeup
         if ((radio_state==RADIO_WAKEUP) || (radio_state==RADIO_SLEEP))
@@ -417,34 +411,39 @@ rfm12_drvr_transmit()
         if ((radio_state!=RADIO_IDLE) && (radio_state!=RADIO_TX_ERROR))
             return RADIO_WRONG_STATE;
 
-        //check if we have something to transmit
-        if ((rfm12_txlen > MAX_TX_PACKET_SIZE ) || (rfm12_txlen < MIN_TX_PACKET_SIZE))
+        //check length of data to transmit
+        if ((data_len < MIN_PACKET_SIZE) || (data_len > MAX_PACKET_SIZE ))
             return RADIO_INVALID_ARGUMENT;
-
-        //TODO: reset transmit buffer read pointer
 
         //TODO: start transmit sequence
         // listen before talk enabled?
-            // spi_xfer(0x0000);
-            // spi_xfer(rfm12_config[1] | 0x0080 );  // turn on receiver
+            // rfm12_spi_cmd0();
+            // rfm12_spi_xfer(RFM12_CMD_RX_ON);         // turn on receiver
+            // set timer for RSSI check time
             // radio_state = RADIO_TX_CHAN_CHK;
             // rfm12_internal_state = RFM12_TX_CHECK_CHANNEL;
-            // csma_counter =
-            // set timer for first DQD check
+            // csma_counter = x
+            //
          // else
 
-            // load the first two bytes into RFM12 Tx buffer
-            //rfm12_spi_xfer(RFM12_CMD_TX | TODO: );
-            //rfm12_spi_xfer(RFM12_CMD_TX | TODO: );
+            crc_actual = 0xffff;        // Reset the CRC.
+            buf_pos = 0;                // reset buffer position to start.
+            irq_cnt = 0;                // reset preamble counter
+
+            // load the first two preamble bytes into the RFM12 Tx buffer ready for Tx
+            rfm12_spi_xfer(RFM12_CMD_TX | PREAMBLE);
+            rfm12_spi_xfer(RFM12_CMD_TX | PREAMBLE);
 
             RFM12_SPI_ENABLE();
-            rfm12_spi_cmd0();                           // clear onboard RFM12 interrupts
+            rfm12_spi_cmd0();                           // clear any RFM12 interrupts
             RFM12_SPI_DISABLE();
 
-            rfm12_spi_xfer(rfm12_config[1] | 0x0020 );  // turn on transmitter
+            rfm12_spi_xfer(RFM12_CMD_TX_ON);            // turn on transmitter, rest is handled by RADIO_IRQ
 
             radio_state = RADIO_TX_TRANSMITTING;
-            rfm12_internal_state = RFM12_TX_SEND_PREAMBLE;
+            rfm12_internal_state = RFM12_TX_PREAMBLE;
+            RFM12_ENABLE_RADIO_INTERRUPT();             // enable interrupts
+
         return RADIO_SUCCESS;
 }
 
@@ -455,17 +454,32 @@ rfm12_drvr_transmit()
  * \return RADIO_WKUP_ERROR     sleep mode or unfinished wakeup
  * \return RADIO_WRONG_STATE    must be in the idle state
  */
-int
-rfm12_drvr_receive()
+static int
+drvr_receive()
 {
         // sleep mode or unfinished wakeup
         if ((radio_state==RADIO_WAKEUP) || (radio_state==RADIO_SLEEP))
                 return RADIO_WKUP_ERROR;
 
-        if(radio_state != RADIO_IDLE)
+        if((radio_state != RADIO_IDLE) && (radio_state != RADIO_RX_PACKET_ERR))
                 return RADIO_WRONG_STATE;
 
-        //TODO: receive sequence
+        data_len=0;
+        buf_pos=0;
+
+        RFM12_SPI_ENABLE();
+        rfm12_spi_cmd0();                       // reset RFM12 interrupts
+        RFM12_SPI_DISABLE();
+
+        rfm12_spi_xfer(RFM12_CMD_RX_ON);        // receiver on
+
+        rfm12_spi_xfer(RFM12_CMD_FIFO_RST);     // Reset FIFO
+        rfm12_spi_xfer(RFM12_CMD_FIFO_EN);      // enable FIFO
+
+        rfm12_internal_state = RFM12_RX_READY;
+        radio_state = RADIO_RX_RECEIVING;
+
+        RFM12_ENABLE_RADIO_INTERRUPT();         // enable interrupts, rest is handled by RADIO_IRQ
 
         return RADIO_SUCCESS;
 }
@@ -495,24 +509,60 @@ static void delay_us(uint16_t usec)
      } while (--usec);
 }
 /*---------------------------------------------------------------------------*/
+/**
+ * \brief       This is where the upper layer initiates the sending of data
+ *              via the Radio driver.
+ * @param buf   buffer containing the data to send
+ * @param len   length of data to send.
+ * @return
+ */
 int
-rfm12_drvr_send(const void *buf, unsigned short len)
+drvr_send(const void *buf, unsigned short len)
 {
-        //TODO: send
-        return RADIO_SUCCESS;
+
+    if(len > MAX_PACKET_SIZE) {
+             len = MAX_PACKET_SIZE;
+    }
+
+    LOG("rfm12_send: sending %d bytes\n", len);
+    // copy incoming buffer to the Tx Buffer
+    memcpy(&rfm12_trxbuf[HDR_SIZE], buf, len);
+
+    return drvr_transmit();
 }
 
 /*---------------------------------------------------------------------------*/
 int
-rfm12_drvr_read(const void *buf, unsigned short len)
+drvr_read(const void *buf, unsigned short bufsize)
 {
-        //TODO: read
-        return RADIO_SUCCESS;
+  uint8_t tmplen = 0;
+  if(rfm12_internal_state == RFM12_RX_END) {
+       dump_packet(data_len + 2);
+
+       tmplen = data_len;
+
+       if(tmplen > bufsize) {
+         tmplen = bufsize;
+       }
+
+       memcpy(buf, &rfm12_trxbuf[HDR_SIZE], tmplen);
+
+       /* header + content + CRC */
+   /*     sstrength = (tmp_sstrength / (TR1001_HDRLEN + tr1001_rxlen + 2)) << 1; */
+      // sstrength = (tmp_count ? ((tmp_sstrength / tmp_count) << 2) : 0);
+
+       //TODO: add reception time stamp to packet
+
+       rfm12_internal_state = RFM12_RX_READY;
+
+       LOG("rfm12_read: got %d bytes\n", tmplen);
+     }
+  return tmplen;
 }
 
 /*---------------------------------------------------------------------------*/
 void
-rfm12_drvr_set_receiver(void (*recv)(const struct radio_driver *))
+drvr_set_receiver(void (*recv)(const struct radio_driver *))
 {
   receiver_callback = recv;
 }
@@ -530,8 +580,14 @@ load_config(const uint16_t *config)
   for(i = 0; i < 0x13; i++)
     rfm12_spi_xfer(config[i]);
 }
-
-
+/**
+ *  /brief      resets the receiver ready to start again.
+ */
+static void rx_reset(void)
+{
+    buf_pos = 0;
+    data_len = 0;
+}
 /**
  * \brief       Prints a received packets contents to the debug console
  * \param len   Length of packet
@@ -541,12 +597,12 @@ dump_packet(int len)
 {
   int i;
   for(i = 0; i < len; ++i) {
-    LOG("%d: 0x%02x\n", i, rfm12_rxbuf[i]);
+    LOG("%d: 0x%02x\n", i, rfm12_trxbuf[i]);
   }
 }
 
 /*---------------------------------------------------------------------------*/
-PROCESS_THREAD(rfm12_driver_process, ev, data)
+PROCESS_THREAD(driver_process, ev, data)
 {
   PROCESS_BEGIN();
 
@@ -560,7 +616,7 @@ PROCESS_THREAD(rfm12_driver_process, ev, data)
     } else {
       LOG("rfm12 has no receive function\n");
       /* Perform a dummy read to drop the message. */
-      rfm12_drvr_read(&data, 0);
+      drvr_read(&data, 0);
     }
   }
   PROCESS_END();
@@ -571,9 +627,9 @@ PROCESS_THREAD(rfm12_driver_process, ev, data)
  * \brief Task that handles the incoming data from the receiver
  *        this task checks header address information.
  *
+ *        If a byte is not received within a given time then the thread is restarted;
  *        Checks:
  *        DRSSI valid before receive first byte
- *        Dest address not for this address then the packet is dropped
  *        CRC is checked if incorrect then the packet is dropped.
  *
  *
@@ -582,46 +638,80 @@ PROCESS_THREAD(rfm12_driver_process, ev, data)
  */
 PT_THREAD(rfm12_rx_handler_pt(unsigned char incoming_byte))
 {
-  static unsigned char rxtmp, tmppos;
+  static unsigned char tmppos;
 
-  if(timer_expired(&trxtimer)) {
-    PT_INIT(&rx_handler_pt);   // restart the receive as we have not received data within given time
+  if(timer_expired(&rxtimer)) {
+    PT_INIT(&rx_handler_pt);   // restart the receive thread as we've not received data within the given time
   }
 
-  timer_restart(&trxtimer);
+  timer_restart(&rxtimer);
 
   PT_BEGIN(&rx_handler_pt);
   while(1) {
 
-         // reset_receiver();
+          rx_reset();    // reset the receiver
 
           /* Reset the CRC. */
-          rxcrc = 0xffff;
+          uint16_t crc_actual = 0xffff;
+          uint16_t crc_expected;
 
-          if(rxcrctmp == rxcrc) {
-          /* A full packet has been received and the CRC checks out. We'll
-                 request the driver to take care of the incoming data. */
+          // TODO: start RSSI measurement
 
-                  //RADIOSTATS_ADD(rx);
-                  process_poll(&rfm12_driver_process);
+          // first add the sync bytes to CRC calculation as we have already received these (else we would'nt be getting through to here)
+          crc_actual = crc16_add(SYNC1, crc_actual);
+          crc_actual = crc16_add(SYNC2, crc_actual);
 
-          /* We'll set the receive state flag to signal that a full frame
+          /* packet header. */
+          for(tmppos = 0 ; tmppos < HDR_SIZE ; ++tmppos)
+            {
+              PT_YIELD(&rx_handler_pt);              // wait until byte arrives
+              rfm12_trxbuf[tmppos] = incoming_byte;
+              /* Calculate the CRC. */
+              crc_actual = crc16_add(rfm12_trxbuf[tmppos], crc_actual);
+            }
+
+          // we can now grab the length seeing we have the header
+          data_len = ((PHY_header_t *)rfm12_trxbuf)->length;
+
+          // check to see if we can handle the incoming packet length
+          if (tmppos + data_len > sizeof(rfm12_trxbuf))
+            PT_RESTART(&rx_handler_pt);                 // too long drop packet and restart from beginning
+
+          // read packet data
+           for(; tmppos < data_len + HDR_SIZE; ++tmppos) {
+             PT_YIELD(&rx_handler_pt);
+             rfm12_trxbuf[tmppos] = incoming_byte;
+             crc_actual = crc16_add(rfm12_trxbuf[tmppos], crc_actual);
+           }
+
+           // read CRC
+           for(tmppos = 0; tmppos < CRC_SIZE; ++tmppos) {
+              PT_YIELD(&rx_handler_pt);
+              crc_expected = (crc_expected << 8) | incoming_byte;   // will receive high byte first
+           }
+
+          if(crc_expected == crc_actual) {
+              /* A full packet has been received and the CRC checks out. We'll
+                 request the driver take care of the incoming data. */
+                  //TODO: update successful Rx stats
+                  process_poll(&driver_process);
+
+              /* We'll set the receive state flag to signal that a full frame
                  is present in the buffer, and we'll wait until the buffer has
                  been taken care of. */
                rfm12_internal_state = RFM12_RX_END;
 
                PT_WAIT_UNTIL(&rx_handler_pt, rfm12_internal_state != RFM12_RX_END);
+
+               drvr_idle();                       // finished turn off receiver
+
              } else {
                LOG("Incorrect CRC\n");
-               //RADIOSTATS_ADD(badcrc);
+               //TODO: update bad crc stats
+               radio_state = RADIO_RX_PACKET_ERR;
              }
   }
   PT_END(&rx_handler_pt);
-}
-
-
-PT_THREAD(rfm12_tx_handler_pt(void)){
-
 }
 
 
@@ -641,19 +731,104 @@ ISR(RFM12_RADIO_IRQ)
         uint8_t source = rfm12_spi_cmd0();      //get interrupt source from RFM12
         RFM12_SPI_DISABLE();
 
-        if(source & RFM12_IRQ_OVUR)             // overflow error
+        if(source & RFM12_IRQ_OVUR)             // FIFO error
         {
-
+            // TODO: update fifo error stats
+            // TODO: signal fifo error
+            drvr_idle();                        // return to idle as error occurred
         }
 
-        if(source & RFM12_IRQ_FIFO)             // tx or rx event
+        else if(source & RFM12_IRQ_FIFO)        // tx or rx event
         {
+            if (radio_state == RADIO_TX_TRANSMITTING)
+              {
+                uint8_t out;
+                switch(rfm12_internal_state)
+                {
+                  case RFM12_TX_PREAMBLE:
 
-        }
+                      // check if we have sent the correct amount of preamble bytes
+                      // note: we have already sent one if Tx has just started and we get here.
+                      if(irq_cnt >= (PREAMBLE_SIZE-1))
+                      {
+                           irq_cnt = 0;               // reset the counter as we need for the next state
+                           rfm12_internal_state++;
+                      }
+                      else irq_cnt++;                 // increment number of preamble sent
 
-        if(source & RFM12_IRQ_LOWBAT)           // battery voltage below threshold
+                      out = PREAMBLE;
+
+                    break;
+
+                  case RFM12_TX_SYNC:
+                    if(irq_cnt >= SYNCWORD_SIZE)
+                    {
+                         irq_cnt = 0;               // reset the counter as we need for the next state
+                         rfm12_internal_state++;
+                    }
+                    else
+                    {
+                        out = syncword[irq_cnt++];
+                        crc_actual = crc16_add(out, crc_actual); // syncbyte included in CRC calc
+                    }
+                    break;
+
+                  case RFM12_TX_HEADER:
+                   if(irq_cnt >= SYNCWORD_SIZE)
+                   {
+                        irq_cnt = 0;                    // reset the counter as we need for the next state
+                        rfm12_internal_state++;
+                   }
+                   else
+                   {
+                       out = syncword[irq_cnt++];
+                       crc_actual = crc16_add(out, crc_actual);    // syncbyte included in CRC calc
+                   }
+                   break;
+
+                  case RFM12_TX_DATA:
+                    if(buf_pos >= (data_len-1))
+                        rfm12_internal_state++;         // finished sending data
+                    out = rfm12_trxbuf[buf_pos++];      // get next byte to send
+                    crc_actual = crc16_add(out, crc_actual);
+                    break;
+
+                  case RFM12_TX_CRC1:
+                    out = crc_actual >> 8;              // send crc high byte
+                    rfm12_internal_state++;
+                    break;
+
+                  case RFM12_TX_CRC2:
+                    out = crc_actual;                   // send crc low byte
+                    rfm12_internal_state++;
+                    break;
+
+                  case RFM12_TX_TAIL:
+
+                    if(irq_cnt >= (TAIL_SIZE-1))
+                      rfm12_internal_state++;           // next state
+                    else
+                      irq_cnt++;                        // increment number of tail bytes sent
+                    out=TAIL;
+                    break;
+
+                  case RFM12_TX_END:
+                    drvr_idle();                        // finished and fall through
+                  default:
+                    out = TAIL;
+                }
+                  rfm12_spi_xfer(RFM12_CMD_TX | out);   // send next byte to fifo
+                }
+              }
+            else // receiving
+              {
+                rfm12_rx_handler_pt(rfm12_spi_xfer(RFM12_CMD_TX)); //handle incoming byte
+              }
+
+        if (source & RFM12_IRQ_LOWBAT)           // battery voltage below threshold
         {
-
+            // TODO: update low Battery stats
+            // TODO: signal low battery status
         }
 
 

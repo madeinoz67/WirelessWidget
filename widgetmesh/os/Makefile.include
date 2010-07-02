@@ -2,6 +2,8 @@ ifndef CONTIKI
   ${error CONTIKI not defined! You must specify where CONTIKI resides}
 endif
 
+LINT = lin.bat
+STD_LINT =          ##c:\\lint\\std.lnt
 
 OBJECTDIR = obj_$(TARGET)
 CFLAGS += -DCONTIKI_TARGET=$(TARGET) -fpack-struct
@@ -54,8 +56,11 @@ CFLAGS += -DCONTIKI_TARGET_$(TARGET_UPPERCASE)
 #LIBS    = memb.c timer.c list.c etimer.c energest.c rtimer.c stimer.c \
 #          print-stats.c ifft.c crc16.c random.c checkpoint.c ringbuf.c
 
+include $(CONTIKI)/../widgetmesh/Makefile.widgetmesh
+
 SYSTEM  = process.c procinit.c autostart.c
 LIBS    = memb.c timer.c list.c etimer.c rtimer.c stimer.c mmem.c \
+          me.c me_tabs.c \
           ifft.c crc16.c random.c checkpoint.c ringbuf.c
 
 CONTIKIFILES = $(SYSTEM) $(LIBS)
@@ -129,6 +134,9 @@ clean:
         *.cprg *.bin *.data contiki*.a *.firmware core-labels.S *.ihex *.ini \
         *.ce *.co $(CLEAN)
 	-rm -rf $(OBJECTDIR)
+
+lint: $(CONTIKI_SOURCEFILES)
+	$(LINT) $(STD_LINT) $^
 
 ifndef CUSTOM_RULE_C_TO_CE
 %.ce: %.c

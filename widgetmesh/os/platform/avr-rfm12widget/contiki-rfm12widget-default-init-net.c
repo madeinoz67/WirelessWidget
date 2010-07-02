@@ -39,14 +39,5 @@
 void
 init_net(void)
 {
-  //start radio driver
-   rfm12_drvr_init(rfm12_config);
-
-/*  uip_ipaddr_t ipprefix;
-
-  uip_ip6addr(&ipprefix, 0xaaaa, 0, 0, 0, 0, 0, 0, 0);
-
-  uip_netif_addr_add(&ipprefix, UIP_DEFAULT_PREFIX_LEN, 0, AUTOCONF);
-  uip_nd6_prefix_add(&ipprefix, UIP_DEFAULT_PREFIX_LEN, 0);
-*/
+  widgetmesh_init();
 }
