@@ -35,26 +35,30 @@
 #include <stdint.h>
 
 /******************************************************************************
- * @name        RFM12 Packet specification
+ * @name        Radio Packet specification
  * @{
  */
 
-const uint8_t syncword[2] = {0x2D,0xD4};
-
 // header: number of bytes in packet including header
-struct rfm12_header {
-  uint8_t  length;      //< length of packet
-  uint8_t  src_addr;    //< senders address
-  uint8_t  dest_addr;   //< receivers address
-  uint8_t  ctrl;        //< packet control
-} __attribute__((packed));
+typedef struct PHY_header {
+  uint8_t       length;              //< length of packet including header
+}PHY_header_t;
 
+typedef struct MAC_header {
+  PHY_header_t  phy_header;
+  uint8_t       fcb;
+}MAC_header_t;
+
+#define SYNC1                   0x2D
+#define SYNC2                   0xD4
 #define PREAMBLE_SIZE           6
 #define PREAMBLE                0xAA
-#define SYNCWORD_SIZE           (sizeof (syncword))
-#define HDR_SIZE                (sizeof (struct rfm12_header))
+#define SYNCWORD_SIZE           2
+#define HDR_SIZE                (sizeof (struct PHY_header))
 #define CRC_SIZE                2
 #define TAIL_SIZE               2
 #define TAIL                    0xAA
+
+extern const uint8_t syncword[SYNCWORD_SIZE];
 ///@}
 #endif /* RFM12_FRAME_H_ */
