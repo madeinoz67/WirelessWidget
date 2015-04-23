@@ -1,0 +1,155 @@
+
+---
+
+
+
+---
+
+# Widget Mesh #
+## Goal ##
+The goal of this sub project is to provide wireless sensor mesh networking for the widgets.  Something along the lines of a cut down [Zigbee](http://en.wikipedia.org/wiki/Zigbee)/SP100a/[RUM](http://www.atmel.com/dyn/products/tools_card.asp?tool_id=4578&family_id=676) stack.
+
+Some of the features I'd ultimately like to implement:
+  * Frequency hopping to give diversity to interference.
+  * TDMA type access to media. Allow contention free access to RF for all nodes in the network.
+  * Basic Meshing, extending the range of sensor, routing of packets over alternate routes if nodes fail etc
+  * Remote firmware updates.
+
+## Network Overview ##
+the network consists of the following:
+  1. Gateway Device - At least one gateway device is required to form the network, the role of this is to co-ordinate the forming of the network and and the routing of packets to and from the WidgetMesh network, i.e. sends data through to a connected device for data-management e.g. a connected PC or a network.
+  1. Network Nodes - The rest of the network consists of widgets, these may be low powered battery or connected to mains.  The nodes when configured will search for and join the network under the coordination of the gateway device.
+
+### Frequency Hopping ###
+To provide resistance to RF interference, the mesh should provide the ability for the nodes to communicate over a number of different frequencies.  These frequencies are switched on a regular basis in a set pattern, so all nodes on the network know what channel to communicate on.
+
+Each node on the network has a default channel hopping pattern in the firmware, additional channel patterns can be assigned by the gateway device.
+
+The Frequency of the channel is based on a lookup table and is different each time.
+
+### TDMA Slotted Access ###
+[Time Division Multiple Access (TDMA)](http://en.wikipedia.org/wiki/Time_division_multiple_access) provides a shared slotted access to the RF media.
+
+This consists of a repeating superframe made up of individual time slots of a set length. e.g. 10mSec slots and superframe of 1 Second = 100 slots.
+
+![http://strobit.googlecode.com/svn/wiki/images/widgetmesh/SuperFrame0.png](http://strobit.googlecode.com/svn/wiki/images/widgetmesh/SuperFrame0.png)
+
+The length of the time slot must allow for a single packet to be sent with a response acknowledgement packet.
+
+Each timeslot consists of a number of communication cells, these cells are assigned non overlapping frequencies so are without RF collisions at any timeslot. e.g. a 16 cell timeslot can be assigned 16 different devices that will not interfere with each other.
+
+The frequency/channel for each cell will change at each time slot and is not fixed.  i.e. The cell is not the absolute channel but an offset derived from a frequency table and will change at each timeslot, a hopping pattern.  The hopping pattern is repeated (cycles) across the length of the super-frame.  At the end of the super-frame the cycle starts again from the beginning.
+
+Cells can be assigned link functions such as unicast cells (A --> B), Broadcast Cells (Q --> `*`) or Shared Access Cells (`*` --> `*`).  During a timeslot that is not assigned to an individual node then the node can have the Rx circuit turned off to save power.   Cell function assignment is performed by the gateway device during association requests or network reconfiguration (i.e. dis-association or lost nodes) as part of the meshing process.
+
+The diagram below (based on SP100A) shows a portion, 250mSec in this example, of a Super-frame and how the frequency hopping is integrated into TDMA as seen from a single device on the network.   [Link Assignments](WidgetMeshLink.md) between this node and other nodes in the network are shown as dedicated links i.e. uni-cast Send or Receive.  Additional nodes will be assigned their own link cells.  Shared Links are used as [advertisement](WidgetMeshAssociation.md) or broadcast slots by all nodes assigned.  Other nodes will have the same hopping cycle, but will be assigned different timeslots (unused) for their links.
+
+These assigned communication links are the basis of the meshed network.
+
+![http://strobit.googlecode.com/svn/wiki/images/widgetmesh/SuperFrame.png](http://strobit.googlecode.com/svn/wiki/images/widgetmesh/SuperFrame.png)
+
+Each device on the same network will have the identical hopping pattern, however for addition networks operating in the same vicinity, an offset to the hopping pattern can be applied that effectively shifts the hopping pattern to the left by the value of the offset, effectively interleaving the devices.
+
+e.g. with a hopping pattern of 2,8,13,5,10,14,4,11,7,12,1,6,15,9,0 and offset of 2 gives a hopping pattern of 13,5,10,14,4,11,7,12,1,6,15,9,0,2,8 and so on.
+
+The diagram below shows offsets of the same hopping sequence interleaved with the original hopping pattern to show how 16 different devices can effectively operate at the same time.  The numbers in the cells represent the offset applied to the hopping pattern.  This offset allows different devices to work in the same physical area with no RF interference.
+
+![http://strobit.googlecode.com/svn/wiki/images/widgetmesh/SuperFrame1.png](http://strobit.googlecode.com/svn/wiki/images/widgetmesh/SuperFrame1.png)
+
+To use this slotted access scheme, a notion of network time needs to be available across the network, this should be synchronised either from the Gateway or Coordinator node or a time source.
+
+### Self Forming and Self Healing ###
+
+If the minimum network requirement are met then the network should be self forming.  A node when first powered up will listen for other node communications in its vicinity and allowing it to sent join requests to form network links ([WidgetMeshAssociation](WidgetMeshAssociation.md)).  The network will form from the gateway out.
+
+The network should be self healing, if a node fails or for some reasons is disconnected from the network, then the rest of the network should be able to re-form as best as possible.
+
+![http://strobit.googlecode.com/svn/wiki/images/widgetmesh/mesh_overview.png](http://strobit.googlecode.com/svn/wiki/images/widgetmesh/mesh_overview.png)
+
+
+---
+
+
+## stack Overview ##
+![http://strobit.googlecode.com/svn/wiki/images/widgetmesh/stacksml.png](http://strobit.googlecode.com/svn/wiki/images/widgetmesh/stacksml.png)
+
+
+---
+
+
+## Design ##
+
+### Physical Layer ###
+The Physical Layer is provided by the RFM12 Driver process.
+
+The driver provides the following functions:
+  * Initialiases the RFM12 tranceiver.
+  * defines a psuedo channel table of frequencies
+  * provides api to change Channel
+  * provides api to change Tx Power
+  * provides api to send data
+  * provides api to receive data
+  * notifies upper layer that a data frame has been received.
+  * Performs either Digital RSSI or reads analogue RSSI
+  * Performs Carrier Assesement i.e. tests than nothing is tranmitting on the current channel.
+  * Put RF into Low Power/Sleep Mode.
+  * Rx guard time, if byte is not received within certian period.
+  * process received bytes and performs running CRC, will discard packet if invalid
+  * append preamble and sync bytes and frame header to outgoing transmitted data.
+
+![http://strobit.googlecode.com/svn/wiki/images/widgetmesh/rfm12_states.png](http://strobit.googlecode.com/svn/wiki/images/widgetmesh/rfm12_states.png)
+
+![http://strobit.googlecode.com/svn/wiki/images/widgetmesh/phy_frame.png](http://strobit.googlecode.com/svn/wiki/images/widgetmesh/phy_frame.png)
+
+> Pre-amble Bytes:  Required by the RFM12B transceiver for FSK lock, always 0xAA.
+
+> Sync Bytes:  The sync bytes are required by the RFM12B transceiver, the first is fixed and cannot be changed, the second byte is user defined, default sync Bytes are Sync1: 0x2D Sync2: 0xD4
+
+> LEN: Packet payload length
+
+> Payload: Data to be transmitted/received by the RFM12
+
+> CRC-16: 16 bit CRC calculation.  Includes the SYNC1, SYNC2, LEN, Payload in the CRC-16 calculation.
+
+> Tail: the tail is the same as the preamble (0xAA) and is appended to the frame being transmitted to make sure that all the data is flushed from the FIFO during the Tx process.
+
+> During reception the Preamble and Sync bytes are handled automatically by the RFM12 transceiver and will not be passed to the MAC layer, however these bytes need to be added during the packet building process before data transmission.
+
+> TODO: May also want to implement Forward Error correction using [Hamming code](http://en.wikipedia.org/wiki/Hamming_code)
+
+> TODO: Data Whitening with Manchester Encoding in this layer.  Will halve data rate if implemented.
+
+> TODO: Encryption.  Implement payload encryption using [XTEA](http://www.efton.sk/crypt/index.htm), RC4?, AES?, Skipjack?  resources required?  Data throughput? Resources required?
+
+### Link Layer ###
+
+The majority of network functions are handled by this layer and has two sublayers: Media Control Access (MAC) and Logical Link Control (LLC)
+
+The MAC sublayer interacts directly with the Radio, it's main function is to provide device addressing, performing framing and de-framing, along with managing the timing necessary to communicate with neighbouring nodes in an energy efficient manner by controlling the RFM12 via the driver.
+
+The LLC sublayer resides on top of the MAC layer and it's main function is link management along with error control.
+
+  * [Network Discovery and Association](WidgetMeshAssociation.md)
+  * [Network Routing](WidgetMeshRouting.md)
+
+### Network Layer ###
+
+A network layer is not required as a WidgetMesh network will only be sending/receiving data to/from the co-oridinator/Gateway Node or other nodes in the mesh, no routing between networks i.e. node to internet or internet to node, is required.
+
+Future work could include integrating contiki's implementation of 6LoWPAN into widetmesh, currently resource constraints would be too significant i.e. lack of ram and program memory.
+
+### Application Layer ###
+
+TODO:
+
+
+---
+
+
+## Implementation ##
+WidgetMesh is implemented on the [ContikiOS](http://www.sics.se/contiki/) and is available via the [project SVN](http://code.google.com/p/strobit/source/browse/#svn/trunk/widgetmesh).
+
+Current Status:
+  * ContikiOS ported to RFM12Widget Platform http://blog.strobotics.com.au/2009/09/12/contiki-os-port-progress/
+  * Hello-world example successfully running.
+  * no networking.

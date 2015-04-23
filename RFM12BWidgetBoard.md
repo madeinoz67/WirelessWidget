@@ -1,0 +1,67 @@
+
+---
+
+
+
+---
+
+![http://farm4.static.flickr.com/3337/3532713912_289f3464f6.jpg](http://farm4.static.flickr.com/3337/3532713912_289f3464f6.jpg)
+![http://farm3.static.flickr.com/2220/3531897883_f036aa55a3.jpg](http://farm3.static.flickr.com/2220/3531897883_f036aa55a3.jpg)
+![http://farm3.static.flickr.com/2363/3532713182_db63eb56f8.jpg](http://farm3.static.flickr.com/2363/3532713182_db63eb56f8.jpg)
+
+# Status #
+Version:  PCB Revision = 1.0
+
+Development Status: Active
+
+# Features #
+  * low profile 0603 SMD design.
+  * Compact board, 30mm x 70mm. (without battery)
+  * Low component count (K.I.S.S.) easy to assemble with minimal SMD soldering.
+  * 3V design non regulated (no on board regulator).
+  * Different power source options
+  * Reverse polarity protected.
+    * USB and battery can both be connected at the same time. Schottky diode protected. Can be bypassed via solder jumpers if required.
+  * Low profile high stability ceramic oscillator.
+  * Onboard on/off switch to save batteries when not in use, can be bypassed if not required.  Remote switch can utilise the PCB contacts if required.
+  * FTDI 3.3v breakout cable port for connecting to either RS232 TTL or USB using the FTDI cable.
+  * Atmega168V or Atmega328P processor, low cost, low voltage design = longer battery life.  Can use standard Atmega168 if low voltage not required.
+  * Can run Arduino Lilypad bootloader.
+  * External SMA antenna for reliability and extended range.
+  * Low cost RFM12B RF module by [HopeRF](http://www.hoperf.com/)
+  * x2 onboard LEDs for indication, I/O can be reused if LEDs are not required.
+  * Side mounted SMA antenna, designed to allow folding of antenna along the axis of the PCB in the event the PCB/enclosure needs to be stored.
+  * Variety of antenna options
+
+# Power Options #
+**NOTE: This board is unregulated and designed to run from a 3v battery source**
+  * x2 AA Alkaline via external power connector.
+  * CR123A 3V battery using optional built-in battery holder.
+  * Host powered via FTDI-3.3USB connector.
+  * Via Personality board interconnects VBAT and +3V.
+
+# Radio Module #
+> The RF module used by this widget is the RFM12B by [HopeRF](http://www.hoperf.com/pro/RFM12B.html).  This is a low cost, low power module available in 433Mhz, 868Mhz and 916Mhz bands.
+## Distance ##
+The distance achieved by these modules will be dependant on the band of the module installed, the type of antenna used and the bitrate selected.
+  * Non-scientific tests using the [http://code.google.com/p/jeelab/](http://code.google.com/p/jeelab/) default RFM12B driver examples, indicate that reliable communications of bitrates of 57600bps are achieved indoors everywhere around my house 30m+  this was using a 916Mhz module, 2dB SMA antenna and a packet length of 66 byte.
+  * Outdoor test using same configuration as indoor test, one module inside the house continuously transmitting packets every second and the mobile node with me walking down the street until CRC packets failed (LED stops blinking).  Transmitting 66byte packet @ 57600bps.  Distance 120m
+See [RFM12WidgetTesting](RFM12WidgetTesting.md)
+
+## Antenna Options ##
+  * SMA PCB mount
+  * SMA pigtail soldered onto PCB
+  * Whip antenna soldered directly onto board (piece of correct length wire)
+
+# Software #
+  * Compatible with [Arduino](http://arduino.cc/) development environment.
+  * Widget [Bootloaders](http://code.google.com/p/strobit/downloads/list?q=label:Type-Bootloader-HEX) available for download.
+  * RFM12B drivers for the Arduino can be obtained from [JeeLab](http://code.google.com/p/jeelab/wiki/RF12) and is compatible with the current hardware.
+  * Arduino [Tutorials](http://arduino.cc/en/Tutorial/HomePage) and Applications written are compatible with the Strobit Wireless Widget.
+
+# Building #
+This board is a SMD design.  Please follow the [Rfm12BuildingInstructions](Rfm12BuildingInstructions.md)
+# Schematics #
+![http://strobit.googlecode.com/svn/wiki/images/schematics/sww-0901-010.png](http://strobit.googlecode.com/svn/wiki/images/schematics/sww-0901-010.png)
+# Programming Bootloader #
+See ProgrammingBootLoader

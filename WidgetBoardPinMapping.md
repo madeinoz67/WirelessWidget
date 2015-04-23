@@ -1,0 +1,24 @@
+|Arduino Pin  | Widget Pin | Notes|
+|:------------|:-----------|:-----|
+|D0|RXI(D0)|  |
+|D1|TXO(D1)|  |
+|D2|INT0|UNAVAILABLE - USED by RFM12B|
+|D3(PWM)|INT1(D3)|  |
+|D4|D4|  |
+|D5(PWM)|D5|  |
+|D6(PWM)|D6|  |
+|D7|D7|  |
+|D8|D8(LED1)|LED can be disabled via SJ1 |
+|D9(PWM)|D9(LED2)|LED can be disabled via SJ2 |
+|D10(PWM)|NSEL|UNAVAILABLE - USED by RFM12B|
+|D11(PWM)|MOSI|Shared with RFM12B|
+|D12|MISO|Shared with RFM12B|
+|D13|SCK |Shared with RFM12B|
+|A0|A0|  |
+|A1|A1|  |
+|A2|A2|  |
+|A3|A3|  |
+|A4|SDA(A4)|  |
+|A5|SCL(A5)|  |
+|A6|A6|On Widget board only- not on expansion header|
+|A7|A7(RSSI)|On Widget board only - not on expansion header |

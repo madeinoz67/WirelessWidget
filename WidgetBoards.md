@@ -1,0 +1,12 @@
+
+---
+
+# Arduino Pin Mapping #
+
+The Widget boards are compatible with Arduino, see WidgetBoardPinMapping to get an idea of how Arduino pins are mapped to this board.
+
+
+# Widget Boards #
+|Widget|PCB Revision|Status|Enhancements|Issues|Processor|[Band](WirelessBand.md)|Build Instructions|Schematics|
+|:-----|:-----------|:-----|:-----------|:-----|:--------|:----------------------|:-----------------|:---------|
+|[RFM12BWidgetBoard](RFM12BWidgetBoard.md)|1.0|Active|[List](http://code.google.com/p/strobit/issues/list?can=1&q=label%3AMilestone-sww-0901-011&colspec=ID+Type+Status+Priority+Hardware+PcbVersion+Milestone+Owner+Summary&cells=tiles) | [List](http://code.google.com/p/strobit/issues/list?can=1&q=label%3AType-Defect+label%3AHardware-WidgetBoard-RFM12B&colspec=ID+Type+Status+Priority+Hardware+PcbVersion+Milestone+Owner+Summary&cells=tiles)|AtMega168V/328P|433MHz, 868MHz, 915MHz|[BuildIt](Rfm12BuildingInstructions.md)| [Schematics](http://strobit.googlecode.com/svn/wiki/images/schematics/sww-0901-010.png) |

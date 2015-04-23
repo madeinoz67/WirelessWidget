@@ -1,0 +1,153 @@
+
+---
+
+
+
+---
+
+
+These instructions are for the version 1.0 board.
+
+# PCB Layout #
+
+![![](http://farm3.static.flickr.com/2220/3542829566_9d82a83239_b.jpg)](http://farm3.static.flickr.com/2220/3542829566_44c04ec6e1_o.png)
+
+# Design Questions Answered #
+
+Q.  the pins on the headers don't line up, are they special components?
+
+A.  Don't worry, they are standard SIL headers, I've used the Sparkfun library for this part and used their 'LOCK' version of the footprints, more information here: http://www.sparkfun.com/commerce/tutorial_info.php?tutorials_id=114  they work very well, in fact I used them to temporarily put male SIL headers in place so I could put the Wireless Widget board on a breadboard.  I could then program the boot loaders, the tension provides good contact with the pins, when I finished playing around I could remove the headers and eventually solder in the correct female headers when they arrived.
+
+Q. Why is the SMA antenna on the side and not at the front of the board?
+
+A. I designed the board so that it could be stored with the antenna still on, just folding along the axis of the board. i.e. like putting it into a camera bag.
+
+Q.  What is D1 for?  Do I need it?
+
+A.  D1 is a schottky protection diode used for two things:
+  1. Reverse battery protection, so if you put the battery or power the wrong way around it won't kill the board.
+  1. the second is so that the FTDI cable can be connected without removing the battery.  It blocks either power source from getting back to the other.  If you have both the battery and the FTDI cable connected without D1, the batteries will try and charge and probably draw more current, heat up and die a horrible death.  (actually they get very hot and let smoke out and smell a lot - believe me, I talk from experience)
+
+D1 can be disabled (at your own risk) by either not installing it and using the solder jumpers document below to bypass it.
+
+Q. What is the RSSI Pad for?
+
+A. This pad is connected to ADC7 port of the processor.  The reason behind this is the RF12B modules do not give any analogue RSSI values via the SPI interface, it only has an RSSI bit value i.e. if the RSSI is above a preset value this bit is high.  So it doesn't really give much information about the RSSI signal.   If you want an analogue RSSI signal then you need to solder a jumper from this pad to the RFM12B module as indicated here.
+http://blog.everythingrobotics.com/2008/06/17/rfm12-tutorial-part2/
+
+Q. Do I need all components for this to work?
+
+A. No, it really depends on what you want, in the Parts list below I've marked the bare minimum components needed to get a running board using the Atmega168/328 internal oscillator.  You could probably get away with less, like no bypass capacitors, but it's up to you.  I would keep them in to be safe.
+
+# Solder Jumper Table #
+
+|Jumper|Description|Default|
+|:-----|:----------|:------|
+|SJ1|Led1 Enable|ON|
+|SJ2|Led2 Enable|ON|
+|SJ3|D1 Battery side bypass|OFF|
+|SJ4|D1 USB side bypass|OFF|
+|SJ5|SW1 bypass|OFF|
+
+# Parts List #
+Not all of the parts below are required to get a working board.  The parts marked with 'YES' in the REQD column are the minimum components required for a working board
+
+Distributor and their part# are only shown for the harder to find parts.
+
+|REQD|Part |Qty|Value|Device|Package|Manufacturer|Manuf. Part#|Distributor|Dist. PartNum|Description|
+|:---|:----|:--|:----|:-----|:------|:-----------|:-----------|:----------|:------------|:----------|
+|  |ANT|1 |SMA\_EDGE|SMA\_EDGE|SMA-EDGE|ChangHong|SMA-02-101-TGG|Sparkfun|WRL-00593|SMA Antenna Connector Round PCB Edge|
+|  |BT1|1 |Keystone 1029	|BATTERYCR123A|BATTERY\_CR123A|Keystone|1029|NPA|K1029|CR123A Battery Holder PCB|
+|  |BTCOVER|1 |Keystone 1029C|CR123A Cover|  |Keystone|1029C|NPA|K1029C|CR123A Battery Cover|
+|YES|C1, C2, C3, C4|4 |100n|CAP0603|0603|  |  |  |  |Capacitor Ceramic 0603 5%|
+|  |C5, C6|2 |22p|CAP0603|0603|  |  |  |  |Capacitor Ceramic 0603 5%|
+|YES|C7|1 |10uF/10V 10%|CAP\_POL1206|EIA3216|  |  |  |  |Capacitor Polarized Tantalum 3216 10%|
+|  |D1|1 |BAT754C|BAT54C|SOT23|NXP|BAT754C|  |  |Diode Schottky 30V 200MA SOT-23|
+|  |JP1, JP2|1 |Female Header 5MM(H)|HEADER\_FEMALE\_SIL\_1X30|	FEMALE\_SIL\_1x40|	ITEK|	FHS-40-S-G-B|  |  |	Header Female SIL 1x40 2.54mm  PTH|
+|  |JP3|	1|	Male Header SIL 1x6 R/A|	HEADER\_SIL\_1x06RA|	SIL\_1x08RA|	ITEK|	PH1R-108GBA|  |  |	Header Male SIL 1x08 2.54mm Right Angle PTH|
+|YES|L1|	1|	220 Ferrite Bead|	INDUCTOR0603|	0603|	HITANO|	FBM-0603-ST-221-S|  |  |	Ferrite Bead Inductor|
+|  |LED1, LED2|	2|	RED|	LED0603|	0603|	HITANO|	HI-1608-HRF-T|	 |  |LED RED 0603|
+|  |Q1|	1|	10Mhz	|CRYSTAL5X3|	CRYSTAL-SMD-0503|ECS International|	ECS-100-20-30B-DU|Mouser|520-100-20-30B-DU|Crystal 10MHZ Ceramic 0503 20pf|
+|YES|[R1](https://code.google.com/p/strobit/source/detail?r=1)|	1|	10K|	RESISTOR0603|	0603|	|  |  |  |Resistor 0603 10K 5%|
+|  |[R2](https://code.google.com/p/strobit/source/detail?r=2), [R3](https://code.google.com/p/strobit/source/detail?r=3)|	2|	0680|	RESISTOR0603|	0603|	|  |  |  |Resistor 0603 5% |
+|YES|RFM12B|	1|	RFM12BSMD|	RFM12BSMD|	RFM12B-S1|	HOPERF|	RFM12B-XXX-S1|	 |  |HopeRF  RFM12B Tranceiver Module SMD|
+|  |S1|	1|	Power Switch|	SLIDESWITCH-SMD	|SWITCH-SPDT-SMD|	HUAWEITE|MSK-12C00(1P2T)|Sparkfun|COM-08769|Slide Switch SP2T SMD R/A|
+|YES|U1|	1|	ATMEGA168V|	ATMEGA168|TQFP32|	ATMEL|	ATmega168V-10AU|  |  |	ATMEGA168V TQFP|
+
+# Component Sources #
+## Suppliers ##
+TODO:  [Octopart](http://www.octopart.com) partlist.
+
+http://sparkfun.com
+
+http://www.x-on.com.au/ (Mousers Australian Partner)
+
+http://www.mouser.com/
+
+http://www.digikey.com
+
+http://www.npa.com.au - Battery holders
+
+http://www.dealextreme.com - tools, antennas and SMA connectors
+
+## Other sources ##
+What I did while waiting for my components to come in was to salvage SMD components from old motherboards, this is a good source for bypass capacitors(C1,C2,C3,C4)and Ferrite Beads(L1). It allowed me to get a minimal board up and running so I could test things.
+
+Ferrite beads can be found around the USB and ethernet ports, Ususally labelled with FB, B or L.
+
+One of the things with this is that many of these are 0805 parts, while the Wireless Widget is 0603, this is not a big problem, by turning the 0805 parts on their side they will fit ok.
+
+  * http://www.neufeld.newton.ks.us/electronics/?p=209
+  * http://www.opencircuits.com/Salvage_Parts_and_Sources
+
+# Surface Mount Soldering #
+I actually find making SMD boards way easier than the old PTH components method.  For small boards such as this it does not take long at all.
+
+There are a few of ways to do this:
+
+  1. Hand Soldering
+  1. Hotplate/Skillet plate
+  1. Toaster Oven
+
+> [Sparkfuns SMD Solder Tutorials](http://www.sparkfun.com/commerce/tutorial_info.php?tutorials_id=36) - there a number of parts to this tutorial, please read all of of the parts.
+
+> ## Tools ##
+You are going to need a few tools regardless of what method you use.
+
+These are what I currently use:
+  * Right angle tweezers.
+  * Jewellers Loupe or magnifying glass.
+  * soldering Iron with a fine tip
+  * Solder
+  * De-Solder Wick
+  * Solder Paste in syringe.
+  * SMD component storage containers with spring lids.
+  * Multimeter
+  * Temperature probe capable of going to 250DegC
+
+Most of these tools I purchased from http://www.dealextreme.com  (WARNING: This site is very addictive).  I also get my SMA connectors, SMA pigtails and 900MHZ antennas here.  shipping is free worldwide, and their prices are fantastic.
+
+At the moment I don't use a solder paste stencil.  I apply it all by hand.  The first couple of boards I used a little too much solder and had some bridges I needed to remove, however after the 3rd board I don't have any solder bridges and I have a good idea of how much solder paste I need to apply. Actually very little solder paste actually is needed on most components, the only one that needs a bit more is the RFM12B transceiver, all the rest is but a smear on the pad, which causes a nice fillet on the finished joints.
+
+> ## The steps I use - (Toaster Oven) ##
+More information on this Blog Entry http://blog.strobotics.com.au/2009/07/10/my-smd-process/
+    1. Make sure you have all the correct components, I usually place mine into labelled SMD storage containers before I start.  It make it things much easier when I'm placing them.
+    1. Clean the PCB with cleaning alcohol and wipe dry with a paper towel.
+    1. Apply solder paste to all components pads on the PCB for all that you're installing, only very small amounts are needed.
+    1. Apply solder paste to the jumpers you want to close, put a generous amount on these, try and cover the two pads, these will flow to form a bridge.
+    1. Using the tweezers place the components onto the their respective pads (using the layout picture above as a guide)  Be careful with polarised components, these are C7, U1, RFM12, LED1 and LED2, they can easily be put the wrong way around.  (TODO: Pictures)
+    1. I test my LEDS before I place them as they are very small and hard to work out which end is the cathode.  I use my multimeter on continuity/resistor setting and put them directly on each end of the LED, if the LED lights up, then the end I have my red test lead on goes towards [R2](https://code.google.com/p/strobit/source/detail?r=2) and [R3](https://code.google.com/p/strobit/source/detail?r=3) on the board.
+    1. Once All components are placed and I've triple checked that I have them all the right way around (It's much harder to change them after they are soldered) I then place them in my toaster oven with it turned off.
+    1. I've modified my toaster oven my adding a PID Ramp controller, this allows me to have the SMD solder temperature profiles programmed in, I just hit go and it does the rest by setting the correct temperatures and wait times, but most of you will not have this luxury.  What I suggest is to familiarise yourself with the solders temperature profile, available from the manufactures website.
+    1. Once you have an idea of what temperatures you need then set the toaster oven temperature to the first temperature and monitor the temperature in accordance with the data sheet and so on until you see the solder flow.
+    1. A less technical approach is to slowly adjust the temperature until you see the solder past run, like a watery grey, leave it at that temp for a couple of minutes, then slowly increase until you start to see the solder paste to go silver and shiny, when all the pads go shiny then it's done and you can turn things off, mind you don't bump or move your boards until things have cooled down, if you do you may move components, so just turn the power off and let things cool down.
+    1. Once you're happy you can then proceed to test the board before soldering on the non SMD components like the SMA connector and headers etc.
+
+# Preliminary Testing #
+After my soldering I do the following tests:
+  1. Visual inspection:- When all has cooled down and you can handle the board you need to use a magnifying glass to visually inspect the joints, in particular U1, you need to check that no bridges have formed, if they have then you need to use the solder wick and a fine tip soldering iron to wick out the bridges.
+  1. Electrical Check:- mainly on the power side of things, I put a multimeter on Ohms mode and check I don't have any shorts across the power.  (be aware that if you have installed D1 then you may need to check before and after the component for shorts i.e. where the batteries come in, and then probably at the switch.)
+  1. If this is a new PCB design then I will also do continuity check on the CPU to all I/O ports etc, making sure they are going where they are supposed to, along with all the power traces going to the right places.  Safe to say that I've already done this with the current PCB and you won't need to do it yourself.
+  1. Once I'm happy with all of this then I proceed to apply power.
+  1. After applying power I check that nothing is getting hot by touching the key components, if they are, then **immediately** turn things off and you will need to troubleshoot the board, most likely you have a component around the wrong way or you have the power reversed.
+  1. I then check voltages around the main parts and once I'm happy everything is getting power then I will program the bootloader.

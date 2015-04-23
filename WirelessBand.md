@@ -1,0 +1,37 @@
+
+---
+
+
+
+---
+
+# Introduction #
+
+All countries have different regulatory requirements when it comes to unlicensed wireless.  Below is a list of frequencies that are allowed for the ISM bands in their relevant countries.  If you can't find your country here, please research it and let me know so I can update it.
+
+When using the RFM12, you will need to make sure that you are using the correct frequencies for your country, not just the correct band.  e.g. in Australia I can use the 915Mhz RFM12B which can operate from 902Mhz - 928Mhz, so I need to make sure that my application meets my countries regulatory requirements of 915 - 928Mhz by programming the RFM12 to the correct frequencies.
+
+
+NOTE: I've intentionally not included the 2.4GHZ bands etc in this list, only bands covered by the RFM12 transceivers.
+
+# Countries #
+## Australia ##
+
+[915 - 928 MHz](http://www.acma.gov.au/webwr/radcomm/frequency_planning/spps/9501spp.pdf)
+
+## European Union ##
+
+433.05 – 434.79 MHz
+
+868 MHz
+
+## New Zealand ##
+
+921 - 929 MHz
+
+## United Kingdom ##
+
+
+## United States ##
+
+902 - 928 MHz

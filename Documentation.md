@@ -1,0 +1,20 @@
+
+---
+
+
+# Background #
+
+The original idea was conceived in a response to a topic I posted on the Strobist Flickr Pool ([Original discussion Thread](http://www.flickr.com/groups/strobist/discuss/72157602088957861/)) in regards to an open source wireless trigger project for the strobist community (http://www.strobist.com/).
+
+As there was quite a bit of positive feedback I created a proof of concept wireless trigger prototype based on the PIC MCU and the RFM12B Wireless module that successfully synced/triggered at 100m outside and all around the house inside.  [Original Strobit Prototype info, photos and test results](http://blog.everythingrobotics.com/strobit/)
+
+After the prototype development things ground to a stop, mainly due to family and work commitments, moving house, remarrying blah blah....(funny how these small things seem to get in the way of development) however always in the back of mind I had ideas of reviving an open wireless trigger platform.
+
+# Strobit Wireless Widget Concept #
+
+During this time I started playing around with the Arduino.  I loved the idea of the modularity and the open tools and libraries, however there was no real low cost wireless platform for the Arduino, other than the X-BEE Shield, these were way too pricey.  What I wanted was a small arduino like platform with the wireless onboard.
+
+The Strobit Wireless Widget was born.  Not purely for the strobist wireless trigger, but more of a generic wireless embedded platform, a wireless widget so as to speak, something that is flexible and adaptable to my other interest, Home Control and Robotics, so this was something I could easily adapt rather than a single dedicated piece of hardware.
+
+# License #
+The hardware is licensed under the [TAPR Open Hardware License](http://www.tapr.org/OHL)

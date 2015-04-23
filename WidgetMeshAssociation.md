@@ -1,0 +1,74 @@
+
+---
+
+
+
+---
+
+# Introduction #
+When a node gets powered up its not a member of any network and must associate itself with a network before it can send data/requests over the network.  This is done by Association/Join Requests to the gateway device.
+
+The gateway's/coordinators role is to manage the network, firstly by managing network association requests, then forming communication links between associated nodes and by routing packets to and from the WidgetMesh once the network has been formed.  This process is ongoing as new nodes may associate at any time.
+
+# Forming #
+
+## Requirements ##
+  * Network Gateway/Coordinator - The Network Gateway manages the network and the join requests.
+
+Join Requests are sent either directly to the Gateway node or Indirectly via other nodes already associated in the network.
+
+Once Associated with the network a WidgetNode will have its TDMA schedule sent to it by the gateway/coordinator node as part of the association request.  The Gateway can also update nodes TDMA schedules in the network with additional neighbour links based on link quality / battery life etc, to create a fully meshed network.
+
+## Network discovery - Who's out there? ##
+When nodes are powered up for the first time they'll cycle through the default TDMA sequence of channels on a slow hopping scheme listening for advertisement packets.  This allows new nodes to build up a list of candidate association partners.  This process will continue until it is successfully associated with the network.
+
+Advertisements are send via two ways.
+  1. Associated nodes that are mains powered will broadcast an advertisement to announce their presence at particular time/frequency slots as allocated from the gateway device. This advertisement will contain information such as valid channels for association requests.
+  1. Low powered devices will try to minimise their power usage, so unless specifically configured to announce their presence will only listen on their associated time slots and will respond to Advertisement solicitation packets with advertisement packet in the same time slot if received.
+
+![http://strobit.googlecode.com/svn/wiki/images/widgetmesh/advertisement.png](http://strobit.googlecode.com/svn/wiki/images/widgetmesh/advertisement.png)
+
+## Association Request Parent Selection ##
+Association Request Parent selection could be be determined by:
+  * RSSI - Stronger RSSI is better than lower RSSI.
+  * NodeId - Lowest NodeId is first choice.  Gateway/Coordinator always has NodeId of 0x0000 so is always the lowest and therefore 1st choice if detected.
+
+
+# Example #
+In the following example Widget W1 has already associated with the Gateway Device (GW) and communicates with GW via it TDMA slot allocation.
+
+Widget Nodes W2 and W3 are not yet associated with the network.
+
+| UnAssociated | Associated | Meshing| Meshed|
+|:-------------|:-----------|:-------|:------|
+|![http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation.png](http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation.png)|![http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation2.png](http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation2.png) | ![http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation3.png](http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation3.png) | ![http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation4.png](http://strobit.googlecode.com/svn/wiki/images/widgetmesh/networkAssociation4.png) |
+
+## Direct Association ##
+
+![http://strobit.googlecode.com/svn/wiki/images/widgetmesh/DirectNetworkAssociation.png](http://strobit.googlecode.com/svn/wiki/images/widgetmesh/DirectNetworkAssociation.png)
+
+  1. Node W2 Powers up in "Provisioned" state
+  1. Node W2 Listens for Parent/Neighbour candidates. It detects devices GW and W1 as likely candidates.
+  1. W2 determines that GW is the best Node for a parent.
+  1. W2 Sends a DirectJoinRequest to GW and state changes to "Joining" state.
+  1. GW Adds W2 to the Network Node table
+    1. Assigns TDMA Slots.
+    1. Assigns Short Address.
+    1. Assigns Parent Node as itself(GW).
+  1. GW sends a DirectJoinResponse Packet containing above information to W2
+  1. W2 updates Neighbour Table with Join Response data and in now in "Associated" State
+
+## Indirect Association ##
+![http://strobit.googlecode.com/svn/wiki/images/widgetmesh/IndirectNetworkAssociation.png](http://strobit.googlecode.com/svn/wiki/images/widgetmesh/IndirectNetworkAssociation.png)
+  1. Node W3 Powers up in "Provisioned" state
+  1. Node W3 Listens for Parent/Neighbour candidates.  It detects devices W1 and W2 as likely candidates. GW is not detected.
+  1. W3 determines that W1 is the best Node for a parent due to RSSI strength.
+  1. W3 Sends a DirectJoinRequest to W1 and state changes to "Joining" state.
+  1. W1 Receives DirectJoinRequest and changes it to Type IndirectJoinRequest and requeues Packet for GW
+  1. GW receives IndirectJoinRequest and adds W3 to the Network Node table
+    1. Assigns TDMA Slots.
+    1. Assigns Short Address.
+    1. Assigns Parent Node(W1).
+  1. GW sends an IndirectJoinResponse Packet containing above information to W1
+  1. W1 receives IndirectJoinResponse packet and changes type to DirectResponsePacket and requeues to W3
+  1. W3 updates Neighbour Table with Join Response data and in now in "Associated" State

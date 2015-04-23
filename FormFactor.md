@@ -1,0 +1,35 @@
+# Introduction #
+
+I think it is a good idea to make the device as flexible as possible. Ideally we'd never need any hardware changes to the device once it's done. This way we would be able to get it approved by, say, FCC, and use it guilt-free :)
+
+I think a device should have the following:
+
+  * wireless interface
+  * two ports for external peripherals (described later)
+  * USB port for setup and firmware update
+  * several LEDs
+  * buzzer
+
+Additionally it would be good to have an alternative version with a display and some keys. I think this _configurator_ device would be useful to pass settings to other devices. Besides it could be made bigger to put in pocket and never use in actual triggering. Potentially, this display-button-control device could also be equipped with a photodiode to be used as a flashmeter.
+
+
+# Details #
+
+I propose to put the strobit device into a box approximately 100mm x 50mm x 35mm. On one side we would put the antenna, and on the other side two connectors.
+
+I suggest adding two 6-pin connectors to hook up flashes and cameras. The 6-pin mini-DIN connector (also used as PS/2 mouse/keyboard connector) is a rather common connector and can easily be salvaged from old motherboards. The other part can be salvaged from old mice/keyboards.
+
+With 6 pins we are able to supply power and ground as well as 4 i/o lines.
+
+A port can be used as output to light flashes. Another option is to remotely trigger a camera. Two ports mean one can trigger a battery of two flashes - a trick often used to get more power or better recycling time.
+
+Secondly, a port can be used as input. This includes getting the trigger signal from camera but also from different devices like accoustic trigger or laser detector.
+
+So every piece of external hardware gets connected to the 6-pin port with a special cable. When a new piece of hardware needs to be connected there's no need to change the original hardware, just design new cable.
+
+
+I've put together this little sketch of how a device can be attached to a camera.
+
+![http://strobit.googlecode.com/svn/wiki/images/concept-camera.png](http://strobit.googlecode.com/svn/wiki/images/concept-camera.png)
+
+Attaching external flashes with cables as opposed to having a hot shoe mount gives a definite advantage with Canon 580EX. It has been reported that this particular flash model produces a lot of interference and moving the wireless unit away from the flash gives a dramatic improvement in reliability. Not to mention that a simple box-shaped case will be significantly cheaper than one with a hot shoe mount.
